@@ -1,0 +1,104 @@
+/* SET REM FUNCTION */
+@function rem($px) {
+  @return ($px / 16) + rem;
+}
+
+/* FONT-FASE */
+@mixin font-face(
+  $font-name,
+  $path,
+  $weight: 400,
+  $style: normal,
+  $display: swap
+) {
+  @font-face {
+    font-family: quote($font-name);
+    src:
+      /* Safari, Android, iOS */ url($path + '.woff') format('woff'),
+      /* Modern Browsers */ url($path + '.woff2') format('woff2');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: $display;
+  }
+}
+
+/* ===== Usage
+@include fonts-face ('Acrom', '../fonts/Acrom/Acrom-Thin', 100);
+===== */
+
+/* FONTS STYLE */
+@mixin fonts($fs, $fw: 400, $lh: 1.2, $ls: 0.01em) {
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+  letter-spacing: $ls;
+}
+
+/* MEDIA QUERIES*/
+@mixin mq($range) {
+  $mobile: 320px;
+  $tablet: 768px;
+  $desktop: 1280px;
+
+  @if $range == mobile-only {
+    @media (max-width: #{$tablet - 0.02}) {
+      @content;
+    }
+  } @else if $range == mobile {
+    @media (min-width: $mobile) {
+      @content;
+    }
+  } @else if $range == tablet-only {
+    @media (min-width: $tablet) and (max-width: #{$desktop - 0.02}) {
+      @content;
+    }
+  } @else if $range == tablet {
+    @media (min-width: $tablet) {
+      @content;
+    }
+  } @else if $range == desktop {
+    @media (min-width: $desktop) {
+      @content;
+    }
+  } @else if $range == notDesktop {
+    @media (max-width: #{$desktop - 0.02}) {
+      @content;
+    }
+  } @else if $range == retina {
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (-moz-min-device-pixel-ratio: 2),
+      screen and (-o-min-device-pixel-ratio: 2/1),
+      screen and (-webkit-min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      @content;
+    }
+  }
+}
+
+/* ===== Usage
+.block {
+    @include mq(mobile) {
+        margin-bottom: 16px;
+    };
+  }
+
+.bgi-img mq(retina) {
+    background-image: url(../images/showcase@2x.jpg);
+}
+===== */
+
+/*DOTS COLORS*/
+// @mixin dot-color($color) {
+//   @if $color == --yellow-color {
+//     color: var(--yellow-color);
+//     --dots-color: var(--yellow-color);
+//   } @else if $color == --accent-color {
+//     color: var(--accent-color);
+//     --dots-color: var(--accent-color);
+//   }
+// }
+
+/* ===== Usage
+.slick-dots li button { @include dot-color(--yellow-color); }
+===== */

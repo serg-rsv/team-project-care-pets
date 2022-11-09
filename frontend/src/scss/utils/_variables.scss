@@ -1,0 +1,64 @@
+@function HexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+/* GRADIENT COLORS */
+$grey-bg-rgb: rgb(80, 76, 92);
+$dark-gradient-rgb: rgb(0, 0, 0);
+
+:root {
+  /* ACCENT COLORS */
+  --primary-accent-cl: #fec830;
+  --secondary-accent-cl: #aa43a2;
+
+  /* TEXT COLORS */
+  --main-text-cl: #504c5c;
+  --secondary-txt-cl: #202020;
+  --light-txt-cl: #96949d;
+  --white-text-cl: #ffffff;
+  --inactive-text-cl: #96949d;
+
+  --dark-text-cl-rgb: #{HexToRGB(#504c5c)};
+  --white-text-cl-rgb: #{HexToRGB(#ffffff)};
+  --modal-input-cl: #757575;
+  --modal-text-cl: #cccccc;
+
+  /* BACKGROUND COLORS */
+  --main-bg-cl: #fffcf5;
+  --secondary-bg-cl: #{HexToRGB(#504c5c)};
+  --white-bg: #ffffff;
+  --footer-bg: #202020;
+
+  --primary-accent-bg: #fec830;
+  --secondary-accent-bg: #aa43a2;
+
+  --modal-close-btn: #cccccc;
+
+  /* FONTS */
+  --main-font: 'Manrope', sans-serif;
+
+  /* ANIMATIONS SPEED */
+  --fast-animation: 0.2s;
+  --slow-animation: 0.4s;
+  --very-slow-animation: 0.6s;
+
+  /* BASE GRID */
+  --grid-item: 1;
+  --grid-mr-left: 30px;
+  --grid-mr-top: 30px;
+
+  /* OTHERS */
+  --border-radius: 12px;
+
+  --main-shadow: 0px 1px 2px rgba(92, 46, 145, 0.08),
+    10px 10px 40px rgba(92, 46, 145, 0.24);
+
+  --btn-violet-shadow: 0px 4px 30px rgba(170, 67, 162, 0.45);
+
+  --btn-yellow-shadow: 0px 4px 30px rgba(254, 200, 48, 0.45);
+
+  --slider-shadow: 2px 8px 8px rgba(92, 46, 145, 0.078),
+    2px 2px 10px rgba(92, 46, 145, 0.239);
+
+  --dark-gradient-rgb: #{HexToRGB(#000000)};
+}
