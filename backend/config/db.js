@@ -1,4 +1,5 @@
 const { connect } = require('mongoose');
+
 const connectDB = async () => {
   try {
     const db = await connect(process.env.CONNECT_DB_URI);
