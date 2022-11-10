@@ -34,7 +34,7 @@ const register = asyncHandler(async (req, res) => {
       birthday: newUser.birthday,
       avatarURL: newUser.avatarURL,
       pets: newUser.pets,
-      notices: newUser.notices,
+      favorites: newUser.favorites,
     },
   });
 });

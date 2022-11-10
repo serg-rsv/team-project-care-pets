@@ -29,7 +29,7 @@ const login = asyncHandler(async (req, res) => {
       birthday: user.birthday,
       avatarURL: user.avatarURL,
       pets: user.pets,
-      notices: user.notices,
+      favorites: user.favorites,
     },
   });
 });
