@@ -32,18 +32,18 @@ const userSchema = new Schema(
     // default Date ??
     birthday: {
       type: Date,
-      default: null,
+      default: Date.now(),
     },
     avatarURL: {
       type: String,
-      default: null,
+      default: '',
     },
     pets: {
       type: [Schema.Types.ObjectId],
       ref: 'pets',
       default: [],
     },
-    notices: {
+    favorites: {
       type: [Schema.Types.ObjectId],
       ref: 'notices',
       default: [],
@@ -63,7 +63,7 @@ const registerSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   name: Joi.string().required(),
   phone: Joi.string().pattern(phoneRegexp).required(),
-  city: Joi.string().required()
+  city: Joi.string().required(),
 });
 
 const loginSchema = Joi.object({

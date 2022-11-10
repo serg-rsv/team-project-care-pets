@@ -21,6 +21,6 @@ router.post(
 
 router.get('/logout', auth, controllerUser.logout);
 
-router.patch('/update', auth, controllerUser.update);
+router.patch('/edit', auth, controllerUser.edit);
 
 module.exports = router;

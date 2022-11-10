@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 
 const { User } = require('../../models');
 
-const update = asyncHandler(async (req, res) => {
+const edit = asyncHandler(async (req, res) => {
   const { _id } = req.user;
 
   const user = await User.findByIdAndUpdate(
@@ -27,4 +27,4 @@ const update = asyncHandler(async (req, res) => {
   });
 });
 
-module.exports = update;
+module.exports = edit;

@@ -5,14 +5,14 @@ const cors = require('cors');
 
 require('colors');
 
-const {errorHandler} = require('./middleware');
+const { errorHandler } = require('./middleware');
 
 const connectDB = require('./config/db');
 
 const configPath = path.join(__dirname, '..', 'backend', 'config', '.env');
 require('dotenv').config({ path: configPath });
 
-const { usersRoutes } = require('./routes/api');
+const { userRoutes } = require('./routes/api');
 
 const app = express();
 
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Mounts routes
-app.use('/api/v1/users', usersRoutes);
+app.use('/api/v1/user', userRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
