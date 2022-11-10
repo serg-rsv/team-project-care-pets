@@ -22,10 +22,6 @@
   }
 }
 
-/* ===== Usage
-@include fonts-face ('Acrom', '../fonts/Acrom/Acrom-Thin', 100);
-===== */
-
 /* FONTS STYLE */
 @mixin fonts($fs, $fw: 400, $lh: 1.2, $ls: 0.01em) {
   font-size: $fs;
@@ -73,6 +69,21 @@
       screen and (min-resolution: 2dppx) {
       @content;
     }
+  }
+}
+
+@mixin gradient(
+  $color1: var(--start-gradient),
+  $color2: var(--end-gradient),
+  $deg: 90deg,
+  $content: false
+) {
+  @if $content {
+    background: $color1;
+    background: linear-gradient($deg, $color1, $color2), $content;
+  } @else {
+    background: $color1;
+    background: linear-gradient($deg, $color1, $color2);
   }
 }
 
