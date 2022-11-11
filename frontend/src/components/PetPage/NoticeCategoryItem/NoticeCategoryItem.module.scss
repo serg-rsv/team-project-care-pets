@@ -1,0 +1,87 @@
+
+@import '../../../scss/utils/mixins';
+
+
+
+.signature {
+   min-width: 158px;
+   position: absolute;
+   left: 0px;
+   top: 20px;
+   background-color: var(--transparent-bg);
+   border-radius: 0px 20px 20px 0px;
+}
+
+.signature p {
+   display: block;
+   margin-left: 20px;
+   margin-top: 6px;
+   margin-bottom: 6px;
+   @include fonts(12px, 500, 1.3);
+   color: var(--main-text-cl);
+}
+
+
+.animalListItem {
+   position: relative;
+   min-width: 280px;
+   flex-basis: calc((100% - 32px) / 1);
+   margin-right: 32px;
+   margin-bottom: 32px;
+   background-color:  var( --white-text-cl);
+   border-radius: 0px 0px 40px 40px;
+   box-shadow: var(--input-shadow);
+   @include mq(tablet) {
+      width: 336px;
+      flex-basis: calc((100% - 64px) / 2);
+   };
+   @include mq(desktop) {
+   min-width: 276px;
+   flex-basis: calc((100% - 128px) / 4);    
+   }
+}
+
+.animalListImg {
+   width: 280px;
+   height: 288px;
+   margin-bottom: 20px;
+   @include mq(tablet) {
+   width: 336px; 
+   };
+   @include mq(desktop) {
+   width: 288px
+   };
+}
+
+.animalListTitle {
+   font-family: var(--main-font);
+   @include fonts(28px, 700, 1.4);
+   margin-left: 20px;
+   margin-bottom: 12px;
+   color: var(--main-text-cl);
+}
+
+.animalListBoxText {
+   display: flex;
+   margin-left: 20px;
+   margin-top: 8px;
+   font-family: var(--main-font);
+   @include fonts(16px, 500, 1.4);
+   color:var(--main-text-cl);
+}
+
+.breed {
+   margin-right: 40px;
+}
+
+.place {
+margin-right: 40px;
+}
+
+.age {
+margin-right: 52px;
+}
+
+.price {
+margin-right: 44px;
+}
