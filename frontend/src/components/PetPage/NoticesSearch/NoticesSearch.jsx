@@ -1,10 +1,12 @@
 import s from './NoticesSearch.module.scss';
 
 const NoticesSearch = () => {
-return (
-   <label className={s.lable}>Find your favorite pet
-   <input className={s.input} type='text' value='' onChange=""></input>
-</label>
+return (<>
+   <h1 className={s.lable}>Find your favorite pet</h1>
+   <input className={s.input} type='text'
+   placeholder="Search"
+   value='' onChange=""></input>
+</>
    
 )
 
