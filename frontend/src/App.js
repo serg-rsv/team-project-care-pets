@@ -1,3 +1,5 @@
+
+// import NoticesPage from './pages/NoticesPage';
 function App() {
   return (
     <div className="App">
@@ -13,6 +15,7 @@ function App() {
           React JS
         </a>
       </header>
+      {/* <NoticesPage/> */}
     </div>
   );
 }
