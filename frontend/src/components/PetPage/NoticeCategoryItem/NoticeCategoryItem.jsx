@@ -12,24 +12,24 @@ price
 }) => {
 return (
     <li className={s.animalListItem}>
-    <div class={s.signature}>
+    <div className={s.signature}>
        <p>In good hands</p>
     </div>
-    <img class={s.animalListImg} src={link} alt={title}/>
-    <h3 class={s.animalListTitle}>{title}</h3>
-    <div class={s.animalListBoxText}>
+    <img className={s.animalListImg} src={link} alt={title}/>
+    <h3 className={s.animalListTitle}>{title}</h3>
+    <div className={s.animalListBoxText}>
     <p className={s.breed}>Breed:</p>
     <p>{breed}</p>
     </div>
-    <div class={s.animalListBoxText}>
+    <div className={s.animalListBoxText}>
     <p className={s.place}>Place:</p>
     <p>{place}</p>
     </div>
-    <div class={s.animalListBoxText}>
+    <div className={s.animalListBoxText}>
     <p className={s.age}>Age:</p>
     <p>{age}</p>
     </div>
-    {price && <div class={s.animalListBoxText}>
+    {price && <div className={s.animalListBoxText}>
     <p className={s.price}>Price:</p>
     <p>{price}</p></div>}
     
