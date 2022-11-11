@@ -5,6 +5,7 @@ import NoticeCategoryItem from '../NoticeCategoryItem'
 
 const NoticesCategoriesList = ({pets}) => {
 return (
+ 
    <ul className={s.animalList}>
    {pets.map(({
       id,
@@ -25,6 +26,7 @@ return (
    />)}
    
    </ul>
+ 
 );
 
 };
