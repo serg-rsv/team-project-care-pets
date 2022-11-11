@@ -25,14 +25,14 @@ const userSchema = new Schema(
       match: phoneRegexp,
       required: [true, 'Phone is required'],
     },
-    city: {
+    location: {
       type: String,
-      required: [true, 'City is required'],
+      required: [true, 'Location is required. Format `city, region`'],
     },
     // default Date ??
     birthday: {
       type: Date,
-      default: Date.now(),
+      required: false,
     },
     avatarURL: {
       type: String,
@@ -40,13 +40,15 @@ const userSchema = new Schema(
     },
     pets: {
       type: [Schema.Types.ObjectId],
-      ref: 'pets',
-      default: [],
+      ref: 'pet',
+      required: false,
+      // default: [],
     },
     favorites: {
       type: [Schema.Types.ObjectId],
-      ref: 'notices',
-      default: [],
+      ref: 'notice',
+      required: false,
+      // default: [],
     },
     token: {
       type: String,
@@ -63,7 +65,7 @@ const registerSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   name: Joi.string().required(),
   phone: Joi.string().pattern(phoneRegexp).required(),
-  city: Joi.string().required(),
+  location: Joi.string().required(),
 });
 
 const loginSchema = Joi.object({

@@ -1,7 +1,9 @@
-const { User } = require('./User');
-const { schemasJoiUser } = require('./User');
+const { User, schemasJoiUser } = require('./User');
+const { Notice, schemasJoiNotice } = require('./Notice');
 
 module.exports = {
   User,
   schemasJoiUser,
+  Notice,
+  schemasJoiNotice,
 };
