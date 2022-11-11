@@ -16,22 +16,7 @@ body {
   background-color: var(--main-bg-cl);
 
   @include mq(desktop) {
-    font-size: 17px;
-  }
-
-  @include mq(tablet-only) {
-    // @include gradient();
-    @include fonts(16px, 400, 1.45, 0.2em);
-    @include gradient(
-      rgba(4, 103, 250, 0.2),
-      rgba(255, 238, 0, 0.6),
-      0deg,
-      url('../../images/image.png')
-    );
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
-    color: salmon;
+    font-size: 20px;
   }
 }
 
@@ -70,7 +55,8 @@ img {
 }
 
 a {
-  color: var(--accent-color);
+  text-decoration: none;
+  color: var(--light-txt-cl);
 }
 
 input,
