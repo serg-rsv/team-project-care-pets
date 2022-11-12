@@ -72,6 +72,12 @@ const addSchema = Joi.object({
   title: Joi.string().allow('male', 'female').required(),
   sex: Joi.string().required(),
   location: Joi.string().required(),
+  name: Joi.string(),
+  breed: Joi.string(),
+  photo: Joi.string(),
+  comments: Joi.string(),
+  birthday: Joi.date(),
+  price: Joi.number(),
 });
 
 const schemasJoiNotice = {
