@@ -7,18 +7,10 @@ const { schemasJoiUser } = require('../../models');
 
 const router = Router();
 
-router.get(
-  '/',
-  schemaJoiValidator(schemasJoiUser.registerSchema),
-  controllerUser.register
-);
+router.get('/');
 
-router.post(
-  '/',
-  schemaJoiValidator(schemasJoiUser.loginSchema),
-  controllerUser.login
-);
+router.post('/');
 
-router.delete('/:petID', auth, controllerUser.logout);
+router.delete('/:petID');
 
 module.exports = router;
