@@ -1,3 +1,4 @@
-const userRoutes = require('./users');
+const usersRoutes = require('./users');
+const noticesRoutes = require('./notices');
 
-module.exports = { userRoutes };
+module.exports = { usersRoutes, noticesRoutes };
