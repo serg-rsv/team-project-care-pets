@@ -14,19 +14,29 @@ router.post(
   controllerNotices.addPersonalNotice
 );
 
+router.get('/', controllerNotices.getAll);
+
+router.get('/personal', auth, controllerNotices.getPersonalNotices);
+
+router.get('/favorites', auth, controllerNotices.getFavorites);
+
 router.get(
-  '/:noticeId/favorites',
+  '/favorites/:noticeId',
   isValidId('noticeId'),
   auth,
   controllerNotices.addToFavorites
 );
 
 router.delete(
-  '/:noticeId/favorites',
+  '/favorites/:noticeId',
   isValidId('noticeId'),
   auth,
   controllerNotices.deleteFromFavorites
 );
+
+router.get('/category/:category', controllerNotices.getByCategory);
+
+router.get('/:noticeId', isValidId('noticeId'), controllerNotices.getById);
 
 router.delete(
   '/:noticeId',
@@ -34,13 +44,5 @@ router.delete(
   auth,
   controllerNotices.deletePersonalNotice
 );
-
-router.get('/category/:category', controllerNotices.getByCategory);
-
-router.get('/:noticeId', isValidId('noticeId'), controllerNotices.getById);
-
-router.get('/favorites', auth, controllerNotices.getFavorites);
-
-router.get('/', auth, controllerNotices.getPersonalNotices);
 
 module.exports = router;

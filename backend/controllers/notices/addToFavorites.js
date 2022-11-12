@@ -7,15 +7,11 @@ const addToFavorites = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { noticeId } = req.params;
 
-  // v1. find how to push value to array in mongoose
-  // await User.findByIdAndUpdate(_id, { favorites: [...user.favorites,noticeId] });
-
-  // v2. try use user from auth
-  // req.user.favorites = [...req.user.favorites, noticeId];
-  // await req.user.save();
-
   const user = await User.findById(_id);
-  console.log('addToFavorites ~ user', user);
+  const isAdded = user.favorites.includes(noticeId);
+  if (isAdded) {
+    throw RequestError(409, 'Notice is already added.');
+  }
   user.favorites.push(noticeId);
 
   await user.save();
@@ -23,7 +19,7 @@ const addToFavorites = asyncHandler(async (req, res) => {
   res.json({
     code: 200,
     status: 'success',
-    // data,
+    message: 'Notice is added to favorites',
   });
 });
 

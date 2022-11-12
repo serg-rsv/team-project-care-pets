@@ -32,23 +32,16 @@ const userSchema = new Schema(
     // default Date ??
     birthday: {
       type: Date,
-      required: false,
+      default: Date.now(),
     },
     avatarURL: {
       type: String,
       default: '',
     },
-    pets: {
-      type: [Schema.Types.ObjectId],
-      ref: 'pet',
-      required: false,
-      // default: [],
-    },
     favorites: {
       type: [Schema.Types.ObjectId],
       ref: 'notice',
-      required: false,
-      // default: [],
+      default: [],
     },
     token: {
       type: String,

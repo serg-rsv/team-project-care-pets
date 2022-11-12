@@ -1,6 +1,5 @@
 const { Schema, model } = require('mongoose');
 const Joi = require('joi');
-const { required } = require('joi');
 
 const noticeSchema = new Schema(
   {
@@ -18,16 +17,16 @@ const noticeSchema = new Schema(
     },
     name: {
       type: String,
-      required: false,
+      default: '',
     },
     // default Date ??
     birthday: {
       type: Date,
-      required: false,
+      default: Date.now(),
     },
     breed: {
       type: String,
-      required: false,
+      default: '',
     },
     sex: {
       type: String,
@@ -43,15 +42,15 @@ const noticeSchema = new Schema(
     },
     photo: {
       type: String,
-      required: false,
+      default: '',
     },
     comments: {
       type: String,
-      required: false,
+      default: '',
     },
     price: {
       type: Number,
-      required: false,
+      default: 0,
     },
     owner: {
       type: Schema.Types.ObjectId,
