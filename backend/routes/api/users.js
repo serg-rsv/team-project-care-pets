@@ -23,4 +23,6 @@ router.get('/logout', auth, controllerUser.logout);
 
 router.patch('/edit', auth, controllerUser.edit);
 
+router.patch('/avatars', auth, controllerUser.addAvatar);
+
 module.exports = router;

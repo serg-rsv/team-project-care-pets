@@ -1,16 +1,18 @@
 const asyncHandler = require('express-async-handler');
 
-const { User } = require('../../models');
-const { RequestError } = require('../../helpers');
-
 const getFavorites = asyncHandler(async (req, res) => {
-  const { _id } = req.user;
-  const user = await User.findById(_id).populate('favorites');
-
+  const { user } = req;
+  const populatedUser = await user.populate(
+    'favorites',
+    '-createdAt -updatedAt'
+  );
+  const { favorites } = populatedUser;
+  // Якщо в БД у користувача в favorites є ID оголошення, а саме оголошеня видалено,
+  // то в масив нічого не додається.
   res.json({
     code: 200,
     status: 'success',
-    data: user.favorites,
+    data: favorites,
   });
 });
 

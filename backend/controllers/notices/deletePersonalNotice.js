@@ -6,7 +6,7 @@ const { RequestError } = require('../../helpers');
 const deletePersonalNotice = asyncHandler(async (req, res) => {
   const { noticeId } = req.params;
 
-  // Зачистити ІД в обраних серед юзерів
+  // Зачистити ІД в обраних серед юзерів ?
   const isRemoved = await Notice.findByIdAndDelete(noticeId);
 
   if (!isRemoved) {

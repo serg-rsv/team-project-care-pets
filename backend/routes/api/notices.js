@@ -2,7 +2,11 @@ const { Router } = require('express');
 
 const { controllerNotices } = require('../../controllers');
 const { auth } = require('../../middleware');
-const { schemaJoiValidator, isValidId } = require('../../validators');
+const {
+  schemaJoiValidator,
+  isValidId,
+  isValidCategory,
+} = require('../../validators');
 const { schemasJoiNotice } = require('../../models');
 
 const router = Router();
@@ -34,7 +38,11 @@ router.delete(
   controllerNotices.deleteFromFavorites
 );
 
-router.get('/category/:category', controllerNotices.getByCategory);
+router.get(
+  '/category/:category',
+  isValidCategory,
+  controllerNotices.getByCategory
+);
 
 router.get('/:noticeId', isValidId('noticeId'), controllerNotices.getById);
 
