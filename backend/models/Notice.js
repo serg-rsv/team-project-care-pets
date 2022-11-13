@@ -87,5 +87,5 @@ const schemasJoiNotice = {
 module.exports = {
   Notice,
   schemasJoiNotice,
-  category
+  categories,
 };
