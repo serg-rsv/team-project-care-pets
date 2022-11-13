@@ -17,6 +17,7 @@ const {
   noticesRoutes,
   petsRoutes,
   newsRoutes,
+  friendsRoutes,
 } = require('./routes/api');
 
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/notices', noticesRoutes);
 app.use('/api/v1/pets', petsRoutes);
 app.use('/api/v1/news', newsRoutes);
+app.use('/api/v1/services-sidebar', friendsRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
