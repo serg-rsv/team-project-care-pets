@@ -1,0 +1,70 @@
+@import '../../scss//utils/mixins';
+.petAvatar {
+  max-width: 240px;
+  max-height: 240px;
+  border-radius: 20%;
+  margin-bottom: 20px;
+  @include mq(tablet) {
+    width: 161px;
+    height: 161px;
+    margin-bottom: 0;
+    margin-right: 32px;
+  }
+}
+.wrapper {
+  position: relative;
+  max-width: 280px;
+  padding: 16px 20px 40px;
+  border-radius: 20px;
+  background-color: var(--white-bg);
+  @include mq(tablet) {
+    max-width: 704px;
+    display: flex;
+    padding: 20px;
+  }
+  @include mq(desktop) {
+    width: 821px;
+  }
+}
+.listItem {
+  @include fonts(14px, 500, 1.3);
+  @include mq(tablet) {
+    @include fonts(16px, 500, 1.3);
+  }
+}
+.text {
+  @include fonts(14px, 400, 1.3);
+  display: inline;
+  @include mq(tablet) {
+    @include fonts(16px, 400, 1.3);
+  }
+}
+.listItem:not(:last-child) {
+  margin-bottom: 12px;
+}
+.wrapper .iconBtn {
+  position: absolute;
+  top: 272px;
+  right: 20px;
+  padding: 3px;
+  border: 0;
+  @include mq(tablet) {
+    top: 20px;
+    width: 44px;
+    height: 44px;
+    background-color: var(--main-bg-cl);
+  }
+}
+.wrapper .iconBtn:hover,
+.wrapper .iconBtn:focus {
+  border: none;
+  background-color: var(--white-bg);
+  @include mq(tablet) {
+    background-color: var(--main-bg-cl);
+  }
+}
+.imgBtn {
+  @include mq(tablet) {
+    margin: 0 auto;
+  }
+}
