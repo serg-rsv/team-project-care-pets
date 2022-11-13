@@ -1,8 +1,9 @@
+import Header from './components/Header';
 // import NoticesPage from './pages/NoticesPage';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>Hello, we are from Ukraine</h1>
         <h2>Русский военный корабль, ИНХ</h2>
         <a
@@ -13,7 +14,8 @@ function App() {
         >
           React JS
         </a>
-      </header>
+      </header> */}
+      <Header />
       {/* <NoticesPage/> */}
     </div>
   );
