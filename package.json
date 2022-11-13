@@ -22,6 +22,7 @@
     "joi": "^17.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
+    "mongoose-type-url": "^2.1.0",
     "morgan": "^1.10.0"
   }
 }
