@@ -1,10 +1,20 @@
+import Button from '../../button';
+
 import s from './NoticeCategoryItem.module.scss';
 
-const NoticeCategoryItem = ({ link, title, breed, place, age, price }) => {
+const NoticeCategoryItem = ({
+  link,
+  title,
+  breed,
+  place,
+  age,
+  price,
+  page,
+}) => {
   return (
     <li className={s.animalListItem}>
       <div className={s.signature}>
-        <p>In good hands</p>
+        <p>{page}</p>
       </div>
       <img className={s.animalListImg} src={link} alt={title} />
       <h3 className={s.animalListTitle}>{title}</h3>
@@ -26,6 +36,9 @@ const NoticeCategoryItem = ({ link, title, breed, place, age, price }) => {
           <p>{price}</p>
         </div>
       )}
+      <Button className={s.button}>Learn more</Button>
+      <Button className={s.like}></Button>
+      <Button className={s.remove}></Button>
     </li>
   );
 };

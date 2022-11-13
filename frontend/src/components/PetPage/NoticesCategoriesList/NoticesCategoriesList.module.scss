@@ -1,10 +1,10 @@
+.box {
+  position: relative;
+}
 
 .animalList {
-       display: flex;
-       flex-wrap: wrap;
-       margin-right: -32px;
-       margin-bottom: -32px;
-       // margin-left: auto;
-       // margin-right: auto;
-       // justify-content: center;     
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -32px;
+  margin-bottom: -32px;
 }

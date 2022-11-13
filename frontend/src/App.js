@@ -17,6 +17,7 @@ function App() {
       </header> */}
       <Header />
       {/* <NoticesPage/> */}
+
     </div>
   );
 }

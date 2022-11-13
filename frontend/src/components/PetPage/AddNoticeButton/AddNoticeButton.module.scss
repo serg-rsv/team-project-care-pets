@@ -1,0 +1,56 @@
+@import '../../../scss/utils/mixins';
+
+.addBox {
+  position: absolute;
+  top: 78px;
+  left: 200px;
+
+  @include mq(tablet) {
+    top: -100px;
+    left: 1050px;
+    display: flex;
+  }
+  @include mq(tablet-only) {
+    top: -175px;
+    left: 510px;
+  }
+}
+
+.addBox p {
+  @include mq(mobile-only) {
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    color: var(--white-text-cl);
+    @include fonts(12px, 500, 1.3);
+  }
+  @include mq(tablet) {
+    margin-right: 12px;
+    margin-top: 10px;
+    @include fonts(20px, 500, 1.3);
+  }
+}
+
+.addButton {
+  width: 80px;
+  height: 80px;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--accent-cl);
+  background-image: url(./Svg/+.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 40%;
+  @include mq(tablet) {
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+
+    background-position: 50% 50%;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--accent-cl-active);
+  }
+}
