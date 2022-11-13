@@ -38,17 +38,27 @@ import * as Yup from 'yup';
 //        errors.phone ='dfdf'
 //   }
 //   return errors
+
 // }
 
 export const AuthForm= () => {
   
-  const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(false);
+  const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
+  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
   
+  const validationFirstStep = (fields) => {
+    if (!fields.errors.email && !fields.errors.password && !fields.errors.confirmPassword && fields.values.email!=='' &&fields.values.password!=='' &&fields.values.confirmPassword!=='') {
+      setIsBtnDisabled(false)
+    } else {
+      setIsBtnDisabled(true)
+    }
+  }
 
   //function to next step registration
   const moveNextRegistration = () => {
-    
-    // console.log(formik.errors)
+    // !fields.errors.email && !fields.errors.password && !fields.errors.confirmPassword && fields.values.email !== '' && fields.values.password !== '' && fields.values.confirmPassword !== '' ?
+    //   setIsFirstRegisterStep(true) :
+    //   setIsFirstRegisterStep(false)
     isFirstRegisterStep ?
       setIsFirstRegisterStep(false) :
       setIsFirstRegisterStep(true);
@@ -83,9 +93,8 @@ export const AuthForm= () => {
        phone: Yup.string().required('Please enter'),
         //  .matches(phoneRegExp, 'Phone number is not valid'),
      }),
-      //  validate,
-      onSubmit: (values,) => {
-          // console.log(formik.errors)
+     onSubmit: (values) => {
+       console.log(formik.touched)
           alert(JSON.stringify(values, null, 2));
           // console.log('submit:', values)
           formik.resetForm()
@@ -97,39 +106,50 @@ export const AuthForm= () => {
     <div className={css.formBlock}>
       <h2 className={css.formTitle}>Registration</h2>
       <form className={css.form} onSubmit={formik.handleSubmit}>
-        {!isFirstRegisterStep ?
+        {isFirstRegisterStep ?
           <>
             <input className={css.input}
               id="email"
               name="email"
               type="email"
               onChange={formik.handleChange}
+              onBlur={() => {
+                validationFirstStep(formik)
+              }}
               value={formik.values.email}
               placeholder = 'Email'
             />
            
-            {formik.touched.email && formik.errors.email?<p className={css.inputErrorEmail}>{formik.errors.email}</p> : null} 
+            { formik.values.email!=='' && formik.errors.email?<p className={css.inputErrorEmail}>{formik.errors.email}</p> : null } 
             
             <input className={css.input}
               id="password"
               name="password"
               type="password"
               onChange={formik.handleChange}
+              onBlur={() => {
+                validationFirstStep(formik)
+              }
+              }
               value={formik.values.password}
               placeholder = 'Password'
             />
-            { formik.touched.email && formik.errors.password?<p className={css.inputErrorPassword}>{formik.errors.password}</p> : null} 
+            { formik.values.password!==''&& formik.errors.password ?<p className={css.inputErrorPassword}>{formik.errors.password}</p> : null} 
             
             <input className={css.input}
               id="confirmPassword"
               name="confirmPassword"
               type="confirmPassword"
               onChange={formik.handleChange}
-              // onBlur={formik.handleBlur}
+              onBlur={() => {
+                console.log('next')
+                 validationFirstStep(formik)
+              }
+              }
               value={formik.values.confirmPassword}
               placeholder = 'Confirm Password'
             />
-            {formik.touched.confirmPassword && formik.errors.confirmPassword?<p className={css.inputErrorConfirmPassword}>{formik.errors.confirmPassword}</p> : null} 
+            {formik.values.confirmPassword !== '' && formik.errors.confirmPassword ? <p className={css.inputErrorConfirmPassword}>{formik.errors.confirmPassword}</p> : null}
           </> :
           <>
             <input className={css.input}
@@ -163,13 +183,14 @@ export const AuthForm= () => {
             {formik.touched.phone && formik.errors.phone?<p className={css.inputErrorPhone}>{formik.errors.phone}</p> : null} 
           </>}
         
-          {isFirstRegisterStep &&<button className={css.formBtn} type="submit" >Register</button>}
+        {isFirstRegisterStep && <button className={css.formBtn} disabled={ isBtnDisabled} type='button' onClick={moveNextRegistration}>Next</button>}
+        {!isFirstRegisterStep && <button className={css.formBtn} type="submit" >Register</button>}
         </form>
       
-        {!isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>}
+        {/* {!isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
       
-        <p className={css.replaceForm}>Already have an account? Login</p>
-        <button className={css.formBtn} onClick={moveNextRegistration}>Back</button>
+        <p className={css.linkToPage}>Already have an account? Login</p>
+        {/* <button className={css.formBtn} onClick={moveNextRegistration}>Back</button> */}
       
     </div>
 )};

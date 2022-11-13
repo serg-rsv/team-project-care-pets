@@ -67,17 +67,17 @@ color: red;
 }
 .inputErrorEmail {
     @extend %invalidInput;
-    top: -9%;
+    top: -6%;
 }
 
 .inputErrorPassword {
     @extend %invalidInput;
-    top: 25%;
+    top: 18%;
 }
 
 .inputErrorConfirmPassword {
     @extend %invalidInput;
-    top: 59%;
+    top: 42%;
 }
 
 .inputErrorName {
@@ -112,9 +112,12 @@ color: red;
     color: var(--white-text-cl);
 
     border: none;
+    &:disabled{
+        background-color: grey;
+    }
 }
 
-.replaceForm {
+.linkToPage{
     text-align: center;
-    margin-top: calc(40px - 16px);
+    margin-top: 40px;
 }
