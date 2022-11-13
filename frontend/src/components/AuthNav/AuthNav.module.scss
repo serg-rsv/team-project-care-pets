@@ -1,0 +1,31 @@
+@import "../../scss//utils//mixins";
+
+.authNav {
+    &__list{
+        display: flex;
+        justify-content: center;
+        margin-top: 46px;
+
+        @include mq(tablet) {
+            position: absolute;
+            top: 20px;
+            right: 102px;
+            margin-top: 0;
+        }
+        @include mq(desktop) {
+            right: 40px;
+        }
+    }
+
+    &__item{
+        &:not(:last-child) {
+            margin-right: 12px;
+        }
+    }
+}
+
+.authBtn {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+

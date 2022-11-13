@@ -1,0 +1,19 @@
+@import "../../scss/utils/mixins";
+
+.logo {
+    width: 82px;
+    padding-top: 16px;
+    // padding-left: 20px;
+    bottom: 30px;
+
+    @include mq(tablet) {
+        width: 94px;
+        padding-top: 20px;
+        // padding-left: 16px;
+    }
+
+    @include mq(desktop) {
+    padding-top: 30px;
+        // padding-left: 16px;
+    }
+}
