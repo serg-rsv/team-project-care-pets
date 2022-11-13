@@ -1,6 +1,6 @@
 import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
-import AddNiticeButton from '../AddNiticeButton';
+import AddNiticeButton from '../AddNoticeButton';
 
 const NoticesCategoriesList = ({ pets }) => {
   return (

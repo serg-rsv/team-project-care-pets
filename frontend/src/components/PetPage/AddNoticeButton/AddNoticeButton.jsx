@@ -1,5 +1,5 @@
 import Button from '../../button';
-import s from './AddNiticeButton.module.scss';
+import s from './AddNoticeButton.module.scss';
 
 const AddNiticeButton = () => {
   return (
