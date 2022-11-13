@@ -1,6 +1,6 @@
 const { RequestError } = require('../helpers');
 
-const schemaJoiValidator = (schema) => {
+const schemaJoiValidator = schema => {
   const func = (req, _, next) => {
     const validationResult = schema.validate(req.body);
 

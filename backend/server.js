@@ -12,7 +12,7 @@ const connectDB = require('./config/db');
 const configPath = path.join(__dirname, '..', 'backend', 'config', '.env');
 require('dotenv').config({ path: configPath });
 
-const { usersRoutes, noticesRoutes } = require('./routes/api');
+const { usersRoutes, noticesRoutes, petsRoutes } = require('./routes/api');
 
 const app = express();
 
@@ -29,6 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 // Mounts routes
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/notices', noticesRoutes);
+app.use('/api/v1/pets', petsRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
