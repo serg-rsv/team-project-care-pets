@@ -1,6 +1,6 @@
 import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
-import AddNiticeButton from '../AddNoticeButton';
+import AddNoticeButton from '../AddNoticeButton';
 
 const NoticesCategoriesList = ({ pets }) => {
   return (
@@ -19,7 +19,7 @@ const NoticesCategoriesList = ({ pets }) => {
           />
         ))}
       </ul>
-      <AddNiticeButton />
+      <AddNoticeButton />
     </div>
   );
 };

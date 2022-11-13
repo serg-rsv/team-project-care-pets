@@ -1,7 +1,7 @@
 import Button from '../../button';
 import s from './AddNoticeButton.module.scss';
 
-const AddNiticeButton = () => {
+const AddNoticeButton = () => {
   return (
     <div className={s.addBox}>
       <p>Add pet</p>
@@ -10,4 +10,4 @@ const AddNiticeButton = () => {
   );
 };
 
-export default AddNiticeButton;
+export default AddNoticeButton;
