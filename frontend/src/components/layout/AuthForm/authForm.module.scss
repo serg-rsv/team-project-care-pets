@@ -29,10 +29,19 @@
          }
 }
 
-.form {
+.registerForm {
     display: grid;
     grid-template-rows: 40px 40px 40px 1fr;
 
+    position: relative;
+    grid-gap: 16px 0px;
+    justify-self: center;
+}
+
+.loginForm{
+    display: grid;
+    grid-template-rows: 40px 40px 1fr;
+    
     position: relative;
     grid-gap: 16px 0px;
     justify-self: center;
@@ -70,9 +79,19 @@ color: red;
     top: -6%;
 }
 
+.inputLoginErrorEmail{
+    @extend %invalidInput;
+    top:-8%
+}
+
 .inputErrorPassword {
     @extend %invalidInput;
     top: 18%;
+}
+
+.inputLoginErrorPassword {
+    @extend %invalidInput;
+    top: 24%
 }
 
 .inputErrorConfirmPassword {

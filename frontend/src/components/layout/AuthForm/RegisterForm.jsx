@@ -41,7 +41,7 @@ import * as Yup from 'yup';
 
 // }
 
-export const AuthForm= () => {
+const RegisterForm= () => {
   
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
@@ -105,7 +105,7 @@ export const AuthForm= () => {
   return (
     <div className={css.formBlock}>
       <h2 className={css.formTitle}>Registration</h2>
-      <form className={css.form} onSubmit={formik.handleSubmit}>
+      <form className={css.registerForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ?
           <>
             <input className={css.input}
@@ -195,3 +195,4 @@ export const AuthForm= () => {
     </div>
 )};
 
+export default RegisterForm;
