@@ -14,8 +14,10 @@ function App() {
         >
           React JS
         </a>
+    
       </header>
       {/* <NoticesPage/> */}
+      
     </div>
   );
 }
