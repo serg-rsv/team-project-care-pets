@@ -29,7 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 // Mounts routes
 app.use('/api/v1/users', usersRoutes);
 app.use('/api/v1/notices', noticesRoutes);
-app.use('/api/v1/auth', petsRoutes);
+app.use('/api/v1/pets', petsRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

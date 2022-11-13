@@ -1,4 +1,3 @@
-
 // import NoticesPage from './pages/NoticesPage';
 function App() {
   return (

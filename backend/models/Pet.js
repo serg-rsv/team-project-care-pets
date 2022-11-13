@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { handleSaveError } = require('../middleware');
 
 const { ObjectId } = Schema.Types;
 
@@ -24,13 +23,12 @@ const petSchema = new Schema(
     owner: {
       type: ObjectId,
       ref: 'user',
-      default: '',
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }
 );
 
-userSchema.post('save', handleSaveError);
 const Pet = model('pet', petSchema);
 
 module.exports = Pet;

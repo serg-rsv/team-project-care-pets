@@ -1,16 +1,19 @@
 const { Router } = require('express');
 
-const { controllerPets } = require('../../controllers');
+const {
+  addPetController,
+  deletePetController,
+  getOwnerPetsController,
+} = require('../../controllers/pets');
 const { auth } = require('../../middleware');
-const { schemaJoiValidator } = require('../../validators');
-const { schemasJoiUser } = require('../../models');
+const { isValidId, isValidPetFields } = require('../../validators');
 
 const router = Router();
 
-router.get('/');
+router.get('/', auth, getOwnerPetsController);
 
-router.post('/');
+router.post('/', auth, isValidPetFields, addPetController);
 
-router.delete('/:petID');
+router.delete('/:petId', isValidId('petId'), auth, deletePetController);
 
 module.exports = router;
