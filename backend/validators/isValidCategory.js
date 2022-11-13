@@ -1,14 +1,14 @@
 const { RequestError } = require('../helpers');
-const { category: list } = require('../models/Notice');
+const { categories } = require('../models/Notice');
 
 const isValidCategory = (req, res, next) => {
   const { category } = req.params;
-  const isCorrect = list.includes(category);
+  const isCorrect = categories.includes(category);
 
   if (!isCorrect) {
     const error = RequestError(
       400,
-      `${category} is wrong. Category must be one of ${list}`
+      `${category} is wrong. Category must be one of ${categories}`
     );
     next(error);
   }

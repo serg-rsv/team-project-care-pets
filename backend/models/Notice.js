@@ -1,15 +1,15 @@
 const { Schema, model } = require('mongoose');
 const Joi = require('joi');
 
-const category = ['sell', 'lost-found', 'for-free'];
+const categories = ['sell', 'lost-found', 'for-free'];
 
 const noticeSchema = new Schema(
   {
     category: {
       type: String,
       enum: {
-        values: category,
-        message: `{VALUE} must be one of ${category}`,
+        values: categories,
+        message: `{VALUE} must be one of ${categories}`,
       },
       required: [true, 'Category is required'],
     },
@@ -67,11 +67,17 @@ const Notice = model('notice', noticeSchema);
 
 const addSchema = Joi.object({
   category: Joi.string()
-    .allow(...category)
+    .allow(...categories)
     .required(),
   title: Joi.string().allow('male', 'female').required(),
   sex: Joi.string().required(),
   location: Joi.string().required(),
+  name: Joi.string(),
+  breed: Joi.string(),
+  photo: Joi.string(),
+  comments: Joi.string(),
+  birthday: Joi.date(),
+  price: Joi.number(),
 });
 
 const schemasJoiNotice = {
@@ -81,5 +87,5 @@ const schemasJoiNotice = {
 module.exports = {
   Notice,
   schemasJoiNotice,
-  category,
+  category
 };

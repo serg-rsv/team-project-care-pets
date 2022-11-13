@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler');
 
-const { User } = require('../../models');
 const { RequestError } = require('../../helpers');
 
 const deleteFromFavorites = asyncHandler(async (req, res) => {
