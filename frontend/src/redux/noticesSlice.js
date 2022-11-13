@@ -83,3 +83,13 @@ export const noticesApi = createApi({
     }),
   }),
 });
+export const {
+  useFetchNoticesQuery,
+  useDeleteNoticeMutation,
+  useCreateNoticeMutation,
+  useGetNoticeByIdQuery,
+  useGetPersonalNoticeQuery,
+  useGetFavoritesNoticeQuery,
+  useGetFavoritesByIdQuery,
+  useGetNoticesBycategoryQuery,
+} = noticesApi;
