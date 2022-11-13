@@ -20,6 +20,10 @@ const petSchema = new Schema(
       type: String,
       default: '',
     },
+    comments: {
+      type: String,
+      default: '',
+    },
     owner: {
       type: ObjectId,
       ref: 'user',
