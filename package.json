@@ -12,6 +12,7 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+   
     "bcrypt": "^5.1.0",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
