@@ -1,5 +1,10 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import { noticesApi } from '../../src/redux/noticesSlice';
+
 export const store = configureStore({
-  reducer: {},
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(),
+  reducer: {
+    [noticesApi.reducerPath]: noticesApi.reducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(noticesApi.middleware),
 });
