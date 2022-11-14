@@ -1,4 +1,5 @@
 import Header from './components/Header';
+import ModalAddNotice from './components/ModalAddNotice';
 // import NoticesPage from './pages/NoticesPage';
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         </a>
       </header> */}
       <Header />
+      <ModalAddNotice/>
       {/* <NoticesPage/> */}
 
     </div>

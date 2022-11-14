@@ -3,42 +3,6 @@ import { useFormik } from 'formik';
 import css from './authForm.module.scss'
 import * as Yup from 'yup';
 
-// const validate = values => {
-//   const errors = {};
-
-//   if (!values.email) {
-//     errors.email = 'Required'
-//   }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//      errors.email = 'Invalid email address';
-//    }
-//    if (!values.password) {
-//     errors.password = 'Required'
-//    } else if (values.password.length > 12) {
-//      errors.password = 'dfgdgf'
-//   }
-//    if (!values.confirmPassword) {
-//     errors.confirmPassword = 'Required'
-//    } else if (values.confirmPassword !== values.password) {
-//      errors.confirmPassword = 'kjhkjhkj'
-//   }
-//    if (!values.name) {
-//     errors.name = 'Required'
-//    } else if (values.name=== ';;') {
-//        errors.name = 'Invalid'
-//   }
-//    if (!values.location) {
-//     errors.location = 'Required'
-//   }else if(values.location==='ll'){
-//        errors.location = 'Invalid'
-//   }
-//    if (!values.phone) {
-//     errors.phone = 'Required'
-//    } else if (values.phone === 'sdss') {
-//        errors.phone ='dfdf'
-//   }
-//   return errors
-
-// }
 
 const RegisterForm= () => {
   
@@ -80,8 +44,8 @@ const RegisterForm= () => {
          .required('Please enter'),
        password: Yup.string()
          .required('Please enter')
-         .min(6, "Password must be at least 6 characters")
-        .max(40, "Password must not exceed 40 characters"),
+         .min(7, "Password must be at least 7 characters")
+         .max(32, "Password must not exceed 32 characters"),
        confirmPassword: Yup.string()
          .required('Please enter')
          .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
@@ -107,7 +71,7 @@ const RegisterForm= () => {
       <form className={css.registerForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ?
           <>
-            <input className={css.input}
+            <input className={css.formInput}
               id="email"
               name="email"
               type="email"
@@ -121,7 +85,7 @@ const RegisterForm= () => {
            
             { formik.values.email!=='' && formik.errors.email?<p className={css.inputErrorEmail}>{formik.errors.email}</p> : null } 
             
-            <input className={css.input}
+            <input className={css.formInput}
               id="password"
               name="password"
               type="password"
@@ -135,7 +99,7 @@ const RegisterForm= () => {
             />
             { formik.values.password!==''&& formik.errors.password ?<p className={css.inputErrorPassword}>{formik.errors.password}</p> : null} 
             
-            <input className={css.input}
+            <input className={css.formInput}
               id="confirmPassword"
               name="confirmPassword"
               type="confirmPassword"
@@ -151,7 +115,7 @@ const RegisterForm= () => {
             {formik.values.confirmPassword !== '' && formik.errors.confirmPassword ? <p className={css.inputErrorConfirmPassword}>{formik.errors.confirmPassword}</p> : null}
           </> :
           <>
-            <input className={css.input}
+            <input className={css.formInput}
               id="name"
               name="name"
               type="name"
@@ -161,7 +125,7 @@ const RegisterForm= () => {
             />
             {formik.touched.name && formik.errors.name?<p className={css.inputErrorName}>{formik.errors.name}</p> : null} 
  
-            <input className={css.input}
+            <input className={css.formInput}
               id="location"
               name="location"
               type="location"
@@ -171,7 +135,7 @@ const RegisterForm= () => {
             />
             {formik.touched.location && formik.errors.location?<p className={css.inputErrorLocation}>{formik.errors.location}</p> : null} 
  
-            <input className={css.input}
+            <input className={css.formInput}
               id="phone"
               name="phone"
               type="phone"

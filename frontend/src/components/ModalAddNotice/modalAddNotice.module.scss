@@ -1,0 +1,73 @@
+@import '../../scss//utils/mixins';
+
+.noticeFormBlock{
+    margin: 0 auto;
+    width: 280px;
+    display: grid;
+    padding: 40px 20px;
+
+    background-color: var(--white-bg);
+    border-radius: var(--border-radius);
+}
+
+.noticeForm {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+}
+
+.noticeFormTitle{
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--main-text-cl);
+    @include fonts(24px, 700, 1.3, 0.04em);
+    
+    @include mq(tablet) {
+        @include fonts(36px, 500, 1.3, 0.04em);
+    }
+}
+
+.noticeFormText{
+    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+@include fonts(16px, 500, 1.3, -0.01em);
+color: var(--black-text-cl);
+}
+
+
+.noticeInputTitle{
+    margin-bottom: 8px;
+    color: var(--black-text-cl);
+    @include fonts(18px, 500, 1.2, 0);
+}
+.noticeFormInput{
+    outline: none;
+    box-sizing: border-box;
+    justify-self: center;
+    width: 240px;
+    height: 40px;
+    padding-left: 14px;
+    margin-bottom: 16px;
+    
+    background-color: var(--main-bg-cl);
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: var(--border-radius);
+    
+    @include mq(tablet) {
+        width: 448px;
+        padding-left: 32px;
+    }
+    
+    @include mq(desktop) {
+        width: 458px;
+    }
+}
+
+.noticeFormNextBtn{
+    margin-top: calc(40px - 16px);
+}
+
+.noticeFormCancelBtn {
+    margin-top: 12px;
+}
