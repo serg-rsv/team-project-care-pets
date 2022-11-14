@@ -4,12 +4,14 @@ import Button from '../button/button';
 import PropTypes from 'proptypes';
 import Icon from '../../images/iconDel.png';
 import IconHover from '../../images/delHover.png';
+import { useFetchNoticesQuery } from '../../redux/noticesSlice';
 
 const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
   const deletePet = id => {
     console.log('delete');
   };
-
+  const { data } = useFetchNoticesQuery();
+  console.log(data);
   return (
     <li className={scss.wrapper}>
       <img src={avatarURL} className={scss.petAvatar} alt="animal" />
