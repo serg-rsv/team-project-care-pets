@@ -37,7 +37,7 @@ const ModalAddNotice = () => {
         sexPet: '',
         locationPet: '',
         pricePet: '',
-        imgPet: null,
+        imgPet: '',
         commentsAd:'',
         
       },
@@ -79,7 +79,7 @@ const ModalAddNotice = () => {
         <form className={css.noticeForm} onSubmit={formik.handleSubmit}>
         
               {isFirstRegisterStep ? <>
-                  <label className={css.noticeInputTitle} htmlFor="titleAd">Tittle of ad</label>
+                  <label className={css.noticeInputTitle} htmlFor="titleAd">Tittle of ad<span className={css.reqiuredFieldForm}>*</span></label>
         <input className={css.noticeFormInput}
             id="titleAd"
             name="titleAd"
@@ -118,25 +118,32 @@ const ModalAddNotice = () => {
             value={formik.values.breedPet}
             placeholder = 'Type name pet'
               />
-              </> : <>
-                      <label className={css.noticeInputTitle} htmlFor="malePet">The sex</label>     
-        <input 
+        </> : <>
+            <fieldset className={css.inputWrapper}>
+            <legend className={css.noticeInputTitle}>The sex<span className={css.reqiuredFieldForm}>*</span>:</legend>
+        
+        <input className={css.sexPetInputMale}
             id="malePet"
             name="sexPet"
             type="radio"
             value = "male"
             onChange={formik.handleChange}
               />
+        <label htmlFor="malePet" className={css.noticeInputRadioTitle} >Male</label> 
               
-        <input 
+              
+        <input className={css.sexPetInputFemale}
             id="femalePet"
             name="sexPet"
             type="radio"
             value="female" 
             onChange={formik.handleChange}
               />
-        
-        <label className={css.noticeInputTitle} htmlFor="locationPet">Location</label>       
+          <label htmlFor="femalePet" className={css.noticeInputRadioTitle}> Female</label>
+  
+        </fieldset>
+            
+        <label className={css.noticeInputTitle} htmlFor="locationPet">Location<span className={css.reqiuredFieldForm}>*</span>:</label>       
         <input className={css.noticeFormInput}
             id="locationPet"
             name="locationPet"
@@ -144,26 +151,22 @@ const ModalAddNotice = () => {
             onChange={formik.handleChange}
             value={formik.values.locationPet}
             placeholder = 'Location'
-              />
+            />
+            
+            <fieldset className={css.inputWrapper}>
+              <legend className={css.noticeInputTitle}>Load the pat's image</legend>
+              <label className={css.imgPetIcon} htmlFor="imgPet">
+              <svg width="51" height="51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834" stroke="#111" stroke-opacity=".6" stroke-width="2" stroke-linecap="round"/></svg>
 
-        <label className={css.noticeInputTitle} htmlFor="pricePet">Price</label> 
-        <input className={css.noticeFormInput}
-            id="pricePet"
-            name="pricePet"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.pricePet}
-            placeholder = 'Price'
-              />
-
-        <label className={css.noticeInputTitle} htmlFor="imgPet">Load the pat's image</label> 
-        <input 
-            id="imgPet"
-            name="imgPet"
-            type="file"
-            onChange={formik.handleChange}
-            value={formik.values.imgPet}
-              />
+          <input className={css.imgPetInput}
+              id="imgPet"
+              name="imgPet"
+              type="file"
+              onChange={formik.handleChange}
+              value={formik.values.imgPet}
+                />
+                </label>
+        </fieldset>
 
         <label className={css.noticeInputTitle} htmlFor="commentsAd">Comments</label>
         <input className={css.noticeFormInput}

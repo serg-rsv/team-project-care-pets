@@ -41,6 +41,7 @@ color: var(--black-text-cl);
     color: var(--black-text-cl);
     @include fonts(18px, 500, 1.2, 0);
 }
+
 .noticeFormInput{
     outline: none;
     box-sizing: border-box;
@@ -63,6 +64,70 @@ color: var(--black-text-cl);
         width: 458px;
     }
 }
+
+.reqiuredFieldForm{
+    color: var(--accent-cl);
+}
+
+//stykes for <fieldset>
+.inputWrapper{
+    box-sizing: border-box;
+    border: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+//--------redio input block
+.noticeInputRadioTitle{
+    @include fonts(18px, 500, 1.3, 0);
+    color: var(--black-text-cl);
+    &>.noticeFormInputRadio:checked{
+        color: var();
+    }
+}
+
+%sexPetInput{
+opacity: 0;
+&:checked+.noticeInputRadioTitle {
+        color: var(--accent-cl)
+    }
+}
+
+.sexPetInputMale{
+   @extend %sexPetInput;
+   &+.noticeInputRadioTitle::before{
+content: url('../../images/male-icon.png')
+   }
+}
+
+.sexPetInputFemale{
+    @extend %sexPetInput;
+    &+.noticeInputRadioTitle::before {
+            content: url('../../images/female-icon.png')
+        }
+}
+//============end radio input block
+
+
+//-------------img input 
+.imgPetInput{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+//<label>
+.imgPetIcon{
+    cursor: pointer;
+    box-sizing: border-box;
+    display: block;
+    width: 116px;
+    height: 116px;
+    padding: 33px;
+    border-radius: 20px;
+    background-color: var(--main-bg-cl);
+}
+//=============end img input
 
 .noticeFormNextBtn{
     margin-top: calc(40px - 16px);
