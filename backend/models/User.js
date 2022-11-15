@@ -29,12 +29,15 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Location is required. Format `city, region`'],
     },
-    // default Date ??
     birthday: {
       type: Date,
       default: Date.now(),
     },
-    avatarURL: {
+    photoURL: {
+      type: String,
+      default: '',
+    },
+    photoId: {
       type: String,
       default: '',
     },

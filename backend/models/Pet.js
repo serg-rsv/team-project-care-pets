@@ -16,7 +16,11 @@ const petSchema = new Schema(
       type: String,
       default: 'no breed',
     },
-    avatarURL: {
+    photoURL: {
+      type: String,
+      default: '',
+    },
+    photoId: {
       type: String,
       default: '',
     },
