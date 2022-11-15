@@ -5,16 +5,18 @@ import PropTypes from 'proptypes';
 import Icon from '../../images/iconDel.png';
 import IconHover from '../../images/delHover.png';
 import { useFetchNoticesQuery } from '../../redux/noticesSlice';
+// import {useDeleteNoticeMutation} from '../../redux/noticesSlice'
 
-const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
+const PetsData = ({ noticeId, avatarURL, name, birthday, breed, comments }) => {
+  // const [deletePet]= useDeleteNoticeMutation();
   const deletePet = id => {
     console.log('delete');
   };
   const { data } = useFetchNoticesQuery();
   console.log(data);
   return (
-    <li className={scss.wrapper}>
-      <img src={avatarURL} className={scss.petAvatar} alt="animal" />
+    <div className={scss.wrapper}>
+      <img src={avatarURL} className={scss.petAvatar} alt="animal avatar" />
       <ul>
         <li className={scss.listItem}>
           Name: <p className={scss.text}>{name}</p>
@@ -29,7 +31,7 @@ const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
           Comments: <p className={scss.text}>{comments}</p>
         </li>
       </ul>
-      <Button className={scss.iconBtn} onClick={() => deletePet()}>
+      <Button className={scss.iconBtn} onClick={() => deletePet(noticeId)}>
         <img
           className={scss.imgBtn}
           src={Icon}
@@ -38,7 +40,7 @@ const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
           onMouseOut={e => (e.currentTarget.src = Icon)}
         />
       </Button>
-    </li>
+    </div>
   );
 };
 
