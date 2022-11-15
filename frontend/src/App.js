@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import PublicRoute from './components/Routes/PublicRoute';
-import  {Loader}  from './components/Loader/Loader';
+import { Loader } from './components/Loader/Loader';
 
 const Header = lazy(() => import('./components/Header')); // Хедер потрібно поміняти на Sharedlayout
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -14,7 +14,7 @@ const UserPage = lazy(() => import('./pages/UserPage'));
 
 function App() {
   return (
-    <Suspense fallback={<Loader/>}>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Header />}>
           <Route element={<PublicRoute restricted />}>

@@ -1,22 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { category } from '../../../backend/models/Notice';
 
 export const noticesApi = createApi({
   reducerPath: 'notices',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3000/',
+    baseUrl: 'https://sk-care-pets.herokuapp.com/api/v1',
+    // baseUrl: 'http://localhost:5000/api/v1',
   }),
   tagTypes: ['Notices'],
   endpoints: builder => ({
     fetchNotices: builder.query({
       query: () => ({ url: '/notices' }),
-      providesTags: result =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: 'Notices', id })),
-              { type: 'Notices', id: 'LIST' },
-            ]
-          : [{ type: 'Notices', id: 'LIST' }],
     }),
     deleteNotice: builder.mutation({
       query: noticeId => ({
