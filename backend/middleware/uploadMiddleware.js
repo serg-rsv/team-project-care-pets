@@ -1,13 +1,14 @@
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs/promises');
 
-const api_secret = '0KR3iBGjTT0CBR_Gkkdy4NOmtmE';
-// const api_secret = process.env.CLOUDINARY_API_SECRET;
+const path = require('path');
+const configPath = path.join(__dirname, '..', 'config', '.env');
+require('dotenv').config({ path: configPath });
 
 cloudinary.config({
   cloud_name: 'dxxsrtjlb',
-  api_key: '915276319874155',
-  api_secret,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const uploadMiddleware = async (req, res, next) => {
