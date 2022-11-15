@@ -1,0 +1,84 @@
+@import '../../scss/utils/mixins';
+.wrapper {
+  padding: 61px 20px 80px;
+  @include mq(tablet) {
+    padding: 88px 32px 0 0;
+    position: relative;
+  }
+  @include mq(desktop) {
+    display: flex;
+  }
+}
+.titleInfo,
+.titlePets {
+  @include fonts(20px, 500, 1.35);
+  color: var(--black-text-cl);
+  @include mq(tablet) {
+    @include fonts(28px);
+  }
+  @include mq(desktop) {
+    position: absolute;
+  }
+}
+.titleInfo {
+  margin-bottom: 18px;
+  @include mq(tablet) {
+    margin-left: 18px;
+    margin-bottom: 40px;
+  }
+  @include mq(desktop) {
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+  }
+}
+.titlePets {
+  margin-top: 47px;
+  margin-bottom: 32px;
+  display: inline-block;
+  flex-wrap: nowrap;
+  @include mq(tablet) {
+    margin: 20px 33px 24px;
+  }
+  @include mq(desktop) {
+    top: 0;
+    left: 443px;
+    margin: 0;
+  }
+}
+.btnWrapper {
+  margin-left: 62px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  @include mq(tablet) {
+    position: absolute;
+    top: 88px;
+    left: 550px;
+  }
+  @include mq(desktop) {
+    top: 0;
+    right: -190px;
+    margin: 0;
+  }
+}
+.addPetText {
+  @include fonts(20px, 500, 1.35);
+  color: var(--main-text-cl);
+  display: inline-block;
+  margin-right: 10px;
+  @include mq(desktop) {
+    margin-right: 15px;
+  }
+}
+
+.addPetBtn {
+  width: 40px;
+  height: 40px;
+  background-color: var(--accent-cl);
+  padding: 0;
+  border: 0;
+  background-image: url('../../images/add-white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}

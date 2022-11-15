@@ -1,0 +1,23 @@
+@import '../../scss/utils/mixins';
+.logOutBtn {
+  margin-top: 42px;
+  display: flex;
+  width: 89px;
+  border: 0;
+  padding: 0;
+  justify-content: flex-end;
+  align-items: center;
+  background-image: url('../../images/logOutIcon.svg');
+  background-repeat: no-repeat;
+  background-position: 4% 50%;
+  &:hover,
+  &:focus {
+    background-color: var(--white-bg);
+    color: var(--main-text-cl);
+  }
+}
+.logOutText {
+  @include fonts(16px, 500, 1.3);
+  // color: var(--main-text-cl);
+  color: rgba(17, 17, 17, 0.6);
+}
