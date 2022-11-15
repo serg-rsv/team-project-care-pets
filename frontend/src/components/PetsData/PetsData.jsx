@@ -4,7 +4,7 @@ import Button from '../button/button';
 import PropTypes from 'proptypes';
 import Icon from '../../images/iconDel.png';
 import IconHover from '../../images/delHover.png';
-import { useFetchNoticesQuery } from '../../redux/noticesSlice';
+import { useFetchNoticesQuery } from '../../redux/services/noticesSlice';
 
 const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
   const deletePet = id => {
