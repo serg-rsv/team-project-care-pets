@@ -85,37 +85,53 @@ color: var(--black-text-cl);
     }
 }
 
-.radioInput {
-    opacity: 0;
-    position: absolute;
+%radioInput{
+opacity: 0;
+position: absolute;
+}
+.radioInputFilter {
+    @extend %radioInput;
+    &:checked+label {
+        color: var(--white-text-cl);
+        background-color: var(--accent-cl);
+    }
+}
+  
+
+//***filter
+%filterInput{
+    display: inline-block;
+        padding: 8px 23px;
+        border: 2px solid var(--accent-cl);
+        border-radius: var(--border-radius);
+        color: var(--black-text-cl);
+        @include fonts (14px, 500, 1.3, 0.04em);
+}
+
+.fiterLostFound{
+    @extend %filterInput;
+   margin-bottom: 8px
+}
+
+.fiterInGoodHands{
+    @extend %filterInput;
+     margin-right: 8px;
+}
+
+.fiterSell{
+    @extend %filterInput;
+}
+
+
+//***sexPet
+.radioInputSex {
+    @extend %radioInput;
 
     &:checked+.noticeInputRadioTitle {
         color: var(--accent-cl)
     }
-
-    &:checked+.fiterInputTitle {
-        color: var(--white-text-cl);
-        background-color: var(--accent-cl);
-    }
-
-}
-//***filter
-
-.fiterInputTitle{
-    display: inline-block;
-    padding: 8px 24px;
-    border: 2px solid var(--accent-cl);
-    border-radius: var(--border-radius);
-    color: var(--black-text-cl);
-    @include fonts (14px, 500, 1.3, 0.04em);
-    .radioInput+&{
-        margin-bottom:8px;   
-    }
-    
 }
 
-
-//***sexPet 
 .noticeInputRadioTitle{
     @include fonts(18px, 500, 1.3, 0);
     color: var(--black-text-cl);
@@ -190,13 +206,29 @@ position: absolute;
     @extend %inputError;
     top: 41%;
 }
-.inputErrorTitleAd {
+.inputErrorBirthPet {
     @extend %inputError;
-    top: 25.5%
+    top: 56.4%;
 }
-.inputErrorTitleAd {
+
+.inputErrorBreedPet {
     @extend %inputError;
-    top: 25.5%
+    top: 72%
+}
+
+.inputErrorLocationPet {
+    @extend %inputError;
+    top: 30.2%
+}
+
+.inputErrorCommentsAd{
+    @extend %inputError;
+        top: 78.2%
+}
+
+.inputErrorPricePet{
+    @extend %inputError;
+    top: 39.5%
 }
 
 

@@ -47,25 +47,25 @@ const ModalAddNotice = () => {
        validationSchema: Yup.object().shape({
            titleAd: Yup.string()
            .required('Please enter')
-           .matches(/[a-zA-Z]+/, 'only letters')
+           .matches(/^[aA-zZ\s]+$/, 'only letters')
                 .min(2, "Title must be at least 2 characters")
                 .max(48, "Title must not exceed 48 characters"),
          namePet: Yup.string().trim()
-             .matches(/[a-zA-Z]+/, 'only letters')
+             .matches(/^[aA-zZ\s]+$/, 'only letters')
                 .min(2, "Title must be at least 2 characters")
                .max(16, "Title must not exceed 16 characters"),
-           birthPet: Yup.string().matches(/^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/, 'Invalid date (ddmmyyyy)'),
-         breed: Yup.string()
-             .matches(/[a-zA-Z]+/, 'only letters')
+          birthPet: Yup.string().matches(/^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/, 'Invalid date (ddmmyyyy)'),
+         breedPet: Yup.string()
+             .matches(/^[aA-zZ\s]+$/, 'only letters')
            .min(2, "Title must be at least 2 characters")
                .max(24, "Title must not exceed 24 characters"),
-         location: Yup.string()
-          //  .matches(/^((A-Z)[a-z])$/,)
+         locationPet: Yup.string()
+             .matches(/^[aA-zZ\s]+$/, 'Type Brovary, Kyiv')
          ,
-           pricePet: Yup.number()
-               .required('Please enter')
+           pricePet: Yup.number('Please enter number')
+              //  .required('Please enter')
                .moreThan(0, 'Price more then 0'),
-           comments: Yup.string()
+           commentsAd: Yup.string()
                .required('Please enter')
                 .min(8, "Title must be at least 8 characters")
                .max(120, "Title must not exceed 120 characters"),
@@ -88,32 +88,32 @@ const ModalAddNotice = () => {
         {isFirstRegisterStep ? <>
         <fieldset className={css.inputWrapper}>
           <div className={css.filterWrapper}>
-              <input className={css.radioInput}
+              <input className={css.radioInputFilter}
                 id="LostFound"
                 name="filter"
                 type="radio"
                 value = "lost/found"
                 onChange={formik.handleChange}
                 />
-              <label htmlFor="LostFound" className={css.fiterInputTitle} >lost/found</label> 
+              <label htmlFor="LostFound" className={css.fiterLostFound} >lost/found</label> 
              
-              <input className={css.radioInput}
+              <input className={css.radioInputFilter}
                 id="inGoodHands"
                 name="filter"
                 type="radio"
                 value="In good hands" 
                 onChange={formik.handleChange}
                 />
-              <label htmlFor="inGoodHands" className={css.fiterInputTitle}> In good hands</label>
+              <label htmlFor="inGoodHands" className={css.fiterInGoodHands}> In good hands</label>
 
-              <input className={css.radioInput}
+              <input className={css.radioInputFilter}
                 id="sell"
                 name="filter"
                 type="radio"
                 value="sell" 
                 onChange={formik.handleChange}
               />
-              <label className={css.fiterInputTitle} htmlFor="sell">sell</label>
+              <label className={css.fiterSell} htmlFor="sell">sell</label>
 
               </div>
           </fieldset>
@@ -160,7 +160,7 @@ const ModalAddNotice = () => {
             value={formik.values.breedPet}
             placeholder = 'Type name pet'
           />
-        {formik.values.breedPet!=='' && formik.errors.breedPet ? <p className={css.inputErrorBreedPet}>{formik.errors.breedPet}</p> : null}
+        {formik.values.breedPet && formik.errors.breedPet ? <p className={css.inputErrorBreedPet}>{formik.errors.breedPet}</p> : null}
         </>
           :
         <>
@@ -170,7 +170,7 @@ const ModalAddNotice = () => {
                 <div className={css.sexPetWrapperMale}>
                   <img className={css.sexPetIconMale} src={maleIcon} alt="The sex: male" />
 
-                  <input className={css.radioInput}
+                  <input className={css.radioInputSex}
                     id="malePet"
                     name="sexPet"
                     type="radio"
@@ -184,7 +184,7 @@ const ModalAddNotice = () => {
                 <div className={css.sexPetWrapperFemale}>
                   <img className={css.sexPetIconFemale} src={femaleIcon} alt="The sex:female" />
                   
-                  <input className={css.radioInput}
+                  <input className={css.radioInputSex}
                     id="femalePet"
                     name="sexPet"
                     type="radio"
@@ -208,6 +208,21 @@ const ModalAddNotice = () => {
             />
             {formik.values.locationPet!=='' && formik.errors.locationPet ? <p className={css.inputErrorLocationPet}>{formik.errors.locationPet}</p> : null}
             
+
+            {formik.values.filter === 'sell' ?
+            <label className={css.noticeInputTitle} >Price<span className={css.reqiuredFieldForm}>*</span>:       
+            <input className={css.noticeFormInput}
+              id="pricePet"
+              name="pricePet"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.pricePet}
+              placeholder = 'Type price'
+              />
+            </label>
+              : null}
+            {formik.touched.pricePet && formik.errors.pricePet ? <p className={css.inputErrorPricePet}>{formik.errors.pricePet}</p> : null}
+
             <fieldset className={css.inputWrapper}>
               <legend className={css.noticeInputTitle}>Load the pat's image</legend>
               <label className={css.imgPetIcon} htmlFor="imgPet">
@@ -231,7 +246,7 @@ const ModalAddNotice = () => {
               onChange={formik.handleChange}
               value={formik.values.commentsAd}
             />
-            {formik.values.commentsAd!=='' && formik.errors.commentsAd ? <p  className={css.inputErrorCommentsAd}>{formik.errors.commentsAd}</p> : null}
+            {formik.touched.commentsAd && formik.errors.commentsAd ? <p  className={css.inputErrorCommentsAd}>{formik.errors.commentsAd}</p> : null}
           </>}
         
             {isFirstRegisterStep &&
