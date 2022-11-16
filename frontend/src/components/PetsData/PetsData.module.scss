@@ -13,18 +13,15 @@
 }
 .wrapper {
   position: relative;
-  max-width: 280px;
+  width: 280px;
   padding: 16px 20px 40px;
   border-radius: 20px;
   background-color: var(--white-bg);
-  box-shadow: 7px
-  4px
-  14px
-  0
-  rgba(0, 0, 0, 0.11);
+  box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
   @include mq(tablet) {
-    max-width: 704px;
+    width: 704px;
     display: flex;
+
     padding: 20px;
     margin-left: 32px;
   }
@@ -51,26 +48,27 @@
 .wrapper .iconBtn {
   position: absolute;
   top: 272px;
-  right: 20px;
-  padding: 3px;
+  right: 0;
   border: 0;
+  background-image: url('../../images/del-black.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  &:hover,
+  &:focus {
+    border: 0;
+    background-color: var(--white-bg);
+    background-image: url('../../images/del-orange.svg');
+  }
   @include mq(tablet) {
     top: 20px;
+    right: 20px;
     width: 44px;
     height: 44px;
+    padding: 0;
     background-color: var(--main-bg-cl);
-  }
-}
-.wrapper .iconBtn:hover,
-.wrapper .iconBtn:focus {
-  border: none;
-  background-color: var(--white-bg);
-  @include mq(tablet) {
-    background-color: var(--main-bg-cl);
-  }
-}
-.imgBtn {
-  @include mq(tablet) {
-    margin: 0 auto;
+    &:hover,
+    &:focus {
+      background-color: var(--main-bg-cl);
+    }
   }
 }

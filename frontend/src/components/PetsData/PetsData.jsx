@@ -2,15 +2,9 @@ import React from 'react';
 import scss from './PetsData.module.scss';
 import Button from '../button/button';
 import PropTypes from 'proptypes';
-import Icon from '../../images/iconDel.png';
-import IconHover from '../../images/delHover.png';
-import { useFetchNoticesQuery } from '../../redux/services/noticesSlice';
+import { useFetchNoticesQuery } from '../../redux/noticesSlice';
 
-// import {useDeleteNoticeMutation} from '../../redux/noticesSlice'
-
-
-const PetsData = ({ noticeId, avatarURL, name, birthday, breed, comments }) => {
-  // const [deletePet]= useDeleteNoticeMutation();
+const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
   const deletePet = id => {
     console.log('delete');
   };
@@ -33,15 +27,7 @@ const PetsData = ({ noticeId, avatarURL, name, birthday, breed, comments }) => {
           Comments: <p className={scss.text}>{comments}</p>
         </li>
       </ul>
-      <Button className={scss.iconBtn} onClick={() => deletePet(noticeId)}>
-        <img
-          className={scss.imgBtn}
-          src={Icon}
-          alt="icon"
-          onMouseOver={e => (e.currentTarget.src = IconHover)}
-          onMouseOut={e => (e.currentTarget.src = Icon)}
-        />
-      </Button>
+      <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button>
     </div>
   );
 };
