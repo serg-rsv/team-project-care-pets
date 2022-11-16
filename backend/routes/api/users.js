@@ -1,7 +1,7 @@
 const { Router } = require('express');
 
 const { controllerUser } = require('../../controllers');
-const { auth } = require('../../middleware');
+const { auth, uploadMiddleware, upload } = require('../../middleware');
 const { schemaJoiValidator } = require('../../validators');
 const { schemasJoiUser } = require('../../models');
 
@@ -23,6 +23,12 @@ router.get('/logout', auth, controllerUser.logout);
 
 router.patch('/edit', auth, controllerUser.edit);
 
-router.patch('/avatars', auth, controllerUser.addAvatar);
+router.patch(
+  '/avatars',
+  auth,
+  upload.single('image'),
+  uploadMiddleware,
+  controllerUser.addAvatar
+);
 
 module.exports = router;

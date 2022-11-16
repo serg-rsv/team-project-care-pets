@@ -1,7 +1,12 @@
 const { Router } = require('express');
 
 const { controllerNotices } = require('../../controllers');
-const { auth } = require('../../middleware');
+const {
+  auth,
+  uploadMiddleware,
+  upload,
+  cleanImgMiddleware,
+} = require('../../middleware');
 const {
   schemaJoiValidator,
   isValidId,
@@ -14,6 +19,8 @@ const router = Router();
 router.post(
   '/',
   auth,
+  upload.single('image'),
+  uploadMiddleware,
   schemaJoiValidator(schemasJoiNotice.addSchema),
   controllerNotices.addPersonalNotice
 );
@@ -50,6 +57,7 @@ router.delete(
   '/:noticeId',
   isValidId('noticeId'),
   auth,
+  cleanImgMiddleware,
   controllerNotices.deletePersonalNotice
 );
 

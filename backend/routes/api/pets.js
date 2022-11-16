@@ -5,15 +5,33 @@ const {
   deletePetController,
   getOwnerPetsController,
 } = require('../../controllers/pets');
-const { auth } = require('../../middleware');
+const {
+  auth,
+  uploadMiddleware,
+  upload,
+  cleanImgMiddleware,
+} = require('../../middleware');
 const { isValidId, isValidPetFields } = require('../../validators');
 
 const router = Router();
 
 router.get('/', auth, getOwnerPetsController);
 
-router.post('/', auth, isValidPetFields, addPetController);
+router.post(
+  '/',
+  auth,
+  upload.single('image'),
+  uploadMiddleware,
+  isValidPetFields,
+  addPetController
+);
 
-router.delete('/:petId', isValidId('petId'), auth, deletePetController);
+router.delete(
+  '/:petId',
+  isValidId('petId'),
+  auth,
+  cleanImgMiddleware,
+  deletePetController
+);
 
 module.exports = router;

@@ -1,3 +1,5 @@
-const UserPage = () => {};
+const UserPage = () => {
+
+};
 
 export default UserPage;

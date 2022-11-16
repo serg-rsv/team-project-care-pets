@@ -17,10 +17,16 @@
   padding: 16px 20px 40px;
   border-radius: 20px;
   background-color: var(--white-bg);
+  box-shadow: 7px
+  4px
+  14px
+  0
+  rgba(0, 0, 0, 0.11);
   @include mq(tablet) {
     max-width: 704px;
     display: flex;
     padding: 20px;
+    margin-left: 32px;
   }
   @include mq(desktop) {
     width: 821px;

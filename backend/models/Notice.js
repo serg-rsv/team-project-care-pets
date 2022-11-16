@@ -42,7 +42,11 @@ const noticeSchema = new Schema(
       type: String,
       required: [true, 'Location is required'],
     },
-    photo: {
+    photoURL: {
+      type: String,
+      default: '',
+    },
+    photoId: {
       type: String,
       default: '',
     },
@@ -74,7 +78,8 @@ const addSchema = Joi.object({
   location: Joi.string().required(),
   name: Joi.string(),
   breed: Joi.string(),
-  photo: Joi.string(),
+  photoURL: Joi.string(),
+  photoId: Joi.string(),
   comments: Joi.string(),
   birthday: Joi.date(),
   price: Joi.number(),
