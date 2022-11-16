@@ -37,7 +37,7 @@ export const noticesApi = createApi({
           breed: breed,
           sex: theSex,
           comments: comments,
-          photo: addPhoto,
+          photoUrl: addPhoto,
           price: price,
           location: location,
         },

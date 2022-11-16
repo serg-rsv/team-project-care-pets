@@ -4,8 +4,10 @@ import Button from '../button/button';
 import PropTypes from 'proptypes';
 import Icon from '../../images/iconDel.png';
 import IconHover from '../../images/delHover.png';
-import { useFetchNoticesQuery } from '../../redux/noticesSlice';
+import { useFetchNoticesQuery } from '../../redux/services/noticesSlice';
+
 // import {useDeleteNoticeMutation} from '../../redux/noticesSlice'
+
 
 const PetsData = ({ noticeId, avatarURL, name, birthday, breed, comments }) => {
   // const [deletePet]= useDeleteNoticeMutation();
