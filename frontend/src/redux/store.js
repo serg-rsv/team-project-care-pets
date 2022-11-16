@@ -8,9 +8,8 @@ export const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
-    noticesApi.middleware, 
-    petsApi.middleware,
-    usersApi.middleware,
+      noticesApi.middleware,
+      petsApi.middleware,
+      usersApi.middleware
     ),
 });
-
