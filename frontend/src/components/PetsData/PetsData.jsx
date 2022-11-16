@@ -2,7 +2,7 @@ import React from 'react';
 import scss from './PetsData.module.scss';
 import Button from '../button/button';
 import PropTypes from 'proptypes';
-import { useFetchNoticesQuery } from '../../redux/noticesSlice';
+import { useFetchNoticesQuery } from '../../redux/services/noticesSlice';
 
 const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
   const deletePet = id => {
