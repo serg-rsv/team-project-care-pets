@@ -7,9 +7,9 @@ require('colors');
 
 const { errorHandler } = require('./middleware');
 
-const connectDB = require('./config/db');
+const connectDB = require('./config/');
 
-const configPath = path.join(__dirname, '..', 'backend', 'config', '.env');
+const configPath = path.join(__dirname, 'config', '.env');
 require('dotenv').config({ path: configPath });
 
 const {

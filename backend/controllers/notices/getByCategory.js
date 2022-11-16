@@ -5,7 +5,10 @@ const { RequestError } = require('../../helpers');
 
 const getByCategory = asyncHandler(async (req, res) => {
   const { category } = req.params;
-  const notices = await Notice.find({ category }, '-createdAt -updatedAt');
+  const notices = await Notice.find(
+    { category },
+    '-createdAt -updatedAt'
+  ).populate('owner', 'email phone');
 
   if (!notices) {
     throw RequestError(404, 'Not found');

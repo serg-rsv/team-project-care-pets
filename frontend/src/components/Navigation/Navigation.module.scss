@@ -1,0 +1,71 @@
+@import '../../scss/utils/mixins';
+
+.navigation > .burgerBtn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: var(--main-bg-cl);
+  &:hover,
+  &:focus {
+    background-color: var(--main-bg-cl);
+  }
+
+  @include mq(tablet) {
+    top: 30px;
+    right: 60px;
+  }
+
+  @include mq(desktop) {
+    display: none;
+  }
+}
+
+.mobMenu {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--main-bg-cl);
+  position: absolute;
+  left: 50%;
+  translate: -50%;
+
+  @include mq(tablet) {
+    display: none;
+  }
+}
+
+.tabMenu {
+  display: none;
+  @include mq(tablet) {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--main-bg-cl);
+    position: absolute;
+    left: 50%;
+    translate: -50%;
+  }
+
+  @include mq(desktop) {
+    display: none;
+  }
+}
+
+.authTabMenu {
+  display: none;
+  @include mq(tablet) {
+    display: block;
+  }
+  @include mq(desktop) {
+    display: none;
+  }
+}
+
+.deskMenu {
+  display: none;
+  @include mq(desktop) {
+    display: block;
+  }
+}

@@ -1,0 +1,34 @@
+@import "../../scss/utils/mixins";
+
+.userNav {
+   display: flex;
+   justify-content: center;
+   padding-top: 46px;
+    @include mq(tablet) {
+        position: absolute;
+        top: 20px;
+        right: 110px;
+        padding-top: 0;
+    }
+    @include mq(desktop) {
+        right: 40px;
+        top: 30px;
+    }
+}
+
+.userNav__btn {
+    display: flex;
+    width: 164px;
+    height: 35px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: var(--accent-cl);
+    color: var(--white-bg);
+}
+
+.btnIcon {
+    width: 18px;
+    height: 18px;
+    margin-right: 12px;    
+}

@@ -32,7 +32,7 @@ const friendSchema = new Schema(
       type: SchemaTypes.Url,
       default: '',
     },
-    imageUrl: {
+    photoUrl: {
       type: SchemaTypes.Url,
       default: '',
     },

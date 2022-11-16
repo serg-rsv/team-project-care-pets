@@ -1,0 +1,144 @@
+@import '../../../scss/utils/mixins';
+
+.formBlock {
+    box-sizing: border-box;
+    padding: 42px 20px;
+    display: grid;
+    background-color: var(--main-bg-cl);
+
+    @include mq(tablet) {
+        width: 608px;
+        padding: 60px 80px;
+
+        margin: 0 auto;
+        background-color: var(--white-bg);
+        box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+        border-radius: var(--border-radius);
+    }
+}
+
+.formTitle {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--main-text-cl);
+    @include fonts(24px, 700, 1.3, 0.04em);
+
+    @include mq(tablet) {
+        @include fonts(36px, 500, 1.3, 0.04em);
+    }
+}
+
+.registerForm {
+    display: grid;
+    grid-template-rows: 40px 40px 40px 1fr;
+
+    position: relative;
+    grid-gap: 16px 0px;
+    justify-self: center;
+}
+
+.loginForm {
+    display: grid;
+    grid-template-rows: 40px 40px 1fr;
+
+    position: relative;
+    grid-gap: 16px 0px;
+    justify-self: center;
+}
+
+.input {
+    outline: none;
+    box-sizing: border-box;
+    justify-self: center;
+    width: 280px;
+    padding-left: 14px;
+
+    background-color: var(--main-bg-cl);
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: var(--border-radius);
+
+    @include mq(tablet) {
+        width: 448px;
+        padding-left: 32px;
+    }
+
+    @include mq(desktop) {
+        width: 458px;
+    }
+}
+
+/* =================input errors =====================*/
+%invalidInput {
+    position: absolute;
+    left: 5%;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: red;
+}
+
+.inputErrorEmail {
+    @extend %invalidInput;
+    top: -6%;
+}
+
+.inputLoginErrorEmail {
+    @extend %invalidInput;
+    top: -8%
+}
+
+.inputErrorPassword {
+    @extend %invalidInput;
+    top: 18%;
+}
+
+.inputLoginErrorPassword {
+    @extend %invalidInput;
+    top: 24%
+}
+
+.inputErrorConfirmPassword {
+    @extend %invalidInput;
+    top: 42%;
+}
+
+.inputErrorName {
+    @extend %invalidInput;
+    top: -6%;
+}
+
+.inputErrorLocation {
+    @extend %invalidInput;
+    top: 18%;
+}
+
+.inputErrorPhone {
+    @extend %invalidInput;
+    top: 42%;
+}
+
+/* =================input errors END=====================*/
+
+.formBtn {
+    justify-self: center;
+    align-self: flex-start;
+    width: 280px;
+
+    margin-top: calc(40px - 16px);
+
+    padding: 10px 28px;
+    border-radius: 40px;
+
+    background-color: var(--accent-cl);
+    color: var(--white-text-cl);
+
+    border: none;
+
+    &:disabled {
+        background-color: grey;
+    }
+}
+
+.linkToPage {
+    text-align: center;
+    margin-top: 40px;
+}
