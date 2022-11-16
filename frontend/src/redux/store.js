@@ -10,3 +10,4 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(noticesApi.middleware, usersApi.middleware),
 });
+
