@@ -1,3 +1,4 @@
-const getAllFriendsController = require('./getAllFriendsController');
+const getFriendsListController = require('./getFriendsListController');
 const addFriendController = require('./addFriendController');
-module.exports = { getAllFriendsController, addFriendController };
+
+module.exports = { getFriendsListController, addFriendController };

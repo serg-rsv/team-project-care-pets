@@ -1,15 +1,13 @@
-const asyncHandler = require('express-async-handler');
+const { addNews } = require('../../services');
 
-const { News } = require('../../models');
-
-const addNews = asyncHandler(async (req, res) => {
-  const newNews = await News.create({ ...req.body });
+const addNewsController = async (req, res) => {
+  const newNews = await addNews(req.body);
 
   res.status(201).json({
     code: 201,
     status: 'success',
     data: newNews,
   });
-});
+};
 
-module.exports = addNews;
+module.exports = addNewsController;
