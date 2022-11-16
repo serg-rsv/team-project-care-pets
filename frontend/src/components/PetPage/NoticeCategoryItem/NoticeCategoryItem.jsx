@@ -30,10 +30,14 @@ const NoticeCategoryItem = ({
         <p className={s.age}>Age:</p>
         <p>{age}</p>
       </div>
-      {price && (
+      {price ? (
         <div className={s.animalListBoxText}>
           <p className={s.price}>Price:</p>
           <p>{price}</p>
+        </div>
+      ) : (
+        <div className={s.animalListBoxText}>
+          <p className={s.priceOpacity}>P</p>
         </div>
       )}
       <Button className={s.button}>Learn more</Button>

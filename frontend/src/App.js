@@ -1,5 +1,5 @@
 import Header from './components/Header';
-// import NoticesPage from './pages/NoticesPage';
+
 function App() {
   return (
     <div className="App">
@@ -16,7 +16,7 @@ function App() {
         </a>
       </header> */}
       <Header />
-      {/* <NoticesPage/> */}
+  
 
     </div>
   );
