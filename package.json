@@ -12,12 +12,6 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
-    "eslint": "7.19.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-standard": "16.0.3",
-    "eslint-plugin-import": "2.25.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "5.2.0",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.32.0",
     "colors": "^1.4.0",
