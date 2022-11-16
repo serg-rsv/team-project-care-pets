@@ -5,15 +5,16 @@
   top: 78px;
   left: 200px;
 
-  @include mq(tablet) {
+ @include mq(tablet) {
     top: -100px;
-    left: 1050px;
+    left: 1062px;
     display: flex;
   }
   @include mq(tablet-only) {
     top: -175px;
     left: 510px;
-  }
+  } 
+ 
 }
 
 .addBox p {

@@ -7,5 +7,10 @@ export const store = configureStore({
     [petsApi.reducerPath]: petsApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(noticesApi.middleware, petsApi.middleware),
+    getDefaultMiddleware().concat(
+    noticesApi.middleware, 
+    petsApi.middleware,
+    usersApi.middleware,
+    ),
 });
+

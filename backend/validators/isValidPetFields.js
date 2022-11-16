@@ -24,9 +24,10 @@ const addPetValidation = (req, res, next) => {
         'string.max': 'Breed must be less than 30 characters',
       }),
     comments: Joi.string(),
-    avatarURL: Joi.string().uri().messages({
+    photoURL: Joi.string().uri().messages({
       'string.uri': 'Avatar URL must be a valid URL',
     }),
+    photoId: Joi.string(),
   });
 
   const validationResult = schema.validate(req.body);

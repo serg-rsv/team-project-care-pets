@@ -21,19 +21,30 @@
 .animalListItem {
   position: relative;
   min-width: 280px;
-  flex-basis: calc((100% - 32px) / 1);
-  margin-right: 32px;
   margin-bottom: 32px;
   background-color: var(--white-text-cl);
   border-radius: 0px 0px 40px 40px;
   box-shadow: var(--input-shadow);
   @include mq(tablet) {
     width: 336px;
-    flex-basis: calc((100% - 64px) / 2);
+    margin-right: 32px;
+    flex-basis: calc((100% - 32px) / 2);
   }
   @include mq(desktop) {
     min-width: 276px;
-    flex-basis: calc((100% - 128px) / 4);
+    flex-basis: calc((100% - 96px) / 4);
+  }
+}
+
+.animalListItem:nth-child(4n) {
+  @include mq(desktop) {
+    margin-right: 0;
+  }
+}
+
+.animalListItem:nth-child(2n) {
+  @include mq(tablet-only) {
+    margin-right: 0;
   }
 }
 
@@ -45,7 +56,7 @@
     width: 336px;
   }
   @include mq(desktop) {
-    width: 288px;
+    // width: 288px;
   }
 }
 
@@ -59,6 +70,7 @@
 .animalListBoxText {
   display: flex;
   margin-left: 20px;
+  margin-right: 0;
   margin-top: 8px;
   @include fonts(16px, 500, 1.4);
   color: var(--main-text-cl);
@@ -79,13 +91,17 @@
 .price {
   margin-right: 44px;
 }
-
+.priceOpacity {
+  opacity: 0;
+}
 .button {
   width: 248px;
   margin-left: 16px;
   margin-bottom: 32px;
   margin-top: 20px;
   font-size: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 
   @include mq(tablet) {
     margin-left: 30px;
@@ -134,7 +150,6 @@
     width: 44px;
     height: 44px;
     top: 232px;
-    // bottom: 0;
     right: 12px;
     background-size: 24px;
   }
