@@ -1,6 +1,6 @@
-const addPetController = require('./addPet');
-const deletePetController = require('./deletePet');
-const getOwnerPetsController = require('./getOwnerPets');
+const addPetController = require('./addPetController');
+const deletePetController = require('./deletePetController');
+const getOwnerPetsController = require('./getOwnerPetsController.js');
 
 module.exports = {
   addPetController,

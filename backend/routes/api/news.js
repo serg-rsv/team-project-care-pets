@@ -1,13 +1,14 @@
+const asyncHandler = require('express-async-handler');
 const { Router } = require('express');
 
 const {
-  getNewsController,
+  getNewsListController,
   addNewsController,
 } = require('../../controllers/news');
 
 const router = Router();
 
-router.get('/', getNewsController);
-router.post('/', addNewsController);
+router.get('/', asyncHandler(getNewsListController));
+router.post('/', asyncHandler(addNewsController));
 
 module.exports = router;

@@ -7,7 +7,7 @@ const cleanImgMiddleware = async (req, _, next) => {
   try {
     await cloudinary.uploader.destroy(photoId);
   } catch {
-    throw RequestError(400, `photo with ID ${public_id} not found`);
+    throw RequestError(400, `photo with ID ${photoId} not found`);
   } finally {
     next();
   }
