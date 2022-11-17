@@ -39,6 +39,9 @@
     position: relative;
     grid-gap: 16px 0px;
     justify-self: center;
+    @include mq(tablet) {
+            grid-template-rows: 52px 52px 52px 1fr;;
+        }
 }
 
 .loginForm {
@@ -55,8 +58,9 @@
     box-sizing: border-box;
     justify-self: center;
     width: 280px;
-    padding-left: 14px;
+    padding: 14px;
 
+    font-size: 14px;
     background-color: var(--main-bg-cl);
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: var(--border-radius);
@@ -64,10 +68,12 @@
     @include mq(tablet) {
         width: 448px;
         padding-left: 32px;
+        font-size: 18px;
     }
 
     @include mq(desktop) {
         width: 458px;
+        
     }
 }
 
