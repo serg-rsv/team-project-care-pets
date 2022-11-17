@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useFormik } from 'formik';
 import css from '../RegisterForm/authForm.module.scss'
 import * as Yup from 'yup';
@@ -54,7 +55,7 @@ const LoginForm = () => {
             
                 <button className={css.formBtn} type="submit" >Login</button>
             </form>
-            <p className={css.linkToPage}>Don't have an account? Register</p>
+            <p className={css.linkToPage}>Don't have an account? <Link className={css.link} to="/register">Register</Link> </p>
         </div>
     )
 };
