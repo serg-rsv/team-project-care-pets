@@ -1,0 +1,45 @@
+@import '../../scss/utils/mixins';
+
+.pageTitle {
+  text-align: center;
+  margin-top: 46px;
+  margin-bottom: 40px;
+  @include fonts(24px, 700, 1.38);
+  color: #000000;
+
+  @include mq(tablet) {
+    margin-top: 92px;
+    margin-bottom: 45px;
+    @include fonts(48px, 700, 1.38);
+  }
+
+  @include mq(desktop) {
+    margin-top: 92px;
+    margin-bottom: 45px;
+    @include fonts(48px, 700, 1.38);
+    margin-top: 60px;
+    margin-bottom: 60px;
+  }
+}
+
+.friendsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  @include mq(tablet) {
+    gap: 32px;
+  }
+
+  &__item {
+    flex-basis: 100%;
+
+    @include mq(tablet) {
+      flex-basis: calc((100% - 32px) / 2);
+    }
+
+    @include mq(desktop) {
+      flex-basis: calc((100% - 64px) / 3);
+    }
+  }
+}

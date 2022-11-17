@@ -1,43 +1,45 @@
-@import "../../scss/utils/mixins";
+@import '../../scss/utils/mixins';
 
 nav {
-   margin-top: 60px;
-   text-align: center;
+  margin-top: 60px;
+  text-align: center;
+
+  //   background-color: var(--main-bg-cl);
 }
 
-.navList{
-    display: flex;
-    flex-direction: column;
+.navList {
+  display: flex;
+  flex-direction: column;
 
-    &__item > a {
-        @include fonts(32px, 500, 1.37, 0.04em);
-        color:#181C27;
+  &__item > a {
+    @include fonts(32px, 500, 1.37, 0.04em);
+    color: #181c27;
 
-        @include mq(desktop) {
-            @include fonts(20px, 700, 1.35, 0.04em);
-            color: #000;
-        }
+    @include mq(desktop) {
+      @include fonts(20px, 700, 1.35, 0.04em);
+      color: #000;
     }
+  }
 
-    @include mq(desktop){
-        flex-direction: row;
-        position: absolute;
-        top: 30px;
-        left: 190px;
-    }
+  @include mq(desktop) {
+    flex-direction: row;
+    position: absolute;
+    top: 30px;
+    left: 190px;
+  }
 }
 
 .navList__item {
-    &:not(:last-child) {
-        margin-bottom: 40px;
+  &:not(:last-child) {
+    margin-bottom: 40px;
 
-        @include mq(tablet) {
-            margin-bottom: 60px;
-        }
-
-        @include mq(desktop) {
-            margin-bottom: 0;
-            margin-right: 80px;
-        }
+    @include mq(tablet) {
+      margin-bottom: 60px;
     }
+
+    @include mq(desktop) {
+      margin-bottom: 0;
+      margin-right: 80px;
+    }
+  }
 }

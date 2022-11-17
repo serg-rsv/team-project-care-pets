@@ -25,12 +25,15 @@
 
 .mobMenu {
   width: 100vw;
-  height: 100vh;
+
+  padding-bottom: 60px;
+
   background-color: var(--main-bg-cl);
   position: absolute;
+  top: 46px;
   left: 50%;
   translate: -50%;
-
+  z-index: 100;
   @include mq(tablet) {
     display: none;
   }
@@ -46,6 +49,7 @@
     position: absolute;
     left: 50%;
     translate: -50%;
+    z-index: 100;
   }
 
   @include mq(desktop) {
