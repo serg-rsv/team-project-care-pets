@@ -1,0 +1,124 @@
+@import '../../scss/utils/mixins';
+
+.sponsorCard {
+  height: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 4px;
+  padding-right: 4px;
+  background-color: #ffffff;
+  border-radius: 20px;
+
+  @include mq(tablet) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+    border-radius: 40px;
+  }
+
+  @include mq(desktop) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.sponsorCardTitle {
+  text-align: center;
+}
+
+.sponsorLink {
+  @include fonts(12px, 700, 1.33);
+  color: var(--accent-cl);
+  text-decoration: underline;
+
+  @include mq(tablet) {
+    @include fonts(16px, 700, 1.38);
+  }
+
+  @include mq(desktop) {
+    @include fonts(20px, 700, 1.35);
+  }
+}
+
+.sponsorInfo {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 12px;
+
+  @include mq(tablet) {
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  @include mq(desktop) {
+    gap: 16px;
+  }
+}
+
+.sponsorLogo {
+  max-width: 110px;
+  max-height: 78px;
+}
+
+.infoList {
+  position: relative;
+  @include fonts(12px, 500, 1.33);
+  color: #000000;
+
+  @include mq(tablet) {
+    @include fonts(14px, 500, 1.36);
+  }
+
+  @include mq(desktop) {
+    @include fonts(16px, 500, 1.38);
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: 4px;
+
+    @include mq(tablet) {
+      margin-bottom: 8px;
+    }
+
+    @include mq(desktop) {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.workTime:hover,
+.workTime:focus {
+  color: var(--accent-cl);
+}
+
+.timeInfo {
+  display: inline-block;
+  position: absolute;
+  border: 1px solid var(--accent-cl);
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 12px;
+
+  @include mq(tablet) {
+    @include fonts(12px, 500, 1.33);
+  }
+}
+
+td {
+  text-transform: uppercase;
+}
+
+.time {
+  padding-left: 6px;
+}
+
+.addressLink {
+  color: currentColor;
+}
+
+.emailLink {
+  color: currentColor;
+}

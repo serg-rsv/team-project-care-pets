@@ -1,5 +1,14 @@
 @import '../../scss/utils/mixins';
 
+// .navigation {
+//   position: relative;
+//   width: 100%;
+//   height: 100%;
+//   left: 0;
+//   top: 0;
+//   bottom: 0;
+// }
+
 .navigation > .burgerBtn {
   position: absolute;
   top: 16px;
@@ -23,14 +32,28 @@
   }
 }
 
+// .hren {
+//   position: fixed;
+//   left: 0;
+//   top: 60px;
+//   background-color: var(--main-bg-cl);
+//   z-index: 50;
+//   width: 100%;
+//   height: 100%;
+// }
+
 .mobMenu {
   width: 100vw;
   height: 100vh;
+  padding-bottom: 60px;
+
   background-color: var(--main-bg-cl);
   position: absolute;
+  overflow-y: scroll;
+  top: 46px;
   left: 50%;
   translate: -50%;
-
+  z-index: 100;
   @include mq(tablet) {
     display: none;
   }
@@ -46,6 +69,7 @@
     position: absolute;
     left: 50%;
     translate: -50%;
+    z-index: 100;
   }
 
   @include mq(desktop) {
