@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-//BASE_URL='https://sk-care-pets.herokuapp.com/api/v1'
-const BASE_URL = `${process.env.BASE_URL}/users`;
+// BASE_URL='http://localhost:500/api/v1' // local
+BASE_URL='https://sk-care-pets.herokuapp.com/api/v1' //herokuapp
 
 // Define a service using a base URL and expected endpoints
 export const usersApi = createApi({
@@ -19,47 +19,40 @@ export const usersApi = createApi({
             return headers;
         }
     }),
-    tagTypes: ['Users'],
     endpoints: (builder) => ({
         register: builder.mutation({
             query: (userData) => ({
                 url: `/register`,
                 method: 'POST',
                 body: userData
-            }),
-            invalidatesTags: ['Users']
+            })
         }),
         login: builder.mutation({
             query: (userData) => ({
                 url: `/login`,
                 method: 'POST',
                 body: userData
-            }),
-            invalidatesTags: ['Users']
+            })
         }),
         edit: builder.mutation({
             query: (userData) => ({
                 url: `/edit`,
                 method: 'PATCH',
                 body: userData
-            }),
-            invalidatesTags: ['Users']
+            })
         }),
         logout: builder.query({
-            query: (userData) => (`/logout`),
-            providesTags: ['Users']
+            query: (userData) => (`/logout`)
         }),
         current: builder.query({
-            query: (userData) => (`/current`),
-            providesTags: ['Users']
+            query: (userData) => (`/current`)
         }),
         avatars: builder.mutation({
             query: (userData) => ({
                 url: `/avatars`,
                 method: 'PATCH',
                 body: userData
-            }),
-            invalidatesTags: ['Users']
+            })
         }),
     }),
 })
