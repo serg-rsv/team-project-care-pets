@@ -1,3 +1,4 @@
+const asyncHandler = require('express-async-handler');
 const { Router } = require('express');
 
 const {
@@ -15,7 +16,7 @@ const { isValidId, isValidPetFields } = require('../../validators');
 
 const router = Router();
 
-router.get('/', auth, getOwnerPetsController);
+router.get('/', auth, asyncHandler(getOwnerPetsController));
 
 router.post(
   '/',
@@ -23,7 +24,7 @@ router.post(
   upload.single('image'),
   uploadMiddleware,
   isValidPetFields,
-  addPetController
+  asyncHandler(addPetController)
 );
 
 router.delete(
@@ -31,7 +32,7 @@ router.delete(
   isValidId('petId'),
   auth,
   cleanImgMiddleware,
-  deletePetController
+  asyncHandler(deletePetController)
 );
 
 module.exports = router;

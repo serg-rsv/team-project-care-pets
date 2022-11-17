@@ -1,4 +1,4 @@
-@import '../../../scss/utils/mixins';
+@import '../../scss//utils/mixins';
 
 .formBlock {
     box-sizing: border-box;
@@ -10,11 +10,15 @@
         width: 608px;
         padding: 60px 80px;
 
-        margin: 0 auto;
+        margin: 173px auto 0;
         background-color: var(--white-bg);
         box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
         border-radius: var(--border-radius);
     }
+        @include mq(desktop){
+            width: 618px;
+            margin-top: 93px;
+        }
 }
 
 .formTitle {
@@ -35,6 +39,9 @@
     position: relative;
     grid-gap: 16px 0px;
     justify-self: center;
+    @include mq(tablet) {
+            grid-template-rows: 52px 52px 52px 1fr;;
+        }
 }
 
 .loginForm {
@@ -46,13 +53,14 @@
     justify-self: center;
 }
 
-.input {
+.formInput {
     outline: none;
     box-sizing: border-box;
     justify-self: center;
     width: 280px;
-    padding-left: 14px;
+    padding: 14px;
 
+    font-size: 14px;
     background-color: var(--main-bg-cl);
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: var(--border-radius);
@@ -60,10 +68,12 @@
     @include mq(tablet) {
         width: 448px;
         padding-left: 32px;
+        font-size: 18px;
     }
 
     @include mq(desktop) {
         width: 458px;
+        
     }
 }
 
@@ -141,4 +151,7 @@
 .linkToPage {
     text-align: center;
     margin-top: 40px;
+    &>.link{
+        color: #3091EB;
+    }
 }

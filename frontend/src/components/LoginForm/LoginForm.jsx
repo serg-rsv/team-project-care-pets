@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useFormik } from 'formik';
 import css from '../RegisterForm/authForm.module.scss'
 import * as Yup from 'yup';
@@ -30,7 +31,7 @@ const LoginForm = () => {
         <div className={css.formBlock}>
             <h2 className={css.formTitle}>Login</h2>
             <form className={css.loginForm} onSubmit={formik.handleSubmit}>
-                <input className={css.input}
+                <input className={css.formInput}
                     id="loginEmail"
                     name="email"
                     type="email"
@@ -41,7 +42,7 @@ const LoginForm = () => {
            
                 {formik.values.email !== '' && formik.errors.email ? <p className={css.inputLoginErrorEmail}>{formik.errors.email}</p> : null}
             
-                <input className={css.input}
+                <input className={css.formInput}
                     id="loginPassword"
                     name="password"
                     type="password"
@@ -54,7 +55,7 @@ const LoginForm = () => {
             
                 <button className={css.formBtn} type="submit" >Login</button>
             </form>
-            <p className={css.linkToPage}>Don't have an account? Register</p>
+            <p className={css.linkToPage}>Don't have an account? <Link className={css.link} to="/register">Register</Link> </p>
         </div>
     )
 };

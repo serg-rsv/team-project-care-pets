@@ -1,3 +1,4 @@
-const getNewsController = require('./getNewsController');
+const getNewsListController = require('./getNewsListController');
 const addNewsController = require('./addNewsController');
-module.exports = { getNewsController, addNewsController };
+
+module.exports = { getNewsListController, addNewsController };
