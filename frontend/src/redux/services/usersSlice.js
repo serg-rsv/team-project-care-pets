@@ -8,14 +8,19 @@ export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
-    prepareHeaders: (headers, { getTokenFromUserState }) => {
-      // By default, if we have a token in the store, let's use that for authenticated requests
-      //token from the state
-      const token = getTokenFromUserState.token;
+    // prepareHeaders: (headers, { getState }) => {
+    //   const { token = '' } = getState().user;
+    //   headers.set('Autorization', token);
+    //   return headers;
+    // },
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
 
+      // If we have a token set in state, let's assume that we should be passing it.
       if (token) {
-        headers.set('authentication', `Bearer ${token}`);
+        headers.set('authorization', `Bearer ${token}`);
       }
+
       return headers;
     },
   }),
@@ -46,7 +51,7 @@ export const usersApi = createApi({
       query: userData => `/logout`,
     }),
     current: builder.query({
-      query: userData => `/current`,
+      query: () => `/current`,
     }),
     avatars: builder.mutation({
       query: userData => ({
@@ -60,7 +65,7 @@ export const usersApi = createApi({
 
 export const {
   useRegisterQuery,
-  useLoginQuery,
+  useLoginMutation,
   useEditQuery,
   useLogoutQuery,
   useCurrentQuery,
