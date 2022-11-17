@@ -12,20 +12,21 @@ import Favorite from '../../components/PetPage/NoticesCategoriesNav/Favorite';
 import Own from '../../components/PetPage/NoticesCategoriesNav/Own';
 
 // import s from './NoticesPage.module.scss';
-
+// при першому ренедрі відмалювати SELL через useEffect
 const NoticesPage = () => {
   return (
     <div className="container">
       <NoticesSearch />
       <Container>
-        <NoticesCategoriesNav />
-        <Routes>
+        <NoticesCategoriesNav /> 
+      
+        {/* <Routes>
           <Route path="/notices/lost-found" element={<LostFound />} />
           <Route path="/notices/for-free" element={<InGoodHands />} />
           <Route path="/notices/sell" element={<Sell />} />
           <Route path="/notices/favorite" element={<Favorite />} />
           <Route path="/notices/own" element={<Own />} />
-        </Routes>
+        </Routes> */}
       </Container>
     </div>
   );
