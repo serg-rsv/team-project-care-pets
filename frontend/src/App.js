@@ -1,6 +1,5 @@
 import Header from './components/Header';
-import ModalAddNotice from './components/ModalAddNotice';
-// import NoticesPage from './pages/NoticesPage';
+import NoticesPage from './pages/NoticesPage';
 function App() {
   return (
     <div className="App">
@@ -17,8 +16,7 @@ function App() {
         </a>
       </header> */}
       <Header />
-      <ModalAddNotice/>
-      {/* <NoticesPage/> */}
+      <NoticesPage/>
 
     </div>
   );
