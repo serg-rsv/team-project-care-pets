@@ -4,15 +4,16 @@ import css from './modalAddNotice.module.scss';
 // import style from '../RegisterForm/authForm.module.scss'
 // import style from '../RegisterForm/authForm.module.scss'
 import * as Yup from 'yup';
-import maleIcon from '../../images/male-icon.png';
-import  femaleIcon from '../../images/female-icon.png';
+import maleIconMob from '../../images/addNotice/male-icon-mob.png';
+import femaleIconMob from '../../images/addNotice/female-icon-mob.png';
+import maleIcon from '../../images/addNotice/male-icon.png';
+import  femaleIcon from '../../images/addNotice/female-icon.png';
 
 
 const ModalAddNotice = () => {
   
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
 //   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
-  
 //   const validationFirstStep = (fields) => {
 //     if (!fields.errors.email && !fields.errors.password && !fields.errors.confirmPassword && fields.values.email!=='' &&fields.values.password!=='' &&fields.values.confirmPassword!=='') {
 //       setIsBtnDisabled(false)
@@ -54,17 +55,18 @@ const ModalAddNotice = () => {
              .matches(/^[aA-zZ\s]+$/, 'only letters')
                 .min(2, "Title must be at least 2 characters")
                .max(16, "Title must not exceed 16 characters"),
-          birthPet: Yup.string().matches(/^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/, 'Invalid date (ddmmyyyy)'),
+          birthPet: Yup.string().matches(/^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/, 'Invalid date (dd.mm.yyyy)'),
          breedPet: Yup.string()
              .matches(/^[aA-zZ\s]+$/, 'only letters')
            .min(2, "Title must be at least 2 characters")
                .max(24, "Title must not exceed 24 characters"),
          locationPet: Yup.string()
-             .matches(/^[aA-zZ\s]+$/, 'Type Brovary, Kyiv')
+             .matches(/([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/, 'Type: city, region')
          ,
-           pricePet: Yup.number('Please enter number')
-              //  .required('Please enter')
-               .moreThan(0, 'Price more then 0'),
+         pricePet: Yup.string().when('filter', {
+           is: (filter) => filter === "sell",
+           then:Yup.string().required('Please enter').matches(/^[1-9][0-9]*$/, 'Invalid price')
+           }),
            commentsAd: Yup.string()
                .required('Please enter')
                 .min(8, "Title must be at least 8 characters")
@@ -119,7 +121,8 @@ const ModalAddNotice = () => {
           </fieldset>
           
           <label className={css.noticeInputTitle} htmlFor="titleAd">Tittle of ad<span className={css.reqiuredFieldForm}>*</span></label>
-              <input className={css.noticeFormInput}
+          {formik.values.titleAd !== '' && formik.errors.titleAd ? <p className={css.inputError}>{formik.errors.titleAd}</p> : null}
+          <input className={css.noticeFormInput}
                 id="titleAd"
                 name="titleAd"
                 type="text"
@@ -127,20 +130,21 @@ const ModalAddNotice = () => {
                 value={formik.values.titleAd}
                 placeholder = 'Type name pet'
               />  
-          {formik.values.titleAd !== '' && formik.errors.titleAd ? <p className={css.inputErrorTitleAd}>{formik.errors.titleAd}</p> : null}
+          
           
           <label className={css.noticeInputTitle} htmlFor="namePet">Name pet</label>      
-              <input className={css.noticeFormInput}
-                id="namePet"
-                name="namePet"
-                type="text"
-                onChange={formik.handleChange}
-                value={formik.values.namePet}
-                placeholder = 'Type name pet'
+          {formik.values.namePet!=='' && formik.errors.namePet ? <p className={css.inputError}>{formik.errors.namePet}</p> : null}
+          <input className={css.noticeFormInput}
+              id="namePet"
+              name="namePet"
+              type="text"
+              onChange={formik.handleChange}
+              value={formik.values.namePet}
+              placeholder = 'Type name pet'
           />
-          {formik.values.namePet!=='' && formik.errors.namePet ? <p className={css.inputErrorNamePet}>{formik.errors.namePet}</p> : null}
 
-        <label className={css.noticeInputTitle} htmlFor="birthPet">Date of birth</label>     
+        <label className={css.noticeInputTitle} htmlFor="birthPet">Date of birth</label>  
+        {formik.values.birthPet!=='' && formik.errors.birthPet ? <p className={css.inputError}>{formik.errors.birthPet}</p> : null}  
         <input className={css.noticeFormInput}
             id="birthPet"
             name="birthPet"
@@ -149,9 +153,9 @@ const ModalAddNotice = () => {
             value={formik.values.birthPet}
             placeholder = 'Type name pet'
           />
-        {formik.values.birthPet!=='' && formik.errors.birthPet ? <p className={css.inputErrorBirthPet}>{formik.errors.birthPet}</p> : null}
 
         <label className={css.noticeInputTitle} htmlFor="breedPet">Breed</label>      
+        {formik.values.breedPet && formik.errors.breedPet ? <p className={css.inputError}>{formik.errors.breedPet}</p> : null}
         <input className={css.noticeFormInput}
             id="breedPet"
             name="breedPet"
@@ -160,7 +164,7 @@ const ModalAddNotice = () => {
             value={formik.values.breedPet}
             placeholder = 'Type name pet'
           />
-        {formik.values.breedPet && formik.errors.breedPet ? <p className={css.inputErrorBreedPet}>{formik.errors.breedPet}</p> : null}
+        
         </>
           :
         <>
@@ -168,7 +172,11 @@ const ModalAddNotice = () => {
             <legend className={css.noticeSexPetTitle}>The sex<span className={css.reqiuredFieldForm}>*</span>:</legend>
               <div className={css.sexPetCheckWrapper}>
                 <div className={css.sexPetWrapperMale}>
-                  <img className={css.sexPetIconMale} src={maleIcon} alt="The sex: male" />
+                  <img className={css.sexPetIconMale}
+                    srcSet={`${maleIconMob} 36w, ${maleIcon} 54w`}
+                    sizes="(min-width:768px) 54px, 36px"
+                    src={maleIconMob}
+                    alt="The sex: male" />
 
                   <input className={css.radioInputSex}
                     id="malePet"
@@ -182,7 +190,11 @@ const ModalAddNotice = () => {
                 </div>
 
                 <div className={css.sexPetWrapperFemale}>
-                  <img className={css.sexPetIconFemale} src={femaleIcon} alt="The sex:female" />
+                  <img className={css.sexPetIconFemale}
+                    srcSet={`${femaleIconMob} 25w, ${femaleIcon} 38w`}
+                    sizes="(min-width:768px) 38px, 25px"
+                    src={femaleIconMob}
+                    alt="The sex:female" />
                   
                   <input className={css.radioInputSex}
                     id="femalePet"
@@ -197,20 +209,22 @@ const ModalAddNotice = () => {
               </div>
             </fieldset>
             
-            <label className={css.noticeInputTitle} htmlFor="locationPet">Location<span className={css.reqiuredFieldForm}>*</span>:</label>       
+           
+              <label className={css.noticeInputTitle} htmlFor="locationPet">Location<span className={css.reqiuredFieldForm}>*</span>:</label>       
+            {formik.values.locationPet!=='' && formik.errors.locationPet ? <p className={css.inputError}>{formik.errors.locationPet}</p> : null}  
             <input className={css.noticeFormInput}
-              id="locationPet"
-              name="locationPet"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.locationPet}
-              placeholder = 'Location'
-            />
-            {formik.values.locationPet!=='' && formik.errors.locationPet ? <p className={css.inputErrorLocationPet}>{formik.errors.locationPet}</p> : null}
-            
-
+                id="locationPet"
+                name="locationPet"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.locationPet}
+                placeholder = 'Location'
+              />
+              
             {formik.values.filter === 'sell' ?
-            <label className={css.noticeInputTitle} >Price<span className={css.reqiuredFieldForm}>*</span>:       
+            <>
+            <label htmlFor='pricePet' className={css.noticeInputTitle} >Price<span className={css.reqiuredFieldForm}>*</span>:</label>       
+            {formik.values.pricePet !=='' && formik.errors.pricePet ? <p className={css.inputError}>{formik.errors.pricePet}</p> : null}
             <input className={css.noticeFormInput}
               id="pricePet"
               name="pricePet"
@@ -219,9 +233,9 @@ const ModalAddNotice = () => {
               value={formik.values.pricePet}
               placeholder = 'Type price'
               />
-            </label>
+            </>
               : null}
-            {formik.touched.pricePet && formik.errors.pricePet ? <p className={css.inputErrorPricePet}>{formik.errors.pricePet}</p> : null}
+            
 
             <fieldset className={css.inputWrapper}>
               <legend className={css.noticeInputTitle}>Load the pat's image</legend>
@@ -237,22 +251,22 @@ const ModalAddNotice = () => {
                         />
               </label>
             </fieldset>
-
+            
             <label className={css.noticeInputTitle} htmlFor="commentsAd">Comments</label>
-            <input className={css.noticeFormInput}
+            {formik.values.commentsAd !=='' && formik.errors.commentsAd ? <p  className={css.inputError}>{formik.errors.commentsAd}</p> : null}
+            <textarea  className={css.noticeFormInput}
               id="commentsAd"
               name="commentsAd"
               type="text"
               onChange={formik.handleChange}
               value={formik.values.commentsAd}
             />
-            {formik.touched.commentsAd && formik.errors.commentsAd ? <p  className={css.inputErrorCommentsAd}>{formik.errors.commentsAd}</p> : null}
           </>}
         
             {isFirstRegisterStep &&
               <>
                 <button type='button' className={css.noticeFormNextBtn} onClick={moveNextRegistration}>Next</button>
-                <button className={css.noticeFormCancelBtn} type="button">Cancel</button>
+                <button className={css.noticeFormCancelBtn} onClick={formik.resetForm} type="button">Cancel</button>
               </>
             }
         
