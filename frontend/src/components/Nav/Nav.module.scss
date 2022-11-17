@@ -15,6 +15,11 @@ nav {
     @include fonts(32px, 500, 1.37, 0.04em);
     color: #181c27;
 
+    &.active {
+      color: var(--accent-cl);
+      text-decoration: underline;
+    }
+
     @include mq(desktop) {
       @include fonts(20px, 700, 1.35, 0.04em);
       color: #000;

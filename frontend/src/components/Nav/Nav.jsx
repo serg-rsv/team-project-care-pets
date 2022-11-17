@@ -1,19 +1,33 @@
 import { NavLink } from 'react-router-dom';
 import s from './Nav.module.scss';
 
-// Заглушки <a>. Нужно будет поменять на NavLink
 const Nav = () => {
   return (
     <nav>
       <ul className={s.navList}>
         <li className={s.navList__item}>
-          <NavLink to={'/news'}>News</NavLink>
+          <NavLink
+            to={'/news'}
+            className={({ isActive }) => (isActive ? s.active : undefined)}
+          >
+            News
+          </NavLink>
         </li>
         <li className={s.navList__item}>
-          <NavLink to={'/friend'}>Find pet</NavLink>
+          <NavLink
+            to={'/notices'}
+            className={({ isActive }) => (isActive ? s.active : undefined)}
+          >
+            Find pet
+          </NavLink>
         </li>
         <li className={s.navList__item}>
-          <NavLink to="/friend">Our friend</NavLink>
+          <NavLink
+            to={'/friends'}
+            className={({ isActive }) => (isActive ? s.active : undefined)}
+          >
+            Our friend
+          </NavLink>
         </li>
       </ul>
     </nav>

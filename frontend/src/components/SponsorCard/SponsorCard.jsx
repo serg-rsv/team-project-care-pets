@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import s from './SponsorCard.module.scss';
+import defaultImg from '../../images/logo/logo.png';
 
 const SponsorCard = ({ obj }) => {
   const [timeMenu, setTimeMenu] = useState(false);
@@ -48,7 +49,7 @@ const SponsorCard = ({ obj }) => {
       }, [])
     : null;
 
-  function onMouseClick(e) {
+  const onMouseClick = e => {
     const el = e.target;
 
     if (!el.id || timeMenu === true) {
@@ -56,7 +57,7 @@ const SponsorCard = ({ obj }) => {
     } else {
       setTimeMenu(true);
     }
-  }
+  };
 
   return (
     <div onClick={onMouseClick} className={s.sponsorCard}>
@@ -66,7 +67,11 @@ const SponsorCard = ({ obj }) => {
         </a>
       </h3>
       <div className={s.sponsorInfo}>
-        <img src={imageUrl} alt="logo" className={s.sponsorLogo} />
+        <img
+          src={imageUrl ?? defaultImg}
+          alt="logo"
+          className={s.sponsorLogo}
+        />
         <ul className={s.infoList}>
           <li className={s.infoList__item}>
             <div className={s.workTime} id="time">
