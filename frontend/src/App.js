@@ -12,7 +12,7 @@ const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage'));
 const NoticesPage = lazy(() => import('./pages/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
 const HomePage = lazy(() => import('./pages/HomePage'));
-const NotFound = lazy(() => import('./pages/NotFound/NotFound'))
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 
 function App() {
   return (

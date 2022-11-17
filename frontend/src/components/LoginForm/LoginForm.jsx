@@ -30,7 +30,7 @@ const LoginForm = () => {
         <div className={css.formBlock}>
             <h2 className={css.formTitle}>Login</h2>
             <form className={css.loginForm} onSubmit={formik.handleSubmit}>
-                <input className={css.input}
+                <input className={css.formInput}
                     id="loginEmail"
                     name="email"
                     type="email"
@@ -41,7 +41,7 @@ const LoginForm = () => {
            
                 {formik.values.email !== '' && formik.errors.email ? <p className={css.inputLoginErrorEmail}>{formik.errors.email}</p> : null}
             
-                <input className={css.input}
+                <input className={css.formInput}
                     id="loginPassword"
                     name="password"
                     type="password"

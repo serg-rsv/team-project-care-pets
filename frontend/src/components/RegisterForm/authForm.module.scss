@@ -1,4 +1,4 @@
-@import '../../../scss/utils/mixins';
+@import '../../scss//utils/mixins';
 
 .formBlock {
     box-sizing: border-box;
@@ -46,7 +46,7 @@
     justify-self: center;
 }
 
-.input {
+.formInput {
     outline: none;
     box-sizing: border-box;
     justify-self: center;
