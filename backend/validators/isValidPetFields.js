@@ -27,11 +27,10 @@ const addPetValidation = (req, res, next) => {
     photoURL: Joi.string().uri().messages({
       'string.uri': 'Avatar URL must be a valid URL',
     }),
-    photoId: Joi.string(),
+    photoId: Joi.string().min(0),
   });
 
   const validationResult = schema.validate(req.body);
-
   if (validationResult.error) {
     return res.status(400).json(validationResult.error.details[0].message);
   }
