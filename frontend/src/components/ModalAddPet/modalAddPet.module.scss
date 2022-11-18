@@ -111,6 +111,28 @@
         }
 }
 
+.addedImg {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 208px;
+    height: 208px;
+    border-radius: 20px;
+
+    @include mq(tablet) {
+        width: 182px;
+        height: 182px;
+    }
+
+    &>img {
+        object-fit: cover;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
+
 .photoPetInput {
     visibility: hidden;
     width: 0;

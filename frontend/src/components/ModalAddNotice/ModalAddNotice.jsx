@@ -231,19 +231,22 @@ const ModalAddNotice = () => {
 
             <fieldset className={css.inputWrapper}>
               <legend className={css.noticeInputTitle}>Load the pat's image</legend>
-              {formik.values.image ===''?<label className={css.imgPetIcon} htmlFor="image">
-                <svg width="51" height="51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834" stroke="#111" strokeOpacity=".6" strokeWidth="2" strokeLinecap="round"/></svg>
-                {/* {formik.values.image ==='' ?<svg width="51" height="51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834" stroke="#111" strokeOpacity=".6" strokeWidth="2" strokeLinecap="round"/></svg>: <img className={css.addedImg} alt='pet' src={image} />} */}
-                <input className={css.imgPetInput}
-                  id="image"
-                  name="image"
-                  type="file"
-                  onChange={(e) => {
-                    formik.handleChange(e);
-                    onimageChange(e);
-                  }}
+              {formik.values.image === '' ?
+                <label className={css.imgPetIcon} htmlFor="image">
+                  <svg width="51" height="51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834" stroke="#111" strokeOpacity=".6" strokeWidth="2" strokeLinecap="round"/></svg>
+                  {/* {formik.values.image ==='' ?<svg width="51" height="51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834" stroke="#111" strokeOpacity=".6" strokeWidth="2" strokeLinecap="round"/></svg>: <img className={css.addedImg} alt='pet' src={image} />} */}
+                  <input className={css.imgPetInput}
+                    id="image"
+                    name="image"
+                    type="file"
+                    onChange={(e) => {
+                      formik.handleChange(e);
+                      onimageChange(e);
+                    }}
                   />
-              </label>:<img className={css.addedImg} alt='pet' src={image} />}
+                </label> :
+                <div className={css.addedImg}><img  alt='pet' src={image} /></div>
+              }
               
             </fieldset>
             

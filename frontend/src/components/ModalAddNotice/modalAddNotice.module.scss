@@ -241,8 +241,23 @@ position: absolute;
 }
 
 .addedImg{
+    overflow: hidden;
     width: 116px;
+    height: 116px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 20px;
+    
+    @include mq(tablet){
+        width: 140px;
+        height: 140px;
+    }
+    &>img{
+        object-fit: cover;
+        min-width: 100%;
+        min-height: 100%;
+    }
 }
 //=============end img input
 
