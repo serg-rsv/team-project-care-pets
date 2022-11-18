@@ -1,9 +1,8 @@
 import {useState} from 'react';
 import { useFormik } from 'formik';
 import css from './modalAddNotice.module.scss';
-// import style from '../RegisterForm/authForm.module.scss'
-// import style from '../RegisterForm/authForm.module.scss'
 import * as Yup from 'yup';
+import Button from '../button/button';
 import maleIconMob from '../../images/addNotice/male-icon-mob.png';
 import femaleIconMob from '../../images/addNotice/female-icon-mob.png';
 import maleIcon from '../../images/addNotice/male-icon.png';
@@ -13,27 +12,20 @@ import  femaleIcon from '../../images/addNotice/female-icon.png';
 const ModalAddNotice = () => {
   
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
-//   const [isBtnDisabled, setIsBtnDisabled] = useState(true);
-//   const validationFirstStep = (fields) => {
-//     if (!fields.errors.email && !fields.errors.password && !fields.errors.confirmPassword && fields.values.email!=='' &&fields.values.password!=='' &&fields.values.confirmPassword!=='') {
-//       setIsBtnDisabled(false)
-//     } else {
-//       setIsBtnDisabled(true)
-//     }
-//   }
-
-//   function to next step registration
+  const [image, setImage] = useState(null);
   const moveNextRegistration = () => {
-
-    isFirstRegisterStep ?
-      setIsFirstRegisterStep(false) :
-      setIsFirstRegisterStep(true);
+    isFirstRegisterStep ? setIsFirstRegisterStep(false) : setIsFirstRegisterStep(true);
   }
 
-  // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  const onimageChange = (e) => {
+    if (e.currentTarget.files && e.currentTarget.files[0]) {
+      setImage(URL.createObjectURL(e.target.files[0]));
+    }
+  }
+
    const formik = useFormik({
      initialValues: {
-         filter:'',
+        filter:'',
         titleAd: '',
         namePet: '',
         birthPet:'',
@@ -41,7 +33,7 @@ const ModalAddNotice = () => {
         sexPet: '',
         locationPet: '',
         pricePet: '',
-        imgPet: '',
+        image: '',
         commentsAd:'',
         
       },
@@ -204,7 +196,7 @@ const ModalAddNotice = () => {
                     onChange={formik.handleChange}
                   />
                   
-                  <label htmlFor="femalePet" className={css.noticeInputRadioTitle}> Female</label>
+                  <label htmlFor="femalePet" className={css.noticeInputRadioTitle}>Female</label>
                 </div>
               </div>
             </fieldset>
@@ -239,21 +231,24 @@ const ModalAddNotice = () => {
 
             <fieldset className={css.inputWrapper}>
               <legend className={css.noticeInputTitle}>Load the pat's image</legend>
-              <label className={css.imgPetIcon} htmlFor="imgPet">
+              {formik.values.image ===''?<label className={css.imgPetIcon} htmlFor="image">
                 <svg width="51" height="51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834" stroke="#111" strokeOpacity=".6" strokeWidth="2" strokeLinecap="round"/></svg>
-
-                  <input className={css.imgPetInput}
-                      id="imgPet"
-                      name="imgPet"
-                      type="file"
-                      onChange={formik.handleChange}
-                      value={formik.values.imgPet}
-                        />
-              </label>
+                {/* {formik.values.image ==='' ?<svg width="51" height="51" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834" stroke="#111" strokeOpacity=".6" strokeWidth="2" strokeLinecap="round"/></svg>: <img className={css.addedImg} alt='pet' src={image} />} */}
+                <input className={css.imgPetInput}
+                  id="image"
+                  name="image"
+                  type="file"
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    onimageChange(e);
+                  }}
+                  />
+              </label>:<img className={css.addedImg} alt='pet' src={image} />}
+              
             </fieldset>
             
             <label className={css.noticeInputTitle} htmlFor="commentsAd">Comments</label>
-            {formik.values.commentsAd !=='' && formik.errors.commentsAd ? <p  className={css.inputError}>{formik.errors.commentsAd}</p> : null}
+            {formik.values.commentsAd !=='' && formik.errors.commentsAd? <p  className={css.inputError}>{formik.errors.commentsAd}</p> : null}
             <textarea  className={css.noticeFormInput}
               id="commentsAd"
               name="commentsAd"
@@ -264,17 +259,17 @@ const ModalAddNotice = () => {
           </>}
         
             {isFirstRegisterStep &&
-              <>
-                <button type='button' className={css.noticeFormNextBtn} onClick={moveNextRegistration}>Next</button>
-                <button className={css.noticeFormCancelBtn} onClick={formik.resetForm} type="button">Cancel</button>
-              </>
+              <div className={css.btnBlock}>
+                <Button children='Next' onClick={moveNextRegistration} className={css.btnAccent} />
+                < Button children='Cancel' onClick={formik.resetForm} className={css.btnSec} />  
+              </div>
             }
         
             {!isFirstRegisterStep &&
-              <>
-                <button type="submit" >Done</button>
-                <button onClick={moveNextRegistration} type="button">Back</button>
-              </>
+          <div className={css.btnBlock}>
+                <Button children='Done' className={css.btnAccent} buttonType='submit' />
+                <Button children='Back' onClick={moveNextRegistration} className={css.btnSec}/>
+              </div>
             }
         </form>
     </div>
