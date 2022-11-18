@@ -1,4 +1,4 @@
-import Button from '../Button';
+import Button from '../Button_new/Button';
 import scss from './LogOut.module.scss';
 const LogOut = () => {
   const logOut = () => {
