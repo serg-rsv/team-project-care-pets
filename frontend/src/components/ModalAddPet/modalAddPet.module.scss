@@ -33,7 +33,7 @@
         // position: relative;
     
         @include mq(tablet) {
-            width: 488px;
+            width: 448px;
         }
 }
 
@@ -45,21 +45,6 @@
         @include mq(tablet) {
             margin-bottom: 12px;
             font-size: 24px;
-        }
-    
-        &~textarea {
-            resize: none;
-            width: 240px;
-            height: 100px;
-            padding: 12px 5px 12px 14px;
-            border-radius: 20px;
-    
-            @include mq(tablet) {
-                width: 394px; 
-                height: 116px;
-                padding: 16px 5px 16px 16px;
-                height: 116px;
-            }
         }
 }
 
@@ -79,8 +64,8 @@
     
         @include mq(tablet) {
             font-size: 16px;
-            width: 488px;
-            max-width: 488px;
+            width: 448px;
+            max-width: 448px;
             height: 48px;
             padding-left: 16px;
             margin-bottom: 28px;
@@ -120,9 +105,9 @@
         background-color: var(--main-bg-cl);
     
         @include mq(tablet) {
-            width: 140px;
-            height: 140px;
-            padding: 45px;
+            width: 182px;
+            height: 182px;
+            padding: 67px;
         }
 }
 
@@ -132,7 +117,91 @@
     height: 0;
 }
 
+.textareaBlock {
+    margin: 0 auto;
+    width: 240px;
+    display: grid;
+    grid-gap:8px;
+
+    @include mq(tablet) {
+        grid-gap: 12px;
+        width: 394px;
+        margin-bottom: 16px;
+    }
+}
+
+.addPetCommentsTitle {
+    color: var(--black-text-cl);
+    @include fonts(18px, 500, 1.2, 0);
+
+    @include mq(tablet) {
+        font-size: 24px;
+    }
+}
+
+.addPetFormComments {
+    outline: none;
+    box-sizing: border-box;
+    resize: none;
+    width: 240px;
+    height: 100px;
+    padding: 12px 5px 12px 14px;
+    border-radius: 20px;
+    background-color: var(--main-bg-cl);
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    font-size: 14px;
+
+    @include mq(tablet) {
+        width: 394px;
+        height: 116px;
+        padding: 16px 5px 16px 16px;
+        height: 116px;
+        font-size: 16px;
+    }
+}
+
 .inputError{
     @include fonts(11px, 400, 1.2, -0.01em);
     color: red;
+}
+
+.btnAccent{
+    padding: 9px 101px;
+    color: var(--white-bg);
+    background-color: var(--accent-cl);
+    @include mq(tablet) {
+        @include fonts(20px, 500, 1.3, 0.04em);
+        grid-column: 1;
+        justify-self: end;
+              padding: 8.5px 65px ;  
+            max-width: 180px;
+            height: 44px;
+        }
+    &:hover, &:focus{
+        background-color: var(--accent-cl-active);
+        border-color: var(--accent-cl-active);
+       
+    }
+}
+
+.btnSec{
+    padding: 9px 92px;
+    @include mq(tablet){
+        @include fonts(20px, 500, 1.3, 0.04em);
+        grid-column: 3;
+        padding: 8px 50px;
+        max-width: 180px;
+        height: 44px;
+
+    }
+}
+
+.btnBlock{
+    margin: calc(40px - 16px) auto 0 auto;
+    display: grid;
+    grid-gap:12px;
+    @include mq(tablet) {
+        grid-gap: 12px;
+        grid-template: 44px / 180px 10px 180px ;
+        }
 }

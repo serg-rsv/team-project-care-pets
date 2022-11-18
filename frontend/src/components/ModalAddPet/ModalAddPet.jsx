@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import { useFormik } from 'formik';
+import Button from '../button/button';
 import css from './modalAddPet.module.scss';
 
 import * as Yup from 'yup';
@@ -108,30 +109,31 @@ const ModalAddPet = () => {
                         />
             </label>
         </fieldset>
-            
-        <label className={css.addPetInputTitle} htmlFor="comments">Comments</label>
-        {formik.values.comments !=='' && formik.errors.comments ? <p  className={css.inputError}>{formik.errors.comments}</p> : null}
-        <textarea  className={css.addPetFormInput}
-            id="comments"
-            name="comments"
-            type="text"
-            onChange={formik.handleChange}
-            value={formik.values.comments}
-        />
+        <div className={css.textareaBlock}> 
+          <label className={css.addPetCommentsTitle} htmlFor="comments">Comments</label>
+          {formik.values.comments !=='' && formik.errors.comments ? <p  className={css.inputError}>{formik.errors.comments}</p> : null}
+          <textarea  className={css.addPetFormComments}
+              id="comments"
+              name="comments"
+              type="text"
+              onChange={formik.handleChange}
+                value={formik.values.comments}
+              />
+        </div>  
         </>}
         
             {isFirstRegisterStep &&
-              <>
-                <button type='button' className={css.addPetFormNextBtn} onClick={moveNextRegistration}>Next</button>
-                <button className={css.addPetFormCancelBtn} onClick={formik.resetForm} type="button">Cancel</button>
-              </>
+          <div className={css.btnBlock}>
+          <Button children='Next' onClick={moveNextRegistration} className={css.btnAccent} />
+          < Button children='Cancel' onClick={formik.resetForm} className={css.btnSec} />  
+              </div>
             }
         
             {!isFirstRegisterStep &&
-              <>
-                <button type="submit" >Done</button>
-                <button onClick={moveNextRegistration} type="button">Back</button>
-              </>
+              <div className={css.btnBlock}>
+                <Button children='Done' className={css.btnAccent} buttonType='submit' />
+                <Button children='Back' onClick={moveNextRegistration} className={css.btnSec}/>
+              </div>
             }
         </form>
     </div>
