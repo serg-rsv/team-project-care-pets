@@ -1,15 +1,24 @@
 @import '../../scss//utils/mixins';
-.petAvatar {
-  max-width: 240px;
-  max-height: 240px;
-  border-radius: 20%;
+.imgBox {
+  width: 240px;
+  height: 240px;
+  border-radius: 20px;
   margin-bottom: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @include mq(tablet) {
     width: 161px;
     height: 161px;
+    border-radius: 40px;
     margin-bottom: 0;
     margin-right: 32px;
   }
+}
+.petAvatar {
+  object-fit: cover;
+  border-radius: 20px;
 }
 .wrapper {
   position: relative;
@@ -21,7 +30,7 @@
   @include mq(tablet) {
     width: 704px;
     display: flex;
-
+    border-radius: 40px;
     padding: 20px;
     margin-left: 32px;
   }
