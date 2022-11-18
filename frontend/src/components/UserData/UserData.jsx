@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../Button_new';
+import Button from '../Button';
 import UserPhoto from '../../images/userDog.png';
 import LogOut from '../LogOut';
 import scss from './UserData.module.scss';
