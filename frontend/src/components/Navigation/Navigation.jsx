@@ -4,11 +4,13 @@ import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
 import Button from '../Button';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/services/authSlice';
 
 const Navigation = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const isAuthorized = false; // Це буде у редакс-сторі. Витягуємо через селектор
+  const isAuthorized = useSelector(selectIsLoggedIn); // Це буде у редакс-сторі. Витягуємо через селектор
 
   const onBurgerClick = e => {
     setIsModalOpen(!isModalOpen);
