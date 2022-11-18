@@ -1,13 +1,13 @@
-const RequestError = require('../helpers');
 const { cloudDelete } = require('../services');
 
 const cleanImgMiddleware = async (req, _, next) => {
   const { photoId } = req.body;
+  if (!photoId) return next();
 
   try {
     await cloudDelete(photoId);
-  } catch {
-    throw RequestError(400, `photo with ID ${photoId} not found`);
+  } catch (err) {
+    console.log('cleanImgMiddleware ~ err', err);
   } finally {
     next();
   }

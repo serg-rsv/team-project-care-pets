@@ -4,6 +4,16 @@ export const petsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://sk-care-pets.herokuapp.com/api/v1',
     // baseUrl: 'http://localhost:5000/api/v1',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+
+      // If we have a token set in state, let's assume that we should be passing it.
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+
+      return headers;
+    },
   }),
   tagTypes: ['Pets'],
   endpoints: builder => ({

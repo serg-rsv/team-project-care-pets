@@ -1,7 +1,7 @@
 const { getNewsList } = require('../../services');
 
-const getNewsListController = async (_, res) => {
-  const news = await getNewsList();
+const getNewsListController = async (req, res) => {
+  const news = await getNewsList(req.query);
 
   res.json({
     code: 200,

@@ -27,4 +27,10 @@
 .authBtn {
   padding-top: 8px;
   padding-bottom: 8px;
+
+  &:hover,
+  &:focus {
+    background-color: var(--accent-cl);
+    color: #fff;
+  }
 }

@@ -5,8 +5,11 @@ const addNews = async newsData => {
   return newNews;
 };
 
-const getNewsList = async () => {
-  const news = await News.find({}, '-createAt -updateAt');
+const getNewsList = async queries => {
+  const { page = 1, limit = 10 } = queries;
+  const skip = (page - 1) * limit;
+
+  const news = await News.find({}, '-createAt -updateAt', { skip, limit });
   return news;
 };
 

@@ -15,21 +15,28 @@ const UserData = props => {
 
   const [changeIcon, setChangeIcon] = useState(false);
 
-  const [disabled, setDisabled] = useState(false);
-
+  const [disabled, setDisabled] = useState(true);
+ 
   const changeBlur = () => {
-    // setDisabled(true);
     setChangeIcon(false);
     setInputFieldActive(false);
   };
-  const btnClick = () => {
-    setInputFieldActive(true);
-    setChangeIcon(true);
+  const btnClick = event => {
+    const button = event.target;
+
+    const input = event.target.parentNode.querySelector('input');
+    button.classList.toggle(scss.btnEditActive);
+    input.classList.toggle(scss.inputFieldActive);
+
+    console.log('classList', button.classList);
+
+    setDisabled(false);
   };
 
   const editPhoto = () => {
     console.log('Edit photo'); // change user avatar
   };
+
   const handleChange = event => {
     switch (event.target.id) {
       case 'name':
@@ -54,13 +61,7 @@ const UserData = props => {
   };
   return (
     <div className={scss.wrapper}>
-      <img
-        src={UserPhoto}
-        alt="user avatar"
-        className={scss.userImg}
-        width={233}
-        height={233}
-      />
+      <img src={UserPhoto} alt="user avatar" className={scss.userImg} />
       <Button
         name="image"
         type="file"
@@ -73,7 +74,7 @@ const UserData = props => {
       <div className={scss.userInfo}>
         <ul className={scss.list}>
           <li className={scss.listItem}>
-            <label for="name" className={scss.listText}>
+            <label htmlFor="name" className={scss.listText}>
               Name:
             </label>
             <input
@@ -86,6 +87,7 @@ const UserData = props => {
               value={name}
               id="name"
               name="name"
+              disabled={disabled}
             />
             <Button
               type="submit"
@@ -94,7 +96,7 @@ const UserData = props => {
             ></Button>
           </li>
           <li className={scss.listItem}>
-            <label for="email" className={scss.listText}>
+            <label htmlFor="email" className={scss.listText}>
               Email:{' '}
             </label>
 
@@ -108,6 +110,7 @@ const UserData = props => {
               onBlur={changeBlur}
               name={email}
               value={email}
+              disabled={disabled}
             />
             <Button
               className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
@@ -115,7 +118,7 @@ const UserData = props => {
             ></Button>
           </li>
           <li className={scss.listItem}>
-            <label for="birthday" className={scss.listText}>
+            <label htmlFor="birthday" className={scss.listText}>
               Birthday:
             </label>
             <input
@@ -128,6 +131,7 @@ const UserData = props => {
               onBlur={changeBlur}
               name={birthday}
               value={birthday}
+              disabled={disabled}
             />
             <Button
               className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
@@ -135,7 +139,7 @@ const UserData = props => {
             ></Button>
           </li>
           <li className={scss.listItem}>
-            <label for="phone" className={scss.listText}>
+            <label htmlFor="phone" className={scss.listText}>
               Phone:
             </label>
             <input
@@ -148,6 +152,7 @@ const UserData = props => {
               onBlur={changeBlur}
               name={phone}
               value={phone}
+              disabled={disabled}
             />
             <Button
               className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
@@ -155,7 +160,7 @@ const UserData = props => {
             ></Button>
           </li>
           <li className={scss.listItem}>
-            <label for="city" className={scss.listText}>
+            <label htmlFor="city" className={scss.listText}>
               City:
             </label>
             <input
@@ -168,6 +173,7 @@ const UserData = props => {
               onBlur={changeBlur}
               name={city}
               value={city}
+              disabled={disabled}
             />
             <Button
               className={!changeIcon ? scss.btnEdit : scss.btnEditActive}

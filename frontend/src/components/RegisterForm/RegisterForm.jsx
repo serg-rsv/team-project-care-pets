@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import { Link } from "react-router-dom";
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import css from './authForm.module.scss'
 import * as Yup from 'yup';
@@ -151,8 +152,8 @@ const RegisterForm= () => {
         </form>
       
         {/* {!isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
-      
-        <p className={css.linkToPage}>Already have an account? Login</p>
+        
+        <p className={css.linkToPage}>Already have an account? <Link className={css.link} to="/login">Login</Link></p>
         {/* <button className={css.formBtn} onClick={moveNextRegistration}>Back</button> */}
       
     </div>
