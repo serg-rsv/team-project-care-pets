@@ -3,7 +3,7 @@ import PropTypes from 'proptypes';
 import cn from 'classnames';
 import cnBind from 'classnames/bind';
 
-import style from './button.module.scss';
+import style from './Button.module.scss';
 
 const Button = ({ children, onClick, className, buttonType = 'button' }) => {
   const cx = cnBind.bind(style);

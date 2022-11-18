@@ -1,4 +1,4 @@
-import Button from '../../button';
+import Button from '../../Button';
 import s from './AddNoticeButton.module.scss';
 
 const AddNoticeButton = () => {

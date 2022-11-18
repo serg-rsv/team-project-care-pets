@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Button from '../../button';
+import Button from '../../Button';
 import s from './NoticesCategoriesNav.module.scss';
 const NoticesCategoriesNav = () => {
   return (
