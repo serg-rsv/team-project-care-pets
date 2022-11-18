@@ -1,12 +1,12 @@
 import React from 'react';
 import scss from './PetsData.module.scss';
-import Button from '../button/button';
+import Button from '../Button';
 import PropTypes from 'proptypes';
 import { useDeletePetMutation } from '../../redux/services/petsSlice';
 
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   const [deletePet, result] = useDeletePetMutation();
-  console.log('id', id)
+  console.log('id', id);
   console.log(result);
 
   function getDate(birthday) {

@@ -1,6 +1,6 @@
 import PetsList from '../PetsList';
 import UserData from '../UserData';
-import Button from '../button/button';
+import Button from '../Button';
 import scss from './UserView.module.scss';
 
 const UserView = () => {

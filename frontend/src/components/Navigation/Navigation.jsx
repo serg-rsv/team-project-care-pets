@@ -2,7 +2,7 @@ import s from './Navigation.module.scss';
 import Nav from '../Nav';
 import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
-import Button from '../button/button';
+import Button from '../Button';
 import { useState } from 'react';
 
 const Navigation = () => {
