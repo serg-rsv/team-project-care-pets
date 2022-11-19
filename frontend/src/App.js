@@ -46,15 +46,15 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
           </Route>
 
-          <Route path="/notices" element={<NoticesPage />}>
+          <Route path="notices" element={<NoticesPage />}>
             <Route index element={<Sell />} />
             <Route path="sell" element={<Sell />} />
             <Route path="lost-found" element={<LostFound />} />
             <Route path="for-free" element={<InGoodHands />} />
-          </Route>
-          <Route element={<PrivateRoute />}>
-            <Route path="favorite" element={<Favorite />} />
-            <Route path="own" element={<Own />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="favorite" element={<Favorite />} />
+              <Route path="own" element={<Own />} />
+            </Route>
           </Route>
 
           <Route element={<PrivateRoute />}>
