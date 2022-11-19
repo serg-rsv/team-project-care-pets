@@ -72,10 +72,15 @@ export const noticesApi = createApi({
         method: 'GET',
       }),
     }),
-    getFavoritesById: builder.query({
+    addFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'GET',
+      }),
+    deleteFavoritesById: builder.mutation({
+      query: noticeId => ({
+        url: `/notices/favorites/${noticeId}`,
+        method: 'DELETE',
       }),
     }),
     getNoticesBycategory: builder.query({
@@ -93,6 +98,7 @@ export const {
   useGetNoticeByIdQuery,
   useGetPersonalNoticeQuery,
   useGetFavoritesNoticeQuery,
-  useGetFavoritesByIdQuery,
+  useAddFavoritesByIdMutation,
+  useDeleteFavoritesByIdMutation,
   useGetNoticesBycategoryQuery,
 } = noticesApi;
