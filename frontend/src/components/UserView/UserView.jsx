@@ -8,7 +8,7 @@ const UserView = () => {
     console.log('addPet');
   };
   return (
-    <section className={scss.wrapper}>
+    <section className={["container", scss.wrapper].join(" ")}>
       <h2 className={scss.titleInfo}>My information:</h2>
       <UserData />
       <h2 className={scss.titlePets}>My pets:</h2>

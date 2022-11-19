@@ -2,14 +2,16 @@
 .wrapper {
   padding: 61px 0 80px;
   width: 320px;
+  margin: 0 auto;
   @include mq(tablet) {
     width: 736px;
     padding: 88px 0 0 0;
     position: relative;
+    margin: 0;
   }
   @include mq(desktop) {
     display: flex;
-    width: 1264px;
+    // width: 1264px;
   }
 }
 .titleInfo,
@@ -25,19 +27,21 @@
 }
 .titleInfo {
   margin-bottom: 18px;
+  // padding-left: 20px;
+  margin-left: 20px;
   @include mq(tablet) {
-    margin-left: 18px;
+    margin-left: 20px;
     margin-bottom: 40px;
   }
   @include mq(desktop) {
+    margin-left: 16px;
     top: 0;
     left: 0;
     margin-bottom: 0;
   }
 }
 .titlePets {
-  margin-top: 47px;
-  margin-bottom: 32px;
+  margin: 47px 0 32px 20px;
   display: inline-block;
   flex-wrap: nowrap;
   @include mq(tablet) {
@@ -45,11 +49,12 @@
   }
   @include mq(desktop) {
     top: 0;
-    left: 443px;
+    left: 393px;
     margin: 0;
   }
 }
 .btnWrapper {
+  position: relative;
   margin-left: 62px;
   display: inline-flex;
   justify-content: center;
@@ -61,9 +66,8 @@
     right: 0;
   }
   @include mq(desktop) {
-
     top: 0;
-    right: 0;
+    right: -465px;
     margin: 0;
   }
 }
