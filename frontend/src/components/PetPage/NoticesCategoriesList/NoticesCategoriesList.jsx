@@ -1,6 +1,7 @@
 import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import AddNoticeButton from '../AddNoticeButton';
+import { getAge } from '../../../helpers/getAge';
 
 const NoticesCategoriesList = ({ pets }) => {
   return (
@@ -23,7 +24,7 @@ const NoticesCategoriesList = ({ pets }) => {
               title={title}
               breed={breed}
               place={location}
-              age={birthday}
+              age={getAge(birthday)}
               price={`${price}$`}
               page={category}
             />
