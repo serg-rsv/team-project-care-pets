@@ -2,7 +2,7 @@ import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import AddNoticeButton from '../AddNoticeButton';
 
-const NoticesCategoriesList = ({ pets }) => {
+const NoticesCategoriesList = ({ pets, addFavorites, removeAds, isActiv }) => {
   return (
     <div className={s.box}>
       <ul className={s.animalList}>
@@ -19,6 +19,7 @@ const NoticesCategoriesList = ({ pets }) => {
           }) => (
             <NoticeCategoryItem
               key={_id}
+              _id={_id}
               link={photoURL}
               title={title}
               breed={breed}
@@ -26,6 +27,9 @@ const NoticesCategoriesList = ({ pets }) => {
               age={birthday}
               price={`${price}$`}
               page={category}
+              addFavorites={addFavorites}
+              removeAds={removeAds}
+              isActiv={isActiv}
             />
           )
         )}
