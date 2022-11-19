@@ -6,18 +6,29 @@ const NoticesCategoriesList = ({ pets }) => {
   return (
     <div className={s.box}>
       <ul className={s.animalList}>
-        {pets.map(({ id, link, title, breed, place, age, price, page }) => (
-          <NoticeCategoryItem
-            key={id}
-            link={link}
-            title={title}
-            breed={breed}
-            place={place}
-            age={age}
-            price={price}
-            page={page}
-          />
-        ))}
+        {pets.map(
+          ({
+            _id,
+            photoURL,
+            title,
+            breed,
+            location,
+            birthday,
+            price,
+            category,
+          }) => (
+            <NoticeCategoryItem
+              key={_id}
+              link={photoURL}
+              title={title}
+              breed={breed}
+              place={location}
+              age={birthday}
+              price={`${price}$`}
+              page={category}
+            />
+          )
+        )}
       </ul>
       <AddNoticeButton />
     </div>

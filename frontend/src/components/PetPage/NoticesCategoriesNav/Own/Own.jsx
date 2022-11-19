@@ -1,3 +1,4 @@
+import { useGetPersonalNoticeQuery } from '../../../../redux/services/noticesSlice';
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const pets = [
@@ -76,12 +77,10 @@ const pets = [
 ];
 
 const Own = () => {
-  return (
-    <>
-      <h2>Own</h2>
-      <NoticesCategoriesList pets={pets} />
-    </>
-  );
+  const { data, isSuccess } = useGetPersonalNoticeQuery();
+  console.log('Own ~ data', data);
+  const pets = data?.data;
+  return <>{isSuccess && <NoticesCategoriesList pets={pets} />}</>;
 };
 
 export default Own;

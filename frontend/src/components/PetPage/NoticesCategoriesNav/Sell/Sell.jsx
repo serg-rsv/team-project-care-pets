@@ -1,3 +1,4 @@
+import { useGetNoticesBycategoryQuery } from '../../../../redux/services/noticesSlice';
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const pets = [
@@ -84,12 +85,9 @@ const pets = [
 ];
 
 const Sell = () => {
-  return (
-    <>
-      <h2>Sell</h2>
-      <NoticesCategoriesList pets={pets} />
-    </>
-  );
+  const { data, isSuccess } = useGetNoticesBycategoryQuery('sell');
+  const pets = data?.data;
+  return <>{isSuccess && <NoticesCategoriesList pets={pets} />}</>;
 };
 
 export default Sell;

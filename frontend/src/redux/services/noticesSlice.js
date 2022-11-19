@@ -80,7 +80,7 @@ export const noticesApi = createApi({
     }),
     getNoticesBycategory: builder.query({
       query: category => ({
-        url: `/notices/categories/${category}`,
+        url: `/notices/category/${category}`,
         method: 'GET',
       }),
     }),
