@@ -20,6 +20,7 @@ export const noticesApi = createApi({
   endpoints: builder => ({
     fetchNotices: builder.query({
       query: () => ({ url: '/notices' }),
+      providesTags: ['Notices'],
     }),
     deleteNotice: builder.mutation({
       query: noticeId => ({
@@ -65,30 +66,35 @@ export const noticesApi = createApi({
         url: '/notices/personal',
         method: 'GET',
       }),
+      providesTags: ['Notices'],
     }),
     getFavoritesNotice: builder.query({
       query: () => ({
         url: '/notices/favorites',
         method: 'GET',
       }),
+      providesTags: ['Notices'],
     }),
     addFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'GET',
       }),
+      invalidatesTags: ['Notices'],
     }),
     deleteFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Notices'],
     }),
     getNoticesBycategory: builder.query({
       query: category => ({
         url: `/notices/category/${category}`,
         method: 'GET',
       }),
+      providesTags: ['Notices'],
     }),
   }),
 });
