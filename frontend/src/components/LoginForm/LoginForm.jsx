@@ -3,29 +3,37 @@ import { useFormik } from 'formik';
 import css from '../RegisterForm/authForm.module.scss'
 import * as Yup from 'yup';
 
+import { useLoginMutation } from '../../redux/services/usersSlice';
+import { useDispatch } from "react-redux";
+import { setToken } from '../../redux/services/authSlice';
+
+
 const LoginForm = () => {
+    const dispatch = useDispatch();
     const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: Yup.object().shape({
-            email: Yup.string()
-                .email('Email address is invalid')
-                .required('Please enter'),
-            password: Yup.string()
-                .required('Please enter')
-                .min(6, "Password must be at least 6 characters")
-                .max(40, "Password must not exceed 40 characters"),
-        }),
-        onSubmit: (values) => {
-       
-            alert(JSON.stringify(values, null, 2));
-         
-            formik.resetForm()
-        },
+      initialValues: {
+        email: '',
+        password: '',
+      },
+      validationSchema: Yup.object().shape({
+        email: Yup.string()
+          .email('Email address is invalid')
+          .required('Please enter'),
+        password: Yup.string()
+          .required('Please enter')
+          .min(6, 'Password must be at least 6 characters')
+          .max(40, 'Password must not exceed 40 characters'),
+      }),
+      onSubmit: values => {
+        alert(JSON.stringify(values, null, 2));
+        formik.resetForm();
+      },
     });
 
+    const a = { email: 'skyt@mail.com', password: 'qqq123' };
+    
+    const [login] = useLoginMutation();
+    login(a).then(({ data }) => dispatch(setToken(data.data.token)));
   
     return (
         <div className={css.formBlock}>

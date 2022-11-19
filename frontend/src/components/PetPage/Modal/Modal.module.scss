@@ -1,14 +1,6 @@
-.box {
-  position: relative;
-}
-
-.animalList {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .modal {
  position: absolute;
+//   z-index: 20;
   top: -100px;
   
   background-color: rgba(75, 69, 69, 0.531);
@@ -16,7 +8,6 @@
 height: 2000px;
 
 }
-
 .body {
    position: absolute;
    top: 50%;

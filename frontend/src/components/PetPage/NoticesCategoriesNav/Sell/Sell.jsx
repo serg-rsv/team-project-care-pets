@@ -1,4 +1,7 @@
+
 import NoticesCategoriesList from '../../NoticesCategoriesList';
+
+import { useGetNoticesBycategoryQuery } from '../../../../redux/services/noticesSlice';
 
 const pets = [
   {
@@ -84,7 +87,12 @@ const pets = [
 ];
 
 const Sell = () => {
-  return <NoticesCategoriesList pets={pets} />;
+  const { data: items } = useGetNoticesBycategoryQuery('sell');
+  const result = items?.data;
+
+  return <NoticesCategoriesList pets={result} />;
+  
+
 };
 
 export default Sell;

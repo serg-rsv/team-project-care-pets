@@ -4,6 +4,7 @@ import PrivateRoute from './components/Routes/PrivateRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import { Loader } from './components/Loader/Loader';
 
+
 const SharedLayout = lazy(() => import('./components/SharedLayout'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -19,6 +20,9 @@ const Sell = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Sell')
 const Favorite = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Favorite'));
 const Own = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Own'));
 
+const NoticesCategoriesList = lazy(() =>
+  import('./components/PetPage/NoticeCategoryItem')
+);
 
 
 
@@ -62,6 +66,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
+    
   );
 }
 

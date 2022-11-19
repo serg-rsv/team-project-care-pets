@@ -5,8 +5,10 @@ const NoticesCategoriesNav = () => {
   return (
     <ul className={s.navList}>
       <li>
-        <NavLink to="/notices/lost-found">
-          <Button className={s.button}>lost/found</Button>
+        <NavLink to="lost-found">
+          <Button className={s.button} name="">
+            lost/found
+          </Button>
         </NavLink>
       </li>
       <li>
@@ -15,8 +17,10 @@ const NoticesCategoriesNav = () => {
         </NavLink>
       </li>
       <li className={s.sell}>
-        <NavLink to="/notices/sell">
-          <Button className={s.button}>sell</Button>
+        <NavLink to="sell">
+          <Button name="sell" className={s.button}>
+            sell
+          </Button>
         </NavLink>
       </li>
 
