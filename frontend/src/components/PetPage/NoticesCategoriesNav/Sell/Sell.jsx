@@ -1,45 +1,37 @@
-import { useSelector } from 'react-redux';
-import {
-  useGetNoticesBycategoryQuery,
-  useAddFavoritesByIdMutation,
-  useGetFavoritesNoticeQuery,
-  useDeleteFavoritesByIdMutation,
-} from '../../../../redux/services/noticesSlice';
+import { useEffect, useState } from 'react';
+// import { useSelector } from 'react-redux';
 
-import { selectIsLoggedIn } from '../../../../redux/services/authSlice';
+// import { selectIsLoggedIn } from '../../../../redux/services/authSlice';
+import { useGetNoticesBycategoryQuery } from '../../../../redux/services/noticesSlice';
+import { useCurrentQuery } from '../../../../redux/services/usersSlice';
+import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const Sell = () => {
   const isActivDelete = false;
-  const { data, isSuccess } = useGetNoticesBycategoryQuery('sell');
-  const pets = data?.data;
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const { data: items } = useGetFavoritesNoticeQuery();
+  const [pets, setPets] = useState([]);
+  const { data: notices, isSuccess: isNotices } =
+    useGetNoticesBycategoryQuery('sell');
+  console.log('Sell ~ notices', notices?.data);
+  const { data: user, isSuccess: isUser } = useCurrentQuery();
+  console.log('Sell ~ user', user);
+  // const pets = data?.data;
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const { data: items } = useGetFavoritesNoticeQuery();
 
-  const [addFav] = useAddFavoritesByIdMutation();
-  const [deleteFav] = useDeleteFavoritesByIdMutation();
-
-  const addFavorites = async _id => {
-    const filterAds = await items?.data.find(item => item._id === _id);
-    
-    if (!isLoggedIn) {
-      console.log('not authorized');
-    }
-    if (filterAds) {
-      deleteFav(_id);
-    }
-    await addFav(_id);
-  };
+  useEffect(() => {
+    const markedNotices = markFavoriteNotice(
+      notices?.data,
+      user?.data?.user?.favorites
+    );
+    setPets(markedNotices);
+  }, [notices, user]);
 
   return (
     <>
-      {isSuccess && (
-        <NoticesCategoriesList
-          isActiv={isActivDelete}
-          addFavorites={addFavorites}
-          pets={pets}
-        />
+      {pets?.length > 0 && (
+        <NoticesCategoriesList isActiv={isActivDelete} pets={pets} />
       )}
     </>
   );
