@@ -76,7 +76,12 @@ const pets = [
 ];
 
 const Own = () => {
-  return <NoticesCategoriesList pets={pets} />;
+  return (
+    <>
+      <h2>Own</h2>
+      <NoticesCategoriesList pets={pets} />
+    </>
+  );
 };
 
 export default Own;

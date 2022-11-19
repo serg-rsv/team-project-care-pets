@@ -84,7 +84,12 @@ const pets = [
 ];
 
 const Favorite = () => {
-  return <NoticesCategoriesList pets={pets} />;
+  return (
+    <>
+      <h2>Favorites</h2>
+      <NoticesCategoriesList pets={pets} />
+    </>
+  );
 };
 
 export default Favorite;
