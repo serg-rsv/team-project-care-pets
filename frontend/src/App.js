@@ -47,9 +47,10 @@ function App() {
           </Route>
 
           <Route path="/notices" element={<NoticesPage />}>
+            <Route index element={<Sell />} />
+            <Route path="sell" element={<Sell />} />
             <Route path="lost-found" element={<LostFound />} />
             <Route path="for-free" element={<InGoodHands />} />
-            <Route path="sell" element={<Sell />} />
           </Route>
           <Route element={<PrivateRoute />}>
             <Route path="favorite" element={<Favorite />} />

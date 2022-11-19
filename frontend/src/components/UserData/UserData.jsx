@@ -11,7 +11,7 @@ import {
 const UserData = () => {
   const [nameUser, setNameUser] = useState('');
   const [emailUser, setEmailUser] = useState('');
-  const [birthdayUser, setBirthdayUser] = useState('1989.04.10');
+  const [birthdayUser, setBirthdayUser] = useState('1989-04-10');
   const [phoneUser, setPhoneUser] = useState('');
   const [locationUser, setLocationUser] = useState('');
   const [photoUser, setPhotoUser] = useState('');
@@ -143,7 +143,7 @@ const UserData = () => {
           <img src={photoUser} alt="user avatar" className={scss.userImg} />
         )}
       </div>
-      <label class={scss.btnEditPhoto}>
+      <label className={scss.btnEditPhoto}>
         <input
           type="file"
           name="image"

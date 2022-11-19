@@ -1,5 +1,6 @@
 @import '../../scss//utils/mixins';
 .imgBox {
+  @include gradient;
   width: 240px;
   height: 240px;
   border-radius: 20px;
@@ -17,8 +18,9 @@
   }
 }
 .petAvatar {
+  width: 100%;
+  aspect-ratio: 1/1;
   object-fit: cover;
-  border-radius: 20px;
 }
 .wrapper {
   position: relative;
