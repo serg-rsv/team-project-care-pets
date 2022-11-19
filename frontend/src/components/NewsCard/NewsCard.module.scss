@@ -1,0 +1,35 @@
+@import '../../scss//utils/mixins';
+
+.article {
+  text-align: start;
+}
+
+.articleTitle {
+  margin-bottom: 16px;
+
+  @include fonts(24px, 700, 1.38);
+  color: #111111;
+}
+
+.articleDescription {
+  margin-bottom: 20px;
+
+  @include fonts(16px, 400, 1.38);
+  color: #111321;
+}
+
+.articleMeta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.metaDate {
+  @include fonts(16px, 400, 1.38);
+  color: rgba(17, 17, 17, 0.6);
+}
+
+.metaLink {
+  @include fonts(16px, 500, 1.38);
+  text-decoration: underline;
+  color: var(--accent-cl);
+}

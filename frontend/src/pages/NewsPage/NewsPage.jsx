@@ -16,17 +16,19 @@ const NewsPage = () => {
   };
 
   return (
-    <>
-      <h2>News</h2>
-      <SearchBox seachQuery={searchingData} />
-      <ul>
-        {news.map((el, index) => (
-          <li key={index}>
-            <NewsCard obj={el} />
-          </li>
-        ))}
-      </ul>
-    </>
+    <section className="container">
+      <div className={s.newsContent}>
+        <h2 className={s.pageTitle}>News</h2>
+        <SearchBox seachQuery={searchingData} />
+        <ul className={s.newsList}>
+          {news.map((el, index) => (
+            <li key={index} className={s.newsList__item}>
+              <NewsCard obj={el} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 };
 
