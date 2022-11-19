@@ -20,6 +20,7 @@ export const noticesApi = createApi({
   endpoints: builder => ({
     fetchNotices: builder.query({
       query: () => ({ url: '/notices' }),
+      providesTags: ['Notices'],
     }),
     deleteNotice: builder.mutation({
       query: noticeId => ({
@@ -65,27 +66,39 @@ export const noticesApi = createApi({
         url: '/notices/personal',
         method: 'GET',
       }),
+      providesTags: ['Notices'],
     }),
     getFavoritesNotice: builder.query({
       query: () => ({
         url: '/notices/favorites',
         method: 'GET',
       }),
+      providesTags: ['Notices'],
     }),
-    getFavoritesById: builder.query({
+    addFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'GET',
       }),
+      invalidatesTags: ['Notices'],
+    }),
+    deleteFavoritesById: builder.mutation({
+      query: noticeId => ({
+        url: `/notices/favorites/${noticeId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Notices'],
     }),
     getNoticesBycategory: builder.query({
       query: category => ({
-        url: `/notices/categories/${category}`,
+        url: `/notices/category/${category}`,
         method: 'GET',
       }),
+      providesTags: ['Notices'],
     }),
   }),
 });
+
 export const {
   useFetchNoticesQuery,
   useDeleteNoticeMutation,
@@ -93,6 +106,7 @@ export const {
   useGetNoticeByIdQuery,
   useGetPersonalNoticeQuery,
   useGetFavoritesNoticeQuery,
-  useGetFavoritesByIdQuery,
+  useAddFavoritesByIdMutation,
+  useDeleteFavoritesByIdMutation,
   useGetNoticesBycategoryQuery,
 } = noticesApi;

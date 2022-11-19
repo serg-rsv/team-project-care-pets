@@ -1,11 +1,17 @@
 @import '../../scss/utils/mixins';
+
 .wrapper {
   width: 280px;
   background-color: var(--white-bg);
-  padding: 20px 23px;
+  padding: 20px 14px;
   position: relative;
   border-radius: 20px;
   box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
+  text-align: center;
+  @include fonts(12px 400 1.33);
+  @include mq(tablet) {
+    @include fonts(18px, 400, 1.38);
+  }
   margin: 0 auto;
   @include mq(tablet) {
     width: 736px;
@@ -33,6 +39,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
   @include mq(tablet-only) {
     height: 233px;
   }
@@ -90,6 +97,7 @@
   }
 }
 .list {
+  width: 100%;
   margin-top: 70px;
   display: flex;
   flex-direction: column;
@@ -102,40 +110,32 @@
   }
 }
 .listItem {
-  @include fonts(12px, 400, 1.33);
   display: flex;
   flex: 1 auto;
   align-items: center;
   justify-content: space-between;
-  // max-width: 252px;
   &:not(:last-child) {
     margin-bottom: 12px;
   }
   @include mq(tablet) {
     max-width: 379px;
-    @include fonts(18px, 500, 1.38);
+    @include fonts(18px, 500);
     &:not(:last-child) {
       margin-bottom: 8px;
     }
   }
 }
-// .listText {
-//   min-width: 25%;
-//   @include mq(tablet) {
-//     min-width: 20%;
-//   }
-// }
 
 .inputField {
   border: 1px solid transparent;
   background-color: transparent;
   border-radius: 40px;
   padding: 4px 18px;
+  width: 165px;
+  resize: none;
+  width: 84%;
   &:focus {
     outline: none;
-  }
-  @include mq(tablet) {
-    @include fonts(18px, 400, 1.38);
   }
 }
 .inputFieldActive {
@@ -143,11 +143,8 @@
   background-color: var(--main-bg-cl);
   border-radius: 40px;
   padding: 4px 18px;
-  @include fonts(12px, 400, 1.3);
-  @include mq(tablet) {
-    @include fonts(18px, 400, 1.38);
-  }
 }
+
 .listItem .btnEdit {
   padding: 3px;
   width: 20px;
@@ -178,37 +175,19 @@
 }
 
 .inputWrapper {
+  margin-left: 5px;
+  width: 185px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include mq(tablet) {
+    width: 260px;
+  }
 }
 input[type='date'] {
-  width: 188.4px;
-  @include mq(tablet) {
-    width: 256px;
-  }
-
-  // &:disabled:-webkit-calendar-picker-indicator {
-  //   display: none;
-  // }
+  width: 84%;
 }
 
 input:disabled::-webkit-calendar-picker-indicator {
   display: none;
 }
-
-//
-// .listItem .disabledBtn {
-//   padding: 3px;
-//   width: 20px;
-//   height: 20px;
-//   border: 1px solid transparent;
-//   background-color: var(--main-bg-cl);
-//   background-image: url('../../images/penBlack.svg');
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   @include mq(tablet) {
-//     width: 32px;
-//     height: 32px;
-//   }
-// }

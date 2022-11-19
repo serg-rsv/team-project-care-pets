@@ -1,3 +1,4 @@
+import { useGetFavoritesNoticeQuery } from '../../../../redux/services/noticesSlice';
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const pets = [
@@ -84,7 +85,10 @@ const pets = [
 ];
 
 const Favorite = () => {
-  return <NoticesCategoriesList pets={pets} />;
+  const { data, isSuccess } = useGetFavoritesNoticeQuery();
+  console.log('Favorite ~ data', data);
+  const pets = data?.data;
+  return <>{isSuccess && <NoticesCategoriesList pets={pets} />}</>;
 };
 
 export default Favorite;

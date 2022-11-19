@@ -1,3 +1,4 @@
+import { useGetNoticesBycategoryQuery } from '../../../../redux/services/noticesSlice';
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const pets = [
@@ -76,7 +77,9 @@ const pets = [
 ];
 
 const LostFound = () => {
-  return <NoticesCategoriesList pets={pets} />;
+  const { data, isSuccess } = useGetNoticesBycategoryQuery('lost-found');
+  const pets = data?.data;
+  return <>{isSuccess && <NoticesCategoriesList pets={pets} />}</>;
 };
 
 export default LostFound;

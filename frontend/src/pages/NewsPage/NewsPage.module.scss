@@ -1,0 +1,75 @@
+@import '../../scss//utils//mixins';
+
+.newsContent {
+  padding-top: 40px;
+  text-align: center;
+  @include mq(tablet) {
+    padding-top: 94px;
+  }
+
+  @include mq(desktop) {
+    padding-top: 60px;
+  }
+}
+
+.pageTitle {
+  @include fonts(24px, 700, 1.38);
+  color: #111111;
+  text-align: center;
+
+  @include mq(tablet) {
+    @include fonts(48px, 700, 1.38);
+  }
+}
+
+.newsList {
+  margin-top: 40px;
+
+  @include mq(tablet) {
+    margin-top: 60px;
+
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 60px;
+    column-gap: 32px;
+  }
+
+  @include mq(desktop) {
+    margin-top: 70px;
+  }
+
+  &__item {
+    @include mq(tablet) {
+      flex-basis: calc((100% - 32px) / 2);
+    }
+    @include mq(desktop) {
+      flex-basis: calc((100% - 64px) / 3);
+    }
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: 40px;
+
+    @include mq(tablet) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__item::before {
+    content: '';
+    display: block;
+    width: 70%;
+    height: 4px;
+    border-radius: 40px;
+    @include gradient();
+
+    @include mq(tablet) {
+      height: 8px;
+      width: 80%;
+    }
+
+    @include mq(desktop) {
+      width: 85%;
+    }
+  }
+}

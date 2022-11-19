@@ -1,36 +1,67 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Button from '../../Button';
+import { selectIsLoggedIn } from '../../../redux/services/authSlice';
 import s from './NoticesCategoriesNav.module.scss';
 const NoticesCategoriesNav = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <ul className={s.navList}>
       <li>
-        <NavLink to="/notices/lost-found">
-          <Button className={s.button}>lost/found</Button>
+        <NavLink
+          className={({ isActive }) =>
+            `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
+          }
+          to="/notices/lost-found"
+        >
+          lost/found
         </NavLink>
       </li>
       <li>
-        <NavLink to="/notices/for-free">
-          <Button className={s.button}>In good hands</Button>
+        <NavLink
+          className={({ isActive }) =>
+            `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
+          }
+          to="/notices/for-free"
+        >
+          In good hands
         </NavLink>
       </li>
       <li className={s.sell}>
-        <NavLink to="/notices/sell">
-          <Button className={s.button}>sell</Button>
+        <NavLink
+          className={({ isActive }) =>
+            `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
+          }
+          to="/notices/sell"
+        >
+          sell
         </NavLink>
       </li>
 
       {/* Приватні ровти */}
-      <li className={s.favorite}>
-        <NavLink to="/notices/favorite">
-          <Button className={s.button}>Favorite ads</Button>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/notices/own">
-          <Button className={s.button}>My ads</Button>
-        </NavLink>
-      </li>
+      {isLoggedIn && (
+        <>
+          <li className={s.favorite}>
+            <NavLink
+              className={({ isActive }) =>
+                `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
+              }
+              to="/notices/favorite"
+            >
+              Favorite ads
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
+              }
+              to="/notices/own"
+            >
+              My ads
+            </NavLink>
+          </li>
+        </>
+      )}
     </ul>
   );
 };

@@ -45,11 +45,12 @@ export const usersApi = createApi({
         body: userData,
       }),
     }),
-    logout: builder.query({
+    logout: builder.mutation({
       query: userData => `/logout`,
     }),
     current: builder.query({
       query: () => `/current`,
+      // providesTags: ['Users'],
     }),
     avatars: builder.mutation({
       query: userData => ({
@@ -65,7 +66,7 @@ export const {
   useRegisterQuery,
   useLoginMutation,
   useEditMutation,
-  useLogoutQuery,
+  useLogoutMutation,
   useCurrentQuery,
   useAvatarsMutation,
 } = usersApi;

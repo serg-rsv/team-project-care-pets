@@ -6,7 +6,6 @@ import {
   useCurrentQuery,
   useAvatarsMutation,
   useEditMutation,
-  // useLogoutQuery,
 } from '../../redux/services/usersSlice';
 
 const UserData = () => {
@@ -16,11 +15,10 @@ const UserData = () => {
   const [phoneUser, setPhoneUser] = useState('');
   const [locationUser, setLocationUser] = useState('');
   const [photoUser, setPhotoUser] = useState('');
-  const [isDataLoading, setIsDataLoading] = useState(false);
 
   const { data } = useCurrentQuery();
   const [avatars] = useAvatarsMutation();
-  const [edit, { status }] = useEditMutation();
+  const [edit] = useEditMutation();
 
   const nameRef = useRef(nameUser);
   const emailRef = useRef(emailUser);
@@ -29,8 +27,6 @@ const UserData = () => {
   const locationRef = useRef(locationUser);
 
   useEffect(() => {
-    console.log('data', data);
-    status === 'pending' ? setIsDataLoading(true) : setIsDataLoading(false);
     const getData = async () => {
       const { user } = await data;
       if (user) {
@@ -44,10 +40,8 @@ const UserData = () => {
         return;
       }
     };
-
     getData();
-    console.log(isDataLoading);
-  }, [data, status, isDataLoading]);
+  }, [data]);
 
   function isFieldChanged() {
     const changed =
@@ -72,21 +66,33 @@ const UserData = () => {
     await edit(dataForEdit);
   };
 
+  const disabledButton = (boolean = false) => {
+    document.querySelectorAll('button[data-active="false"]').forEach(el => {
+      el.disabled = boolean;
+    });
+  };
+
   const btnClick = async event => {
-    console.log(nameUser);
     const button = event.target;
     const input = event.target.parentNode.querySelector('input');
 
     const status = button.dataset.active;
+    input.classList.toggle(scss.inputFieldActive);
 
     if (status === 'false') {
       button.dataset.active = 'true';
+
+      disabledButton(true);
+
       input.disabled = false;
       input.focus();
       return;
     }
     if (status === 'true') {
       button.dataset.active = 'false';
+
+      disabledButton();
+
       input.disabled = true;
       if (isFieldChanged()) {
         const obj = {};
@@ -162,12 +168,9 @@ const UserData = () => {
                 name="name"
                 disabled
                 autoComplete="off"
+                onSubmit={btnClick}
               />
-              <UserButton
-                dataActive={false}
-                onClick={btnClick}
-                // disabled={isDataLoading}
-              ></UserButton>
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
           <li className={scss.listItem}>
@@ -185,11 +188,7 @@ const UserData = () => {
                 value={emailUser}
                 disabled
               />
-              <UserButton
-                dataActive={false}
-                onClick={btnClick}
-                disabled={isDataLoading}
-              ></UserButton>
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
           <li className={scss.listItem}>
@@ -205,11 +204,7 @@ const UserData = () => {
                 value={birthdayUser}
                 disabled
               />
-              <UserButton
-                dataActive={false}
-                onClick={btnClick}
-                disabled={isDataLoading}
-              ></UserButton>
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
           <li className={scss.listItem}>
@@ -225,11 +220,7 @@ const UserData = () => {
                 value={phoneUser}
                 disabled
               />
-              <UserButton
-                dataActive={false}
-                onClick={btnClick}
-                disabled={isDataLoading}
-              ></UserButton>
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
           <li className={scss.listItem}>
@@ -245,11 +236,7 @@ const UserData = () => {
                 value={locationUser}
                 disabled
               />
-              <UserButton
-                dataActive={false}
-                onClick={btnClick}
-                disabled={isDataLoading}
-              ></UserButton>
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
         </ul>
