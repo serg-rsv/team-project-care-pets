@@ -46,18 +46,14 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
           </Route>
 
-          <Route element={<PublicRoute />}>
-            <Route path="/notices" element={<NoticesPage />}>
-              <Route path="lost-found" element={<LostFound />} />
-              <Route path="for-free" element={<InGoodHands />} />
-              <Route path="sell" element={<Sell />} />
-            </Route>
+          <Route path="/notices" element={<NoticesPage />}>
+            <Route path="lost-found" element={<LostFound />} />
+            <Route path="for-free" element={<InGoodHands />} />
+            <Route path="sell" element={<Sell />} />
           </Route>
           <Route element={<PrivateRoute />}>
-            <Route path="/notices" element={<NoticesPage />}>
-              <Route path="favorite" element={<Favorite />} />
-              <Route path="own" element={<Own />} />
-            </Route>
+            <Route path="favorite" element={<Favorite />} />
+            <Route path="own" element={<Own />} />
           </Route>
 
           <Route element={<PrivateRoute />}>

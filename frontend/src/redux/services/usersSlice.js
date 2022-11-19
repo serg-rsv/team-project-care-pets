@@ -8,17 +8,9 @@ export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
-    // prepareHeaders: (headers, { getState }) => {
-    //   const { token = '' } = getState().user;
-    //   headers.set('Autorization', token);
-    //   return headers;
-    // },
     prepareHeaders: (headers, { getState }) => {
-      headers.set(
-        'authorization',
-        `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNzUzNDJmNWI1YzJjZDM4ZWYwMzIwYiIsImlhdCI6MTY2ODY3NTUyNH0.3Xk7hOSAgQHLaRseNxGwdt-mH0FyWvzosUl2J9epHP4`
-      );
-
+      const { token = '' } = getState().user;
+      headers.set('Autorization', token);
       return headers;
     },
   }),
