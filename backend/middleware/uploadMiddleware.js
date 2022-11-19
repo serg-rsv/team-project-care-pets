@@ -18,9 +18,7 @@ const uploadMiddleware = async (req, res, next) => {
 
   const folder = req.baseUrl.split('/')[3];
 
-  const public_id = `${folder.slice(0, -1)}_${
-    folder === 'users' ? _id : _id + '_' + Date.now()
-  }`;
+  const public_id = `${folder.slice(0, -1) + '_' + _id + '_' + Date.now()}`;
 
   try {
     const { resultUrl, resultId } = await cloudUpload(

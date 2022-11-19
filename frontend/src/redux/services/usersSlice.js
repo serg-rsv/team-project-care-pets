@@ -1,26 +1,18 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// BASE_URL='http://localhost:500/api/v1' // local
-const BASE_URL = 'https://sk-care-pets.herokuapp.com/api/v1/users'; //herokuapp
+const BASE_URL = 'http://localhost:5000/api/v1/users'; // local
+// const BASE_URL = 'https://sk-care-pets.herokuapp.com/api/v1/users'; //herokuapp
 
 // Define a service using a base URL and expected endpoints
 export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
-    // prepareHeaders: (headers, { getState }) => {
-    //   const { token = '' } = getState().user;
-    //   headers.set('Autorization', token);
-    //   return headers;
-    // },
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-
-      // If we have a token set in state, let's assume that we should be passing it.
+      const { token = '' } = getState().auth;
       if (token) {
-        headers.set('authorization', `Bearer ${token}`);
+        headers.set('Authorization', `Bearer ${token}`);
       }
-
       return headers;
     },
   }),
@@ -52,6 +44,7 @@ export const usersApi = createApi({
     }),
     current: builder.query({
       query: () => `/current`,
+      // providesTags: ['Users'],
     }),
     avatars: builder.mutation({
       query: userData => ({
@@ -66,8 +59,8 @@ export const usersApi = createApi({
 export const {
   useRegisterQuery,
   useLoginMutation,
-  useEditQuery,
+  useEditMutation,
   useLogoutMutation,
   useCurrentQuery,
-  useAvatarsQuery,
+  useAvatarsMutation,
 } = usersApi;

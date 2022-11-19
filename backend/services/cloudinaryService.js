@@ -20,9 +20,7 @@ const cloudUpload = async (uploadPath, public_id, folder, format) => {
       public_id,
       folder,
       format,
-      min_width: 160,
-      max_width: 700,
-      transformation: { width: 350, crop: 'pad' },
+      transformation: { width: 350, height: 350, crop: 'fill' },
     });
 
     const resultUrl = resultOfUpload.url;

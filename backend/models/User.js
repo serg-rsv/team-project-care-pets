@@ -62,6 +62,7 @@ const registerSchema = Joi.object({
   name: Joi.string().required(),
   phone: Joi.string().pattern(phoneRegexp).required(),
   location: Joi.string().required(),
+  birthday: Joi.date(),
 });
 
 const loginSchema = Joi.object({
