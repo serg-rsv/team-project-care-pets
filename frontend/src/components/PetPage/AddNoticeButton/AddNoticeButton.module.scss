@@ -7,12 +7,12 @@
 
  @include mq(tablet) {
     top: -100px;
-    left: 1062px;
+    left: 1112px;
     display: flex;
   }
   @include mq(tablet-only) {
     top: -175px;
-    left: 510px;
+    left: 568px;
   } 
  
 }
@@ -44,9 +44,7 @@
   @include mq(tablet) {
     width: 44px;
     height: 44px;
-
     padding: 0;
-
     background-position: 50% 50%;
   }
 
