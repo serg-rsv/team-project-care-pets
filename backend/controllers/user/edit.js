@@ -18,7 +18,7 @@ const edit = asyncHandler(async (req, res) => {
       name: user.name,
       email: user.email,
       phone: user.phone,
-      city: user.city,
+      location: user.location,
       birthday: user.birthday,
       avatarURL: user.avatarURL,
       pets: user.pets,

@@ -1,9 +1,7 @@
-import UserView from "../../components/UserView";
+import UserView from '../../components/UserView';
 
 const UserPage = () => {
-return(
-<UserView/>
-)
+  return <UserView />;
 };
 
 export default UserPage;
