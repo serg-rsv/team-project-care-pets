@@ -4,7 +4,11 @@ import Button from '../Button';
 import PropTypes from 'proptypes';
 import { useDeletePetMutation } from '../../redux/services/petsSlice';
 
+import { useModal } from '../../hooks/useModal';
+import Modal from '../Modal/Modal';
+
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
+  const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
   console.log('id', id);
   console.log(result);
@@ -43,7 +47,18 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
           Comments: <p className={scss.text}>{comments}</p>
         </li>
       </ul>
-      <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button>
+      {/* <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button> */}
+      <Button
+        className={scss.iconBtn}
+        onClick={() => openModal('pets')}
+      ></Button>
+      <Modal
+        marker="pets"
+        leftButtonClick={closeModal}
+        rightButtonClick={() => deletePet(id)}
+      >
+        Do you realy want to delete pet?
+      </Modal>
     </div>
   );
 };
