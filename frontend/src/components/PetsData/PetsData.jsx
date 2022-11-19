@@ -28,7 +28,6 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       <div className={scss.imgBox}>
         <img src={photoURL} className={scss.petAvatar} alt="animal avatar" />
       </div>
-
       <ul>
         <li className={scss.listItem}>
           Name: <p className={scss.text}>{name}</p>
