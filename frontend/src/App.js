@@ -29,47 +29,44 @@ const Own = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Own'));
 
 function App() {
   return (
-    <>
-      <UserPage />
-    </>
-    // <Suspense fallback={<Loader />}>
-    //   <Routes>
-    //     <Route path="/" element={<SharedLayout />}>
-    //       <Route index element={<HomePage />} />
-    //       <Route element={<PublicRoute restricted />}>
-    //         <Route path="/register" element={<RegisterPage />} />
-    //       </Route>
-    //       <Route element={<PublicRoute restricted />}>
-    //         <Route path="/login" element={<LoginPage />} />
-    //       </Route>
-    //       <Route element={<PublicRoute />}>
-    //         <Route path="/friends" element={<OurFriendsPage />} />
-    //       </Route>
-    //       <Route element={<PublicRoute />}>
-    //         <Route path="/news" element={<NewsPage />} />
-    //       </Route>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route element={<PublicRoute restricted />}>
+            <Route path="/register" element={<RegisterPage />} />
+          </Route>
+          <Route element={<PublicRoute restricted />}>
+            <Route path="/login" element={<LoginPage />} />
+          </Route>
+          <Route element={<PublicRoute />}>
+            <Route path="/friends" element={<OurFriendsPage />} />
+          </Route>
+          <Route element={<PublicRoute />}>
+            <Route path="/news" element={<NewsPage />} />
+          </Route>
 
-    //       <Route element={<PublicRoute />}>
-    //         <Route path="/notices" element={<NoticesPage />}>
-    //           <Route path="lost-found" element={<LostFound />} />
-    //           <Route path="for-free" element={<InGoodHands />} />
-    //           <Route path="sell" element={<Sell />} />
-    //         </Route>
-    //       </Route>
-    //       <Route element={<PrivateRoute />}>
-    //         <Route path="/notices" element={<NoticesPage />}>
-    //           <Route path="favorite" element={<Favorite />} />
-    //           <Route path="own" element={<Own />} />
-    //         </Route>
-    //       </Route>
+          <Route element={<PublicRoute />}>
+            <Route path="/notices" element={<NoticesPage />}>
+              <Route path="lost-found" element={<LostFound />} />
+              <Route path="for-free" element={<InGoodHands />} />
+              <Route path="sell" element={<Sell />} />
+            </Route>
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route path="/notices" element={<NoticesPage />}>
+              <Route path="favorite" element={<Favorite />} />
+              <Route path="own" element={<Own />} />
+            </Route>
+          </Route>
 
-    //       <Route element={<PrivateRoute />}>
-    //         <Route path="/user" element={<UserPage />} />
-    //       </Route>
-    //     </Route>
-    //     <Route path="*" element={<NotFound />} />
-    //   </Routes>
-    // </Suspense>
+          <Route element={<PrivateRoute />}>
+            <Route path="/user" element={<UserPage />} />
+          </Route>
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 
