@@ -77,6 +77,7 @@ export const noticesApi = createApi({
         url: `/notices/favorites/${noticeId}`,
         method: 'GET',
       }),
+    }),
     deleteFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
@@ -91,6 +92,7 @@ export const noticesApi = createApi({
     }),
   }),
 });
+
 export const {
   useFetchNoticesQuery,
   useDeleteNoticeMutation,
