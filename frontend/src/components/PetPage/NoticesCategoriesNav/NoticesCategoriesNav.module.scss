@@ -9,6 +9,9 @@
   @include mq(tablet) {
     margin-bottom: 44px;
   }
+  @include mq(tablet-only) {
+    width: 500px;
+  }
   @include mq(desktop) {
     margin-left: 92px;
   }
@@ -19,6 +22,7 @@
   margin-bottom: 12px;
   @include mq(tablet) {
     margin-bottom: 16px;
+    // flex-basis: calc((100% - 12px) / 3);
   }
   @include mq(desktop) {
     margin-bottom: 12px;
@@ -27,8 +31,23 @@
 
 .button {
   @include fonts(14px, 500, 1.3);
+  display: block;
+
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: var(--main-text-cl);
+  background-color: var(--white-text-cl);
+  border: 2px solid var(--accent-cl);
+  border-radius: 40px;
+
   @include mq(tablet) {
     @include fonts(20px, 500, 1.3);
+  }
+  &:hover, &:focus {
+   color: var(--white-text-cl);
+  background-color: var(--accent-cl); 
   }
 }
 
@@ -48,4 +67,5 @@
 .carrentColor {
   color: var(--white-text-cl);
   background-color: var(--accent-cl);
+//   border: 0;
 }
