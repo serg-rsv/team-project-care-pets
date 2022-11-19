@@ -1,8 +1,9 @@
-import Button from '../../button';
+import Button from '../../Button';
 
 import s from './NoticeCategoryItem.module.scss';
 
 const NoticeCategoryItem = ({
+  _id,
   link,
   title,
   breed,
@@ -10,6 +11,9 @@ const NoticeCategoryItem = ({
   age,
   price,
   page,
+  addFavorites,
+  removeAds,
+  isActiv,
 }) => {
   return (
     <li className={s.animalListItem}>
@@ -41,8 +45,11 @@ const NoticeCategoryItem = ({
         </div>
       )}
       <Button className={s.button}>Learn more</Button>
-      <Button className={s.like}></Button>
-      <Button className={s.remove}></Button>
+      <Button onClick={() => addFavorites(_id)} className={s.like}></Button>
+
+      {isActiv && (
+        <Button onClick={() => removeAds(_id)} className={s.remove}></Button>
+      )}
     </li>
   );
 };

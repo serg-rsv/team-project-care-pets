@@ -13,14 +13,19 @@ const NoticesPage = lazy(() => import('./pages/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
 const HomePage = lazy(() => import('./pages/HomePage'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
-const LostFound = lazy(() => import('./components/PetPage/NoticesCategoriesNav/LostFound'));
-const InGoodHands = lazy(() => import('./components/PetPage/NoticesCategoriesNav/InGoodHands'));
-const Sell = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Sell'));
-const Favorite = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Favorite'));
+const LostFound = lazy(() =>
+  import('./components/PetPage/NoticesCategoriesNav/LostFound')
+);
+const InGoodHands = lazy(() =>
+  import('./components/PetPage/NoticesCategoriesNav/InGoodHands')
+);
+const Sell = lazy(() =>
+  import('./components/PetPage/NoticesCategoriesNav/Sell')
+);
+const Favorite = lazy(() =>
+  import('./components/PetPage/NoticesCategoriesNav/Favorite')
+);
 const Own = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Own'));
-
-
-
 
 function App() {
   return (
@@ -41,15 +46,12 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
           </Route>
 
-          <Route element={<PublicRoute />}>
-            <Route path="/notices" element={<NoticesPage />}>
-              <Route path="lost-found" element={<LostFound />} />
-              <Route path="for-free" element={<InGoodHands />} />
-              <Route path="sell" element={<Sell />} />
-            </Route>
-          </Route>
-          <Route element={<PrivateRoute />}>
-            <Route path="/notices" element={<NoticesPage />}>
+          <Route path="notices" element={<NoticesPage />}>
+            <Route index element={<Sell />} />
+            <Route path="sell" element={<Sell />} />
+            <Route path="lost-found" element={<LostFound />} />
+            <Route path="for-free" element={<InGoodHands />} />
+            <Route element={<PrivateRoute />}>
               <Route path="favorite" element={<Favorite />} />
               <Route path="own" element={<Own />} />
             </Route>

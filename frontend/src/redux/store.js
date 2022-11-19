@@ -3,9 +3,11 @@ import { noticesApi } from './services/noticesSlice';
 import { petsApi } from './services/petsSlice';
 import { usersApi } from './services/usersSlice';
 import authReducer from './services/authSlice';
+import { modalSlice } from './services/modalSlice';
 
 export const store = configureStore({
   reducer: {
+    modal: modalSlice.reducer,
     [noticesApi.reducerPath]: noticesApi.reducer,
     [petsApi.reducerPath]: petsApi.reducer,
     auth: authReducer,

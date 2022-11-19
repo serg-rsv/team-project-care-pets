@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from '../button/button';
+import Button from '../Button';
 import UserPhoto from '../../images/userDog.png';
 import LogOut from '../LogOut';
 import scss from './UserData.module.scss';
@@ -16,7 +16,7 @@ const UserData = props => {
   const [changeIcon, setChangeIcon] = useState(false);
 
   const [disabled, setDisabled] = useState(true);
- 
+
   const changeBlur = () => {
     setChangeIcon(false);
     setInputFieldActive(false);

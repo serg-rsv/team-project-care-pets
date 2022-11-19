@@ -1,12 +1,16 @@
 import React from 'react';
 import scss from './PetsData.module.scss';
-import Button from '../button/button';
+import Button from '../Button';
 import PropTypes from 'proptypes';
 import { useDeletePetMutation } from '../../redux/services/petsSlice';
 
+import { useModal } from '../../hooks/useModal';
+import Modal from '../Modal/Modal';
+
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
+  const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
-  console.log('id', id)
+  console.log('id', id);
   console.log(result);
 
   function getDate(birthday) {
@@ -28,7 +32,6 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       <div className={scss.imgBox}>
         <img src={photoURL} className={scss.petAvatar} alt="animal avatar" />
       </div>
-
       <ul>
         <li className={scss.listItem}>
           Name: <p className={scss.text}>{name}</p>
@@ -43,7 +46,18 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
           Comments: <p className={scss.text}>{comments}</p>
         </li>
       </ul>
-      <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button>
+      {/* <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button> */}
+      <Button
+        className={scss.iconBtn}
+        onClick={() => openModal('pets')}
+      ></Button>
+      <Modal
+        marker="pets"
+        leftButtonClick={closeModal}
+        rightButtonClick={() => deletePet(id)}
+      >
+        Do you realy want to delete pet?
+      </Modal>
     </div>
   );
 };

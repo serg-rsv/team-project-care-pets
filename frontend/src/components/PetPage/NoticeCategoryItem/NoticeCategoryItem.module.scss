@@ -20,7 +20,7 @@
 
 .animalListItem {
   position: relative;
-  min-width: 280px;
+  width: 280px;
   margin-bottom: 32px;
   background-color: var(--white-text-cl);
   border-radius: 0px 0px 40px 40px;
@@ -31,7 +31,7 @@
     flex-basis: calc((100% - 32px) / 2);
   }
   @include mq(desktop) {
-    min-width: 276px;
+    width: 288px;
     flex-basis: calc((100% - 96px) / 4);
   }
 }
@@ -131,6 +131,28 @@
     background-size: 24px;
   }
 }
+
+// .isActivLike {
+// //  background-color: var(--accent-cl); 
+// position: absolute;
+//   top: 12px;
+//   right: 12px;
+//   width: 24px;
+//   height: 24px;
+//   background-size: 15px;
+//   padding: 0;
+//   background-color: var(--accent-cl);
+//   background-image: url(./Svg/like.svg);
+//   background-repeat: no-repeat;
+//   background-position: 50% 50%;
+//   border-radius: 50%;
+//   border: 0;
+//   @include mq(tablet) {
+//     width: 44px;
+//     height: 44px;
+//     background-size: 24px;
+//   }
+// }
 
 .remove {
   position: absolute;
