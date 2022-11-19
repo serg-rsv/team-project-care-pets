@@ -40,11 +40,11 @@ const ModalAddNotice = () => {
        validationSchema: Yup.object().shape({
            titleAd: Yup.string()
            .required('Please enter')
-           .matches(/^[aA-zZ\s]+$/, 'only letters')
+           .matches(/^[aA-zZ\s]+$/, 'Title contain only letters')
                 .min(2, "Title must be at least 2 characters")
                 .max(48, "Title must not exceed 48 characters"),
          namePet: Yup.string().trim()
-             .matches(/^[aA-zZ\s]+$/, 'only letters')
+             .matches(/^[aA-zZ\s]+$/, 'Name contain only letters')
                 .min(2, "Title must be at least 2 characters")
                .max(16, "Title must not exceed 16 characters"),
           birthPet: Yup.string().matches(/^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/, 'Invalid date (dd.mm.yyyy)'),
@@ -53,7 +53,7 @@ const ModalAddNotice = () => {
            .min(2, "Title must be at least 2 characters")
                .max(24, "Title must not exceed 24 characters"),
          locationPet: Yup.string()
-             .matches(/([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/, 'Type: city, region')
+             .matches(/([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/, 'Enter by type: City, Region')
          ,
          pricePet: Yup.string().when('filter', {
            is: (filter) => filter === "sell",

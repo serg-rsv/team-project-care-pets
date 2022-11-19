@@ -1,34 +1,23 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { useFormik } from 'formik';
-import css from './authForm.module.scss'
+import css from './authForm.module.scss';
 import * as Yup from 'yup';
+import Button from "../Button/Button";
 
 
 const RegisterForm= () => {
   
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
-  const [isBtnDisabled, setIsBtnDisabled] = useState(true);
-  
-  const validationFirstStep = (fields) => {
-    if (!fields.errors.email && !fields.errors.password && !fields.errors.confirmPassword && fields.values.email!=='' &&fields.values.password!=='' &&fields.values.confirmPassword!=='') {
-      setIsBtnDisabled(false)
-    } else {
-      setIsBtnDisabled(true)
-    }
-  }
 
   //function to next step registration
   const moveNextRegistration = () => {
-    // !fields.errors.email && !fields.errors.password && !fields.errors.confirmPassword && fields.values.email !== '' && fields.values.password !== '' && fields.values.confirmPassword !== '' ?
-    //   setIsFirstRegisterStep(true) :
-    //   setIsFirstRegisterStep(false)
     isFirstRegisterStep ?
       setIsFirstRegisterStep(false) :
       setIsFirstRegisterStep(true);
   }
 
-  // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  
    const formik = useFormik({
       initialValues: {
         email: '',
@@ -51,11 +40,14 @@ const RegisterForm= () => {
          .required('Please enter')
          .oneOf([Yup.ref("password"), null], "Confirm Password does not match"),
        name: Yup.string()
-         .required('Please enter'),
+         .required('Please enter')
+         .matches(/^[aA-zZ\s]+$/, 'Name contain only letters'),
        location: Yup.string()
-         .required('Please enter'),
-       phone: Yup.string().required('Please enter'),
-        //  .matches(phoneRegExp, 'Phone number is not valid'),
+         .required('Please enter')
+          .matches(/([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/, 'Enter by type: City, Region'),
+       phone: Yup.string()
+         .required('Please enter')
+         .matches(/^\+380\d{9}$/, 'Invalid phone number'),
      }),
      onSubmit: (values) => {
        console.log(formik.touched)
@@ -77,9 +69,6 @@ const RegisterForm= () => {
               name="email"
               type="email"
               onChange={formik.handleChange}
-              onBlur={() => {
-                validationFirstStep(formik)
-              }}
               value={formik.values.email}
               placeholder = 'Email'
             />
@@ -91,10 +80,6 @@ const RegisterForm= () => {
               name="password"
               type="password"
               onChange={formik.handleChange}
-              onBlur={() => {
-                validationFirstStep(formik)
-              }
-              }
               value={formik.values.password}
               placeholder = 'Password'
             />
@@ -105,11 +90,6 @@ const RegisterForm= () => {
               name="confirmPassword"
               type="confirmPassword"
               onChange={formik.handleChange}
-              onBlur={() => {
-                console.log('next')
-                 validationFirstStep(formik)
-              }
-              }
               value={formik.values.confirmPassword}
               placeholder = 'Confirm Password'
             />
@@ -124,7 +104,7 @@ const RegisterForm= () => {
               value={formik.values.name}
               placeholder = 'Name'
             />
-            {formik.touched.name && formik.errors.name?<p className={css.inputErrorName}>{formik.errors.name}</p> : null} 
+            {formik.values.name !=='' && formik.errors.name?<p className={css.inputErrorName}>{formik.errors.name}</p> : null} 
  
             <input className={css.formInput}
               id="location"
@@ -134,7 +114,7 @@ const RegisterForm= () => {
               value={formik.values.location}
               placeholder="City, region"
             />
-            {formik.touched.location && formik.errors.location?<p className={css.inputErrorLocation}>{formik.errors.location}</p> : null} 
+            {formik.values.location !== '' && formik.errors.location?<p className={css.inputErrorLocation}>{formik.errors.location}</p> : null} 
  
             <input className={css.formInput}
               id="phone"
@@ -144,18 +124,27 @@ const RegisterForm= () => {
               value={formik.values.phone}
               placeholder="Mobile phone"
             />
-            {formik.touched.phone && formik.errors.phone?<p className={css.inputErrorPhone}>{formik.errors.phone}</p> : null} 
+            {formik.values.phone !=='' && formik.errors.phone?<p className={css.inputErrorPhone}>{formik.errors.phone}</p> : null} 
           </>}
         
-        {isFirstRegisterStep && <button className={css.formBtn} disabled={ isBtnDisabled} type='button' onClick={moveNextRegistration}>Next</button>}
-        {!isFirstRegisterStep && <button className={css.formBtn} type="submit" >Register</button>}
-        </form>
+        {isFirstRegisterStep &&
+          <div className={css.btnBlock}>
+            <Button children='Next' onClick={moveNextRegistration} className={css.formBtn} />
+          </div>
+        }
+        {!isFirstRegisterStep &&
+          <div className={css.btnBlock}>
+            <Button children='Register' className={css.formBtn} buttonType='submit' />
+            <Button children='Back' className={css.formBtnBck} onClick={moveNextRegistration} />
+          </div>
+        }  
+          
+      </form>
       
-        {/* {!isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
+        {/* {isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
         
         <p className={css.linkToPage}>Already have an account? <Link className={css.link} to="/login">Login</Link></p>
-        {/* <button className={css.formBtn} onClick={moveNextRegistration}>Back</button> */}
-      
+        
     </div>
 )};
 
