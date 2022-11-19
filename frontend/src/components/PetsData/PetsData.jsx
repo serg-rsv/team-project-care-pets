@@ -1,24 +1,40 @@
 import React from 'react';
 import scss from './PetsData.module.scss';
-import Button from '../button/button';
+import Button from '../Button';
 import PropTypes from 'proptypes';
-import { useFetchNoticesQuery } from '../../redux/services/noticesSlice';
+import { useDeletePetMutation } from '../../redux/services/petsSlice';
 
-const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
-  const deletePet = id => {
-    console.log('delete');
-  };
-  const { data } = useFetchNoticesQuery();
-  console.log(data);
+const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
+  const [deletePet, result] = useDeletePetMutation();
+  console.log('id', id);
+  console.log(result);
+
+  function getDate(birthday) {
+    let date = new Date(birthday);
+    let year = date.getFullYear();
+    let day = date.getDay();
+    let month = date.getMonth();
+    if (day < 10) {
+      day = `0${day}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    return day + '.' + month + '.' + year;
+  }
+
   return (
     <div className={scss.wrapper}>
-      <img src={avatarURL} className={scss.petAvatar} alt="animal avatar" />
+      <div className={scss.imgBox}>
+        <img src={photoURL} className={scss.petAvatar} alt="animal avatar" />
+      </div>
+
       <ul>
         <li className={scss.listItem}>
           Name: <p className={scss.text}>{name}</p>
         </li>
         <li className={scss.listItem}>
-          Date of birth: <p className={scss.text}>{birthday}</p>
+          Date of birth: <p className={scss.text}>{getDate(birthday)}</p>
         </li>
         <li className={scss.listItem}>
           Breed: <p className={scss.text}>{breed}</p>{' '}
@@ -35,8 +51,9 @@ const PetsData = ({ id, avatarURL, name, birthday, breed, comments }) => {
 export default PetsData;
 
 PetsData.propTypes = {
+  id: PropTypes.string,
   name: PropTypes.string,
-  dateOfBirth: PropTypes.string,
+  birthday: PropTypes.string,
   breed: PropTypes.string,
   comments: PropTypes.string,
 };

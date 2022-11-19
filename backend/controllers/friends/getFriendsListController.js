@@ -1,7 +1,7 @@
 const { getFriendsList } = require('../../services');
 
-const getFriendsListController = async (_, res) => {
-  const friends = await getFriendsList();
+const getFriendsListController = async (req, res) => {
+  const friends = await getFriendsList(req.query);
 
   res.json({
     code: 200,

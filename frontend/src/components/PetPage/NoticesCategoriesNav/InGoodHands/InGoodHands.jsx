@@ -76,7 +76,12 @@ const pets = [
 ];
 
 const InGoodHands = () => {
-  return <NoticesCategoriesList pets={pets} />;
+  return (
+    <>
+      <h2>In good hands</h2>
+      <NoticesCategoriesList pets={pets} />
+    </>
+  );
 };
 
 export default InGoodHands;

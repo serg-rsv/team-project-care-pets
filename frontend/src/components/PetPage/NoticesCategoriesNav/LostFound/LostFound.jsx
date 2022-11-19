@@ -76,7 +76,12 @@ const pets = [
 ];
 
 const LostFound = () => {
-  return <NoticesCategoriesList pets={pets} />;
+  return (
+    <>
+      <h2>Lost found</h2>
+      <NoticesCategoriesList pets={pets} />
+    </>
+  );
 };
 
 export default LostFound;

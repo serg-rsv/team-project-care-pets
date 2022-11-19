@@ -1,7 +1,10 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Button from '../../button';
+import { selectIsLoggedIn } from '../../../redux/services/authSlice';
+import Button from '../../Button';
 import s from './NoticesCategoriesNav.module.scss';
 const NoticesCategoriesNav = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <ul className={s.navList}>
       <li>
@@ -21,16 +24,20 @@ const NoticesCategoriesNav = () => {
       </li>
 
       {/* Приватні ровти */}
-      <li className={s.favorite}>
-        <NavLink to="/notices/favorite">
-          <Button className={s.button}>Favorite ads</Button>
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/notices/own">
-          <Button className={s.button}>My ads</Button>
-        </NavLink>
-      </li>
+      {isLoggedIn && (
+        <>
+          <li className={s.favorite}>
+            <NavLink to="/notices/favorite">
+              <Button className={s.button}>Favorite ads</Button>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/notices/own">
+              <Button className={s.button}>My ads</Button>
+            </NavLink>
+          </li>
+        </>
+      )}
     </ul>
   );
 };

@@ -1,5 +1,5 @@
 import s from './AuthNav.module.scss';
-import Button from '../button/button';
+import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
 
 const AuthNav = () => {
