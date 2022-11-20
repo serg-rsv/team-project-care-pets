@@ -14,6 +14,7 @@ const NoticeCategoryItem = ({
   addFavorites,
   removeAds,
   isActiv,
+  isFavorite,
 }) => {
   return (
     <li className={s.animalListItem}>
@@ -45,7 +46,10 @@ const NoticeCategoryItem = ({
         </div>
       )}
       <Button className={s.button}>Learn more</Button>
-      <Button onClick={() => addFavorites(_id)} className={s.like}></Button>
+      <Button
+        onClick={() => addFavorites(_id)}
+        className={`${s.like} ${isFavorite ? s.isActivLike : ''}`}
+      ></Button>
 
       {isActiv && (
         <Button onClick={() => removeAds(_id)} className={s.remove}></Button>

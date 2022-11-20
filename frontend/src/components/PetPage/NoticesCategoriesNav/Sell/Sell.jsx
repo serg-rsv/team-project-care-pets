@@ -11,11 +11,8 @@ import NoticesCategoriesList from '../../NoticesCategoriesList';
 const Sell = () => {
   const isActivDelete = false;
   const [pets, setPets] = useState([]);
-  const { data: notices, isSuccess: isNotices } =
-    useGetNoticesBycategoryQuery('sell');
-  console.log('Sell ~ notices', notices?.data);
-  const { data: user, isSuccess: isUser } = useCurrentQuery();
-  console.log('Sell ~ user', user);
+  const { data: notices } = useGetNoticesBycategoryQuery('sell');
+  const { data: user } = useCurrentQuery();
   // const pets = data?.data;
   // const isLoggedIn = useSelector(selectIsLoggedIn);
   // const { data: items } = useGetFavoritesNoticeQuery();
@@ -23,10 +20,11 @@ const Sell = () => {
   useEffect(() => {
     const markedNotices = markFavoriteNotice(
       notices?.data,
-      user?.data?.user?.favorites
+      user?.user?.favorites
     );
     setPets(markedNotices);
   }, [notices, user]);
+  console.log('PETS', pets);
 
   return (
     <>

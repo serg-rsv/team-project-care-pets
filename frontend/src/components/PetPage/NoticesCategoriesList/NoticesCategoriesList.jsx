@@ -17,6 +17,7 @@ const NoticesCategoriesList = ({ pets, addFavorites, removeAds, isActiv }) => {
             birthday,
             price,
             category,
+            isFavorite,
           }) => (
             <NoticeCategoryItem
               key={_id}
@@ -31,6 +32,7 @@ const NoticesCategoriesList = ({ pets, addFavorites, removeAds, isActiv }) => {
               addFavorites={addFavorites}
               removeAds={removeAds}
               isActiv={isActiv}
+              isFavorite={isFavorite}
             />
           )
         )}
