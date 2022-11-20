@@ -1,45 +1,29 @@
-import {
-  useGetPersonalNoticeQuery,
-  useAddFavoritesByIdMutation,
-  useGetFavoritesNoticeQuery,
-  useDeleteFavoritesByIdMutation,
-  useDeleteNoticeMutation,
-} from '../../../../redux/services/noticesSlice';
+import { useEffect, useState } from 'react';
+
+import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
+import { useGetPersonalNoticeQuery } from '../../../../redux/services/noticesSlice';
+import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const Own = () => {
-  const isActivDelete = true;
-  const { data, isSuccess } = useGetPersonalNoticeQuery();
-  const pets = data?.data;
+  const isActiveDelete = true;
+  const [pets, setPets] = useState([]);
+  const { data: notices } = useGetPersonalNoticeQuery();
+  const { data: user } = useCurrentQuery();
 
-  const { data: items } = useGetFavoritesNoticeQuery();
-
-  const [addFav] = useAddFavoritesByIdMutation();
-  const [deleteFav] = useDeleteFavoritesByIdMutation();
-  const [deleteAds] = useDeleteNoticeMutation();
-
-  const addFavorites = async _id => {
-    const filterAds = await items?.data.find(item => item._id === _id);
-    if (filterAds) {
-      deleteFav(_id);
-    }
-    await addFav(_id);
-  };
-
-  const removeAds = async _id => {
-    await deleteAds(_id);
-  };
+  useEffect(() => {
+    const markedNotices = markFavoriteNotice(
+      notices?.data,
+      user?.user?.favorites
+    );
+    setPets(markedNotices);
+  }, [notices, user]);
 
   return (
     <>
-      {isSuccess && (
-        <NoticesCategoriesList
-          isActiv={isActivDelete}
-          addFavorites={addFavorites}
-          removeAds={removeAds}
-          pets={pets}
-        />
+      {pets?.length > 0 && (
+        <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
     </>
   );

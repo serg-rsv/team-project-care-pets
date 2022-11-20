@@ -1,46 +1,29 @@
-import { useSelector } from 'react-redux';
-import {
-  useGetNoticesBycategoryQuery,
-  useAddFavoritesByIdMutation,
-  useGetFavoritesNoticeQuery,
-  useDeleteFavoritesByIdMutation,
-} from '../../../../redux/services/noticesSlice';
+import { useEffect, useState } from 'react';
 
-import { selectIsLoggedIn } from '../../../../redux/services/authSlice';
+import { useGetNoticesByCategoryQuery } from '../../../../redux/services/noticesSlice';
+import { useCurrentQuery } from '../../../../redux/services/usersSlice';
+import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const InGoodHands = () => {
-  const isActivDelete = false;
-  const { data, isSuccess } = useGetNoticesBycategoryQuery('for-free');
-  const pets = data?.data;
+  const isActiveDelete = false;
+  const [pets, setPets] = useState([]);
+  const { data: notices } = useGetNoticesByCategoryQuery('for-free');
+  const { data: user } = useCurrentQuery();
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  const { data: items } = useGetFavoritesNoticeQuery();
-
-  const [addFav] = useAddFavoritesByIdMutation();
-  const [deleteFav] = useDeleteFavoritesByIdMutation();
-
-  const addFavorites = async _id => {
-    const filterAds = await items?.data.find(item => item._id === _id);
-
-    if (!isLoggedIn) {
-      console.log('not authorized');
-    }
-    if (filterAds) {
-      deleteFav(_id);
-    }
-    await addFav(_id);
-  };
+  useEffect(() => {
+    const markedNotices = markFavoriteNotice(
+      notices?.data,
+      user?.user?.favorites
+    );
+    setPets(markedNotices);
+  }, [notices, user]);
 
   return (
     <>
-      {isSuccess && (
-        <NoticesCategoriesList
-          isActiv={isActivDelete}
-          addFavorites={addFavorites}
-          pets={pets}
-        />
+      {pets?.length > 0 && (
+        <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
     </>
   );

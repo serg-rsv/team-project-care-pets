@@ -1,13 +1,15 @@
+import {
+  useAddFavoritesByIdMutation,
+  useDeleteFavoritesByIdMutation,
+  useDeleteNoticeMutation,
+} from '../../../redux/services/noticesSlice';
 import { useState } from 'react';
 import Button from '../../Button';
 import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
 
-import {
-  useGetNoticeByIdQuery,
-  useGetPersonalNoticeQuery,
-} from '../../../redux/services/noticesSlice';
+import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
 
@@ -20,23 +22,19 @@ const NoticeCategoryItem = ({
   age,
   price,
   page,
-  addFavorites,
-  removeAds,
-  isActiv,
+  isActive,
+  isFavorite,
 }) => {
+  const [deleteNotice] = useDeleteNoticeMutation();
+  const [addFavorite] = useAddFavoritesByIdMutation();
+  const [deleteFavorite] = useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
   const { openModal, closeModal } = useModal();
 
   const { data: item } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
 
-  // console.log(noticeById);
-
-  const { data: user } = useGetPersonalNoticeQuery();
-  // console.log(data);
-
   const showModalNotice = _id => {
-    console.log();
     setId(_id);
   };
 
@@ -69,6 +67,7 @@ const NoticeCategoryItem = ({
           <p className={s.priceOpacity}>P</p>
         </div>
       )}
+
       <Button
         onClick={() => {
           openModal('learnmore');
@@ -78,10 +77,14 @@ const NoticeCategoryItem = ({
       >
         Learn more
       </Button>
-      <Button onClick={() => addFavorites(_id)} className={s.like}></Button>
 
-      {isActiv && (
-        <Button onClick={() => removeAds(_id)} className={s.remove}></Button>
+      <Button
+        onClick={() => (isFavorite ? deleteFavorite(_id) : addFavorite(_id))}
+        className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
+      ></Button>
+
+      {isActive && (
+        <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
 
       <Modal marker="learnmore">

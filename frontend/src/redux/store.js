@@ -1,7 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { noticesApi } from './services/noticesSlice';
-import { petsApi } from './services/petsSlice';
-import { usersApi } from './services/usersSlice';
+import { baseApi } from './services/baseApi';
 import authReducer from './services/authSlice';
 import { modalSlice } from './services/modalSlice';
 import {
@@ -25,17 +23,14 @@ const persistedUserReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     modal: modalSlice.reducer,
-    [noticesApi.reducerPath]: noticesApi.reducer,
-    [petsApi.reducerPath]: petsApi.reducer,
     auth: persistedUserReducer,
-
-    [usersApi.reducerPath]: usersApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(noticesApi.middleware, petsApi.middleware, usersApi.middleware),
+    }).concat(baseApi.middleware),
 });
 export const persistor = persistStore(store);
