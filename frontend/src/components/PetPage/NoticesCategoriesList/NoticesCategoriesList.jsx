@@ -9,19 +9,18 @@ import { useCreateNoticeMutation } from '../../../redux/services/noticesSlice';
 import { getAge } from '../../../helpers/getAge';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
-import ModalNotAuthorized from '../../ModalNotAuthorized'
+import ModalNotAuthorized from '../../ModalNotAuthorized';
 
 const NoticesCategoriesList = ({ pets, addFavorites, removeAds, isActiv }) => {
-  const [ads, setAds] = useState({});
-  console.log(ads);
+  const [filter, setFilter] = useState({});
+  console.log(filter);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
   const [addAds] = useCreateNoticeMutation();
   
-  const createAds = async (value) => {
+  const createAds = async filter => {
     // console.log(value);
-    await setAds(value);
-    
+    await setFilter(filter);
   };
   return (
     <div className={s.box}>
