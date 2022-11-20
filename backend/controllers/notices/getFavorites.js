@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const { User } = require('../../models');
 
 const getFavorites = asyncHandler(async (req, res) => {
   const { user } = req;

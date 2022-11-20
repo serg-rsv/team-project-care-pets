@@ -33,30 +33,30 @@ const noticesApi = baseApi.injectEndpoints({
         url: '/notices/personal',
         method: 'GET',
       }),
-      // providesTags: ['Notices'],
+      providesTags: ['Notices'],
     }),
     getFavoritesNotice: builder.query({
       query: () => ({
         url: '/notices/favorites',
         method: 'GET',
       }),
-      // providesTags: ['Notices'],
+      providesTags: ['Notices'],
     }),
     addFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'GET',
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Notices', 'User'],
     }),
     deleteFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User', 'Notices'],
     }),
-    getNoticesBycategory: builder.query({
+    getNoticesByCategory: builder.query({
       query: category => ({
         url: `/notices/category/${category}`,
         method: 'GET',
@@ -75,5 +75,5 @@ export const {
   useGetFavoritesNoticeQuery,
   useAddFavoritesByIdMutation,
   useDeleteFavoritesByIdMutation,
-  useGetNoticesBycategoryQuery,
+  useGetNoticesByCategoryQuery,
 } = noticesApi;

@@ -5,6 +5,7 @@ const petsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     fetchPets: builder.query({
       query: () => ({ url: '/pets' }),
+      providesTags: ['Pets'],
     }),
     createPet: builder.mutation({
       query: ({ namePet, dateOfBirth, breed, addPhoto, comments }) => ({

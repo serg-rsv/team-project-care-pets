@@ -23,6 +23,7 @@ const usersApi = baseApi.injectEndpoints({
         method: 'PATCH',
         body: userData,
       }),
+      invalidatesTags: ['User'],
     }),
     logout: builder.mutation({
       query: userData => `/users/logout`,
