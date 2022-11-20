@@ -239,6 +239,26 @@ position: absolute;
         padding: 45px;
     }
 }
+
+.addedImg{
+    overflow: hidden;
+    width: 116px;
+    height: 116px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    
+    @include mq(tablet){
+        width: 140px;
+        height: 140px;
+    }
+    &>img{
+        object-fit: cover;
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
 //=============end img input
 
 .noticeFormNextBtn{
@@ -253,58 +273,51 @@ position: absolute;
 //------------------input errors
 .inputError{@include fonts(10px, 500, );
     color: red;}
-// %inputError{
-// position: absolute;
-//     // left: 5%;
-//     @include fonts(10px, 500, );
-//     color: red;
-// }
-
-// .inputErrorTitleAd{
-//    @extend %inputError;
-//    top:24.5%
-// }
-
-// .inputErrorNamePet {
-//     @extend %inputError;
-//     top: 40.2%;
-// }
-// .inputErrorBirthPet {
-//     @extend %inputError;
-//     top: 56%;
-// }
-
-// .inputErrorBreedPet {
-//     @extend %inputError;
-//     top: 71.5%
-// }
-
-// .errorWrapper{
-// box-sizing: content-box;
-// position: relative;
-// }
-// .inputErrorLocationPet {
-//     // @extend %inputError;
-//     // top: 0%
-//     font-size: 12px;
-//         color: red;
-// }
-
-// .inputErrorCommentsAd{
-//     @extend %inputError;
-//         bottom: 17.5%;
-//     @include mq(tablet) {
-//         bottom:23%
-//     }
-//     @include mq(desktop) {
-//     bottom: 24.5%
-//     }
-// }
-
-// .inputErrorPricePet{
-//     @extend %inputError;
-//     top: 39.5%;
-// }
 
 
-//==================input errors END
+
+.btnBlock {
+    margin: calc(40px - 16px) auto 0 auto;
+    display: grid;
+    grid-gap: 12px;
+
+    @include mq(tablet) {
+        grid-gap: 12px;
+        grid-template: 44px / 180px 10px 180px;
+    }
+}
+        
+.btnAccent {
+padding: 9px 101px;
+color: var(--white-bg);
+background-color: var(--accent-cl);
+    
+@include mq(tablet) {
+    @include fonts(20px, 500, 1.3, 0.04em);
+    grid-column: 1;
+    justify-self: end;
+    padding: 8.5px 65px;
+    max-width: 180px;
+    height: 44px;
+    }
+    
+    &:hover,
+    &:focus {
+        background-color: var(--accent-cl-active);
+        border-color: var(--accent-cl-active);
+    }
+}
+    
+.btnSec {
+    padding: 9px 92px;
+    
+    @include mq(tablet) {
+        @include fonts(20px, 500, 1.3, 0.04em);
+        grid-column: 3;
+        padding: 8px 50px;
+        max-width: 180px;
+        height: 44px;
+    }
+}
+    
+        

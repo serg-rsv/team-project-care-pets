@@ -72,7 +72,7 @@ const LoginForm = () => {
       </form>
       <p className={css.linkToPage}>
         Don't have an account?{' '}
-        <Link className={css.link} to="/register">
+        <Link className={css.link} to="/home">
           Register
         </Link>{' '}
       </p>
