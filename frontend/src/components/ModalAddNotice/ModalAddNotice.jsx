@@ -78,7 +78,7 @@ const ModalAddNotice = ({ createAds }) => {
     }),
     onSubmit: values => {
       
-      createAds(values);
+      createAds(values.commentsAd);
       console.log(values);
       alert(JSON.stringify(values, null, 2));
       // console.log('submit:', values)

@@ -1,4 +1,9 @@
 import Button from '../../Button';
+import ModalNotice from '../ModalNotice';
+import { useModal } from '../../../hooks/useModal';
+import Modal from '../../Modal/Modal';
+
+import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
 
@@ -15,6 +20,18 @@ const NoticeCategoryItem = ({
   removeAds,
   isActiv,
 }) => {
+
+  const { openModal, closeModal } = useModal();
+
+  const { data } = useGetNoticeByIdQuery('d716087c8c2a30fb5064');
+
+  console.log(data?.item);
+
+  const showModalNotice = (_id) => {
+    console.log(_id);
+   
+  };
+
   return (
     <li className={s.animalListItem}>
       <div className={s.signature}>
@@ -44,12 +61,25 @@ const NoticeCategoryItem = ({
           <p className={s.priceOpacity}>P</p>
         </div>
       )}
-      <Button className={s.button}>Learn more</Button>
+      <Button
+        onClick={() => {
+          openModal('learnmore');
+          showModalNotice(_id);
+        }}
+        
+        className={s.button}
+      >
+        Learn more
+      </Button>
       <Button onClick={() => addFavorites(_id)} className={s.like}></Button>
 
       {isActiv && (
         <Button onClick={() => removeAds(_id)} className={s.remove}></Button>
       )}
+
+      <Modal marker="learnmore">
+        <ModalNotice />
+      </Modal>
     </li>
   );
 };
