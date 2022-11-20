@@ -12,8 +12,12 @@ const Navigation = () => {
 
   const isAuthorized = useSelector(selectIsLoggedIn); // Це буде у редакс-сторі. Витягуємо через селектор
 
-  const onBurgerClick = e => {
+  const onBurgerClick = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const menuCloseHandler = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -35,14 +39,18 @@ const Navigation = () => {
 
       {isModalOpen && (
         <div className={s.mobMenu}>
-          {isAuthorized ? <UserNav /> : <AuthNav />}
-          <Nav />
+          {isAuthorized ? (
+            <UserNav closeMenu={menuCloseHandler} />
+          ) : (
+            <AuthNav closeMenu={menuCloseHandler} />
+          )}
+          <Nav closeMenu={menuCloseHandler} />
         </div>
       )}
 
       {isModalOpen ? (
         <div className={s.tabMenu}>
-          <Nav />
+          <Nav closeMenu={menuCloseHandler} />
         </div>
       ) : (
         <div className={s.authTabMenu}>

@@ -2,7 +2,7 @@ import s from './AuthNav.module.scss';
 import Button from '../Button';
 import { useNavigate } from 'react-router-dom';
 
-const AuthNav = () => {
+const AuthNav = ({ closeMenu }) => {
   const navigate = useNavigate();
 
   return (
@@ -13,6 +13,7 @@ const AuthNav = () => {
             className={s.authBtn}
             onClick={() => {
               navigate('/login');
+              closeMenu();
             }}
           >
             Login
@@ -23,6 +24,7 @@ const AuthNav = () => {
             className={s.authBtn}
             onClick={() => {
               navigate('/register');
+              closeMenu();
             }}
           >
             Registration
