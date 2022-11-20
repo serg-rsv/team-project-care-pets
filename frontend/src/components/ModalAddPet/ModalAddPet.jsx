@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import { useFormik } from 'formik';
-import Button from '../button/button';
+import Button from '../Button/Button';
 import css from './modalAddPet.module.scss';
 
 import * as Yup from 'yup';
@@ -47,9 +47,9 @@ const ModalAddPet = () => {
             .min(8, "Title must be at least 8 characters")
             .max(120, "Title must not exceed 120 characters"),
      }),
-     onSubmit: (values) => {
-        console.log(values)
-        alert(JSON.stringify(values, null, 2));
+     onSubmit: ({name, birth:birthday, breed, image:photoURL, comments}) => {
+        console.log({name, birthday, breed,photoURL,comments})
+        alert(JSON.stringify({name, birthday, breed,photoURL,comments}, null, 2));
         formik.resetForm()
         },
     });

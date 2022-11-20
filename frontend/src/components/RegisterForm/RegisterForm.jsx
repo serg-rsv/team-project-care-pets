@@ -10,6 +10,8 @@ const RegisterForm= () => {
   
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
 
+  // const [register] = useRegisterQuery;
+
   //function to next step registration
   const moveNextRegistration = () => {
     isFirstRegisterStep ?
@@ -49,10 +51,8 @@ const RegisterForm= () => {
          .required('Please enter')
          .matches(/^\+380\d{9}$/, 'Invalid phone number'),
      }),
-     onSubmit: (values) => {
-       console.log(formik.touched)
-          alert(JSON.stringify(values, null, 2));
-          // console.log('submit:', values)
+     onSubmit: ({ email, password, name, phone, location }) => {
+          alert(JSON.stringify({email, password, name, phone, location}, null, 2));
           formik.resetForm()
         },
     });
@@ -74,6 +74,7 @@ const RegisterForm= () => {
             />
            
             { formik.values.email!=='' && formik.errors.email?<p className={css.inputErrorEmail}>{formik.errors.email}</p> : null } 
+            {formik.touched.email && formik.errors.email?<p className={css.inputErrorEmail}>{formik.errors.email}</p> : null}
             
             <input className={css.formInput}
               id="password"
@@ -83,7 +84,8 @@ const RegisterForm= () => {
               value={formik.values.password}
               placeholder = 'Password'
             />
-            { formik.values.password!==''&& formik.errors.password ?<p className={css.inputErrorPassword}>{formik.errors.password}</p> : null} 
+            {formik.values.password !== '' && formik.errors.password ? <p className={css.inputErrorPassword}>{formik.errors.password}</p> : null}
+            {formik.touched.password&& formik.errors.password ?<p className={css.inputErrorPassword}>{formik.errors.password}</p> : null}
             
             <input className={css.formInput}
               id="confirmPassword"
@@ -94,6 +96,7 @@ const RegisterForm= () => {
               placeholder = 'Confirm Password'
             />
             {formik.values.confirmPassword !== '' && formik.errors.confirmPassword ? <p className={css.inputErrorConfirmPassword}>{formik.errors.confirmPassword}</p> : null}
+            {formik.touched.confirmPassword && formik.errors.confirmPassword ? <p className={css.inputErrorConfirmPassword}>{formik.errors.confirmPassword}</p> : null}
           </> :
           <>
             <input className={css.formInput}
@@ -105,7 +108,8 @@ const RegisterForm= () => {
               placeholder = 'Name'
             />
             {formik.values.name !=='' && formik.errors.name?<p className={css.inputErrorName}>{formik.errors.name}</p> : null} 
- 
+            {formik.touched.name  && formik.errors.name?<p className={css.inputErrorName}>{formik.errors.name}</p> : null} 
+            
             <input className={css.formInput}
               id="location"
               name="location"
@@ -115,7 +119,8 @@ const RegisterForm= () => {
               placeholder="City, region"
             />
             {formik.values.location !== '' && formik.errors.location?<p className={css.inputErrorLocation}>{formik.errors.location}</p> : null} 
- 
+            {formik.touched.location && formik.errors.location?<p className={css.inputErrorLocation}>{formik.errors.location}</p> : null}
+            
             <input className={css.formInput}
               id="phone"
               name="phone"
@@ -125,6 +130,7 @@ const RegisterForm= () => {
               placeholder="Mobile phone"
             />
             {formik.values.phone !=='' && formik.errors.phone?<p className={css.inputErrorPhone}>{formik.errors.phone}</p> : null} 
+            {formik.touched.phone  && formik.errors.phone?<p className={css.inputErrorPhone}>{formik.errors.phone}</p> : null}
           </>}
         
         {isFirstRegisterStep &&
