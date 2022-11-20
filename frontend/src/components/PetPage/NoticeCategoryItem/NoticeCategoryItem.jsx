@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import Button from '../../Button';
 import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
 
-import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
+import {
+  useGetNoticeByIdQuery,
+  useGetPersonalNoticeQuery,
+} from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
 
@@ -20,16 +24,20 @@ const NoticeCategoryItem = ({
   removeAds,
   isActiv,
 }) => {
-
+  const [id, setId] = useState('');
   const { openModal, closeModal } = useModal();
 
-  const { data } = useGetNoticeByIdQuery('d716087c8c2a30fb5064');
+  const { data: item } = useGetNoticeByIdQuery(id);
+  const noticeById = item?.data;
 
-  console.log(data?.item);
+  // console.log(noticeById);
 
-  const showModalNotice = (_id) => {
-    console.log(_id);
-   
+  const { data: user } = useGetPersonalNoticeQuery();
+  // console.log(data);
+
+  const showModalNotice = _id => {
+    console.log();
+    setId(_id);
   };
 
   return (
@@ -66,7 +74,6 @@ const NoticeCategoryItem = ({
           openModal('learnmore');
           showModalNotice(_id);
         }}
-        
         className={s.button}
       >
         Learn more
@@ -78,7 +85,17 @@ const NoticeCategoryItem = ({
       )}
 
       <Modal marker="learnmore">
-        <ModalNotice />
+        <ModalNotice
+          category={noticeById?.category}
+          photoURL={noticeById?.photoURL}
+          name={noticeById?.name}
+          title={noticeById?.title}
+          birthday={noticeById?.birthday}
+          breed={noticeById?.breed}
+          location={noticeById?.location}
+          sex={noticeById?.sex}
+          comments={noticeById?.comments}
+        />
       </Modal>
     </li>
   );

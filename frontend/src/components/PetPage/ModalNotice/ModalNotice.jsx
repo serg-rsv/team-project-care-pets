@@ -1,40 +1,47 @@
 import s from './ModalNotice.module.scss';
 
-const ModalNotice = () => {
+const ModalNotice = ({
+  category,
+  photoURL,
+  name,
+  title,
+  birthday,
+  breed,
+  location,
+  sex,
+  comments,
+}) => {
   return (
     <div className={s.box}>
       <div className={s.boxData}>
         <div>
           <div className={s.signature}>
-            <p>In good hands</p>
+            <p>{category}</p>
           </div>
-          <img
-            src="https://static9.depositphotos.com/1632087/1139/i/600/depositphotos_11395540-stock-photo-black-yellow.jpg"
-            alt="cat"
-          />
+          <img src={photoURL} alt={title} />
         </div>
         <div>
-          <h1 className={s.title}>Сute dog looking for a home</h1>
+          <h1 className={s.title}>{title}</h1>
           <ul className={s.listParams}>
             <li>
               <p className={s.name}>Name:</p>
-              <p>Rich</p>
+              <p>{name}</p>
             </li>
             <li>
               <p className={s.birthday}>Birthday:</p>
-              <p>R21.09.2020</p>
+              <p>{birthday}</p>
             </li>
             <li>
               <p className={s.breed}>Breed:</p>
-              <p>Pomeranian</p>
+              <p>{breed}</p>
             </li>
             <li>
               <p className={s.place}>Place:</p>
-              <p>Lviv</p>
+              <p>{location}</p>
             </li>
             <li>
               <p className={s.sex}>The sex:</p>
-              <p>male</p>
+              <p>{sex}</p>
             </li>
             <li>
               <p className={s.email}>Email:</p>
@@ -48,10 +55,7 @@ const ModalNotice = () => {
         </div>
       </div>
 
-      <p className={s.comments}>
-        Comments: Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit
-        amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
-      </p>
+      <p className={s.comments}>{comments}</p>
     </div>
   );
 };
