@@ -3,7 +3,13 @@ import {
   useDeleteFavoritesByIdMutation,
   useDeleteNoticeMutation,
 } from '../../../redux/services/noticesSlice';
+import { useState } from 'react';
 import Button from '../../Button';
+import ModalNotice from '../ModalNotice';
+import { useModal } from '../../../hooks/useModal';
+import Modal from '../../Modal/Modal';
+
+import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
 
@@ -22,6 +28,16 @@ const NoticeCategoryItem = ({
   const [deleteNotice] = useDeleteNoticeMutation();
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
+  const [id, setId] = useState('');
+  const { openModal, closeModal } = useModal();
+
+  const { data: item } = useGetNoticeByIdQuery(id);
+  const noticeById = item?.data;
+
+  const showModalNotice = _id => {
+    setId(_id);
+  };
+
   return (
     <li className={s.animalListItem}>
       <div className={s.signature}>
@@ -51,7 +67,17 @@ const NoticeCategoryItem = ({
           <p className={s.priceOpacity}>P</p>
         </div>
       )}
-      <Button className={s.button}>Learn more</Button>
+
+      <Button
+        onClick={() => {
+          openModal('learnmore');
+          showModalNotice(_id);
+        }}
+        className={s.button}
+      >
+        Learn more
+      </Button>
+
       <Button
         onClick={() => (isFavorite ? deleteFavorite(_id) : addFavorite(_id))}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
@@ -60,6 +86,20 @@ const NoticeCategoryItem = ({
       {isActive && (
         <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
+
+      <Modal marker="learnmore">
+        <ModalNotice
+          category={noticeById?.category}
+          photoURL={noticeById?.photoURL}
+          name={noticeById?.name}
+          title={noticeById?.title}
+          birthday={noticeById?.birthday}
+          breed={noticeById?.breed}
+          location={noticeById?.location}
+          sex={noticeById?.sex}
+          comments={noticeById?.comments}
+        />
+      </Modal>
     </li>
   );
 };

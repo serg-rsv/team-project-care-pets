@@ -18,8 +18,11 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
   const { openModal, closeModal } = useModal();
   const [addAds] = useCreateNoticeMutation();
 
-  const createAds = async value => {
-    await setAds(value);
+  const [filter, setFilter] = useState({});
+
+  const createAds = async filter => {
+    // console.log(value);
+    await setFilter(filter);
   };
   return (
     <div className={s.box}>

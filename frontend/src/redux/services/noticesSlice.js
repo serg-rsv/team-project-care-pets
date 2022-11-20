@@ -24,7 +24,7 @@ const noticesApi = baseApi.injectEndpoints({
     }),
     getNoticeById: builder.query({
       query: noticeId => ({
-        url: `'/notices/${noticeId}'`,
+        url: `/notices/${noticeId}`,
         method: 'GET',
       }),
     }),
