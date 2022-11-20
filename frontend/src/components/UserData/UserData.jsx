@@ -1,75 +1,157 @@
-import { useState } from 'react';
-import Button from '../Button';
-import UserPhoto from '../../images/userDog.png';
+import { useState, useRef, useEffect } from 'react';
+import UserButton from '../UserButton';
 import LogOut from '../LogOut';
 import scss from './UserData.module.scss';
+import {
+  useCurrentQuery,
+  useAvatarsMutation,
+  useEditMutation,
+} from '../../redux/services/usersSlice';
 
-const UserData = props => {
-  const [name, setName] = useState('Anna');
-  const [email, setEmail] = useState('anna@gmail.com');
-  const [birthday, setBirthday] = useState('0000.00.00');
-  const [phone, setPhone] = useState('+380998877666');
-  const [city, setCity] = useState('Kyiv');
+const UserData = () => {
+  const [nameUser, setNameUser] = useState('');
+  const [emailUser, setEmailUser] = useState('');
+  const [birthdayUser, setBirthdayUser] = useState('1989-04-10');
+  const [phoneUser, setPhoneUser] = useState('');
+  const [locationUser, setLocationUser] = useState('');
+  const [photoUser, setPhotoUser] = useState('');
 
-  const [inputFieldActive, setInputFieldActive] = useState(false);
+  const { data } = useCurrentQuery();
+  const [avatars] = useAvatarsMutation();
+  const [edit] = useEditMutation();
 
-  const [changeIcon, setChangeIcon] = useState(false);
+  const nameRef = useRef(nameUser);
+  const emailRef = useRef(emailUser);
+  const birthdayRef = useRef(birthdayUser);
+  const phoneRef = useRef(phoneUser);
+  const locationRef = useRef(locationUser);
 
-  const [disabled, setDisabled] = useState(true);
+  useEffect(() => {
+    const getData = async () => {
+      const { user } = await data;
+      if (user) {
+        const { name, email, birthday, phone, location, photoURL } = user;
+        setNameUser(name);
+        setEmailUser(email);
+        setBirthdayUser(birthday.toString().slice(0, 10));
+        setPhoneUser(phone);
+        setLocationUser(location);
+        setPhotoUser(photoURL);
+        return;
+      }
+    };
+    getData();
+  }, [data]);
 
-  const changeBlur = () => {
-    setChangeIcon(false);
-    setInputFieldActive(false);
+  function isFieldChanged() {
+    const changed =
+      nameRef.current !== nameUser ||
+      emailRef.current !== emailUser ||
+      birthdayRef.current !== birthdayUser ||
+      phoneRef.current !== phoneUser ||
+      locationRef.current !== locationUser;
+
+    if (changed) {
+      nameRef.current = nameUser;
+      emailRef.current = emailUser;
+      birthdayRef.current = birthdayUser;
+      phoneRef.current = phoneUser;
+      locationRef.current = locationUser;
+    }
+
+    return changed;
+  }
+
+  const editField = async dataForEdit => {
+    await edit(dataForEdit);
   };
-  const btnClick = event => {
-    const button = event.target;
 
+  const disabledButton = (boolean = false) => {
+    document.querySelectorAll('button[data-active="false"]').forEach(el => {
+      el.disabled = boolean;
+    });
+  };
+
+  const btnClick = async event => {
+    const button = event.target;
     const input = event.target.parentNode.querySelector('input');
-    button.classList.toggle(scss.btnEditActive);
+
+    const status = button.dataset.active;
     input.classList.toggle(scss.inputFieldActive);
 
-    console.log('classList', button.classList);
+    if (status === 'false') {
+      button.dataset.active = 'true';
 
-    setDisabled(false);
+      disabledButton(true);
+
+      input.disabled = false;
+      input.focus();
+      return;
+    }
+    if (status === 'true') {
+      button.dataset.active = 'false';
+
+      disabledButton();
+
+      input.disabled = true;
+      if (isFieldChanged()) {
+        const obj = {};
+        obj[input.name] = input.value;
+        editField(obj);
+      }
+      return;
+    }
   };
 
-  const editPhoto = () => {
-    console.log('Edit photo'); // change user avatar
+  const editAvatar = async e => {
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+    const {
+      data: { photoURL },
+    } = await avatars(formData);
+    setPhotoUser(photoURL);
   };
 
   const handleChange = event => {
-    switch (event.target.id) {
+    const { name, value } = event.target;
+    switch (name) {
       case 'name':
-        setName(event.target.value);
+        setNameUser(value);
         break;
       case 'email':
-        setEmail(event.target.value);
+        setEmailUser(value);
         break;
       case 'birthday':
-        setBirthday(event.target.value);
+        setBirthdayUser(value);
         break;
       case 'phone':
-        setPhone(event.target.value);
+        setPhoneUser(value);
         break;
-      case 'city':
-        setCity(event.target.value);
+      case 'location':
+        setLocationUser(value);
         break;
 
       default:
         return;
     }
   };
+
   return (
     <div className={scss.wrapper}>
-      <img src={UserPhoto} alt="user avatar" className={scss.userImg} />
-      <Button
-        name="image"
-        type="file"
-        onClick={editPhoto}
-        className={scss.btnEditPhoto}
-      >
+      <div className={scss.userImageWrapper}>
+        {photoUser && (
+          <img src={photoUser} alt="user avatar" className={scss.userImg} />
+        )}
+      </div>
+      <label className={scss.btnEditPhoto}>
+        <input
+          type="file"
+          name="image"
+          style={{ display: 'none' }}
+          onChange={editAvatar}
+        />
         <p className={scss.editPhoto}>Edit photo</p>
-      </Button>
+      </label>
 
       <div className={scss.userInfo}>
         <ul className={scss.list}>
@@ -77,108 +159,85 @@ const UserData = props => {
             <label htmlFor="name" className={scss.listText}>
               Name:
             </label>
-            <input
-              className={
-                !inputFieldActive ? scss.inputField : scss.inputFieldActive
-              }
-              type="text"
-              onChange={handleChange}
-              onBlur={changeBlur}
-              value={name}
-              id="name"
-              name="name"
-              disabled={disabled}
-            />
-            <Button
-              type="submit"
-              className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
-              onClick={btnClick}
-            ></Button>
+            <div className={scss.inputWrapper}>
+              <input
+                className={scss.inputField}
+                type="text"
+                onChange={handleChange}
+                value={nameUser}
+                name="name"
+                disabled
+                autoComplete="off"
+                onSubmit={btnClick}
+              />
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
+            </div>
           </li>
           <li className={scss.listItem}>
             <label htmlFor="email" className={scss.listText}>
               Email:{' '}
             </label>
 
-            <input
-              className={
-                !inputFieldActive ? scss.inputField : scss.inputFieldActive
-              }
-              type="text"
-              id="email"
-              onChange={handleChange}
-              onBlur={changeBlur}
-              name={email}
-              value={email}
-              disabled={disabled}
-            />
-            <Button
-              className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
-              onClick={btnClick}
-            ></Button>
+            <div className={scss.inputWrapper}>
+              <input
+                className={scss.inputField}
+                type="text"
+                onChange={handleChange}
+                autoComplete="off"
+                name="email"
+                value={emailUser}
+                disabled
+              />
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
+            </div>
           </li>
           <li className={scss.listItem}>
             <label htmlFor="birthday" className={scss.listText}>
               Birthday:
             </label>
-            <input
-              className={
-                !inputFieldActive ? scss.inputField : scss.inputFieldActive
-              }
-              type="text"
-              id="birthday"
-              onChange={handleChange}
-              onBlur={changeBlur}
-              name={birthday}
-              value={birthday}
-              disabled={disabled}
-            />
-            <Button
-              className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
-              onClick={btnClick}
-            ></Button>
+            <div className={scss.inputWrapper}>
+              <input
+                className={scss.inputField}
+                type="date"
+                onChange={handleChange}
+                name="birthday"
+                value={birthdayUser}
+                disabled
+              />
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
+            </div>
           </li>
           <li className={scss.listItem}>
             <label htmlFor="phone" className={scss.listText}>
               Phone:
             </label>
-            <input
-              className={
-                !inputFieldActive ? scss.inputField : scss.inputFieldActive
-              }
-              type="text"
-              id="phone"
-              onChange={handleChange}
-              onBlur={changeBlur}
-              name={phone}
-              value={phone}
-              disabled={disabled}
-            />
-            <Button
-              className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
-              onClick={btnClick}
-            ></Button>
+            <div className={scss.inputWrapper}>
+              <input
+                className={scss.inputField}
+                type="text"
+                onChange={handleChange}
+                name="phone"
+                value={phoneUser}
+                disabled
+              />
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
+            </div>
           </li>
           <li className={scss.listItem}>
             <label htmlFor="city" className={scss.listText}>
               City:
             </label>
-            <input
-              className={
-                !inputFieldActive ? scss.inputField : scss.inputFieldActive
-              }
-              type="text"
-              id="city"
-              onChange={handleChange}
-              onBlur={changeBlur}
-              name={city}
-              value={city}
-              disabled={disabled}
-            />
-            <Button
-              className={!changeIcon ? scss.btnEdit : scss.btnEditActive}
-              onClick={btnClick}
-            ></Button>
+            <div className={scss.inputWrapper}>
+              <input
+                className={scss.inputField}
+                type="text"
+                onChange={handleChange}
+                name="location"
+                value={locationUser}
+                disabled
+              />
+              <UserButton dataActive={false} onClick={btnClick}></UserButton>
+            </div>
           </li>
         </ul>
         <LogOut />

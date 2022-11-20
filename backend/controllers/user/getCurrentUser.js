@@ -18,9 +18,7 @@ const getCurrentUser = asyncHandler(async (req, res) => {
   res.json({
     status: 'success',
     code: 200,
-    data: {
-      user,
-    },
+    user,
   });
 });
 

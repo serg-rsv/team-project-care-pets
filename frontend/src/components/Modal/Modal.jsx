@@ -31,7 +31,10 @@ const Modal = ({
       {showModal && chageMarker === marker && (
         <Portal>
           <div className={style.modalOverlay} onClick={closeModal}>
-            <div className={style.modalWindow}>
+            <div
+              className={style.modalWindow}
+              onClick={e => e.stopPropagation()}
+            >
               <div className={style.modalHeder}>
                 {headerContent}
                 <Button onClick={closeModal} className={style.closeButton}>

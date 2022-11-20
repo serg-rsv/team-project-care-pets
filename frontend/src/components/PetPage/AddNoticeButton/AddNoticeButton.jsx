@@ -1,9 +1,13 @@
 import Button from '../../Button';
 import s from './AddNoticeButton.module.scss';
+import { useModal } from '../../../hooks/useModal';
 
 const AddNoticeButton = () => {
+  const { openModal, closeModal } = useModal();
   return (
-    <div className={s.addBox}>
+    <div onClick={() => {
+          openModal('addpet');
+        }} className={s.addBox}>
       <p>Add pet</p>
       <Button className={s.addButton}></Button>
     </div>
