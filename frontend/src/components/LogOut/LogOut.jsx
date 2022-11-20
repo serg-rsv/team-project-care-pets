@@ -4,9 +4,7 @@ import { useLogoutMutation } from '../../redux/services/usersSlice';
 import Button from '../Button/Button';
 import scss from './LogOut.module.scss';
 
-import { noticesApi } from '../../redux/services/noticesSlice';
-import { petsApi } from '../../redux/services/petsSlice';
-import { usersApi } from '../../redux/services/usersSlice';
+import { baseApi } from '../../redux/services/baseApi';
 
 import { useModal } from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
@@ -20,9 +18,7 @@ const LogOut = () => {
   const logOut = async () => {
     await logout();
     dispatch(unsetToken());
-    dispatch(noticesApi.util.resetApiState());
-    dispatch(petsApi.util.resetApiState());
-    dispatch(usersApi.util.resetApiState());
+    dispatch(baseApi.util.resetApiState());
   };
   return (
     <>

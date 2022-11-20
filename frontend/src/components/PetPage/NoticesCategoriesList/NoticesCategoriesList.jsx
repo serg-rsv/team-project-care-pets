@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+
 import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import AddNoticeButton from '../AddNoticeButton';
@@ -9,19 +10,16 @@ import { useCreateNoticeMutation } from '../../../redux/services/noticesSlice';
 import { getAge } from '../../../helpers/getAge';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
-import ModalNotAuthorized from '../../ModalNotAuthorized'
+import ModalNotAuthorized from '../../ModalNotAuthorized';
 
-const NoticesCategoriesList = ({ pets, addFavorites, removeAds, isActiv }) => {
+const NoticesCategoriesList = ({ pets, isActive }) => {
   const [ads, setAds] = useState({});
-  console.log(ads);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
   const [addAds] = useCreateNoticeMutation();
-  
-  const createAds = async (value) => {
-    // console.log(value);
+
+  const createAds = async value => {
     await setAds(value);
-    
   };
   return (
     <div className={s.box}>
@@ -48,9 +46,7 @@ const NoticesCategoriesList = ({ pets, addFavorites, removeAds, isActiv }) => {
               age={getAge(birthday)}
               price={`${price}$`}
               page={category}
-              addFavorites={addFavorites}
-              removeAds={removeAds}
-              isActiv={isActiv}
+              isActive={isActive}
               isFavorite={isFavorite}
             />
           )

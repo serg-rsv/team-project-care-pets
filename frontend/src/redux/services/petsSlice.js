@@ -1,21 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-export const petsApi = createApi({
-  reducerPath: 'pets',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://sk-care-pets.herokuapp.com/api/v1',
-    // baseUrl: 'http://localhost:5000/api/v1',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
+import { baseApi } from './baseApi';
 
-      // If we have a token set in state, let's assume that we should be passing it.
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-
-      return headers;
-    },
-  }),
-  tagTypes: ['Pets'],
+// Define endpoints for pets
+const petsApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     fetchPets: builder.query({
       query: () => ({ url: '/pets' }),

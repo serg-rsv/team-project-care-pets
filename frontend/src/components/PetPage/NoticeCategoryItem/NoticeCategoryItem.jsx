@@ -1,3 +1,8 @@
+import {
+  useAddFavoritesByIdMutation,
+  useDeleteFavoritesByIdMutation,
+  useDeleteNoticeMutation,
+} from '../../../redux/services/noticesSlice';
 import Button from '../../Button';
 
 import s from './NoticeCategoryItem.module.scss';
@@ -11,11 +16,12 @@ const NoticeCategoryItem = ({
   age,
   price,
   page,
-  addFavorites,
-  removeAds,
-  isActiv,
+  isActive,
   isFavorite,
 }) => {
+  const [deleteNotice] = useDeleteNoticeMutation();
+  const [addFavorite] = useAddFavoritesByIdMutation();
+  const [deleteFavorite] = useDeleteFavoritesByIdMutation();
   return (
     <li className={s.animalListItem}>
       <div className={s.signature}>
@@ -47,12 +53,12 @@ const NoticeCategoryItem = ({
       )}
       <Button className={s.button}>Learn more</Button>
       <Button
-        onClick={() => addFavorites(_id)}
-        className={`${s.like} ${isFavorite ? s.isActivLike : ''}`}
+        onClick={() => (isFavorite ? deleteFavorite(_id) : addFavorite(_id))}
+        className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
 
-      {isActiv && (
-        <Button onClick={() => removeAds(_id)} className={s.remove}></Button>
+      {isActive && (
+        <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
     </li>
   );

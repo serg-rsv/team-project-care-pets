@@ -1,26 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseApi } from './baseApi';
 
-export const noticesApi = createApi({
-  reducerPath: 'notices',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://sk-care-pets.herokuapp.com/api/v1',
-    // baseUrl: 'http://localhost:5000/api/v1',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-
-      // If we have a token set in state, let's assume that we should be passing it.
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-
-      return headers;
-    },
-  }),
-  tagTypes: ['Notices'],
+// Define endpoints for notices
+const noticesApi = baseApi.injectEndpoints({
   endpoints: builder => ({
     fetchNotices: builder.query({
       query: () => ({ url: '/notices' }),
-      providesTags: ['Notices'],
+      // providesTags: ['Notices'],
     }),
     deleteNotice: builder.mutation({
       query: noticeId => ({
@@ -30,28 +15,10 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notices'],
     }),
     createNotice: builder.mutation({
-      query: ({
-        namePet,
-        dateOfBirth,
-        breed,
-        addPhoto,
-        comments,
-        theSex,
-        price,
-        location,
-      }) => ({
+      query: body => ({
         url: '/notices',
         method: 'POST',
-        body: {
-          name: namePet,
-          birthday: dateOfBirth,
-          breed: breed,
-          sex: theSex,
-          comments: comments,
-          photoUrl: addPhoto,
-          price: price,
-          location: location,
-        },
+        body,
       }),
       invalidatesTags: ['Notices'],
     }),
@@ -66,28 +33,28 @@ export const noticesApi = createApi({
         url: '/notices/personal',
         method: 'GET',
       }),
-      providesTags: ['Notices'],
+      // providesTags: ['Notices'],
     }),
     getFavoritesNotice: builder.query({
       query: () => ({
         url: '/notices/favorites',
         method: 'GET',
       }),
-      providesTags: ['Notices'],
+      // providesTags: ['Notices'],
     }),
     addFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'GET',
       }),
-      invalidatesTags: ['Notices'],
+      invalidatesTags: ['User'],
     }),
     deleteFavoritesById: builder.mutation({
       query: noticeId => ({
         url: `/notices/favorites/${noticeId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Notices'],
+      invalidatesTags: ['User'],
     }),
     getNoticesBycategory: builder.query({
       query: category => ({
