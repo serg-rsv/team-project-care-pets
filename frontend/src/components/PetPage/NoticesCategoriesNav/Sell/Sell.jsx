@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import {
   useGetNoticesBycategoryQuery,
   useAddFavoritesByIdMutation,
@@ -12,6 +13,8 @@ import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const Sell = () => {
   const isActivDelete = false;
+  // const [isLogin, setIsLogin] = useState(false);
+
   const { data, isSuccess } = useGetNoticesBycategoryQuery('sell');
   const pets = data?.data;
   const isLoggedIn = useSelector(selectIsLoggedIn);
