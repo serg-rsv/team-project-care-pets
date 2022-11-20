@@ -25,17 +25,7 @@ const register = asyncHandler(async (req, res) => {
   res.status(201).json({
     code: 201,
     status: 'success',
-    data: {
-      token,
-      name: newUser.name,
-      email: newUser.email,
-      phone: newUser.phone,
-      city: newUser.city,
-      birthday: newUser.birthday,
-      avatarURL: newUser.avatarURL,
-      pets: newUser.pets,
-      favorites: newUser.favorites,
-    },
+    token,
   });
 });
 
