@@ -1,1 +1,1 @@
-export { default } from './ModalAddPet.jsx';
+export { default } from './ModalAddPet';
