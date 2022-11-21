@@ -28,9 +28,9 @@ const UserData = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { user } = await data;
-      if (user) {
-        const { name, email, birthday, phone, location, photoURL } = user;
+  
+      if (data?.user){
+        const { name, email, birthday, phone, location, photoURL } = data.user;
         setNameUser(name);
         setEmailUser(email);
         setBirthdayUser(birthday.toString().slice(0, 10));
