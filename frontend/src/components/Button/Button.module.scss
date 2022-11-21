@@ -8,4 +8,7 @@
     background-color: var(--accent-cl);
     color: var(--white-bg);
   }
+  &:focus {
+    outline: var(--accent-cl);
+  }
 }

@@ -8,16 +8,10 @@ const petsApi = baseApi.injectEndpoints({
       providesTags: ['Pets'],
     }),
     createPet: builder.mutation({
-      query: ({ namePet, dateOfBirth, breed, addPhoto, comments }) => ({
+      query: body => ({
         url: '/pets',
         method: 'POST',
-        body: {
-          name: namePet,
-          birthday: dateOfBirth,
-          breed: breed,
-          comments: comments,
-          photoUrl: addPhoto,
-        },
+        body,
       }),
       invalidatesTags: ['Pets'],
     }),

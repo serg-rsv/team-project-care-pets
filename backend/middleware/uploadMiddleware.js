@@ -2,8 +2,6 @@ const fs = require('fs/promises');
 const { cloudUpload } = require('../services');
 
 const uploadMiddleware = async (req, res, next) => {
-  console.log(req.file);
-
   if (!req.file) {
     delete req.body.image;
     req.body.photoURL =

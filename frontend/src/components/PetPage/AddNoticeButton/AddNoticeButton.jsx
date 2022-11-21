@@ -5,9 +5,12 @@ import { useModal } from '../../../hooks/useModal';
 const AddNoticeButton = () => {
   const { openModal, closeModal } = useModal();
   return (
-    <div onClick={() => {
-          openModal('addpet');
-        }} className={s.addBox}>
+    <div
+      onClick={() => {
+        openModal('addpet');
+      }}
+      className={s.addBox}
+    >
       <p>Add pet</p>
       <Button className={s.addButton}></Button>
     </div>

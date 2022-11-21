@@ -7,19 +7,24 @@ import maleIconMob from '../../images/addNotice/male-icon-mob.png';
 import femaleIconMob from '../../images/addNotice/female-icon-mob.png';
 import maleIcon from '../../images/addNotice/male-icon.png';
 import femaleIcon from '../../images/addNotice/female-icon.png';
+import { useCreateNoticeMutation } from '../../redux/services/noticesSlice';
+import { formDataAppender } from '../../helpers/formDataAppender';
 
-const ModalAddNotice = ({ createAds, closeButton }) => {
+const ModalAddNotice = ({ closeButton }) => {
+  const [createNotice, { isLoading }] = useCreateNoticeMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
-  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const moveNextRegistration = () => {
+    console.log(formik.values.category);
     isFirstRegisterStep
       ? setIsFirstRegisterStep(false)
       : setIsFirstRegisterStep(true);
   };
 
-  const onimageChange = e => {
+  const onImageChange = e => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]));
+      setImagePreview(URL.createObjectURL(e.target.files[0]));
+      formik.setFieldValue('image', e.currentTarget.files[0]);
     }
   };
 
@@ -28,100 +33,64 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
       category: '',
       title: '',
       name: '',
-      birth: '',
+      birthday: '',
       breed: '',
       sex: '',
       location: '',
-      price: '',
+      price: 0,
       image: '',
       comments: '',
     },
     validationSchema: Yup.object().shape({
       category: Yup.string().required('Please choose one'),
       title: Yup.string()
-        .required('Please enter')
+        .required('Please enter title of your notice')
         .matches(/^[aA-zZ\s]+$/, 'Title contain only letters')
         .min(2, 'Title must be at least 2 characters')
         .max(48, 'Title must not exceed 48 characters'),
       name: Yup.string()
         .trim()
+        .required('Please enter name of your pet')
         .matches(/^[aA-zZ\s]+$/, 'Name contain only letters')
-        .min(2, 'Title must be at least 2 characters')
-        .max(16, 'Title must not exceed 16 characters'),
-      birth: Yup.string().matches(
-        /^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/,
-        'Invalid date (dd.mm.yyyy)'
-      ),
+        .min(2, 'Name must be at least 2 characters')
+        .max(16, 'Name must not exceed 16 characters'),
+      birthday: Yup.date().required('Please enter date of pet birth'),
       breed: Yup.string()
+        .required('Please enter breed of your pet')
         .matches(/^[aA-zZ\s]+$/, 'only letters')
-        .min(2, 'Title must be at least 2 characters')
-        .max(24, 'Title must not exceed 24 characters'),
-      location: Yup.string().matches(
-        /([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/,
-        'Enter by type: City, Region'
-      ),
+        .min(2, 'Breed must be at least 2 characters')
+        .max(24, 'Breed must not exceed 24 characters'),
+      location: Yup.string()
+        .matches(
+          /([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/,
+          'Enter by type: City, Region'
+        )
+        .required('Please enter location of your location'),
       sex: Yup.string().required('Please choose one'),
-      price: Yup.string().when('filter', {
-        is: filter => filter === 'sell',
+      price: Yup.string().when('category', {
+        is: category => category === 'sell',
         then: Yup.string()
           .required('Please enter')
           .matches(/^[1-9][0-9]*$/, 'Invalid price'),
       }),
       comments: Yup.string()
         .required('Please enter')
-        .min(8, 'Title must be at least 8 characters')
-        .max(120, 'Title must not exceed 120 characters'),
+        .min(8, 'Comment must be at least 8 characters')
+        .max(120, 'Comment must not exceed 120 characters'),
     }),
-    onSubmit: ({
-      category,
-      title,
-      name,
-      birth: birthday,
-      breed,
-      sex,
-      location,
-      image: photoURL,
-      comments,
-    }) => {
-      console.log({
-        category,
-        title,
-        name,
-        birthday,
-        breed,
-        sex,
-        location,
-        photoURL,
-        comments,
-      });
-      alert(
-        JSON.stringify(
-          {
-            category,
-            title,
-            name,
-            birthday,
-            breed,
-            sex,
-            location,
-            photoURL,
-            comments,
-          },
-          null,
-          2
-        )
-      );
-      // console.log('submit:', values)
+    onSubmit: async () => {
+      await createNotice(formDataAppender(formik.values));
       formik.resetForm();
+      closeButton();
     },
   });
 
   return (
     <div className={css.noticeFormBlock}>
-      <h2 className={css.noticeFormTitle}>Add pet</h2>
+      <h2 className={css.noticeFormTitle}>Add pet notice</h2>
       <p className={css.noticeFormText}>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur{' '}
+        Please add your pet notice to our database. It will help many people to
+        find a friend
       </p>
       <form className={css.noticeForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ? (
@@ -133,10 +102,10 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
                   id="LostFound"
                   name="category"
                   type="radio"
-                  value="lost/found"
+                  value="lost-found"
                   onChange={formik.handleChange}
                 />
-                <label htmlFor="LostFound" className={css.fiterLostFound}>
+                <label htmlFor="LostFound" className={css.filterLostFound}>
                   lost/found
                 </label>
 
@@ -145,11 +114,10 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
                   id="inGoodHands"
                   name="category"
                   type="radio"
-                  value="In good hands"
+                  value="for-free"
                   onChange={formik.handleChange}
                 />
-                <label htmlFor="inGoodHands" className={css.fiterInGoodHands}>
-                  {' '}
+                <label htmlFor="inGoodHands" className={css.filterInGoodHands}>
                   In good hands
                 </label>
 
@@ -161,21 +129,9 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
                   value="sell"
                   onChange={formik.handleChange}
                 />
-                <label className={css.fiterSell} htmlFor="sell">
+                <label className={css.filterSell} htmlFor="sell">
                   sell
                 </label>
-
-                {/* <input
-                  className={css.radioInputFilter}
-                  id="sell"
-                  name="filter"
-                  type="radio"
-                  value="sell"
-                  onChange={formik.handleChange}
-                />
-                <label className={css.fiterSell} htmlFor="sell">
-                  sell
-                </label> */}
               </div>
             </fieldset>
             {formik.touched.category && formik.errors.category ? (
@@ -214,20 +170,19 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
               placeholder="Type name pet"
             />
 
-            <label className={css.noticeInputTitle} htmlFor="birthPet">
-              Date of birth
+            <label className={css.noticeInputTitle} htmlFor="birthdayPet">
+              Date of birthday
             </label>
-            {formik.values.birth !== '' && formik.errors.birth ? (
-              <p className={css.inputError}>{formik.errors.birth}</p>
+            {formik.values.birthday !== '' && formik.errors.birthday ? (
+              <p className={css.inputError}>{formik.errors.birthday}</p>
             ) : null}
             <input
-              className={css.noticeFormInput}
-              id="birthPet"
-              name="birth"
-              type="text"
+              className={css.noticeFormInputDate}
+              id="birthdayPet"
+              name="birthday"
+              type="date"
               onChange={formik.handleChange}
-              value={formik.values.birth}
-              placeholder="Type name pet"
+              value={formik.values.birthday}
             />
 
             <label className={css.noticeInputTitle} htmlFor="breedPet">
@@ -326,7 +281,7 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
               placeholder="Location"
             />
 
-            {formik.values.filter === 'sell' ? (
+            {formik.values.category === 'sell' ? (
               <>
                 <label htmlFor="pricePet" className={css.noticeInputTitle}>
                   Price<span className={css.reqiuredFieldForm}>*</span>:
@@ -374,13 +329,13 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
                     type="file"
                     onChange={e => {
                       formik.handleChange(e);
-                      onimageChange(e);
+                      onImageChange(e);
                     }}
                   />
                 </label>
               ) : (
                 <div className={css.addedImg}>
-                  <img alt="pet" src={image} />
+                  <img alt="pet" src={imagePreview} />
                 </div>
               )}
             </fieldset>
@@ -405,13 +360,13 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
         {isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Next"
-              onClick={moveNextRegistration}
+              children="Cancel"
+              onClick={closeButton}
               className={css.btnAccent}
             />
             <Button
-              children="Cancel"
-              onClick={closeButton}
+              children="Next"
+              onClick={moveNextRegistration}
               className={css.btnSec}
             />
           </div>
@@ -420,17 +375,13 @@ const ModalAddNotice = ({ createAds, closeButton }) => {
         {!isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Done"
+              children="Back"
               className={css.btnAccent}
-              buttonType="submit"
-              onClick={() => {
-                formik.onSubmit();
-                closeButton();
-              }}
+              onClick={moveNextRegistration}
             />
             <Button
-              children="Back"
-              onClick={moveNextRegistration}
+              children="Done"
+              buttonType="submit"
               className={css.btnSec}
             />
           </div>

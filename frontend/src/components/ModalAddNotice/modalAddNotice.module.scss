@@ -1,324 +1,342 @@
 @import '../../scss//utils/mixins';
 
-.noticeFormBlock{
-    margin: 0 auto;
-    width: 280px;
-    display: grid;
-    padding: 40px 20px;
-    margin: -20px;
+.noticeFormBlock {
+  margin: 0 auto;
+  width: 280px;
+  display: grid;
+  padding: 40px 20px;
+  margin: -20px;
 
-    background-color: var(--white-bg);
-    border-radius: var(--border-radius);
-    @include mq(tablet){
-        width: 608px;
-        padding: 40px 80px;
-    }
+  background-color: var(--white-bg);
+  border-radius: var(--border-radius);
+  @include mq(tablet) {
+    width: 608px;
+    padding: 40px 80px;
+  }
 }
 
 .noticeForm {
-    width: 240px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @include mq(tablet) {
+    width: 488px;
+  }
+}
+
+.noticeFormTitle {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--main-text-cl);
+  @include fonts(24px, 700, 1.3, 0);
+
+  @include mq(tablet) {
+    @include fonts(36px, 600, 1.3, 0);
+  }
+}
+
+.noticeFormText {
+  margin-bottom: 20px;
+  text-align: center;
+  justify-content: center;
+  @include fonts(16px, 500, 1.3, -0.01em);
+  color: var(--black-text-cl);
+  @include mq(tablet) {
+    font-size: 20px;
+    margin-bottom: 28px;
+  }
+}
+
+.noticeInputTitle {
+  margin-bottom: 8px;
+  color: var(--black-text-cl);
+  @include fonts(18px, 500, 1.2, 0);
+  @include mq(tablet) {
+    margin-bottom: 12px;
+    font-size: 24px;
+  }
+  & ~ textarea {
+    resize: none;
     @include mq(tablet) {
-            width: 488px;
-        }
-}
-
-.noticeFormTitle{
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--main-text-cl);
-    @include fonts(24px, 700, 1.3, 0);
-    
-    @include mq(tablet) {
-        @include fonts(36px, 600, 1.3, 0);
+      border-radius: 20px;
+      height: 113px;
     }
-       
+  }
 }
 
-.noticeFormText{
-    margin-bottom: 20px;
-    text-align: center;
-    justify-content: center;
-@include fonts(16px, 500, 1.3, -0.01em);
-color: var(--black-text-cl);
-@include mq(tablet){
-font-size: 20px;
-margin-bottom: 28px;
-}
-}
+.noticeFormInput {
+  outline: none;
+  box-sizing: border-box;
+  justify-self: center;
+  width: 240px;
+  height: 40px;
+  padding-left: 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
 
+  background-color: var(--main-bg-cl);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: var(--border-radius);
 
-.noticeInputTitle{
-    margin-bottom: 8px;
-    color: var(--black-text-cl);
-    @include fonts(18px, 500, 1.2, 0);
-    @include mq(tablet){
-        margin-bottom: 12px;
-        font-size: 24px;
-    }
-    &~textarea{
-        resize: none;
-        @include mq(tablet){
-            border-radius: 20px;
-            height: 113px;
-        }
-    }
+  @include mq(tablet) {
+    font-size: 16px;
+    width: 488px;
+    max-width: 488px;
+    height: 48px;
+    padding-left: 16px;
+    margin-bottom: 28px;
+  }
 }
 
-.noticeFormInput{
-    outline: none;
-    box-sizing: border-box;
-    justify-self: center;
-    width: 240px;
-    height: 40px;
-    padding-left: 14px;
-    margin-bottom: 16px;
-    font-size: 14px;
-    
-    background-color: var(--main-bg-cl);
-    border: 1px solid rgba(245, 146, 86, 0.5);
-    border-radius: var(--border-radius);
-    
-    @include mq(tablet) {
-        font-size: 16px;
-        width: 488px;
-        max-width: 488px;
-        height: 48px;
-        padding-left: 16px;
-        margin-bottom: 28px;
-    }
-    
-    // @include mq(desktop) {
-    //     width: 458px;
-    // }
+.noticeFormInputDate[type='date'] {
+  @extend .noticeFormInput;
+  position: relative;
+  display: flex;
+  justify-content: start;
+  // width: 240px;
+
+  &::-webkit-calendar-picker-indicator {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
 }
 
-.reqiuredFieldForm{
-    color: var(--accent-cl);
+.reqiuredFieldForm {
+  color: var(--accent-cl);
 }
 
 //--------------------radio input
 //styles for <fieldset>
 .inputWrapper {
-    box-sizing: border-box;
-    border: none;
-    padding: 0;
-    margin: 0 0 32px 0;
-    @include mq(tablet){
-        margin-bottom: 40px;
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  @include mq(tablet) {
+    margin-bottom: 40px;
+  }
+  & .noticeSexPetTitle {
+    margin-bottom: 18px;
+    color: var(--black-text-cl);
+    @include fonts(18px, 500, 1.2, 0);
+    @include mq(tablet) {
+      font-size: 24px;
+      margin-bottom: 32px;
     }
-    & .noticeSexPetTitle {
-        margin-bottom: 18px;
-        color: var(--black-text-cl);
-        @include fonts(18px, 500, 1.2, 0);
-        @include mq(tablet){
-            font-size: 24px;
-            margin-bottom: 32px;
-        }
-    }
+  }
 }
 
-%radioInput{
-opacity: 0;
-position: absolute;
+%radioInput {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
+
 .radioInputFilter {
-    @extend %radioInput;
-    &:checked+label {
-        color: var(--white-text-cl);
-        background-color: var(--accent-cl);
-    }
+  @extend %radioInput;
+  cursor: pointer;
+  &:checked + label {
+    color: var(--white-text-cl);
+    background-color: var(--accent-cl);
+  }
 }
-  
 
 //***filter
-%filterInput{
-    display: inline-block;
-        padding: 8px 23px;
-        border: 2px solid var(--accent-cl);
-        border-radius: var(--border-radius);
-        color: var(--black-text-cl);
-        @include fonts (14px, 500, 1.3, 0.04em);
-        @include mq(tablet){
-            padding: 10px 30px;
-            font-size: 20px;
-        }
+%filterInput {
+  display: inline-block;
+  padding: 8px 23px;
+  border: 2px solid var(--accent-cl);
+  border-radius: var(--border-radius);
+  color: var(--black-text-cl);
+  @include fonts(14px, 500, 1.3, 0.04em);
+  @include mq(tablet) {
+    padding: 10px 30px;
+    font-size: 20px;
+  }
 }
 
-.fiterLostFound{
-    @extend %filterInput;
-   margin-bottom: 8px;
-   @include mq(tablet){
+.filterLostFound {
+  cursor: pointer;
+  @extend %filterInput;
+  margin-bottom: 8px;
+  @include mq(tablet) {
     margin-bottom: 0;
-    margin-right:10px; 
-   }
+    margin-right: 10px;
+  }
 }
 
-.fiterInGoodHands{
-    @extend %filterInput;
-    //  margin-right: 8px;
+.filterInGoodHands {
+  cursor: pointer;
+  @extend %filterInput;
+  //  margin-right: 8px;
 }
 
-.fiterSell{
-    @extend %filterInput;
-    margin-left: 8px;
-    @include mq(tablet){
-        margin-left: 0;
-        margin-top: 16px;
-    }
+.filterSell {
+  cursor: pointer;
+  @extend %filterInput;
+  margin-left: 8px;
+  @include mq(tablet) {
+    margin-left: 0;
+    margin-top: 16px;
+  }
 }
-
 
 //***sexPet
 .radioInputSex {
-    @extend %radioInput;
+  @extend %radioInput;
 
-    &:checked+.noticeInputRadioTitle {
-        color: var(--accent-cl)
-    }
+  &:checked + .noticeInputRadioTitle {
+    color: var(--accent-cl);
+  }
 }
 
-.noticeInputRadioTitle{
-    @include fonts(18px, 500, 1.3, 0);
-    color: var(--black-text-cl);
-    &>.noticeFormInputRadio:checked{
-        color: var(--accent-cl);
-    }
+.noticeInputRadioTitle {
+  @include fonts(18px, 500, 1.3, 0);
+  color: var(--black-text-cl);
+  & > .noticeFormInputRadio:checked {
+    color: var(--accent-cl);
+  }
 }
 
-.sexPetCheckWrapper{
-    display: flex;
-    align-items: baseline;
-    &>div{
-        margin-right: 39px;
-        @include mq(tablet){
-            margin-right: 83px;
-        }
+.sexPetCheckWrapper {
+  display: flex;
+  align-items: baseline;
+  & > div {
+    margin-right: 39px;
+    @include mq(tablet) {
+      margin-right: 83px;
     }
+  }
 }
 
-
-.sexPetIconMale{
-    margin-bottom: 14px;
-    @include mq(tablet){
-        margin-bottom: 23px;
-    }
+.sexPetIconMale {
+  margin-bottom: 14px;
+  @include mq(tablet) {
+    margin-bottom: 23px;
+  }
 }
 
 .sexPetIconFemale {
-    margin-bottom: 12px;
-    @include mq(tablet) {
-            margin-bottom: 20px;
-        }
+  margin-bottom: 12px;
+  @include mq(tablet) {
+    margin-bottom: 20px;
+  }
 }
 
 //============end radio input block
 
-
-//-------------img input 
-.imgPetInput{
-    visibility: hidden;
-    width: 0;
-    height: 0;
+//-------------img input
+.imgPetInput {
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }
 
 //<label>
-.imgPetIcon{
-    cursor: pointer;
-    box-sizing: border-box;
-    display: block;
-    width: 116px;
-    height: 116px;
-    padding: 33px;
-    border-radius: 20px;
-    background-color: var(--main-bg-cl);
-    @include mq(tablet){
-        width: 140px;
-        height: 140px;
-        padding: 45px;
-    }
+.imgPetIcon {
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  width: 116px;
+  height: 116px;
+  padding: 33px;
+  border-radius: 20px;
+  background-color: var(--main-bg-cl);
+  @include mq(tablet) {
+    width: 140px;
+    height: 140px;
+    padding: 45px;
+  }
 }
 
-.addedImg{
-    overflow: hidden;
-    width: 116px;
-    height: 116px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    
-    @include mq(tablet){
-        width: 140px;
-        height: 140px;
-    }
-    &>img{
-        object-fit: cover;
-        min-width: 100%;
-        min-height: 100%;
-    }
+.addedImg {
+  overflow: hidden;
+  width: 116px;
+  height: 116px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+
+  @include mq(tablet) {
+    width: 140px;
+    height: 140px;
+  }
+  & > img {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
 }
 //=============end img input
 
-.noticeFormNextBtn{
-    margin-top: calc(40px - 16px);
+.noticeFormNextBtn {
+  margin-top: calc(40px - 16px);
 }
 
 .noticeFormCancelBtn {
-    margin-top: 12px;
+  margin-top: 12px;
 }
-
 
 //------------------input errors
-.inputError{@include fonts(10px, 500, );
-    color: red;}
-
-
+.inputError {
+  @include fonts(10px, 500);
+  color: red;
+}
 
 .btnBlock {
-    margin: calc(40px - 16px) auto 0 auto;
-    display: grid;
-    grid-gap: 12px;
+  margin: calc(40px - 16px) auto 0 auto;
+  display: grid;
+  grid-gap: 12px;
 
-    @include mq(tablet) {
-        grid-gap: 12px;
-        grid-template: 44px / 180px 10px 180px;
-    }
+  @include mq(tablet) {
+    grid-gap: 12px;
+    grid-template: 44px / 180px 10px 180px;
+  }
 }
-        
+
 .btnAccent {
-padding: 9px 101px;
-color: var(--white-bg);
-background-color: var(--accent-cl);
-    
-@include mq(tablet) {
+  padding: 9px 101px;
+  @include mq(tablet) {
     @include fonts(20px, 500, 1.3, 0.04em);
-    grid-column: 1;
-    justify-self: end;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 8.5px 65px;
     max-width: 180px;
     height: 44px;
-    }
-    
-    &:hover,
-    &:focus {
-        background-color: var(--accent-cl-active);
-        border-color: var(--accent-cl-active);
-    }
+  }
+  &:hover,
+  &:focus {
+    background-color: var(--accent-cl-active);
+    border-color: var(--accent-cl-active);
+  }
 }
-    
+
 .btnSec {
-    padding: 9px 92px;
-    
-    @include mq(tablet) {
-        @include fonts(20px, 500, 1.3, 0.04em);
-        grid-column: 3;
-        padding: 8px 50px;
-        max-width: 180px;
-        height: 44px;
-    }
+  padding: 9px 92px;
+  color: var(--white-bg);
+  background-color: var(--accent-cl);
+  @include mq(tablet) {
+    @include fonts(20px, 500, 1.3, 0.04em);
+    grid-column: 3;
+    padding: 8px 50px;
+    max-width: 180px;
+    height: 44px;
+  }
+  &:hover,
+  &:focus {
+    background-color: var(--accent-cl-active);
+    border-color: var(--accent-cl-active);
+  }
 }
-    
-        

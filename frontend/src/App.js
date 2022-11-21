@@ -46,7 +46,7 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
           </Route>
 
-          <Route path="notices" element={<NoticesPage />}>
+          <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<Sell />} />
             <Route path="sell" element={<Sell />} />
             <Route path="lost-found" element={<LostFound />} />

@@ -96,7 +96,9 @@ const NoticeCategoryItem = ({
       <div className={s.signature}>
         <p>{page}</p>
       </div>
-      <img className={s.animalListImg} src={link} alt={title} />
+      <div className={s.imageWrapper}>
+        <img className={s.animalListImg} src={link} alt={title} />
+      </div>
       <h3 className={s.animalListTitle}>{title}</h3>
       <div className={s.animalListBoxText}>
         <p className={s.breed}>Breed:</p>
