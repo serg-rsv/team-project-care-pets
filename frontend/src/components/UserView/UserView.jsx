@@ -4,7 +4,8 @@ import Button from '../Button';
 import scss from './UserView.module.scss';
 
 import { useModal } from '../../hooks/useModal';
-import Modal from '../Modal/Modal';
+import Modal from '../Modal';
+import ModalAddPet from '../ModalAddPet';
 
 const UserView = () => {
   const { openModal, closeModal } = useModal();
@@ -26,14 +27,8 @@ const UserView = () => {
         ></Button>
       </div>
       <PetsList />
-      <Modal
-        marker="addpet"
-        leftButtonContent="жми сюда"
-        leftButtonClick={closeModal}
-        rightButtonContent="добавить пета"
-        rightButtonClick={addPet}
-      >
-        кнопка добавления петов
+      <Modal marker="addpet" closeButton={true}>
+        <ModalAddPet onCancelButtonClick={closeModal} />
       </Modal>
     </section>
   );

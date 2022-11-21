@@ -26,11 +26,15 @@ const LogOut = () => {
         <p className={scss.logOutText}>Log Out</p>
       </Button>
       <Modal
-        leftButtonClick={closeModal}
-        rightButtonClick={logOut}
+        leftButton={true}
+        leftButtonContent="yes"
+        leftButtonClick={logOut}
+        rightButton={true}
+        rightButtonContent="no"
+        rightButtonClick={closeModal}
         marker="logout"
       >
-        Do you really want to quit?
+        <p className={scss.logOutModalText}>Do you really want to quit?</p>
       </Modal>
     </>
   );
