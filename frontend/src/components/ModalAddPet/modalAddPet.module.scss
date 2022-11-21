@@ -75,8 +75,6 @@
 .addPetFormInputDate[type='date'] {
   @extend .addPetFormInput;
   position: relative;
-  display: flex;
-  justify-content: start;
 
   &::-webkit-calendar-picker-indicator {
     display: block;
