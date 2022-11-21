@@ -11,17 +11,18 @@ const {
   useCreateNoticeMutation,
 } = require('../../redux/services/noticesSlice');
 
-const ModalAddNotice = ({ createAds }) => {
+const ModalAddNotice = ({ closeButton }) => {
   const [createNotice, { isLoading }] = useCreateNoticeMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
   const moveNextRegistration = () => {
+    console.log(formik.values.category);
     isFirstRegisterStep
       ? setIsFirstRegisterStep(false)
       : setIsFirstRegisterStep(true);
   };
 
-  const onimageChange = e => {
+  const onImageChange = e => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       setImagePreview(URL.createObjectURL(e.target.files[0]));
       formik.setFieldValue('image', e.currentTarget.files[0]);
@@ -33,11 +34,11 @@ const ModalAddNotice = ({ createAds }) => {
       category: '',
       title: '',
       name: '',
-      birth: '',
+      birthday: '',
       breed: '',
       sex: '',
       location: '',
-      price: '',
+      price: 0,
       image: '',
       comments: '',
     },
@@ -53,7 +54,7 @@ const ModalAddNotice = ({ createAds }) => {
         .matches(/^[aA-zZ\s]+$/, 'Name contain only letters')
         .min(2, 'Title must be at least 2 characters')
         .max(16, 'Title must not exceed 16 characters'),
-      birth: Yup.string().matches(
+      birthday: Yup.string().matches(
         /^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/,
         'Invalid date (dd.mm.yyyy)'
       ),
@@ -81,7 +82,7 @@ const ModalAddNotice = ({ createAds }) => {
       category,
       title,
       name,
-      birth: birthday,
+      birthday,
       breed,
       sex,
       location,
@@ -96,16 +97,14 @@ const ModalAddNotice = ({ createAds }) => {
       formData.append('breed', breed);
       formData.append('sex', sex);
       formData.append('location', location);
-      formData.append('image', formik.values.image);
-      console.log(formik.values.image);
-      formData.append('comments', breed);
+      formData.append('image', image);
+      // formData.append('image', formik.values.image);
+      formData.append('comments', comments);
 
-      // console.log('image', image);
-      // console.log('formData', formData);
-      const result = await createNotice(formData);
+      const result = await createNotice(formik.values);
+      console.log(result);
 
-      // console.log('submit:', values)
-      // formik.resetForm();
+      formik.resetForm();
     },
   });
 
@@ -126,10 +125,10 @@ const ModalAddNotice = ({ createAds }) => {
                   id="LostFound"
                   name="category"
                   type="radio"
-                  value="lost/found"
+                  value="lost-found"
                   onChange={formik.handleChange}
                 />
-                <label htmlFor="LostFound" className={css.fiterLostFound}>
+                <label htmlFor="LostFound" className={css.filterLostFound}>
                   lost/found
                 </label>
 
@@ -138,10 +137,10 @@ const ModalAddNotice = ({ createAds }) => {
                   id="inGoodHands"
                   name="category"
                   type="radio"
-                  value="In good hands"
+                  value="for-free"
                   onChange={formik.handleChange}
                 />
-                <label htmlFor="inGoodHands" className={css.fiterInGoodHands}>
+                <label htmlFor="inGoodHands" className={css.filterInGoodHands}>
                   {' '}
                   In good hands
                 </label>
@@ -154,21 +153,28 @@ const ModalAddNotice = ({ createAds }) => {
                   value="sell"
                   onChange={formik.handleChange}
                 />
-                <label className={css.fiterSell} htmlFor="sell">
+                <label className={css.filterSell} htmlFor="sell">
                   sell
                 </label>
 
                 <input
-                  className={css.radioInputFilter}
+                  className={css.filterSell}
                   id="sell"
-                  name="filter"
-                  type="radio"
-                  value="sell"
+                  name="price"
+                  type="text"
                   onChange={formik.handleChange}
+                  placeholder="Price"
+                  style={{
+                    display: `${
+                      formik.values.category === 'sell'
+                        ? 'inline-block'
+                        : 'none'
+                    }`,
+                  }}
                 />
-                <label className={css.fiterSell} htmlFor="sell">
+                {/* <label className={css.filterSell} htmlFor="sell">
                   sell
-                </label>
+                </label> */}
               </div>
             </fieldset>
             {formik.touched.category && formik.errors.category ? (
@@ -207,19 +213,19 @@ const ModalAddNotice = ({ createAds }) => {
               placeholder="Type name pet"
             />
 
-            <label className={css.noticeInputTitle} htmlFor="birthPet">
-              Date of birth
+            <label className={css.noticeInputTitle} htmlFor="birthdayPet">
+              Date of birthday
             </label>
-            {formik.values.birth !== '' && formik.errors.birth ? (
-              <p className={css.inputError}>{formik.errors.birth}</p>
+            {formik.values.birthday !== '' && formik.errors.birthday ? (
+              <p className={css.inputError}>{formik.errors.birthday}</p>
             ) : null}
             <input
               className={css.noticeFormInput}
-              id="birthPet"
-              name="birth"
+              id="birthdayPet"
+              name="birthday"
               type="text"
               onChange={formik.handleChange}
-              value={formik.values.birth}
+              value={formik.values.birthday}
               placeholder="Type name pet"
             />
 
@@ -367,7 +373,7 @@ const ModalAddNotice = ({ createAds }) => {
                     type="file"
                     onChange={e => {
                       formik.handleChange(e);
-                      onimageChange(e);
+                      onImageChange(e);
                     }}
                   />
                 </label>
@@ -404,7 +410,7 @@ const ModalAddNotice = ({ createAds }) => {
             />
             <Button
               children="Cancel"
-              onClick={formik.resetForm}
+              onClick={closeButton}
               className={css.btnSec}
             />
           </div>
@@ -416,6 +422,10 @@ const ModalAddNotice = ({ createAds }) => {
               children="Done"
               className={css.btnAccent}
               buttonType="submit"
+              // onClick={() => {
+
+              //   closeButton();
+              // }}
             />
             <Button
               children="Back"
