@@ -6,7 +6,7 @@ const uploadMiddleware = async (req, res, next) => {
     delete req.body.image;
     req.body.photoURL =
       'http://res.cloudinary.com/dxxsrtjlb/image/upload/v1668769764/pets/pet_6375342f5b5c2cd38ef0320b_1668769763834.png';
-    req.body.photoId = 'no-photo';
+    req.body.photoId = '';
     return next();
   }
 
