@@ -7,10 +7,14 @@ import maleIconMob from '../../images/addNotice/male-icon-mob.png';
 import femaleIconMob from '../../images/addNotice/female-icon-mob.png';
 import maleIcon from '../../images/addNotice/male-icon.png';
 import femaleIcon from '../../images/addNotice/female-icon.png';
+const {
+  useCreateNoticeMutation,
+} = require('../../redux/services/noticesSlice');
 
 const ModalAddNotice = ({ createAds }) => {
+  const [createNotice, { isLoading }] = useCreateNoticeMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
-  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const moveNextRegistration = () => {
     isFirstRegisterStep
       ? setIsFirstRegisterStep(false)
@@ -19,7 +23,8 @@ const ModalAddNotice = ({ createAds }) => {
 
   const onimageChange = e => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
-      setImage(URL.createObjectURL(e.target.files[0]));
+      setImagePreview(URL.createObjectURL(e.target.files[0]));
+      formik.setFieldValue('image', e.currentTarget.files[0]);
     }
   };
 
@@ -72,7 +77,7 @@ const ModalAddNotice = ({ createAds }) => {
         .min(8, 'Title must be at least 8 characters')
         .max(120, 'Title must not exceed 120 characters'),
     }),
-    onSubmit: ({
+    onSubmit: async ({
       category,
       title,
       name,
@@ -80,39 +85,27 @@ const ModalAddNotice = ({ createAds }) => {
       breed,
       sex,
       location,
-      image: photoURL,
+      image,
       comments,
     }) => {
-      console.log({
-        category,
-        title,
-        name,
-        birthday,
-        breed,
-        sex,
-        location,
-        photoURL,
-        comments,
-      });
-      alert(
-        JSON.stringify(
-          {
-            category,
-            title,
-            name,
-            birthday,
-            breed,
-            sex,
-            location,
-            photoURL,
-            comments,
-          },
-          null,
-          2
-        )
-      );
+      const formData = new FormData();
+      formData.append('category', category);
+      formData.append('title', title);
+      formData.append('name', name);
+      formData.append('birthday', birthday);
+      formData.append('breed', breed);
+      formData.append('sex', sex);
+      formData.append('location', location);
+      formData.append('image', formik.values.image);
+      console.log(formik.values.image);
+      formData.append('comments', breed);
+
+      // console.log('image', image);
+      // console.log('formData', formData);
+      const result = await createNotice(formData);
+
       // console.log('submit:', values)
-      formik.resetForm();
+      // formik.resetForm();
     },
   });
 
@@ -380,7 +373,7 @@ const ModalAddNotice = ({ createAds }) => {
                 </label>
               ) : (
                 <div className={css.addedImg}>
-                  <img alt="pet" src={image} />
+                  <img alt="pet" src={imagePreview} />
                 </div>
               )}
             </fieldset>

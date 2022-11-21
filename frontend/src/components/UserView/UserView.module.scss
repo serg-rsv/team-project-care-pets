@@ -1,16 +1,20 @@
 @import '../../scss/utils/mixins';
+.section {
+  text-align: center;
+}
 .wrapper {
   padding: 61px 0 80px;
-  width: 320px;
+  // width: 320px;
   margin: 0 auto;
   @include mq(tablet) {
-    width: 736px;
+    // width: 736px;
     padding: 88px 0 0 0;
     position: relative;
     margin: 0;
   }
   @include mq(desktop) {
     display: flex;
+    margin: 0 auto;
     // width: 1264px;
   }
 }

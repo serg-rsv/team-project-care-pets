@@ -9,21 +9,19 @@ const getAll = asyncHandler(async (req, res) => {
     category = '',
     location = '',
     name = '',
-    owner = '',
     page = 1,
     limit = 10,
   } = req.query;
   const skip = (page - 1) * limit;
 
   const notices =
-    title || category || location || name || owner
+    title || category || location || name
       ? await Notice.find(
           {
             title: { $regex: new RegExp(title, 'i') },
             category: { $regex: new RegExp(category, 'i') },
             location: { $regex: new RegExp(location, 'i') },
             name: { $regex: new RegExp(name, 'i') },
-            owner: { _id: owner },
           },
           '-createdAt -updatedAt',
           { skip, limit }

@@ -34,16 +34,20 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       </div>
       <ul>
         <li className={scss.listItem}>
-          Name: <p className={scss.text}>{name}</p>
+          <dd className={scss.property}>Name: </dd>
+          <dt className={scss.text}>{name}</dt>
         </li>
         <li className={scss.listItem}>
-          Date of birth: <p className={scss.text}>{getDate(birthday)}</p>
+          <dd className={scss.property}>Date of birth: </dd>
+          <dt className={scss.text}> {birthday.toString().slice(0, 10)}</dt>
         </li>
         <li className={scss.listItem}>
-          Breed: <p className={scss.text}>{breed}</p>{' '}
+          <dd className={scss.property}>Breed: </dd>
+          <dt className={scss.text}> {breed}</dt>
         </li>
         <li className={scss.listItem}>
-          Comments: <p className={scss.text}>{comments}</p>
+          <dd className={scss.property}>Comments: </dd>
+          <dt className={scss.text}> {comments}</dt>
         </li>
       </ul>
       {/* <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button> */}
