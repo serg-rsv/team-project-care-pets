@@ -4,8 +4,7 @@
   background-color: var(--white-bg);
   cursor: pointer;
   border: solid 2px var(--accent-cl);
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: var(--accent-cl);
     color: var(--white-bg);
   }
