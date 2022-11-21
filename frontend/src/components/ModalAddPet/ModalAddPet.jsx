@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import Button from '../Button/Button';
 import css from './modalAddPet.module.scss';
+import { formDataAppender } from '../../helpers/formDataAppender';
 
 import * as Yup from 'yup';
+import { useCreatePetMutation } from '../../redux/services/petsSlice';
 
 const ModalAddPet = ({ onCancelButtonClick }) => {
+  const [createPet, { isLoading }] = useCreatePetMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [image, setImage] = useState(null);
 
@@ -15,16 +18,17 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
       : setIsFirstRegisterStep(true);
   };
 
-  const onimageChange = e => {
+  const onImageChange = e => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       setImage(URL.createObjectURL(e.target.files[0]));
+      formik.setFieldValue('image', e.currentTarget.files[0]);
     }
   };
 
   const formik = useFormik({
     initialValues: {
       name: '',
-      birth: '',
+      birthday: '',
       breed: '',
       image: '',
       comments: '',
@@ -32,32 +36,25 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
     validationSchema: Yup.object().shape({
       name: Yup.string()
         .trim()
-        .required('Please enter')
+        .required('Please enter name of your pet')
         .matches(/^[aA-zZ\s]+$/, 'Name contain only letters')
-        .min(2, 'Title must be at least 2 characters')
-        .max(16, 'Title must not exceed 16 characters'),
-      birth: Yup.string()
-        .required('Please enter')
-        .matches(
-          /^([0-2][0-9]|(3)[0-1]).(((0)[0-9])|((1)[0-2])).\d{4}$/,
-          'Invalid date (dd.mm.yyyy)'
-        ),
+        .min(2, 'Name must be at least 2 characters')
+        .max(16, 'Name must not exceed 16 characters'),
+      birthday: Yup.date().required('Please enter date of pet birth'),
       breed: Yup.string()
-        .required('Please enter')
-        .matches(/^[aA-zZ\s]+$/, 'Breed contain only letters')
-        .min(2, 'Title must be at least 2 characters')
-        .max(16, 'Title must not exceed 16 characters'),
+        .required('Please enter breed of your pet')
+        .matches(/^[aA-zZ\s]+$/, 'only letters')
+        .min(2, 'Breed must be at least 2 characters')
+        .max(24, 'Breed must not exceed 24 characters'),
       comments: Yup.string()
         .required('Please enter')
-        .min(8, 'Title must be at least 8 characters')
-        .max(120, 'Title must not exceed 120 characters'),
+        .min(8, 'Comment must be at least 8 characters')
+        .max(120, 'Comment must not exceed 120 characters'),
     }),
-    onSubmit: ({ name, birth: birthday, breed, image: photoURL, comments }) => {
-      console.log({ name, birthday, breed, photoURL, comments });
-      alert(
-        JSON.stringify({ name, birthday, breed, photoURL, comments }, null, 2)
-      );
+    onSubmit: async () => {
+      await createPet(formDataAppender(formik.values));
       formik.resetForm();
+      onCancelButtonClick();
     },
   });
 
@@ -90,13 +87,12 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               <p className={css.inputError}>{formik.errors.birth}</p>
             ) : null}
             <input
-              className={css.addPetFormInput}
-              id="birth"
-              name="birth"
-              type="text"
+              className={css.addPetFormInputDate}
+              id="birthdayPet"
+              name="birthday"
+              type="date"
               onChange={formik.handleChange}
-              value={formik.values.birth}
-              placeholder="Type date of birth pet"
+              value={formik.values.birthday}
             />
 
             <label className={css.addPetInputTitle} htmlFor="breed">
@@ -144,7 +140,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
                     type="file"
                     onChange={e => {
                       formik.handleChange(e);
-                      onimageChange(e);
+                      onImageChange(e);
                     }}
                   />
                 </label>
@@ -176,13 +172,13 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
         {isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Next"
-              onClick={moveNextRegistration}
+              children="Cancel"
+              onClick={onCancelButtonClick}
               className={css.btnAccent}
             />
             <Button
-              children="Cancel"
-              onClick={onCancelButtonClick}
+              children="Next"
+              onClick={moveNextRegistration}
               className={css.btnSec}
             />
           </div>
@@ -191,17 +187,13 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
         {!isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Done"
-              className={css.btnAccent}
-              buttonType="submit"
-              onClick={() => {
-                formik.onSubmit();
-                onCancelButtonClick();
-              }}
-            />
-            <Button
               children="Back"
               onClick={moveNextRegistration}
+              className={css.btnAccent}
+            />
+            <Button
+              children="Done"
+              buttonType="submit"
               className={css.btnSec}
             />
           </div>

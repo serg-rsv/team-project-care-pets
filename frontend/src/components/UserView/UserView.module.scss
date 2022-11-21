@@ -67,11 +67,11 @@
     margin: 0;
     position: absolute;
     top: 88px;
-    right: 0;
+    right: 16px;
   }
   @include mq(desktop) {
     top: 0;
-    right: -465px;
+    // right: -465px;
     margin: 0;
   }
 }

@@ -10,9 +10,6 @@ import Modal from '../Modal/Modal';
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
-  console.log('id', id);
-  console.log(result);
-
   function getDate(birthday) {
     let date = new Date(birthday);
     let year = date.getFullYear();

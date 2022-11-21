@@ -1,229 +1,255 @@
 @import '../../scss//utils/mixins';
 
-.formBlock{
-    margin: 0 auto;
-        width: 280px;
-        display: grid;
-        padding: 40px 20px;
-    
-        background-color: var(--white-bg);
-        border-radius: var(--border-radius);
-    
-        @include mq(tablet) {
-            width: 608px;
-            padding: 40px 80px;
-        }
+.formBlock {
+  margin: 0 auto;
+  width: 280px;
+  display: grid;
+  padding: 40px 20px;
+
+  background-color: var(--white-bg);
+  border-radius: var(--border-radius);
+
+  @include mq(tablet) {
+    width: 608px;
+    padding: 40px 80px;
+  }
 }
 
-.formTitle{
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--main-text-cl);
-    @include fonts(24px, 700, 1.3, 0);
-    
-    @include mq(tablet) {
-        @include fonts(36px, 600, 1.3, 0);
-    }
+.formTitle {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--main-text-cl);
+  @include fonts(24px, 700, 1.3, 0);
+
+  @include mq(tablet) {
+    @include fonts(36px, 600, 1.3, 0);
+  }
 }
 
-.addPetForm{
-    width: 240px;
-        display: flex;
-        flex-direction: column;
-        // position: relative;
-    
-        @include mq(tablet) {
-            width: 448px;
-        }
+.addPetForm {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  // position: relative;
+
+  @include mq(tablet) {
+    width: 448px;
+  }
 }
 
-.addPetInputTitle{
-    margin-bottom: 8px;
-        color: var(--black-text-cl);
-        @include fonts(18px, 500, 1.2, 0);
-    
-        @include mq(tablet) {
-            margin-bottom: 12px;
-            font-size: 24px;
-        }
+.addPetInputTitle {
+  margin-bottom: 8px;
+  color: var(--black-text-cl);
+  @include fonts(18px, 500, 1.2, 0);
+
+  @include mq(tablet) {
+    margin-bottom: 12px;
+    font-size: 24px;
+  }
 }
 
-.addPetFormInput{
-    outline: none;
-    box-sizing: border-box;
-    justify-self: center;
-    width: 240px;
-    height: 40px;
-    padding-left: 14px;
-    margin-bottom: 16px;
-    font-size: 14px;
-    
-        background-color: var(--main-bg-cl);
-        border: 1px solid rgba(245, 146, 86, 0.5);
-        border-radius: var(--border-radius);
-    
-        @include mq(tablet) {
-            font-size: 16px;
-            width: 448px;
-            max-width: 448px;
-            height: 48px;
-            padding-left: 16px;
-            margin-bottom: 28px;
-        }
-    }
+.addPetFormInput {
+  outline: none;
+  box-sizing: border-box;
+  justify-self: center;
+  width: 240px;
+  height: 40px;
+  padding-left: 14px;
+  margin-bottom: 16px;
+  font-size: 14px;
+
+  background-color: var(--main-bg-cl);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: var(--border-radius);
+
+  @include mq(tablet) {
+    font-size: 16px;
+    width: 448px;
+    max-width: 448px;
+    height: 48px;
+    padding-left: 16px;
+    margin-bottom: 28px;
+  }
+}
+
+.addPetFormInputDate[type='date'] {
+  @extend .addPetFormInput;
+  position: relative;
+  display: flex;
+  justify-content: start;
+
+  &::-webkit-calendar-picker-indicator {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
 
 .inputWrapper {
-    box-sizing: border-box;
-    border: none;
-    padding: 0;
-    margin: 0 0 20px 0;
-    
-    @include mq(tablet) {
-        margin-bottom: 40px;
-    }
+  box-sizing: border-box;
+  border: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+
+  @include mq(tablet) {
+    margin-bottom: 40px;
+  }
 }
 
-.addPhotoPetTitle{
-    text-align: center;
-    margin-bottom: 20px;
-    @include fonts(16px, 500, 1.3, -0.01em);
-    color: var(--black-text-cl);
-    @include mq(tablet){
-        font-size: 20px;
-    }
+.addPhotoPetTitle {
+  text-align: center;
+  margin-bottom: 20px;
+  @include fonts(16px, 500, 1.3, -0.01em);
+  color: var(--black-text-cl);
+  @include mq(tablet) {
+    font-size: 20px;
+  }
 }
 
-.photoAddIcon{
-    cursor: pointer;
-    margin: 0 auto;
-        box-sizing: border-box;
-        display: block;
-        width: 208px;
-        height: 208px;
-        padding: 82px;
-        border-radius: 20px;
-        background-color: var(--main-bg-cl);
-    
-        @include mq(tablet) {
-            width: 182px;
-            height: 182px;
-            padding: 67px;
-        }
+.photoAddIcon {
+  cursor: pointer;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: block;
+  width: 208px;
+  height: 208px;
+  padding: 82px;
+  border-radius: 20px;
+  background-color: var(--main-bg-cl);
+
+  @include mq(tablet) {
+    width: 182px;
+    height: 182px;
+    padding: 67px;
+  }
 }
 
 .addedImg {
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    width: 208px;
-    height: 208px;
-    border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 208px;
+  height: 208px;
+  border-radius: 20px;
 
-    @include mq(tablet) {
-        width: 182px;
-        height: 182px;
-    }
+  @include mq(tablet) {
+    width: 182px;
+    height: 182px;
+  }
 
-    &>img {
-        object-fit: cover;
-        min-width: 100%;
-        min-height: 100%;
-    }
+  & > img {
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+  }
 }
 
 .photoPetInput {
-    visibility: hidden;
-    width: 0;
-    height: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
 }
 
 .textareaBlock {
-    margin: 0 auto;
-    width: 240px;
-    display: grid;
-    grid-gap:8px;
+  margin: 0 auto;
+  width: 240px;
+  display: grid;
+  grid-gap: 8px;
 
-    @include mq(tablet) {
-        grid-gap: 12px;
-        width: 394px;
-        margin-bottom: 16px;
-    }
+  @include mq(tablet) {
+    grid-gap: 12px;
+    width: 394px;
+    margin-bottom: 16px;
+  }
 }
 
 .addPetCommentsTitle {
-    color: var(--black-text-cl);
-    @include fonts(18px, 500, 1.2, 0);
+  color: var(--black-text-cl);
+  @include fonts(18px, 500, 1.2, 0);
 
-    @include mq(tablet) {
-        font-size: 24px;
-    }
+  @include mq(tablet) {
+    font-size: 24px;
+  }
 }
 
 .addPetFormComments {
-    outline: none;
-    box-sizing: border-box;
-    resize: none;
-    width: 240px;
-    height: 100px;
-    padding: 12px 5px 12px 14px;
-    border-radius: 20px;
-    background-color: var(--main-bg-cl);
-    border: 1px solid rgba(245, 146, 86, 0.5);
-    font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  resize: none;
+  width: 240px;
+  height: 100px;
+  padding: 12px 5px 12px 14px;
+  border-radius: 20px;
+  background-color: var(--main-bg-cl);
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  font-size: 14px;
 
-    @include mq(tablet) {
-        width: 394px;
-        height: 116px;
-        padding: 16px 5px 16px 16px;
-        height: 116px;
-        font-size: 16px;
-    }
+  @include mq(tablet) {
+    width: 394px;
+    height: 116px;
+    padding: 16px 5px 16px 16px;
+    height: 116px;
+    font-size: 16px;
+  }
 }
 
-.inputError{
-    @include fonts(11px, 400, 1.2, -0.01em);
-    color: red;
+.inputError {
+  @include fonts(11px, 400, 1.2, -0.01em);
+  color: red;
 }
 
-.btnAccent{
-    padding: 9px 101px;
-    color: var(--white-bg);
-    background-color: var(--accent-cl);
-    @include mq(tablet) {
-        @include fonts(20px, 500, 1.3, 0.04em);
-        grid-column: 1;
-        justify-self: end;
-              padding: 8.5px 65px ;  
-            max-width: 180px;
-            height: 44px;
-        }
-    &:hover, &:focus{
-        background-color: var(--accent-cl-active);
-        border-color: var(--accent-cl-active);
-       
-    }
+.btnAccent {
+  padding: 9px 101px;
+  @include mq(tablet) {
+    @include fonts(20px, 500, 1.3, 0.04em);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8.5px 65px;
+    max-width: 180px;
+    height: 44px;
+  }
+  &:hover,
+  &:focus {
+    background-color: var(--accent-cl-active);
+    border-color: var(--accent-cl-active);
+  }
 }
 
-.btnSec{
-    padding: 9px 92px;
-    @include mq(tablet){
-        @include fonts(20px, 500, 1.3, 0.04em);
-        grid-column: 3;
-        padding: 8px 50px;
-        max-width: 180px;
-        height: 44px;
-
-    }
+.btnSec {
+  padding: 9px 92px;
+  color: var(--white-bg);
+  background-color: var(--accent-cl);
+  @include mq(tablet) {
+    @include fonts(20px, 500, 1.3, 0.04em);
+    grid-column: 3;
+    padding: 8px 50px;
+    max-width: 180px;
+    height: 44px;
+  }
+  &:hover,
+  &:focus {
+    background-color: var(--accent-cl-active);
+    border-color: var(--accent-cl-active);
+  }
 }
 
-.btnBlock{
-    margin: calc(40px - 16px) auto 0 auto;
-    display: grid;
-    grid-gap:12px;
-    @include mq(tablet) {
-        grid-gap: 12px;
-        grid-template: 44px / 180px 10px 180px ;
-        }
+.btnBlock {
+  margin: calc(40px - 16px) auto 0 auto;
+  display: grid;
+  grid-gap: 12px;
+  @include mq(tablet) {
+    grid-gap: 12px;
+    grid-template: 44px / 180px 10px 180px;
+  }
 }

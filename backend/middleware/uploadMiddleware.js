@@ -2,13 +2,11 @@ const fs = require('fs/promises');
 const { cloudUpload } = require('../services');
 
 const uploadMiddleware = async (req, res, next) => {
-  console.log(req.file);
-
   if (!req.file) {
     delete req.body.image;
     req.body.photoURL =
       'http://res.cloudinary.com/dxxsrtjlb/image/upload/v1668769764/pets/pet_6375342f5b5c2cd38ef0320b_1668769763834.png';
-    req.body.photoId = '';
+    req.body.photoId = 'no-photo';
     return next();
   }
 

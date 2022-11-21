@@ -3,6 +3,7 @@
 .signature {
   min-width: 158px;
   position: absolute;
+  z-index: 2;
   left: 0px;
   top: 20px;
   background-color: var(--transparent-bg);
@@ -47,17 +48,25 @@
     margin-right: 0;
   }
 }
-
-.animalListImg {
-  width: 280px;
-  height: 288px;
+.imageWrapper {
+  width: 100%;
+  @include gradient(rgba(190, 40, 40, 0.4), rgba(200, 180, 40, 0.4));
   margin-bottom: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   @include mq(tablet) {
-    width: 336px;
   }
   @include mq(desktop) {
     // width: 288px;
   }
+}
+.animalListImg {
+  filter: drop-shadow(6px 2px 8px rgba(0, 0, 0, 0.5));
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .animalListTitle {
@@ -159,10 +168,10 @@
   }
 }
 
-.addToFavoriteButton{
+.addToFavoriteButton {
   display: flex;
   align-items: center;
 }
-.addToFavoriteButtonText{
-margin-right: 8px;
+.addToFavoriteButtonText {
+  margin-right: 8px;
 }
