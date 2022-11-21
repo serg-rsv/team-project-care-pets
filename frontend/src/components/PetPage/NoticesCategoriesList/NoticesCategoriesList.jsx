@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
@@ -13,6 +14,7 @@ import Modal from '../../Modal/Modal';
 import ModalNotAuthorized from '../../ModalNotAuthorized';
 
 const NoticesCategoriesList = ({ pets, isActive }) => {
+  const navigate = useNavigate();
   const [ads, setAds] = useState({});
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
@@ -60,13 +62,29 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
           openModal('addpet');
         }}
       />
-      <Modal marker="addpet">
-        {isLoggedIn ? (
-          <ModalAddNotice createAds={createAds} />
-        ) : (
+
+      {isLoggedIn ? (
+        <Modal marker="addpet" closeButton={true}>
+          <ModalAddNotice createAds={createAds} closeButton={closeModal} />
+        </Modal>
+      ) : (
+        <Modal
+          marker="addpet"
+          closeButton={true}
+          leftButton={true}
+          leftButtonContent={'Login'}
+          leftButtonClick={() => {
+            navigate('/login');
+          }}
+          rightButton={true}
+          rightButtonContent={'Register'}
+          rightButtonClick={() => {
+            navigate('/register');
+          }}
+        >
           <ModalNotAuthorized />
-        )}
-      </Modal>
+        </Modal>
+      )}
     </div>
   );
 };

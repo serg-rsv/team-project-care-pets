@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import Button from '../Button';
 import css from '../RegisterForm/authForm.module.scss';
 import * as Yup from 'yup';
 import { useLoginMutation } from '../../redux/services/usersSlice';
@@ -66,9 +67,13 @@ const LoginForm = () => {
           </p>
         ) : null}
 
-        <button className={css.formBtn} type="submit" disabled={isLoading}>
+        <Button
+          className={css.formBtn}
+          buttonType="submit"
+          disabled={isLoading}
+        >
           Login
-        </button>
+        </Button>
       </form>
       <p className={css.linkToPage}>
         Don't have an account?{' '}

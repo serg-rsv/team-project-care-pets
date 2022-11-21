@@ -8,7 +8,7 @@ import femaleIconMob from '../../images/addNotice/female-icon-mob.png';
 import maleIcon from '../../images/addNotice/male-icon.png';
 import femaleIcon from '../../images/addNotice/female-icon.png';
 
-const ModalAddNotice = ({ createAds }) => {
+const ModalAddNotice = ({ createAds, closeButton }) => {
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [image, setImage] = useState(null);
   const moveNextRegistration = () => {
@@ -165,7 +165,7 @@ const ModalAddNotice = ({ createAds }) => {
                   sell
                 </label>
 
-                <input
+                {/* <input
                   className={css.radioInputFilter}
                   id="sell"
                   name="filter"
@@ -175,7 +175,7 @@ const ModalAddNotice = ({ createAds }) => {
                 />
                 <label className={css.fiterSell} htmlFor="sell">
                   sell
-                </label>
+                </label> */}
               </div>
             </fieldset>
             {formik.touched.category && formik.errors.category ? (
@@ -411,7 +411,7 @@ const ModalAddNotice = ({ createAds }) => {
             />
             <Button
               children="Cancel"
-              onClick={formik.resetForm}
+              onClick={closeButton}
               className={css.btnSec}
             />
           </div>
@@ -423,6 +423,10 @@ const ModalAddNotice = ({ createAds }) => {
               children="Done"
               className={css.btnAccent}
               buttonType="submit"
+              onClick={() => {
+                formik.onSubmit();
+                closeButton();
+              }}
             />
             <Button
               children="Back"

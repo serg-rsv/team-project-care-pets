@@ -5,12 +5,8 @@ const ModalNotAuthorized = () => {
   return (
     <div className={s.modalBox}>
       <h3>You are not authorized!</h3>
-      <ul className={s.list}>
-        <li><p> Please log in!</p></li>
-        <li><NavLink className={s.modalBoxLink} to="/login">
-        lodin
-      </NavLink></li>
-      </ul>
+
+      <p className={s.modalBoxText}> Please login or register!</p>
     </div>
   );
 };
