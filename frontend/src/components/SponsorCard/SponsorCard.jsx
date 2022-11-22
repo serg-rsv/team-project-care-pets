@@ -1,10 +1,7 @@
-import { useState } from 'react';
 import s from './SponsorCard.module.scss';
 import defaultImg from '../../images/logo/logo.png';
 
 const SponsorCard = ({ obj }) => {
-  const [timeMenu, setTimeMenu] = useState(false);
-
   const { title, url, addressUrl, imageUrl, address, workDays, phone, email } =
     obj;
 
@@ -49,18 +46,8 @@ const SponsorCard = ({ obj }) => {
       }, [])
     : null;
 
-  const onMouseClick = e => {
-    const el = e.target;
-
-    if (!el.id || timeMenu === true) {
-      setTimeMenu(false);
-    } else {
-      setTimeMenu(true);
-    }
-  };
-
   return (
-    <div onClick={onMouseClick} className={s.sponsorCard}>
+    <div className={s.sponsorCard}>
       <h3 className={s.sponsorCardTitle}>
         <a href={url} target="_blanc" className={s.sponsorLink}>
           {title}
@@ -74,52 +61,66 @@ const SponsorCard = ({ obj }) => {
         />
         <ul className={s.infoList}>
           <li className={s.infoList__item}>
-            <div className={s.workTime} id="time">
-              <p id="time" className={s.infoTitle}>
-                Time:
-              </p>
-              <p id="time">
+            <div className={s.workTime}>
+              <p className={s.infoTitle}>Time:</p>
+              <p>
                 {workTime
                   ? workTime.find(day => day.time !== 'Closed').time
                   : '----'}
               </p>
+              {workTime && (
+                <div className={s.timeInfo}>
+                  <table>
+                    <tbody>
+                      {workTime?.map((el, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{el.day}</td>
+                            <td className={s.time}>{el.time}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
-            {timeMenu && workTime && (
-              <div className={s.timeInfo}>
-                <table>
-                  <tbody>
-                    {workTime?.map((el, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{el.day}</td>
-                          <td className={s.time}>{el.time}</td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
           </li>
           <li className={s.infoList__item}>
             <p className={s.infoTitle}>Adress:</p>
             <p>
-              <a href={addressUrl} target="_blanc" className={s.addressLink}>
-                {address ? address : '----'}
-              </a>
+              {address ? (
+                <a href={addressUrl} target="_blanc" className={s.addressLink}>
+                  {address}
+                </a>
+              ) : (
+                '----'
+              )}
             </p>
           </li>
           <li className={s.infoList__item}>
             <p className={s.infoTitle}>Email:</p>
             <p>
-              <a href={['mailto:', email].join('')} className={s.emailLink}>
-                {email ? email : '-----'}
-              </a>
+              {email ? (
+                <a href={['mailto:', email].join('')} className={s.emailLink}>
+                  {email}
+                </a>
+              ) : (
+                '-----'
+              )}
             </p>
           </li>
           <li className={s.infoList__item}>
             <p className={s.infoTitle}>Phone:</p>
-            <p>{phone ? phone : '----'}</p>
+            <p>
+              {phone ? (
+                <a href={['tel:', phone].join('')} className={s.phoneLink}>
+                  {phone}
+                </a>
+              ) : (
+                '----'
+              )}
+            </p>
           </li>
         </ul>
       </div>

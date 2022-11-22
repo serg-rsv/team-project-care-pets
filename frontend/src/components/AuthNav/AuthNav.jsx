@@ -1,32 +1,25 @@
 import s from './AuthNav.module.scss';
-import Button from '../Button';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const AuthNav = () => {
-  const navigate = useNavigate();
-
   return (
     <div className={s.authNav}>
       <ul className={s.authNav__list}>
         <li className={s.authNav__item}>
-          <Button
-            className={s.authBtn}
-            onClick={() => {
-              navigate('/login');
-            }}
+          <NavLink
+            to={'/login'}
+            className={({ isActive }) => (isActive ? s.active : undefined)}
           >
             Login
-          </Button>
+          </NavLink>
         </li>
         <li className={s.authNav__item}>
-          <Button
-            className={s.authBtn}
-            onClick={() => {
-              navigate('/register');
-            }}
+          <NavLink
+            to={'/register'}
+            className={({ isActive }) => (isActive ? s.active : undefined)}
           >
             Registration
-          </Button>
+          </NavLink>
         </li>
       </ul>
     </div>
