@@ -5,9 +5,10 @@ import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
-
+import LoadMore from '../../../LoadMore';
 const LostFound = () => {
   const isActiveDelete = false;
+  const [perPage, setPerPage] = useState(4);
   const [pets, setPets] = useState([]);
   const { data: notices } = useGetNoticesByCategoryQuery('lost-found');
   const { data: user } = useCurrentQuery();
@@ -17,14 +18,20 @@ const LostFound = () => {
       notices?.data,
       user?.user?.favorites
     );
-    setPets(markedNotices);
-  }, [notices, user]);
-
+    const slice = markedNotices.slice(0, perPage);
+    setPets(slice);
+  }, [notices, perPage, user]);
+  const loadMore = () => {
+    setPerPage(perPage + perPage);
+  };
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
+      {notices?.data.length > perPage ? (
+        <LoadMore loadMore={() => loadMore()}>Load more</LoadMore>
+      ) : null}
     </>
   );
 };
