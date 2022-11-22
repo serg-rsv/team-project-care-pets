@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { baseApi } from './services/baseApi';
 import authReducer from './services/authSlice';
+import noticesReducer from './noticesSlice';
 import { modalSlice } from './services/modalSlice';
 import {
   persistStore,
@@ -24,6 +25,7 @@ export const store = configureStore({
   reducer: {
     modal: modalSlice.reducer,
     auth: persistedUserReducer,
+    notices: noticesReducer,
     [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: getDefaultMiddleware =>

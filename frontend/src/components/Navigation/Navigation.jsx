@@ -5,7 +5,7 @@ import AuthNav from '../AuthNav';
 import Button from '../Button';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/services/authSlice';
+import { selectIsLoggedIn } from '../../redux/selectors';
 
 const Navigation = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
