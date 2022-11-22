@@ -36,13 +36,13 @@ const Navigation = () => {
       {isModalOpen && (
         <div className={s.mobMenu}>
           {isAuthorized ? <UserNav /> : <AuthNav />}
-          <Nav />
+          <Nav closeModal={onBurgerClick} />
         </div>
       )}
 
       {isModalOpen ? (
         <div className={s.tabMenu}>
-          <Nav />
+          <Nav closeModal={onBurgerClick} />
         </div>
       ) : (
         <div className={s.authTabMenu}>

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import s from './Nav.module.scss';
 
-const Nav = () => {
+const Nav = ({ closeModal }) => {
   return (
     <nav>
       <ul className={s.navList}>
@@ -9,6 +9,7 @@ const Nav = () => {
           <NavLink
             to={'/news'}
             className={({ isActive }) => (isActive ? s.active : undefined)}
+            onClick={closeModal}
           >
             News
           </NavLink>
@@ -17,6 +18,7 @@ const Nav = () => {
           <NavLink
             to={'/notices'}
             className={({ isActive }) => (isActive ? s.active : undefined)}
+            onClick={closeModal}
           >
             Find pet
           </NavLink>
@@ -25,6 +27,7 @@ const Nav = () => {
           <NavLink
             to={'/friends'}
             className={({ isActive }) => (isActive ? s.active : undefined)}
+            onClick={closeModal}
           >
             Our friend
           </NavLink>
