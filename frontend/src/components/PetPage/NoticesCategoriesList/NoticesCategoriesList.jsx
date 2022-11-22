@@ -6,7 +6,7 @@ import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import AddNoticeButton from '../AddNoticeButton';
 import ModalAddNotice from '../../ModalAddNotice';
-import { selectIsLoggedIn } from '../../../redux/services/authSlice';
+import { selectIsLoggedIn } from '../../../redux/selectors';
 import { useCreateNoticeMutation } from '../../../redux/services/noticesSlice';
 import { getAge } from '../../../helpers/getAge';
 import { useModal } from '../../../hooks/useModal';

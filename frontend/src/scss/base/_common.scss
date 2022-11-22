@@ -75,6 +75,22 @@ ul {
   list-style: none;
 }
 
+button {
+  padding: 10px 28px;
+  border-radius: var(--border-radius);
+  color: var(--accent-cl);
+  background-color: var(--white-bg);
+  cursor: pointer;
+  border: solid 2px var(--accent-cl);
+  &:hover {
+    background-color: var(--accent-cl);
+    color: var(--white-bg);
+  }
+  &:focus {
+    outline: var(--accent-cl);
+  }
+}
+
 .no-scroll {
   height: 100vh;
   overflow-y: hidden;
