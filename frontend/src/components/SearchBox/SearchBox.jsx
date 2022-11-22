@@ -1,9 +1,10 @@
 import s from './SearchBox.module.scss';
 
-const SearchBox = ({ seachQuery }) => {
+const SearchBox = ({ searchQuery }) => {
   const onFormSubmit = e => {
     e.preventDefault();
-    seachQuery(e.target.query.value);
+    searchQuery(e.target.query.value);
+    console.log('onFormSubmit ~ e.target.query.value', e.target.query.value);
   };
 
   return (

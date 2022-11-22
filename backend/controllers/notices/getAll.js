@@ -10,7 +10,7 @@ const getAll = asyncHandler(async (req, res) => {
     location = '',
     name = '',
     page = 1,
-    limit = 10,
+    limit = 12,
   } = req.query;
   const skip = (page - 1) * limit;
 

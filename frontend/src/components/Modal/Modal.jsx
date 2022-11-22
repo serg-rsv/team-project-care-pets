@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'proptypes';
+import { selectShowModal, selectChangeMarker } from '../../redux/selectors';
 
 import Button from '../Button';
 import Portal from '../Portal/Portal';
@@ -25,13 +26,13 @@ const Modal = ({
   rightButtonType,
   rightButtonClick,
 }) => {
-  const showModal = useSelector(state => state.modal.showModal);
-  const chageMarker = useSelector(state => state.modal.marker);
+  const showModal = useSelector(selectShowModal);
+  const changeMarker = useSelector(selectChangeMarker);
   const { closeModal } = useModal();
 
   return (
     <>
-      {showModal && chageMarker === marker && (
+      {showModal && changeMarker === marker && (
         <Portal onKeyPress={closeModal}>
           <div className={style.modalOverlay} onClick={closeModal}>
             <div
