@@ -10,7 +10,12 @@ const ModalNotice = ({
   location,
   sex,
   comments,
+  email,
+  phone,
+  price,
 }) => {
+
+const checkCategory = category === 'sell'; 
   return (
     <div className={s.box}>
       <div className={s.boxData}>
@@ -45,12 +50,19 @@ const ModalNotice = ({
             </li>
             <li>
               <p className={s.email}>Email:</p>
-              <p>user@mail.com</p>
+              <p>{email}</p>
             </li>
             <li>
               <p className={s.phone}>Phone:</p>
-              <p>+380971234567</p>
+              <p>{phone}</p>
             </li>
+            {checkCategory && (
+             <li>
+              <p className={s.sell}>Sell:</p>
+              <p>{`${price}$`}</p>
+            </li> 
+            )}
+            
           </ul>
         </div>
       </div>
