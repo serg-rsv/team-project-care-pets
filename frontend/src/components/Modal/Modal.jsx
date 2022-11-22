@@ -24,6 +24,7 @@ const Modal = ({
   rightButtonContent = 'submit',
   rightButtonType,
   rightButtonClick,
+  disabled,
 }) => {
   const showModal = useSelector(state => state.modal.showModal);
   const chageMarker = useSelector(state => state.modal.marker);
@@ -72,6 +73,8 @@ const Modal = ({
               <div className={style.modalFooter}>
                 {leftButton && (
                   <Button
+                    button
+                    disabled={disabled}
                     onClick={leftButtonClick}
                     className={leftButtonStyle}
                     buttonType={leftButtonType}
