@@ -54,8 +54,17 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       ></Button>
       <Modal
         marker="pets"
-        leftButtonClick={closeModal}
-        rightButtonClick={() => deletePet(id)}
+        leftButton={true}
+        leftButtonType={'button'}
+        rightButton={true}
+        rightButtonType={'button'}
+        leftButtonContent={'YES'}
+        rightButtonContent={'NO'}
+        leftButtonClick={() => {
+          deletePet(id);
+          closeModal();
+        }}
+        rightButtonClick={closeModal}
       >
         Do you realy want to delete pet?
       </Modal>
