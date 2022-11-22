@@ -2,6 +2,7 @@ button {
   padding: 10px 28px;
   border-radius: var(--border-radius);
   background-color: var(--white-bg);
+  color: var(--accent-cl);
   cursor: pointer;
   border: solid 2px var(--accent-cl);
   &:hover {
