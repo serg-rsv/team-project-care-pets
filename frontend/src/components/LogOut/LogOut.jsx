@@ -19,6 +19,7 @@ const LogOut = () => {
     await logout();
     dispatch(unsetToken());
     dispatch(baseApi.util.resetApiState());
+    closeModal();
   };
   return (
     <>

@@ -19,7 +19,7 @@ const noticesApi = baseApi.injectEndpoints({
         }
       },
       transformResponse: response => response.data,
-      // providesTags: ['Notices'],
+      providesTags: ['Notices'],
     }),
     deleteNotice: builder.mutation({
       query: noticeId => ({
