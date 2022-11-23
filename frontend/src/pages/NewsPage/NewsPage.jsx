@@ -19,7 +19,6 @@ const NewsPage = () => {
   // };
 
   useEffect(() => {
-    console.log(data);
     setNews(data);
   }, [data]);
 

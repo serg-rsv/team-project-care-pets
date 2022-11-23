@@ -15,7 +15,6 @@ const ModalAddNotice = ({ closeButton }) => {
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
   const moveNextRegistration = () => {
-    console.log(formik.values.category);
     isFirstRegisterStep
       ? setIsFirstRegisterStep(false)
       : setIsFirstRegisterStep(true);

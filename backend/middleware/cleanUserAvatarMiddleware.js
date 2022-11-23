@@ -7,7 +7,6 @@ const cleanImgMiddleware = async (req, _, next) => {
   try {
     await cloudDelete(photoId);
   } catch (error) {
-    console.log('cleanImgMiddleware ~ error', error);
   } finally {
     next();
   }

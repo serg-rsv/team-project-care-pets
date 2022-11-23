@@ -23,7 +23,6 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
   const [filter, setFilter] = useState({});
 
   const createAds = async filter => {
-    // console.log(value);
     await setFilter(filter);
   };
   return (

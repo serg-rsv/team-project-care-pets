@@ -47,6 +47,4 @@ app.use(errorHandler);
 
 connectDB();
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`.cyan.bold.italic);
-});
+app.listen(process.env.PORT);

@@ -4,7 +4,7 @@ import { useFetchPetsQuery } from '../../redux/services/petsSlice';
 
 const PetsList = () => {
   const { data, error, isLoading } = useFetchPetsQuery();
-  console.log(error);
+
   return (
     <>
       <ul>
