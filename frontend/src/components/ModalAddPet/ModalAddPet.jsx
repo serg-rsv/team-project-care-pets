@@ -45,7 +45,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
         .required('Please enter breed of your pet')
         .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'only letters')
         .min(2, 'Breed must be at least 2 characters')
-        .max(24, 'Breed must not exceed 24 characters'),
+        .max(16, 'Breed must not exceed 16 characters'),
       comments: Yup.string()
         .required('Please enter')
         .min(8, 'Comment must be at least 8 characters')

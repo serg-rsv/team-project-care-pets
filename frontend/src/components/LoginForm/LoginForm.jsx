@@ -22,8 +22,8 @@ const LoginForm = () => {
         .required('Please enter'),
       password: Yup.string()
         .required('Please enter')
-        .min(6, 'Password must be at least 6 characters')
-        .max(40, 'Password must not exceed 40 characters'),
+        .min(7, 'Password must be at least 7 characters')
+        .max(32, 'Password must not exceed 32 characters'),
     }),
     onSubmit: async values => {
       const response = await login(values).unwrap();
