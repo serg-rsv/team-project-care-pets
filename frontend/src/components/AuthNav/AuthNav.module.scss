@@ -18,19 +18,32 @@
   }
 
   &__item {
+    & > a {
+      display: block;
+      padding: 8px 28px;
+      background-color: #fff;
+      border: 2px solid var(--accent-cl);
+      border-radius: 40px;
+
+      &.active {
+        background-color: var(--accent-cl);
+        color: #fff;
+      }
+    }
+
     &:not(:last-child) {
       margin-right: 12px;
     }
   }
 }
 
-.authBtn {
-  padding-top: 8px;
-  padding-bottom: 8px;
+// .authBtn {
+//   & a {
 
-  &:hover,
-  &:focus {
-    background-color: var(--accent-cl);
-    color: #fff;
-  }
-}
+//   }
+// &:hover,
+// &:focus {
+//   background-color: var(--accent-cl);
+//   color: #fff;
+// }
+// }
