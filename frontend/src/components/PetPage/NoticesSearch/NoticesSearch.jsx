@@ -32,11 +32,11 @@ const NoticesSearch = e => {
   return (
     <div className={s.noticesSearchBox}>
       <form onSubmit={e => handleSubmit(e)}>
-        <h1 className={s.lable}>Find your favorite pet</h1>
+        <h1 className={s.lable}>Знайдіть свого улюбленця</h1>
         <input
           className={s.input}
           type="text"
-          placeholder="Search"
+          placeholder="Пошук"
           // onChange={handleSearch}
           name="search"
         ></input>

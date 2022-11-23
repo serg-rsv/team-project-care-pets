@@ -10,7 +10,7 @@ const AuthNav = () => {
             to={'/login'}
             className={({ isActive }) => (isActive ? s.active : undefined)}
           >
-            Login
+            Вхід
           </NavLink>
         </li>
         <li className={s.authNav__item}>
@@ -18,7 +18,7 @@ const AuthNav = () => {
             to={'/register'}
             className={({ isActive }) => (isActive ? s.active : undefined)}
           >
-            Registration
+            Реєстрація
           </NavLink>
         </li>
       </ul>

@@ -35,7 +35,7 @@ const LoginForm = () => {
 
   return (
     <div className={css.formBlock}>
-      <h2 className={css.formTitle}>Login</h2>
+      <h2 className={css.formTitle}>Вхід</h2>
       <form className={css.loginForm} onSubmit={formik.handleSubmit}>
         <input
           className={css.formInput}
@@ -58,7 +58,7 @@ const LoginForm = () => {
           type="password"
           onChange={formik.handleChange}
           value={formik.values.password}
-          placeholder="Password"
+          placeholder="Пароль"
         />
 
         {formik.values.password !== '' && formik.errors.password ? (
@@ -72,13 +72,13 @@ const LoginForm = () => {
           buttonType="submit"
           disabled={isLoading}
         >
-          Login
+          Увійти
         </Button>
       </form>
       <p className={css.linkToPage}>
-        Don't have an account?{' '}
+        Ще не маєте аккаунту?{' '}
         <Link className={css.link} to="/register">
-          Register
+          Реєстрація
         </Link>{' '}
       </p>
     </div>

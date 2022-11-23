@@ -24,7 +24,7 @@ const LogOut = () => {
   return (
     <>
       <Button onClick={() => openModal('logout')} className={scss.logOutBtn}>
-        <p className={scss.logOutText}>Log Out</p>
+        <p className={scss.logOutText}>Вийти</p>
       </Button>
       <Modal
         leftButton={true}
@@ -35,7 +35,7 @@ const LogOut = () => {
         rightButtonClick={closeModal}
         marker="logout"
       >
-        <p className={scss.logOutModalText}>Do you really want to quit?</p>
+        <p className={scss.logOutModalText}>Ви дійсно бажаєте вийти?</p>
       </Modal>
     </>
   );
