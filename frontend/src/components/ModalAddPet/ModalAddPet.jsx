@@ -37,13 +37,13 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
       name: Yup.string()
         .trim()
         .required('Please enter name of your pet')
-        .matches(/^[aA-zZ\s]+$/, 'Name contain only letters')
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Name contain only letters')
         .min(2, 'Name must be at least 2 characters')
         .max(16, 'Name must not exceed 16 characters'),
       birthday: Yup.date().required('Please enter date of pet birth'),
       breed: Yup.string()
         .required('Please enter breed of your pet')
-        .matches(/^[aA-zZ\s]+$/, 'only letters')
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'only letters')
         .min(2, 'Breed must be at least 2 characters')
         .max(24, 'Breed must not exceed 24 characters'),
       comments: Yup.string()
