@@ -46,7 +46,7 @@ const RegisterForm = () => {
         .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
       name: Yup.string()
         .required('Please enter')
-        .matches(/^[aA-zZ\s]+$/, 'Name contain only letters'),
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Name contain only letters'),
       location: Yup.string()
         .required('Please enter')
         .matches(
@@ -121,7 +121,7 @@ const RegisterForm = () => {
               className={css.formInput}
               id="confirmPassword"
               name="confirmPassword"
-              type="confirmPassword"
+              type="password"
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
               placeholder="Confirm Password"
