@@ -108,3 +108,4 @@ dist
 
 # Local Netlify folder
 .netlify
+frontend/package-lock.json
