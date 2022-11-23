@@ -79,7 +79,7 @@ const addSchema = Joi.object({
   name: Joi.string(),
   breed: Joi.string(),
   photoURL: Joi.string(),
-  photoId: Joi.string(),
+  photoId: Joi.string().min(0),
   comments: Joi.string(),
   birthday: Joi.date(),
   price: Joi.number(),

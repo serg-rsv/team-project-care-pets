@@ -2,19 +2,18 @@
 
 .addBox {
   position: absolute;
-  top: 78px;
-  left: 200px;
+  top: 80px;
+  right: 0;
 
- @include mq(tablet) {
-    top: -100px;
-    left: 1112px;
+  @include mq(tablet) {
+    top: -108px;
+    right: 0;
     display: flex;
   }
-  @include mq(tablet-only) {
-    top: -175px;
-    left: 568px;
-  } 
- 
+  // @include mq(tablet-only) {
+  //   top: -175px;
+  //   left: 568px;
+  // }
 }
 
 .addBox p {

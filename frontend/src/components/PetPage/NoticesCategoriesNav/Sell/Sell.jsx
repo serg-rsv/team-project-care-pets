@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState,useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setNotices } from '../../../../redux/noticesSlice';
+import { selectNotices } from '../../../../redux/selectors';
 
 import { useGetNoticesByCategoryQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
@@ -9,32 +12,33 @@ import LoadMore from '../../../LoadMore';
 
 const Sell = () => {
   const [perPage, setPerPage] = useState(4);
+  const dispatch = useDispatch();
+  const pets = useSelector(selectNotices);
+
   const isActiveDelete = false;
-  const [pets, setPets] = useState([]);
-  const { data: notices } = useGetNoticesByCategoryQuery('sell');
+  const { data: noticesCategory } = useGetNoticesByCategoryQuery('sell');
   const { data: user } = useCurrentQuery();
 
   useEffect(() => {
     const markedNotices = markFavoriteNotice(
-      notices?.data,
+      noticesCategory?.data,
       user?.user?.favorites
     );
     const slice = markedNotices.slice(0, perPage);
-    setPets(slice);
-  }, [notices, user, perPage]);
+    dispatch(setNotices(markedNotices));
+  }, [dispatch, noticesCategory, user?.user?.favorites]);
 
-  const loadMore = () => {
-    setPerPage(perPage + perPage);
-  };
-
+const loadMore = () => {
+  // setPerPage(perPage + perPage);
+};
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {notices?.data.length > perPage ? (
+      {/* {notices?.data.length > perPage ? ( */}
         <LoadMore loadMore={() => loadMore()}>Load more</LoadMore>
-      ) : null}
+      {/* ) : null} */}
     </>
   );
 };

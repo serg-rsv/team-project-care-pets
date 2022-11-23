@@ -69,7 +69,6 @@ const RegisterForm = () => {
           phone,
           location,
         });
-        console.log('TOKEN', token);
         dispatch(setToken(token));
         navigate('/home');
       } catch {

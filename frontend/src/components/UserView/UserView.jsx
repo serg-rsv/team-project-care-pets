@@ -9,9 +9,6 @@ import ModalAddPet from '../ModalAddPet';
 
 const UserView = () => {
   const { openModal, closeModal } = useModal();
-  const addPet = () => {
-    console.log('addPet');
-  };
   return (
     <section className={['container', scss.wrapper].join(' ')}>
       <h2 className={scss.titleInfo}>My information:</h2>

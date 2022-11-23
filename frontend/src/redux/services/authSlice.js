@@ -4,20 +4,18 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: null,
-    isLoggedin: false,
+    isLoggedIn: false,
   },
   reducers: {
     setToken: (state, { payload }) => {
       state.token = payload;
-      state.isLoggedin = true;
+      state.isLoggedIn = true;
     },
     unsetToken: state => {
       state.token = null;
-      state.isLoggedin = false;
+      state.isLoggedIn = false;
     },
   },
 });
 export const { setToken, unsetToken } = authSlice.actions;
-export const selectToken = state => state.auth.token;
-export const selectIsLoggedIn = state => state.auth.isLoggedin;
 export default authSlice.reducer;

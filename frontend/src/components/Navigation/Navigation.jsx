@@ -5,7 +5,7 @@ import AuthNav from '../AuthNav';
 import Button from '../Button';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/services/authSlice';
+import { selectIsLoggedIn } from '../../redux/selectors';
 
 const Navigation = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,13 +36,13 @@ const Navigation = () => {
       {isModalOpen && (
         <div className={s.mobMenu}>
           {isAuthorized ? <UserNav /> : <AuthNav />}
-          <Nav />
+          <Nav closeModal={onBurgerClick} />
         </div>
       )}
 
       {isModalOpen ? (
         <div className={s.tabMenu}>
-          <Nav />
+          <Nav closeModal={onBurgerClick} />
         </div>
       ) : (
         <div className={s.authTabMenu}>

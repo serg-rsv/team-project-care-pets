@@ -4,10 +4,12 @@ import {
   useDeleteNoticeMutation,
 } from '../../../redux/services/noticesSlice';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Button from '../../Button';
 import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
+import {selectIsLoggedIn}  from '../../../redux/selectors';
 
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
@@ -25,18 +27,45 @@ const NoticeCategoryItem = ({
   isActive,
   isFavorite,
 }) => {
+  const checkCategory = page === 'sell'; 
   const [deleteNotice] = useDeleteNoticeMutation();
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
   const { openModal, closeModal } = useModal();
-
   const { data: item } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  console.log(isLoggedIn);
+
+   const getDate = (birthday) => {
+     let date = new Date(birthday);
+     let year = date.getFullYear();
+     let day = date.getDay();
+     let month = date.getMonth();
+     if (day < 10) {
+       day = `0${day}`;
+     }
+     if (month < 10) {
+       month = `0${month}`;
+     }
+     return day + '.' + month + '.' + year;
+   };
+
+  const birthday = getDate(noticeById?.birthday);
+
+  
 
   const showModalNotice = _id => {
     setId(_id);
   };
+  const linkPhone = (
+    <a href={`tel:${noticeById?.owner?.phone}`}>
+      Contact
+    </a>
+  );
 
   const svgIcon = (
     <>
@@ -90,13 +119,16 @@ const NoticeCategoryItem = ({
       </svg>
     </>
   );
+  const a = false; 
 
   return (
     <li className={s.animalListItem}>
       <div className={s.signature}>
         <p>{page}</p>
       </div>
-      <img className={s.animalListImg} src={link} alt={title} />
+      <div className={s.imageWrapper}>
+        <img className={s.animalListImg} src={link} alt={title} />
+      </div>
       <h3 className={s.animalListTitle}>{title}</h3>
       <div className={s.animalListBoxText}>
         <p className={s.breed}>Breed:</p>
@@ -110,7 +142,7 @@ const NoticeCategoryItem = ({
         <p className={s.age}>Age:</p>
         <p>{age}</p>
       </div>
-      {price ? (
+      {checkCategory ? (
         <div className={s.animalListBoxText}>
           <p className={s.price}>Price:</p>
           <p>{price}</p>
@@ -120,7 +152,6 @@ const NoticeCategoryItem = ({
           <p className={s.priceOpacity}>P</p>
         </div>
       )}
-
       <Button
         onClick={() => {
           openModal(`learnmore${_id}`);
@@ -132,6 +163,7 @@ const NoticeCategoryItem = ({
       </Button>
 
       <Button
+        disabled={!isLoggedIn}
         onClick={() => (isFavorite ? deleteFavorite(_id) : addFavorite(_id))}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
@@ -148,18 +180,22 @@ const NoticeCategoryItem = ({
         leftButtonStyle={s.addToFavoriteButton}
         leftButtonClick={() => addFavorite(_id)}
         rightButton={true}
-        rightButtonContent={'Contact'}
+        rightButtonContent={linkPhone}
+        disabled={!isLoggedIn}
       >
         <ModalNotice
           category={noticeById?.category}
           photoURL={noticeById?.photoURL}
           name={noticeById?.name}
           title={noticeById?.title}
-          birthday={noticeById?.birthday}
+          birthday={birthday}
           breed={noticeById?.breed}
           location={noticeById?.location}
           sex={noticeById?.sex}
           comments={noticeById?.comments}
+          email={noticeById?.owner?.email}
+          phone={noticeById?.owner?.phone}
+          price={noticeById?.price}
         />
       </Modal>
     </li>

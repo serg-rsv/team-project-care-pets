@@ -10,11 +10,10 @@
   align-items: center;
   justify-content: center;
   @include mq(tablet) {
-    width: 161px;
-    height: 161px;
+    width: 161px !important;
+    height: 161px !important;
     border-radius: 40px;
     margin-bottom: 0;
-    margin-right: 32px;
   }
 }
 .petAvatar {
@@ -32,7 +31,9 @@
   box-shadow: 7px 4px 14px 0 rgba(0, 0, 0, 0.11);
   @include mq(tablet) {
     width: 704px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 161px auto;
+    gap: 32px;
     border-radius: 40px;
     padding: 20px;
     margin-left: 32px;
@@ -47,9 +48,14 @@
     @include fonts(16px, 500, 1.3);
   }
 }
+.property {
+  white-space: pre;
+  display: inline-block;
+  margin: 0;
+}
 .text {
-  @include fonts(14px, 400, 1.3);
   display: inline;
+  @include fonts(14px, 400, 1.3);
   @include mq(tablet) {
     @include fonts(16px, 400, 1.3);
   }

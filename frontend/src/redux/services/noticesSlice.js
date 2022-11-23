@@ -1,11 +1,25 @@
 import { baseApi } from './baseApi';
+import { urlGenerator } from '../../helpers/urlGenerator';
 
 // Define endpoints for notices
 const noticesApi = baseApi.injectEndpoints({
   endpoints: builder => ({
-    fetchNotices: builder.query({
-      query: () => ({ url: '/notices' }),
-      // providesTags: ['Notices'],
+    fetchNotices: builder.mutation({
+      query: query => {
+        const { title, category, location, name, page, limit } = query;
+        if (title || category || location || name || page || limit) {
+          const params = urlGenerator(query);
+          return {
+            url: `/notices?${params}`,
+          };
+        } else {
+          return {
+            url: '/notices',
+          };
+        }
+      },
+      transformResponse: response => response.data,
+      providesTags: ['Notices'],
     }),
     deleteNotice: builder.mutation({
       query: noticeId => ({
@@ -67,7 +81,7 @@ const noticesApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useFetchNoticesQuery,
+  useFetchNoticesMutation,
   useDeleteNoticeMutation,
   useCreateNoticeMutation,
   useGetNoticeByIdQuery,

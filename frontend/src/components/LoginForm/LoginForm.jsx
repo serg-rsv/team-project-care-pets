@@ -77,7 +77,7 @@ const LoginForm = () => {
       </form>
       <p className={css.linkToPage}>
         Don't have an account?{' '}
-        <Link className={css.link} to="/home">
+        <Link className={css.link} to="/register">
           Register
         </Link>{' '}
       </p>
