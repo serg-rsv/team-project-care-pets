@@ -8,6 +8,7 @@ import { useModal } from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
 
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
+  console.log('id in ', id);
   const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
   function getDate(birthday) {
@@ -50,10 +51,10 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       {/* <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button> */}
       <Button
         className={scss.iconBtn}
-        onClick={() => openModal('pets')}
+        onClick={() => openModal(`pets${id}`)}
       ></Button>
       <Modal
-        marker="pets"
+        marker={`pets${id}`}
         leftButton={true}
         leftButtonType={'button'}
         rightButton={true}
@@ -61,6 +62,7 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
         leftButtonContent={'YES'}
         rightButtonContent={'NO'}
         leftButtonClick={() => {
+          console.log('id', id);
           deletePet(id);
           closeModal();
         }}
