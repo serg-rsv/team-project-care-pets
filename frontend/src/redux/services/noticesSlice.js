@@ -71,10 +71,18 @@ const noticesApi = baseApi.injectEndpoints({
       invalidatesTags: ['User', 'Notices'],
     }),
     getNoticesByCategory: builder.query({
-      query: category => ({
-        url: `/notices/category/${category}`,
-        method: 'GET',
-      }),
+      query: query => {
+        const { category, page, limit } = query;
+        if (page) {
+          return {
+            url: `/notices/category/${category}?page=${page}&limit=${limit}`,
+          };
+        } else {
+          return {
+            url: `/notices/category/${category}`,
+          };
+        }
+      },
       providesTags: ['Notices'],
     }),
   }),

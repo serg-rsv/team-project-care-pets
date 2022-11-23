@@ -9,7 +9,6 @@ import LoadMore from '../../../LoadMore';
 
 const Own = () => {
   const isActiveDelete = true;
-  const [perPage, setPerPage] = useState(4);
   const [pets, setPets] = useState([]);
   const { data: notices } = useGetPersonalNoticeQuery();
   const { data: user } = useCurrentQuery();
@@ -19,18 +18,17 @@ const Own = () => {
       notices?.data,
       user?.user?.favorites
     );
-    const slice = markedNotices.slice(0, perPage);
-    setPets(slice);
-  }, [notices, perPage, user]);
+    setPets(markedNotices);
+  }, [notices,user]);
   const loadMore = () => {
-    setPerPage(perPage + perPage);
+  console.log('load more');
   };
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {notices?.data.length > perPage ? (
+      {notices?.data.length ? (
         <LoadMore loadMore={() => loadMore()}>Load more</LoadMore>
       ) : null}
     </>
