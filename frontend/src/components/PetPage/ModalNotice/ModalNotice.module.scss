@@ -42,7 +42,7 @@
   @include fonts(28px, 700, 1.4);
   color: var(--black-text-cl);
   @include mq(tablet) {
-   margin-left: 20px;
+    margin-left: 20px;
     margin-bottom: 12px;
     @include fonts(24px, 700, 1.4);
   }
@@ -60,8 +60,8 @@
 .listParams {
   display: block;
   @include mq(tablet) {
-  margin-left: 20px;
-}
+    margin-left: 20px;
+  }
 }
 
 .listParams li {

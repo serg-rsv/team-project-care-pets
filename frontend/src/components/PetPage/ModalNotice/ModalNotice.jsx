@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import s from './ModalNotice.module.scss';
 
 const ModalNotice = ({
@@ -14,8 +15,8 @@ const ModalNotice = ({
   phone,
   price,
 }) => {
+  const checkCategory = category === 'sell';
 
-const checkCategory = category === 'sell'; 
   return (
     <div className={s.box}>
       <div className={s.boxData}>
@@ -57,12 +58,11 @@ const checkCategory = category === 'sell';
               <p>{phone}</p>
             </li>
             {checkCategory && (
-             <li>
-              <p className={s.sell}>Sell:</p>
-              <p>{`${price}$`}</p>
-            </li> 
+              <li>
+                <p className={s.sell}>Sell:</p>
+                <p>{`${price}$`}</p>
+              </li>
             )}
-            
           </ul>
         </div>
       </div>
@@ -70,6 +70,21 @@ const checkCategory = category === 'sell';
       <p className={s.comments}>{comments}</p>
     </div>
   );
+};
+
+ModalNotice.propTypes = {
+  category: PropTypes.string.isRequired,
+  photoURL: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  birthday: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  sex: PropTypes.string.isRequired,
+  comments: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
 };
 
 export default ModalNotice;

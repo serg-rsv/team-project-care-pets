@@ -1,10 +1,12 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import {
   useAddFavoritesByIdMutation,
   useDeleteFavoritesByIdMutation,
   useDeleteNoticeMutation,
 } from '../../../redux/services/noticesSlice';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import Button from '../../Button';
 import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
@@ -38,6 +40,8 @@ const NoticeCategoryItem = ({
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
+  console.log(isLoggedIn);
+
   const getDate = birthday => {
     let date = new Date(birthday);
     let year = date.getFullYear();
@@ -57,9 +61,7 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
-  const linkPhone = (
-    <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
-  );
+  const linkPhone = <a href={`tel:${noticeById?.owner?.phone}`}>Contact</a>;
 
   const svgIcon = (
     <>
@@ -113,6 +115,7 @@ const NoticeCategoryItem = ({
       </svg>
     </>
   );
+  const a = false;
 
   return (
     <li className={s.animalListItem}>
@@ -157,7 +160,9 @@ const NoticeCategoryItem = ({
 
       <Button
         disabled={!isLoggedIn}
-        onClick={() => (isFavorite ? deleteFavorite(_id) : addFavorite(_id))}
+        onClick={() => {
+          isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+        }}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
 
@@ -193,6 +198,19 @@ const NoticeCategoryItem = ({
       </Modal>
     </li>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  place: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };
 
 export default NoticeCategoryItem;
