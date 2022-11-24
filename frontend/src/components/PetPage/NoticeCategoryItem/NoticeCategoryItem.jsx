@@ -61,7 +61,9 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
-  const linkPhone = <a href={`tel:${noticeById?.owner?.phone}`}>Contact</a>;
+  const linkPhone = (
+    <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
+  );
 
   const svgIcon = (
     <>
@@ -126,28 +128,31 @@ const NoticeCategoryItem = ({
         <img className={s.animalListImg} src={link} alt={title} />
       </div>
       <h3 className={s.animalListTitle}>{title}</h3>
-      <div className={s.animalListBoxText}>
-        <p className={s.breed}>Порода:</p>
-        <p>{breed}</p>
-      </div>
-      <div className={s.animalListBoxText}>
-        <p className={s.place}>Місце:</p>
-        <p>{place}</p>
-      </div>
-      <div className={s.animalListBoxText}>
-        <p className={s.age}>Вік:</p>
-        <p>{age}</p>
-      </div>
-      {checkCategory ? (
-        <div className={s.animalListBoxText}>
-          <p className={s.price}>Ціна:</p>
-          <p>{price}</p>
-        </div>
-      ) : (
-        <div className={s.animalListBoxText}>
-          <p className={s.priceOpacity}>P</p>
-        </div>
-      )}
+      <ul>
+        <li className={s.animalListBoxText}>
+          Порода:
+          <p> {breed}</p>
+        </li>
+        <li className={s.animalListBoxText}>
+          Місце:
+          <p>{place}</p>
+        </li>
+        <li className={s.animalListBoxText}>
+          Вік:
+          <p>{age}</p>
+        </li>
+        {checkCategory ? (
+          <li className={s.animalListBoxText}>
+            Ціна:
+            <p>{price}</p>
+          </li>
+        ) : (
+          <li className={s.animalListBoxText}>
+            <p className={s.priceOpacity}>P</p>
+          </li>
+        )}
+      </ul>
+
       <Button
         onClick={() => {
           openModal(`learnmore${_id}`);
@@ -157,7 +162,6 @@ const NoticeCategoryItem = ({
       >
         Дізнатися більше
       </Button>
-
       <Button
         disabled={!isLoggedIn}
         onClick={() => {
@@ -165,11 +169,9 @@ const NoticeCategoryItem = ({
         }}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
-
       {isActive && (
         <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
-
       <Modal
         marker={`learnmore${_id}`}
         closeButton={true}
