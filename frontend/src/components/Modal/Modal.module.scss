@@ -12,14 +12,12 @@
 }
 
 .modalWindow {
-  padding: 20px;
   background-color: white;
   border-radius: 40px;
   position: relative;
+  overflow: hidden;
 }
-.modalHeder {
-  margin-bottom: 10px;
-}
+
 .closeButton {
   border: none;
   width: 40px;
@@ -47,10 +45,6 @@
       stroke: var(--white-bg);
     }
   }
-}
-.modalBody {
-  padding: 10px;
-  margin-bottom: 10px;
 }
 
 .modalFooter {

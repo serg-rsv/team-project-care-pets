@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import Button from '../Button/Button';
 import css from './modalAddPet.module.scss';
 import { formDataAppender } from '../../helpers/formDataAppender';
+import Location from '../Location';
 
 import * as Yup from 'yup';
 import { useCreatePetMutation } from '../../redux/services/petsSlice';
@@ -80,7 +81,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               placeholder="Type name pet"
             />
 
-            <label className={css.addPetInputTitle} htmlFor="birth">
+            <label className={css.addPetInputTitle} htmlFor="birthday">
               Date of birth
             </label>
             {formik.values.birth !== '' && formik.errors.birth ? (
