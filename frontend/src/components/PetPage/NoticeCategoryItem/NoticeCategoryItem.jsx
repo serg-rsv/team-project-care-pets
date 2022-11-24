@@ -9,7 +9,7 @@ import Button from '../../Button';
 import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
-import {selectIsLoggedIn}  from '../../../redux/selectors';
+import { selectIsLoggedIn } from '../../../redux/selectors';
 
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
@@ -27,7 +27,7 @@ const NoticeCategoryItem = ({
   isActive,
   isFavorite,
 }) => {
-  const checkCategory = page === 'sell'; 
+  const checkCategory = page === 'sell';
   const [deleteNotice] = useDeleteNoticeMutation();
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
@@ -40,31 +40,27 @@ const NoticeCategoryItem = ({
 
   console.log(isLoggedIn);
 
-   const getDate = (birthday) => {
-     let date = new Date(birthday);
-     let year = date.getFullYear();
-     let day = date.getDay();
-     let month = date.getMonth();
-     if (day < 10) {
-       day = `0${day}`;
-     }
-     if (month < 10) {
-       month = `0${month}`;
-     }
-     return day + '.' + month + '.' + year;
-   };
+  const getDate = birthday => {
+    let date = new Date(birthday);
+    let year = date.getFullYear();
+    let day = date.getDay();
+    let month = date.getMonth();
+    if (day < 10) {
+      day = `0${day}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    return day + '.' + month + '.' + year;
+  };
 
   const birthday = getDate(noticeById?.birthday);
-
-  
 
   const showModalNotice = _id => {
     setId(_id);
   };
   const linkPhone = (
-    <a href={`tel:${noticeById?.owner?.phone}`}>
-      Зателефонувати
-    </a>
+    <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
   );
 
   const svgIcon = (
@@ -119,7 +115,7 @@ const NoticeCategoryItem = ({
       </svg>
     </>
   );
-  const a = false; 
+  const a = false;
 
   return (
     <li className={s.animalListItem}>
@@ -144,18 +140,17 @@ const NoticeCategoryItem = ({
           <p>{age}</p>
         </li>
         {checkCategory ? (
-        <li className={s.animalListBoxText}>Ціна:
-          <p>{price}</p>
-        </li>
-      ) : (
-        <li className={s.animalListBoxText}>
-          <p className={s.priceOpacity}>P</p>
-        </li>
-      )}
+          <li className={s.animalListBoxText}>
+            Ціна:
+            <p>{price}</p>
+          </li>
+        ) : (
+          <li className={s.animalListBoxText}>
+            <p className={s.priceOpacity}>P</p>
+          </li>
+        )}
       </ul>
-      
-      
-    
+
       <Button
         onClick={() => {
           openModal(`learnmore${_id}`);
