@@ -28,10 +28,10 @@ const LogOut = () => {
       </Button>
       <Modal
         leftButton={true}
-        leftButtonContent="yes"
+        leftButtonContent="Так"
         leftButtonClick={logOut}
         rightButton={true}
-        rightButtonContent="no"
+        rightButtonContent="Ні"
         rightButtonClick={closeModal}
         marker="logout"
       >

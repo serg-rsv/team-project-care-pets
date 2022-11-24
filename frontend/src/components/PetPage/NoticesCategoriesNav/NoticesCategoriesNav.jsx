@@ -33,7 +33,7 @@ const NoticesCategoriesNav = () => {
           }
           to="/notices/sell"
         >
-          продаж
+          продається
         </NavLink>
       </li>
 
@@ -47,7 +47,7 @@ const NoticesCategoriesNav = () => {
               }
               to="/notices/favorite"
             >
-              Favorite ads
+              сподобалися
             </NavLink>
           </li>
           <li>
@@ -57,7 +57,7 @@ const NoticesCategoriesNav = () => {
               }
               to="/notices/own"
             >
-              My ads
+              мої оголошення
             </NavLink>
           </li>
         </>

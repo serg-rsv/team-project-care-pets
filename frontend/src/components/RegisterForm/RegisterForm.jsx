@@ -36,25 +36,25 @@ const RegisterForm = () => {
     validationSchema: Yup.object().shape({
       email: Yup.string()
         .email('Неправильний адрес')
-        .required('Please enter'),
+        .required('Це поле не може бути порожнім'),
       password: Yup.string()
-        .required('Поле не заповнено')
+        .required('Це поле не може бути порожнім')
         .min(7, 'Пароль містить мінімум 7 символів')
         .max(32, 'Пароль містить максимум 32 символи'),
       confirmPassword: Yup.string()
-        .required('Поле не заповнено')
+        .required('Це поле не може бути порожнім')
         .oneOf([Yup.ref('password'), null], 'Пароль не співпадає'),
       name: Yup.string()
-        .required('Поле не заповнено')
+        .required('Це поле не може бути порожнім')
         .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Тільки літери'),
       location: Yup.string()
-        .required('Поле не заповнено')
+        .required('Це поле не може бути порожнім')
         .matches(
           /([а-яА-ЯїЇіІЁёa-zA-Z]+(?: [а-яА-ЯїЇіІЁёa-zA-Z]+)*),? ([а-яА-ЯїЇіІЁёa-zA-Z]{2})/,
           'Введіть в форматі: місто, область'
         ),
       phone: Yup.string()
-        .required('Поле не заповнено')
+        .required('Це поле не може бути порожнім')
         .matches(/^\+380\d{9}$/, 'Неправильний номер телефону'),
     }),
 
@@ -124,7 +124,7 @@ const RegisterForm = () => {
               type="password"
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
-              placeholder="Підтвердити пароль"
+              placeholder="Підтвердження пароля"
             />
             {formik.values.confirmPassword !== '' &&
             formik.errors.confirmPassword ? (
@@ -220,7 +220,7 @@ const RegisterForm = () => {
       {/* {isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
 
       <p className={css.linkToPage}>
-        Вже маєте аккаунт?{' '}
+        Ви вже маєте аккаунт?{' '}
         <Link className={css.link} to="/login">
           Увійти
         </Link>

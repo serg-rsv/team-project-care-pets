@@ -152,6 +152,7 @@
     justify-self: center;
     align-self: flex-start;
     width: 280px;
+    text-align: center;
     // margin-top: calc(40px - 16px);
     color: var(--white-text-cl);
     border: none;
@@ -170,6 +171,7 @@
     }
 }
 .formBtnBck {
+    text-align: center;
     background-color: var(--main-bg-cl);
     justify-self: center;
     align-self: flex-start;

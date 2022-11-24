@@ -18,7 +18,7 @@ const UserNav = () => {
             fill="white"
           />
         </svg>
-        Account
+        Аккаунт
       </NavLink>
     </div>
   );

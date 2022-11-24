@@ -18,12 +18,12 @@ const LoginForm = () => {
     },
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Email address is invalid')
-        .required('Please enter'),
+        .email('Email містить помилки')
+        .required('Це поле не може бути порожнім'),
       password: Yup.string()
-        .required('Please enter')
-        .min(7, 'Password must be at least 7 characters')
-        .max(32, 'Password must not exceed 32 characters'),
+        .required('Це поле не може бути порожнім')
+        .min(7, 'Пароль містить мінімум 7 символів')
+        .max(32, 'Пароль містить максимум 32 символи'),
     }),
     onSubmit: async values => {
       const response = await login(values).unwrap();
@@ -47,7 +47,7 @@ const LoginForm = () => {
           placeholder="Email"
         />
 
-        {formik.values.email !== '' && formik.errors.email ? (
+        {formik.touched.email && formik.errors.email ? (
           <p className={css.inputLoginErrorEmail}>{formik.errors.email}</p>
         ) : null}
 
@@ -61,7 +61,7 @@ const LoginForm = () => {
           placeholder="Пароль"
         />
 
-        {formik.values.password !== '' && formik.errors.password ? (
+        {formik.touched.password  && formik.errors.password ? (
           <p className={css.inputLoginErrorPassword}>
             {formik.errors.password}
           </p>
@@ -78,7 +78,7 @@ const LoginForm = () => {
       <p className={css.linkToPage}>
         Ще не маєте аккаунту?{' '}
         <Link className={css.link} to="/register">
-          Реєстрація
+          Зареєструватися
         </Link>{' '}
       </p>
     </div>

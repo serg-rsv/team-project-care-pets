@@ -63,13 +63,13 @@ const NoticeCategoryItem = ({
   };
   const linkPhone = (
     <a href={`tel:${noticeById?.owner?.phone}`}>
-      Contact
+      Зателефонувати
     </a>
   );
 
   const svgIcon = (
     <>
-      <p className={s.addToFavoriteButtonText}>Add to</p>
+      <p className={s.addToFavoriteButtonText}>Додати в</p>
       <svg
         width="26"
         height="24"
