@@ -5,6 +5,7 @@ import { useGetPersonalNoticeQuery } from '../../../../redux/services/noticesSli
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
+import LoadMore from '../../../LoadMore';
 
 const Own = () => {
   const isActiveDelete = true;
@@ -18,13 +19,18 @@ const Own = () => {
       user?.user?.favorites
     );
     setPets(markedNotices);
-  }, [notices, user]);
-
+  }, [notices,user]);
+  const loadMore = () => {
+  console.log('load more');
+  };
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
+      {notices?.data.length ? (
+        <LoadMore loadMore={() => loadMore()}>Load more</LoadMore>
+      ) : null}
     </>
   );
 };
