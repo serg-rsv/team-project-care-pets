@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <div className={s.homePage}>
       <section className="container">
-        <h1 className={s.mainTitle}>Take good care of your small pets</h1>
+        <h1 className={s.mainTitle}>Піклуйтеся про своїх пухнастих друзів</h1>
       </section>
     </div>
   );

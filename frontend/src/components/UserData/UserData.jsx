@@ -150,14 +150,14 @@ const UserData = () => {
           style={{ display: 'none' }}
           onChange={editAvatar}
         />
-        <p className={scss.editPhoto}>Edit photo</p>
+        <p className={scss.editPhoto}>Редагувати фото</p>
       </label>
 
       <div className={scss.userInfo}>
         <ul className={scss.list}>
           <li className={scss.listItem}>
             <label htmlFor="name" className={scss.listText}>
-              Name:
+              Ім'я:
             </label>
             <div className={scss.inputWrapper}>
               <input
@@ -193,7 +193,7 @@ const UserData = () => {
           </li>
           <li className={scss.listItem}>
             <label htmlFor="birthday" className={scss.listText}>
-              Birthday:
+              День народження:
             </label>
             <div className={scss.inputWrapper}>
               <input
@@ -209,7 +209,7 @@ const UserData = () => {
           </li>
           <li className={scss.listItem}>
             <label htmlFor="phone" className={scss.listText}>
-              Phone:
+              Телефон:
             </label>
             <div className={scss.inputWrapper}>
               <input
@@ -225,7 +225,7 @@ const UserData = () => {
           </li>
           <li className={scss.listItem}>
             <label htmlFor="city" className={scss.listText}>
-              City:
+              Місто:
             </label>
             <div className={scss.inputWrapper}>
               <input

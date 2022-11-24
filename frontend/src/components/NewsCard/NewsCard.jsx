@@ -11,7 +11,7 @@ const NewsCard = ({ obj }) => {
         <p className={s.metaDate}>{date?.split('-').join('/')}</p>
         <p>
           <a href={url} target="_blanc" className={s.metaLink}>
-            Read more
+            Читати більше
           </a>
         </p>
       </div>

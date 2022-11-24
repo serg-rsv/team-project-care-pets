@@ -32,19 +32,19 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       </div>
       <ul>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Name: </dd>
+          <dd className={scss.property}>Ім'я: </dd>
           <dt className={scss.text}>{name}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Date of birth: </dd>
+          <dd className={scss.property}>Дата народження: </dd>
           <dt className={scss.text}> {birthday.toString().slice(0, 10)}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Breed: </dd>
+          <dd className={scss.property}>Порода: </dd>
           <dt className={scss.text}> {breed}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Comments: </dd>
+          <dd className={scss.property}>Коментарі: </dd>
           <dt className={scss.text}> {comments}</dt>
         </li>
       </ul>
@@ -59,8 +59,8 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
         leftButtonType={'button'}
         rightButton={true}
         rightButtonType={'button'}
-        leftButtonContent={'YES'}
-        rightButtonContent={'NO'}
+        leftButtonContent={'Так'}
+        rightButtonContent={'Ні'}
         leftButtonClick={() => {
           console.log('id', id);
           deletePet(id);
@@ -68,7 +68,7 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
         }}
         rightButtonClick={closeModal}
       >
-        Do you realy want to delete pet?
+        Ви дійсно бажаєте видалити?
       </Modal>
     </div>
   );

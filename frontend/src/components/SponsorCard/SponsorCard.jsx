@@ -62,7 +62,7 @@ const SponsorCard = ({ obj }) => {
         <ul className={s.infoList}>
           <li className={s.infoList__item}>
             <div className={s.workTime}>
-              <p className={s.infoTitle}>Time:</p>
+              <p className={s.infoTitle}>Графік роботи:</p>
               <p>
                 {workTime
                   ? workTime.find(day => day.time !== 'Closed').time
@@ -87,7 +87,7 @@ const SponsorCard = ({ obj }) => {
             </div>
           </li>
           <li className={s.infoList__item}>
-            <p className={s.infoTitle}>Adress:</p>
+            <p className={s.infoTitle}>Адреса:</p>
             <p>
               {address ? (
                 <a href={addressUrl} target="_blanc" className={s.addressLink}>
@@ -111,7 +111,7 @@ const SponsorCard = ({ obj }) => {
             </p>
           </li>
           <li className={s.infoList__item}>
-            <p className={s.infoTitle}>Phone:</p>
+            <p className={s.infoTitle}>Телефон:</p>
             <p>
               {phone ? (
                 <a href={['tel:', phone].join('')} className={s.phoneLink}>

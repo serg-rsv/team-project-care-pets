@@ -13,7 +13,7 @@ const NoticesCategoriesNav = () => {
           }
           to="/notices/lost-found"
         >
-          lost/found
+          знайшов/загубив
         </NavLink>
       </li>
       <li>
@@ -23,7 +23,7 @@ const NoticesCategoriesNav = () => {
           }
           to="/notices/for-free"
         >
-          In good hands
+          у добрі руки
         </NavLink>
       </li>
       <li className={s.sell}>
@@ -33,7 +33,7 @@ const NoticesCategoriesNav = () => {
           }
           to="/notices/sell"
         >
-          sell
+          продається
         </NavLink>
       </li>
 
@@ -47,7 +47,7 @@ const NoticesCategoriesNav = () => {
               }
               to="/notices/favorite"
             >
-              Favorite ads
+              сподобалися
             </NavLink>
           </li>
           <li>
@@ -57,7 +57,7 @@ const NoticesCategoriesNav = () => {
               }
               to="/notices/own"
             >
-              My ads
+              мої оголошення
             </NavLink>
           </li>
         </>

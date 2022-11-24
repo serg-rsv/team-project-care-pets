@@ -11,7 +11,7 @@ const Nav = ({ closeModal }) => {
             className={({ isActive }) => (isActive ? s.active : undefined)}
             onClick={closeModal}
           >
-            News
+            Новини
           </NavLink>
         </li>
         <li className={s.navList__item}>
@@ -20,7 +20,7 @@ const Nav = ({ closeModal }) => {
             className={({ isActive }) => (isActive ? s.active : undefined)}
             onClick={closeModal}
           >
-            Find pet
+            Знайти тварину
           </NavLink>
         </li>
         <li className={s.navList__item}>
@@ -29,7 +29,7 @@ const Nav = ({ closeModal }) => {
             className={({ isActive }) => (isActive ? s.active : undefined)}
             onClick={closeModal}
           >
-            Our friend
+            Наші друзі
           </NavLink>
         </li>
       </ul>

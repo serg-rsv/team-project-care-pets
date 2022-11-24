@@ -11,7 +11,7 @@ const AddNoticeButton = () => {
       }}
       className={s.addBox}
     >
-      <p>Add pet</p>
+      <p>Додати</p>
       <Button className={s.addButton}></Button>
     </div>
   );
