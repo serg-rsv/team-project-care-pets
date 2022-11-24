@@ -39,8 +39,6 @@ const NoticeCategoryItem = ({
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-
-
   const getDate = birthday => {
     let date = new Date(birthday);
     let year = date.getFullYear();
@@ -115,92 +113,86 @@ const NoticeCategoryItem = ({
     </>
   );
 
-
-
   return (
-      <li className={s.animalListItem}>
-        <div className={s.signature}>
-          <p>{page}</p>
-        </div>
-        <div className={s.imageWrapper}>
-          <img className={s.animalListImg} src={link} alt={title} />
-        </div>
-        <h3 className={s.animalListTitle}>{title}</h3>
+    <li className={s.animalListItem}>
+      <div className={s.signature}>
+        <p>{page}</p>
+      </div>
+      <div className={s.imageWrapper}>
+        <img className={s.animalListImg} src={link} alt={title} />
+      </div>
+      <h3 className={s.animalListTitle}>{title}</h3>
+      <div className={s.animalListBoxText}>
+        <p className={s.breed}>Breed:</p>
+        <p>{breed}</p>
+      </div>
+      <div className={s.animalListBoxText}>
+        <p className={s.place}>Place:</p>
+        <p>{place}</p>
+      </div>
+      <div className={s.animalListBoxText}>
+        <p className={s.age}>Age:</p>
+        <p>{age}</p>
+      </div>
+      {checkCategory ? (
         <div className={s.animalListBoxText}>
-          <p className={s.breed}>Breed:</p>
-          <p>{breed}</p>
+          <p className={s.price}>Price:</p>
+          <p>{price}</p>
         </div>
+      ) : (
         <div className={s.animalListBoxText}>
-          <p className={s.place}>Place:</p>
-          <p>{place}</p>
+          <p className={s.priceOpacity}>P</p>
         </div>
-        <div className={s.animalListBoxText}>
-          <p className={s.age}>Age:</p>
-          <p>{age}</p>
-        </div>
-        {checkCategory ? (
-          <div className={s.animalListBoxText}>
-            <p className={s.price}>Price:</p>
-            <p>{price}</p>
-          </div>
-        ) : (
-          <div className={s.animalListBoxText}>
-            <p className={s.priceOpacity}>P</p>
-          </div>
-        )}
-        <Button
-          onClick={() => {
-            openModal(`learnmore${_id}`);
-            showModalNotice(_id);
-          }}
-          className={s.button}
-        >
-          Learn more
-        </Button>
+      )}
+      <Button
+        onClick={() => {
+          openModal(`learnmore${_id}`);
+          showModalNotice(_id);
+        }}
+        className={s.button}
+      >
+        Learn more
+      </Button>
 
-        <Button
-          disabled={!isLoggedIn}
-          onClick={() => {
-            isFavorite ? deleteFavorite(_id) : addFavorite(_id);
-          }}
-          className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
-        ></Button>
+      <Button
+        disabled={!isLoggedIn}
+        onClick={() => {
+          isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+        }}
+        className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
+      ></Button>
 
-        {isActive && (
-          <Button
-            onClick={() => deleteNotice(_id)}
-            className={s.remove}
-          ></Button>
-        )}
+      {isActive && (
+        <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
+      )}
 
-        <Modal
-          marker={`learnmore${_id}`}
-          closeButton={true}
-          leftButton={isFavorite ? false : true}
-          leftButtonContent={svgIcon}
-          leftButtonStyle={s.addToFavoriteButton}
-          leftButtonClick={() => addFavorite(_id)}
-          rightButton={true}
-          rightButtonContent={linkPhone}
-          disabled={!isLoggedIn}
-        >
-          <ModalNotice
-            category={noticeById?.category}
-            photoURL={noticeById?.photoURL}
-            name={noticeById?.name}
-            title={noticeById?.title}
-            birthday={birthday}
-            breed={noticeById?.breed}
-            location={noticeById?.location}
-            sex={noticeById?.sex}
-            comments={noticeById?.comments}
-            email={noticeById?.owner?.email}
-            phone={noticeById?.owner?.phone}
-            price={noticeById?.price}
-          />
-        </Modal>
-        
-      </li>
+      <Modal
+        marker={`learnmore${_id}`}
+        closeButton={true}
+        leftButton={isFavorite ? false : true}
+        leftButtonContent={svgIcon}
+        leftButtonStyle={s.addToFavoriteButton}
+        leftButtonClick={() => addFavorite(_id)}
+        rightButton={true}
+        rightButtonContent={linkPhone}
+        disabled={!isLoggedIn}
+      >
+        <ModalNotice
+          category={noticeById?.category}
+          photoURL={noticeById?.photoURL}
+          name={noticeById?.name}
+          title={noticeById?.title}
+          birthday={birthday}
+          breed={noticeById?.breed}
+          location={noticeById?.location}
+          sex={noticeById?.sex}
+          comments={noticeById?.comments}
+          email={noticeById?.owner?.email}
+          phone={noticeById?.owner?.phone}
+          price={noticeById?.price}
+        />
+      </Modal>
+    </li>
   );
 };
 

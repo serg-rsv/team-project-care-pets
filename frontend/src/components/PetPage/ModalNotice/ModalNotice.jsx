@@ -17,7 +17,6 @@ const ModalNotice = ({
 }) => {
   const checkCategory = category === 'sell';
 
-
   return (
     <div className={s.box}>
       <div className={s.boxData}>
