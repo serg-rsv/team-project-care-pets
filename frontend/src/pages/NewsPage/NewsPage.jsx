@@ -26,7 +26,7 @@ const NewsPage = () => {
   return (
     <section className="container">
       <div className={s.newsContent}>
-        <h2 className={s.pageTitle}>News</h2>
+        <h2 className={s.pageTitle}>Новини</h2>
         <SearchBox searchQuery={setSearchValue} />
         <ul className={s.newsList}>
           {news?.map((el, index) => (

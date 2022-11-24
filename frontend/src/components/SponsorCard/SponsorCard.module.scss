@@ -91,10 +91,21 @@
 .workTime:hover,
 .workTime:focus {
   color: var(--accent-cl);
+  cursor: pointer;
+}
+
+.workTime:hover .timeInfo {
+  display: inline-block;
+  color: #000000;
+}
+
+.workTime:focus .timeInfo {
+  display: inline-block;
+  color: #000000;
 }
 
 .timeInfo {
-  display: inline-block;
+  display: none;
   position: absolute;
   border: 1px solid var(--accent-cl);
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
@@ -117,8 +128,27 @@ td {
 
 .addressLink {
   color: currentColor;
+
+  &:hover,
+  &:focus {
+    color: var(--accent-cl);
+  }
 }
 
 .emailLink {
   color: currentColor;
+
+  &:hover,
+  &:focus {
+    color: var(--accent-cl);
+  }
+}
+
+.phoneLink {
+  color: currentColor;
+
+  &:hover,
+  &:focus {
+    color: var(--accent-cl);
+  }
 }

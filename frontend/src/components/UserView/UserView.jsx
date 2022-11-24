@@ -11,11 +11,11 @@ const UserView = () => {
   const { openModal, closeModal } = useModal();
   return (
     <section className={['container', scss.wrapper].join(' ')}>
-      <h2 className={scss.titleInfo}>My information:</h2>
+      <h2 className={scss.titleInfo}>Інформація про мене:</h2>
       <UserData />
-      <h2 className={scss.titlePets}>My pets:</h2>
+      <h2 className={scss.titlePets}>Мої тварини:</h2>
       <div className={scss.btnWrapper}>
-        <p className={scss.addPetText}>Add pet </p>
+        <p className={scss.addPetText}>Додати тварину </p>
         <Button
           className={scss.addPetBtn}
           onClick={() => {

@@ -35,27 +35,27 @@ const RegisterForm = () => {
 
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Email address is invalid')
-        .required('Please enter'),
+        .email('Неправильний адрес')
+        .required('Це поле не може бути порожнім'),
       password: Yup.string()
-        .required('Please enter')
-        .min(7, 'Password must be at least 7 characters')
-        .max(32, 'Password must not exceed 32 characters'),
+        .required('Це поле не може бути порожнім')
+        .min(7, 'Пароль містить мінімум 7 символів')
+        .max(32, 'Пароль містить максимум 32 символи'),
       confirmPassword: Yup.string()
-        .required('Please enter')
-        .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
+        .required('Це поле не може бути порожнім')
+        .oneOf([Yup.ref('password'), null], 'Пароль не співпадає'),
       name: Yup.string()
-        .required('Please enter')
-        .matches(/^[aA-zZ\s]+$/, 'Name contain only letters'),
+        .required('Це поле не може бути порожнім')
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Тільки літери'),
       location: Yup.string()
-        .required('Please enter')
+        .required('Це поле не може бути порожнім')
         .matches(
-          /([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/,
-          'Enter by type: City, Region'
+          /([а-яА-ЯїЇіІЁёa-zA-Z]+(?: [а-яА-ЯїЇіІЁёa-zA-Z]+)*),? ([а-яА-ЯїЇіІЁёa-zA-Z]{2})/,
+          'Введіть в форматі: місто, область'
         ),
       phone: Yup.string()
-        .required('Please enter')
-        .matches(/^\+380\d{9}$/, 'Invalid phone number'),
+        .required('Це поле не може бути порожнім')
+        .matches(/^\+380\d{9}$/, 'Неправильний номер телефону'),
     }),
 
     onSubmit: async ({ email, password, name, phone, location }) => {
@@ -80,7 +80,7 @@ const RegisterForm = () => {
 
   return (
     <div className={css.formBlock}>
-      <h2 className={css.formTitle}>Registration</h2>
+      <h2 className={css.formTitle}>Реєстрація</h2>
       <form className={css.registerForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ? (
           <>
@@ -108,7 +108,7 @@ const RegisterForm = () => {
               type="password"
               onChange={formik.handleChange}
               value={formik.values.password}
-              placeholder="Password"
+              placeholder="Пароль"
             />
             {formik.values.password !== '' && formik.errors.password ? (
               <p className={css.inputErrorPassword}>{formik.errors.password}</p>
@@ -121,10 +121,10 @@ const RegisterForm = () => {
               className={css.formInput}
               id="confirmPassword"
               name="confirmPassword"
-              type="confirmPassword"
+              type="password"
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
-              placeholder="Confirm Password"
+              placeholder="Підтвердження пароля"
             />
             {formik.values.confirmPassword !== '' &&
             formik.errors.confirmPassword ? (
@@ -147,7 +147,7 @@ const RegisterForm = () => {
               type="name"
               onChange={formik.handleChange}
               value={formik.values.name}
-              placeholder="Name"
+              placeholder="Ім'я"
             />
             {formik.values.name !== '' && formik.errors.name ? (
               <p className={css.inputErrorName}>{formik.errors.name}</p>
@@ -163,11 +163,11 @@ const RegisterForm = () => {
               type="location"
               onChange={formik.handleChange}
               value={formik.values.location}
-              placeholder="City, region"
+              placeholder="Місто, область"
             />
-            {formik.values.location !== '' && formik.errors.location ? (
+            {/* {formik.values.location !== '' && formik.errors.location ? (
               <p className={css.inputErrorLocation}>{formik.errors.location}</p>
-            ) : null}
+            ) : null} */}
             {formik.touched.location && formik.errors.location ? (
               <p className={css.inputErrorLocation}>{formik.errors.location}</p>
             ) : null}
@@ -179,7 +179,7 @@ const RegisterForm = () => {
               type="phone"
               onChange={formik.handleChange}
               value={formik.values.phone}
-              placeholder="Mobile phone"
+              placeholder="Номер телефону"
             />
             {formik.values.phone !== '' && formik.errors.phone ? (
               <p className={css.inputErrorPhone}>{formik.errors.phone}</p>
@@ -193,7 +193,7 @@ const RegisterForm = () => {
         {isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Next"
+              children="Далі"
               onClick={moveNextRegistration}
               className={css.formBtn}
             />
@@ -202,13 +202,13 @@ const RegisterForm = () => {
         {!isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Register"
+              children="Зареєструватися"
               className={css.formBtn}
               buttonType="submit"
               disabled={isLoading}
             />
             <Button
-              children="Back"
+              children="Назад"
               className={css.formBtnBck}
               onClick={moveNextRegistration}
               disabled={isLoading}
@@ -220,9 +220,9 @@ const RegisterForm = () => {
       {/* {isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
 
       <p className={css.linkToPage}>
-        Already have an account?{' '}
+        Ви вже маєте аккаунт?{' '}
         <Link className={css.link} to="/login">
-          Login
+          Увійти
         </Link>
       </p>
     </div>

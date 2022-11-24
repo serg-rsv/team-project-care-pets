@@ -14,7 +14,7 @@ const SearchBox = ({ searchQuery }) => {
           className={s.searchInput}
           type="text"
           name="query"
-          placeholder="Search"
+          placeholder="Пошук"
         />
         <button className={s.searchBtn} type="submit">
           {/* <svg

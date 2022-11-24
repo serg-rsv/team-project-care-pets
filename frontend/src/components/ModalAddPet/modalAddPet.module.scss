@@ -4,14 +4,14 @@
   margin: 0 auto;
   width: 280px;
   display: grid;
-  padding: 40px 20px;
+  padding: 20px 0;
 
   background-color: var(--white-bg);
   border-radius: var(--border-radius);
 
   @include mq(tablet) {
     width: 608px;
-    padding: 40px 80px;
+    padding: 20px 60px;
   }
 }
 

@@ -57,11 +57,19 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
+<<<<<<< HEAD
   const linkPhone = <a href={`tel:${noticeById?.owner?.phone}`}>Contact</a>;
+=======
+  const linkPhone = (
+    <a href={`tel:${noticeById?.owner?.phone}`}>
+      Зателефонувати
+    </a>
+  );
+>>>>>>> 5c2416c72be9da3b7d3447bffcb538986de371a8
 
   const svgIcon = (
     <>
-      <p className={s.addToFavoriteButtonText}>Add to</p>
+      <p className={s.addToFavoriteButtonText}>Додати в</p>
       <svg
         width="26"
         height="24"
@@ -122,20 +130,20 @@ const NoticeCategoryItem = ({
       </div>
       <h3 className={s.animalListTitle}>{title}</h3>
       <div className={s.animalListBoxText}>
-        <p className={s.breed}>Breed:</p>
+        <p className={s.breed}>Порода:</p>
         <p>{breed}</p>
       </div>
       <div className={s.animalListBoxText}>
-        <p className={s.place}>Place:</p>
+        <p className={s.place}>Місце:</p>
         <p>{place}</p>
       </div>
       <div className={s.animalListBoxText}>
-        <p className={s.age}>Age:</p>
+        <p className={s.age}>Вік:</p>
         <p>{age}</p>
       </div>
       {checkCategory ? (
         <div className={s.animalListBoxText}>
-          <p className={s.price}>Price:</p>
+          <p className={s.price}>Ціна:</p>
           <p>{price}</p>
         </div>
       ) : (
@@ -150,7 +158,7 @@ const NoticeCategoryItem = ({
         }}
         className={s.button}
       >
-        Learn more
+        Дізнатися більше
       </Button>
 
       <Button
