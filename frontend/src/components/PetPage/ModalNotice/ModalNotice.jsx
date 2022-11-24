@@ -14,60 +14,59 @@ const ModalNotice = ({
   phone,
   price,
 }) => {
-
-const checkCategory = category === 'sell'; 
+  const checkCategory = category === 'sell';
   return (
     <div className={s.box}>
       <div className={s.boxData}>
-        <div>
+        <div className={s.imgBox}>
           <div className={s.signature}>
-            <p>{category}</p>
+            <p className={s.signatureText}>{category}</p>
           </div>
           <img src={photoURL} alt={title} />
         </div>
         <div>
           <h1 className={s.title}>{title}</h1>
           <ul className={s.listParams}>
-            <li>
-              <p className={s.name}>Name:</p>
-              <p>{name}</p>
+            <li className={s.listItem}>
+              Name:
+              <p className={s.listText}>{name}</p>
             </li>
-            <li>
-              <p className={s.birthday}>Birthday:</p>
-              <p>{birthday}</p>
+            <li className={s.listItem}>
+              Birthday:
+              <p className={s.listText}>{birthday}</p>
             </li>
-            <li>
-              <p className={s.breed}>Breed:</p>
-              <p>{breed}</p>
+            <li className={s.listItem}>
+              Breed:
+              <p className={s.listText}>{breed}</p>
             </li>
-            <li>
-              <p className={s.place}>Place:</p>
-              <p>{location}</p>
+            <li className={s.listItem}>
+              Place:
+              <p className={s.listText}>{location}</p>
             </li>
-            <li>
-              <p className={s.sex}>The sex:</p>
-              <p>{sex}</p>
+            <li className={s.listItem}>
+              The sex:
+              <p className={s.listText}>{sex}</p>
             </li>
-            <li>
-              <p className={s.email}>Email:</p>
-              <p>{email}</p>
+            <li className={s.listItem}>
+              Email:
+              <p className={s.listText}>{email}</p>
             </li>
-            <li>
-              <p className={s.phone}>Phone:</p>
-              <p>{phone}</p>
+            <li className={s.listItem}>
+              Phone:
+              <p className={s.listText}>{phone}</p>
             </li>
             {checkCategory && (
-             <li>
-              <p className={s.sell}>Sell:</p>
-              <p>{`${price}$`}</p>
-            </li> 
+              <li className={s.listItem}>
+                Sell:
+                <p className={s.listText}>{`${price}$`}</p>
+              </li>
             )}
-            
           </ul>
         </div>
       </div>
-
-      <p className={s.comments}>{comments}</p>
+      <div className={s.comments}>Comments:
+        <p className={s.textComment}>{comments}</p>
+      </div>
     </div>
   );
 };

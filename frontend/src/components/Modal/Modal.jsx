@@ -13,7 +13,7 @@ import style from './Modal.module.scss';
 const Modal = ({
   children,
   marker,
-  headerContent,
+  headerContent = null,
   closeButton,
   leftButton,
   leftButtonStyle,
@@ -40,36 +40,20 @@ const Modal = ({
               className={style.modalWindow}
               onClick={e => e.stopPropagation()}
             >
-              <div className={style.modalHeder}>
-                {headerContent}
-                {closeButton && (
-                  <Button onClick={closeModal} className={style.closeButton}>
-                    {/* <svg
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="32"
-                      height="32"
-                      viewBox="0 -3 32 32"
-                    >
-                      <title>close</title>
-                      <path
-                        fill="inherit"
-                        d="M23.733 10.304l-1.504-1.504-5.963 5.963-5.963-5.963-1.504 1.504 5.963 5.963-5.963 5.963 1.504 1.504 5.963-5.963 5.963 5.963 1.504-1.504-5.963-5.963 5.963-5.963z"
-                      ></path>
-                    </svg> */}
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <title>close</title>
-                      <path d="M1 1L13 13" />
-                      <path d="M1 13L13 1" />
-                    </svg>
-                  </Button>
-                )}
-              </div>
+              {closeButton && (
+                <Button onClick={closeModal} className={style.closeButton}>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>close</title>
+                    <path d="M1 1L13 13" />
+                    <path d="M1 13L13 1" />
+                  </svg>
+                </Button>
+              )}
               <div className={style.modalBody}>{children}</div>
               <div className={style.modalFooter}>
                 {leftButton && (

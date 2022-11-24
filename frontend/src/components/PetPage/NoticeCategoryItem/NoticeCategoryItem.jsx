@@ -119,7 +119,6 @@ const NoticeCategoryItem = ({
       </svg>
     </>
   );
-  const a = false; 
 
   return (
     <li className={s.animalListItem}>
