@@ -23,5 +23,5 @@ button[data-active] {
 
 button:disabled {
   cursor: not-allowed;
-  filter: blur(2px) opacity(0.5);
+  filter: blur(1px) opacity(0.6);
 }
