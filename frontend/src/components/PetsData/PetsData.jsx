@@ -8,6 +8,7 @@ import { useModal } from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
 
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
+  console.log('id in ', id);
   const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
   function getDate(birthday) {
@@ -31,33 +32,43 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       </div>
       <ul>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Name: </dd>
+          <dd className={scss.property}>Ім'я: </dd>
           <dt className={scss.text}>{name}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Date of birth: </dd>
+          <dd className={scss.property}>Дата народження: </dd>
           <dt className={scss.text}> {birthday.toString().slice(0, 10)}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Breed: </dd>
+          <dd className={scss.property}>Порода: </dd>
           <dt className={scss.text}> {breed}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Comments: </dd>
+          <dd className={scss.property}>Коментарі: </dd>
           <dt className={scss.text}> {comments}</dt>
         </li>
       </ul>
       {/* <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button> */}
       <Button
         className={scss.iconBtn}
-        onClick={() => openModal('pets')}
+        onClick={() => openModal(`pets${id}`)}
       ></Button>
       <Modal
-        marker="pets"
-        leftButtonClick={closeModal}
-        rightButtonClick={() => deletePet(id)}
+        marker={`pets${id}`}
+        leftButton={true}
+        leftButtonType={'button'}
+        rightButton={true}
+        rightButtonType={'button'}
+        leftButtonContent={'Так'}
+        rightButtonContent={'Ні'}
+        leftButtonClick={() => {
+          console.log('id', id);
+          deletePet(id);
+          closeModal();
+        }}
+        rightButtonClick={closeModal}
       >
-        Do you realy want to delete pet?
+        Ви дійсно бажаєте видалити?
       </Modal>
     </div>
   );

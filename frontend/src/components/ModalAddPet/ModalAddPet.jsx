@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import Button from '../Button/Button';
 import css from './modalAddPet.module.scss';
 import { formDataAppender } from '../../helpers/formDataAppender';
+import Location from '../Location';
 
 import * as Yup from 'yup';
 import { useCreatePetMutation } from '../../redux/services/petsSlice';
@@ -36,20 +37,20 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
     validationSchema: Yup.object().shape({
       name: Yup.string()
         .trim()
-        .required('Please enter name of your pet')
-        .matches(/^[aA-zZ\s]+$/, 'Name contain only letters')
-        .min(2, 'Name must be at least 2 characters')
-        .max(16, 'Name must not exceed 16 characters'),
-      birthday: Yup.date().required('Please enter date of pet birth'),
+        .required('Це поле не може бути порожнім')
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, "Тільки літери")
+        .min(2, "Ім'я містить мінімум 2 символи")
+        .max(16, "Ім'я містить максимум 16 символів"),
+      birthday: Yup.date().required('Це поле не може бути порожнім'),
       breed: Yup.string()
-        .required('Please enter breed of your pet')
-        .matches(/^[aA-zZ\s]+$/, 'only letters')
-        .min(2, 'Breed must be at least 2 characters')
-        .max(24, 'Breed must not exceed 24 characters'),
+        .required('Це поле не може бути порожнім')
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Тільки літери')
+        .min(2, 'Порода містить мінімум 2 символи')
+        .max(16, 'Порода містить максимум 16 символів'),
       comments: Yup.string()
-        .required('Please enter')
-        .min(8, 'Comment must be at least 8 characters')
-        .max(120, 'Comment must not exceed 120 characters'),
+        .required('Це поле не може бути порожнім')
+        .min(8, 'Коментар містить мінімум 8 символів')
+        .max(120, 'Коментар містить максимум 120 символів'),
     }),
     onSubmit: async () => {
       await createPet(formDataAppender(formik.values));
@@ -60,12 +61,12 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
 
   return (
     <div className={css.formBlock}>
-      <h2 className={css.formTitle}>Add pet</h2>
+      <h2 className={css.formTitle}>Нова тварина</h2>
       <form className={css.addPetForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ? (
           <>
             <label className={css.addPetInputTitle} htmlFor="name">
-              Name pet
+              Ім'я
             </label>
             {formik.values.name !== '' && formik.errors.name ? (
               <p className={css.inputError}>{formik.errors.name}</p>
@@ -77,11 +78,11 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.name}
-              placeholder="Type name pet"
+              placeholder="Введіть ім'я тварини"
             />
 
-            <label className={css.addPetInputTitle} htmlFor="birth">
-              Date of birth
+            <label className={css.addPetInputTitle} htmlFor="birthday">
+              Дата народження
             </label>
             {formik.values.birth !== '' && formik.errors.birth ? (
               <p className={css.inputError}>{formik.errors.birth}</p>
@@ -96,7 +97,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
             />
 
             <label className={css.addPetInputTitle} htmlFor="breed">
-              Breed
+              Порода
             </label>
             {formik.values.breed && formik.errors.breed ? (
               <p className={css.inputError}>{formik.errors.breed}</p>
@@ -108,14 +109,14 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.breed}
-              placeholder="Type breed pet"
+              placeholder="Введіть породу тварини"
             />
           </>
         ) : (
           <>
             <fieldset className={css.inputWrapper}>
               <legend className={css.addPhotoPetTitle}>
-                Load photo and some comments
+                Додайте фото та декілька коментарів
               </legend>
               {formik.values.image === '' ? (
                 <label className={css.photoAddIcon} htmlFor="imagePet">
@@ -152,7 +153,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
             </fieldset>
             <div className={css.textareaBlock}>
               <label className={css.addPetCommentsTitle} htmlFor="comments">
-                Comments
+                Коментарі
               </label>
               {formik.values.comments !== '' && formik.errors.comments ? (
                 <p className={css.inputError}>{formik.errors.comments}</p>
@@ -172,12 +173,12 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
         {isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Cancel"
+              children="Скасувати"
               onClick={onCancelButtonClick}
               className={css.btnAccent}
             />
             <Button
-              children="Next"
+              children="Далі"
               onClick={moveNextRegistration}
               className={css.btnSec}
             />
@@ -187,12 +188,12 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
         {!isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Back"
+              children="Назад"
               onClick={moveNextRegistration}
               className={css.btnAccent}
             />
             <Button
-              children="Done"
+              children="Додати"
               buttonType="submit"
               className={css.btnSec}
             />

@@ -1,27 +1,35 @@
 import s from './NewsPage.module.scss';
-import newsData from '../../hardcodeData/news.json';
+// import newsData from '../../hardcodeData/news.json';
 import NewsCard from '../../components/NewsCard';
 import SearchBox from '../../components/SearchBox';
 import { useState } from 'react';
+import { useGetNewsQuery } from '../../redux/services/newsSlice';
+import { useEffect } from 'react';
 
 const NewsPage = () => {
-  const data = newsData;
+  const [searchValue, setSearchValue] = useState('');
+  const { data } = useGetNewsQuery(searchValue);
   const [news, setNews] = useState([]);
 
-  const searchingData = query => {
-    const result = data.filter(
-      el => el.title.includes(query) || el.description.includes(query)
-    );
-    setNews(result);
-  };
+  // const searchingData = query => {
+  //   const result = data.filter(
+  //     el => el.title.includes(query) || el.description.includes(query)
+  //   );
+  //   setNews(result);
+  // };
+
+  useEffect(() => {
+    console.log(data);
+    setNews(data);
+  }, [data]);
 
   return (
     <section className="container">
       <div className={s.newsContent}>
-        <h2 className={s.pageTitle}>News</h2>
-        <SearchBox seachQuery={searchingData} />
+        <h2 className={s.pageTitle}>Новини</h2>
+        <SearchBox searchQuery={setSearchValue} />
         <ul className={s.newsList}>
-          {news.map((el, index) => (
+          {news?.map((el, index) => (
             <li key={index} className={s.newsList__item}>
               <NewsCard obj={el} />
             </li>

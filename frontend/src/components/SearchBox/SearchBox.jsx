@@ -1,9 +1,10 @@
 import s from './SearchBox.module.scss';
 
-const SearchBox = ({ seachQuery }) => {
+const SearchBox = ({ searchQuery }) => {
   const onFormSubmit = e => {
     e.preventDefault();
-    seachQuery(e.target.query.value);
+    searchQuery(e.target.query.value);
+    console.log('onFormSubmit ~ e.target.query.value', e.target.query.value);
   };
 
   return (
@@ -13,7 +14,7 @@ const SearchBox = ({ seachQuery }) => {
           className={s.searchInput}
           type="text"
           name="query"
-          placeholder="Search"
+          placeholder="Пошук"
         />
         <button className={s.searchBtn} type="submit">
           {/* <svg

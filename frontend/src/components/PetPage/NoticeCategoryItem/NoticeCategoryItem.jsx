@@ -12,6 +12,7 @@ import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
 import { selectIsLoggedIn } from '../../../redux/selectors';
+
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
@@ -33,11 +34,13 @@ const NoticeCategoryItem = ({
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
   const { data: item } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  console.log(isLoggedIn);
 
   const getDate = birthday => {
     let date = new Date(birthday);
@@ -62,7 +65,7 @@ const NoticeCategoryItem = ({
 
   const svgIcon = (
     <>
-      <p className={s.addToFavoriteButtonText}>Add to</p>
+      <p className={s.addToFavoriteButtonText}>Додати в</p>
       <svg
         width="26"
         height="24"
@@ -112,6 +115,7 @@ const NoticeCategoryItem = ({
       </svg>
     </>
   );
+  const a = false;
 
   return (
     <li className={s.animalListItem}>
@@ -123,20 +127,20 @@ const NoticeCategoryItem = ({
       </div>
       <h3 className={s.animalListTitle}>{title}</h3>
       <div className={s.animalListBoxText}>
-        <p className={s.breed}>Breed:</p>
+        <p className={s.breed}>Порода:</p>
         <p>{breed}</p>
       </div>
       <div className={s.animalListBoxText}>
-        <p className={s.place}>Place:</p>
+        <p className={s.place}>Місце:</p>
         <p>{place}</p>
       </div>
       <div className={s.animalListBoxText}>
-        <p className={s.age}>Age:</p>
+        <p className={s.age}>Вік:</p>
         <p>{age}</p>
       </div>
       {checkCategory ? (
         <div className={s.animalListBoxText}>
-          <p className={s.price}>Price:</p>
+          <p className={s.price}>Ціна:</p>
           <p>{price}</p>
         </div>
       ) : (
@@ -151,7 +155,7 @@ const NoticeCategoryItem = ({
         }}
         className={s.button}
       >
-        Learn more
+        Дізнатися більше
       </Button>
 
       <Button

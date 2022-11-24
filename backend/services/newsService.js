@@ -6,10 +6,14 @@ const addNews = async newsData => {
 };
 
 const getNewsList = async queries => {
-  const { page = 1, limit = 10 } = queries;
+  const { title = '', page = 1, limit = 12 } = queries;
   const skip = (page - 1) * limit;
 
-  const news = await News.find({}, '-createAt -updateAt', { skip, limit });
+  const news = await News.find(
+    { title: { $regex: new RegExp(title, 'i') } },
+    '-createAt -updateAt',
+    { skip, limit }
+  );
   return news;
 };
 

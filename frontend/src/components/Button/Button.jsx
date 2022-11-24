@@ -10,7 +10,6 @@ const Button = ({
 }) => {
   return (
     <button
-      button
       disabled={disabled}
       type={buttonType}
       className={className}
@@ -22,6 +21,7 @@ const Button = ({
 };
 
 Button.propTypes = {
+  disabled: PropTypes.bool,
   children: PropTypes.node,
   onClick: PropTypes.func,
   className: PropTypes.string,

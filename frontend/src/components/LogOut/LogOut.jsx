@@ -19,22 +19,23 @@ const LogOut = () => {
     await logout();
     dispatch(unsetToken());
     dispatch(baseApi.util.resetApiState());
+    closeModal();
   };
   return (
     <>
       <Button onClick={() => openModal('logout')} className={scss.logOutBtn}>
-        <p className={scss.logOutText}>Log Out</p>
+        <p className={scss.logOutText}>Вийти</p>
       </Button>
       <Modal
         leftButton={true}
-        leftButtonContent="yes"
+        leftButtonContent="Так"
         leftButtonClick={logOut}
         rightButton={true}
-        rightButtonContent="no"
+        rightButtonContent="Ні"
         rightButtonClick={closeModal}
         marker="logout"
       >
-        <p className={scss.logOutModalText}>Do you really want to quit?</p>
+        <p className={scss.logOutModalText}>Ви дійсно бажаєте вийти?</p>
       </Modal>
     </>
   );
