@@ -1,13 +1,12 @@
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import s from './NoticesCategoriesList.module.scss';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import AddNoticeButton from '../AddNoticeButton';
 import ModalAddNotice from '../../ModalAddNotice';
 import { selectIsLoggedIn } from '../../../redux/selectors';
-import { useCreateNoticeMutation } from '../../../redux/services/noticesSlice';
 import { getAge } from '../../../helpers/getAge';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
@@ -15,15 +14,13 @@ import ModalNotAuthorized from '../../ModalNotAuthorized';
 
 const NoticesCategoriesList = ({ pets, isActive }) => {
   const navigate = useNavigate();
-  const [ads, setAds] = useState({});
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
-  const [addAds] = useCreateNoticeMutation();
 
   const [filter, setFilter] = useState({});
 
   const createAds = async filter => {
-    // console.log(value);
     await setFilter(filter);
   };
   return (
@@ -87,6 +84,22 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
       )}
     </div>
   );
+};
+
+NoticesCategoriesList.propTypes = {
+  pets: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      photoURL: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      breed: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+      birthday: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      isFavorite: PropTypes.bool.isRequired,
+    })
+  ),
 };
 
 export default NoticesCategoriesList;

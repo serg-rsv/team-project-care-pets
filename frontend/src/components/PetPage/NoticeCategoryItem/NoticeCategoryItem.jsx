@@ -1,16 +1,17 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import {
   useAddFavoritesByIdMutation,
   useDeleteFavoritesByIdMutation,
   useDeleteNoticeMutation,
 } from '../../../redux/services/noticesSlice';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import Button from '../../Button';
 import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
-import {selectIsLoggedIn}  from '../../../redux/selectors';
-
+import { selectIsLoggedIn } from '../../../redux/selectors';
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
@@ -27,7 +28,7 @@ const NoticeCategoryItem = ({
   isActive,
   isFavorite,
 }) => {
-  const checkCategory = page === 'sell'; 
+  const checkCategory = page === 'sell';
   const [deleteNotice] = useDeleteNoticeMutation();
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
@@ -38,34 +39,28 @@ const NoticeCategoryItem = ({
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(isLoggedIn);
 
-   const getDate = (birthday) => {
-     let date = new Date(birthday);
-     let year = date.getFullYear();
-     let day = date.getDay();
-     let month = date.getMonth();
-     if (day < 10) {
-       day = `0${day}`;
-     }
-     if (month < 10) {
-       month = `0${month}`;
-     }
-     return day + '.' + month + '.' + year;
-   };
+
+  const getDate = birthday => {
+    let date = new Date(birthday);
+    let year = date.getFullYear();
+    let day = date.getDay();
+    let month = date.getMonth();
+    if (day < 10) {
+      day = `0${day}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    return day + '.' + month + '.' + year;
+  };
 
   const birthday = getDate(noticeById?.birthday);
-
-  
 
   const showModalNotice = _id => {
     setId(_id);
   };
-  const linkPhone = (
-    <a href={`tel:${noticeById?.owner?.phone}`}>
-      Contact
-    </a>
-  );
+  const linkPhone = <a href={`tel:${noticeById?.owner?.phone}`}>Contact</a>;
 
   const svgIcon = (
     <>
@@ -119,87 +114,107 @@ const NoticeCategoryItem = ({
       </svg>
     </>
   );
-  const a = false; 
+
+
 
   return (
-    <li className={s.animalListItem}>
-      <div className={s.signature}>
-        <p>{page}</p>
-      </div>
-      <div className={s.imageWrapper}>
-        <img className={s.animalListImg} src={link} alt={title} />
-      </div>
-      <h3 className={s.animalListTitle}>{title}</h3>
-      <div className={s.animalListBoxText}>
-        <p className={s.breed}>Breed:</p>
-        <p>{breed}</p>
-      </div>
-      <div className={s.animalListBoxText}>
-        <p className={s.place}>Place:</p>
-        <p>{place}</p>
-      </div>
-      <div className={s.animalListBoxText}>
-        <p className={s.age}>Age:</p>
-        <p>{age}</p>
-      </div>
-      {checkCategory ? (
-        <div className={s.animalListBoxText}>
-          <p className={s.price}>Price:</p>
-          <p>{price}</p>
+      <li className={s.animalListItem}>
+        <div className={s.signature}>
+          <p>{page}</p>
         </div>
-      ) : (
-        <div className={s.animalListBoxText}>
-          <p className={s.priceOpacity}>P</p>
+        <div className={s.imageWrapper}>
+          <img className={s.animalListImg} src={link} alt={title} />
         </div>
-      )}
-      <Button
-        onClick={() => {
-          openModal(`learnmore${_id}`);
-          showModalNotice(_id);
-        }}
-        className={s.button}
-      >
-        Learn more
-      </Button>
+        <h3 className={s.animalListTitle}>{title}</h3>
+        <div className={s.animalListBoxText}>
+          <p className={s.breed}>Breed:</p>
+          <p>{breed}</p>
+        </div>
+        <div className={s.animalListBoxText}>
+          <p className={s.place}>Place:</p>
+          <p>{place}</p>
+        </div>
+        <div className={s.animalListBoxText}>
+          <p className={s.age}>Age:</p>
+          <p>{age}</p>
+        </div>
+        {checkCategory ? (
+          <div className={s.animalListBoxText}>
+            <p className={s.price}>Price:</p>
+            <p>{price}</p>
+          </div>
+        ) : (
+          <div className={s.animalListBoxText}>
+            <p className={s.priceOpacity}>P</p>
+          </div>
+        )}
+        <Button
+          onClick={() => {
+            openModal(`learnmore${_id}`);
+            showModalNotice(_id);
+          }}
+          className={s.button}
+        >
+          Learn more
+        </Button>
 
-      <Button
-        disabled={!isLoggedIn}
-        onClick={() => (isFavorite ? deleteFavorite(_id) : addFavorite(_id))}
-        className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
-      ></Button>
+        <Button
+          disabled={!isLoggedIn}
+          onClick={() => {
+            isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+          }}
+          className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
+        ></Button>
 
-      {isActive && (
-        <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
-      )}
+        {isActive && (
+          <Button
+            onClick={() => deleteNotice(_id)}
+            className={s.remove}
+          ></Button>
+        )}
 
-      <Modal
-        marker={`learnmore${_id}`}
-        closeButton={true}
-        leftButton={isFavorite ? false : true}
-        leftButtonContent={svgIcon}
-        leftButtonStyle={s.addToFavoriteButton}
-        leftButtonClick={() => addFavorite(_id)}
-        rightButton={true}
-        rightButtonContent={linkPhone}
-        disabled={!isLoggedIn}
-      >
-        <ModalNotice
-          category={noticeById?.category}
-          photoURL={noticeById?.photoURL}
-          name={noticeById?.name}
-          title={noticeById?.title}
-          birthday={birthday}
-          breed={noticeById?.breed}
-          location={noticeById?.location}
-          sex={noticeById?.sex}
-          comments={noticeById?.comments}
-          email={noticeById?.owner?.email}
-          phone={noticeById?.owner?.phone}
-          price={noticeById?.price}
-        />
-      </Modal>
-    </li>
+        <Modal
+          marker={`learnmore${_id}`}
+          closeButton={true}
+          leftButton={isFavorite ? false : true}
+          leftButtonContent={svgIcon}
+          leftButtonStyle={s.addToFavoriteButton}
+          leftButtonClick={() => addFavorite(_id)}
+          rightButton={true}
+          rightButtonContent={linkPhone}
+          disabled={!isLoggedIn}
+        >
+          <ModalNotice
+            category={noticeById?.category}
+            photoURL={noticeById?.photoURL}
+            name={noticeById?.name}
+            title={noticeById?.title}
+            birthday={birthday}
+            breed={noticeById?.breed}
+            location={noticeById?.location}
+            sex={noticeById?.sex}
+            comments={noticeById?.comments}
+            email={noticeById?.owner?.email}
+            phone={noticeById?.owner?.phone}
+            price={noticeById?.price}
+          />
+        </Modal>
+        
+      </li>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  place: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };
 
 export default NoticeCategoryItem;
