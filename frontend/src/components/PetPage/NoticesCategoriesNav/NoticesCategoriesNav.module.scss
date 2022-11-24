@@ -13,7 +13,8 @@
     width: 500px;
   }
   @include mq(desktop) {
-    margin-left: 92px;
+    margin-left: 177px;
+    margin-right: 0px;
   }
 }
 
@@ -33,8 +34,8 @@
   @include fonts(14px, 500, 1.3);
   display: block;
 
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
   color: var(--main-text-cl);
@@ -43,6 +44,8 @@
   border-radius: 40px;
 
   @include mq(tablet) {
+   padding-left: 28px;
+  padding-right: 28px;
     @include fonts(20px, 500, 1.3);
   }
   &:hover, &:focus {
@@ -60,7 +63,7 @@
 .sell {
   @include mq(desktop) {
     position: absolute;
-    left: -102px;
+    left: -192px;
   }
 }
 
