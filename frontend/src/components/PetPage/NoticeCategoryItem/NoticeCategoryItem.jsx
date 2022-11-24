@@ -57,15 +57,9 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
-<<<<<<< HEAD
-  const linkPhone = <a href={`tel:${noticeById?.owner?.phone}`}>Contact</a>;
-=======
   const linkPhone = (
-    <a href={`tel:${noticeById?.owner?.phone}`}>
-      Зателефонувати
-    </a>
+    <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
   );
->>>>>>> 5c2416c72be9da3b7d3447bffcb538986de371a8
 
   const svgIcon = (
     <>
