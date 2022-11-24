@@ -37,11 +37,11 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
     validationSchema: Yup.object().shape({
       name: Yup.string()
         .trim()
-        .required('Please enter name of your pet')
-        .matches(/^[aA-zZ\s]+$/, 'Name contain only letters')
-        .min(2, 'Name must be at least 2 characters')
-        .max(16, 'Name must not exceed 16 characters'),
-      birthday: Yup.date().required('Please enter date of pet birth'),
+        .required('Це поле не може бути порожнім')
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, "Тільки літери")
+        .min(2, "Ім'я містить мінімум 2 символи")
+        .max(16, "Ім'я містить максимум 16 символів"),
+      birthday: Yup.date().required('Це поле не може бути порожнім'),
       breed: Yup.string()
         .required('Це поле не може бути порожнім')
         .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Тільки літери')
