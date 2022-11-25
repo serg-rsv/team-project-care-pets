@@ -57,9 +57,9 @@ const ModalNotice = ({
               <p className={s.listText}>{phone}</p>
             </li>
             {checkCategory && (
-              <li>
-                <p className={s.sell}>Sell:</p>
-                <p>{`${price}$`}</p>
+              <li className={s.listItem}>
+                Sell:
+                <p className={s.listText}>{`${price}$`}</p>
               </li>
             )}
           </ul>
