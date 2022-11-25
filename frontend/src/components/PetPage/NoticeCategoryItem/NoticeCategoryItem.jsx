@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -16,7 +17,6 @@ import { selectIsLoggedIn } from '../../../redux/selectors';
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
-
 const NoticeCategoryItem = ({
   _id,
   link,
@@ -40,8 +40,6 @@ const NoticeCategoryItem = ({
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(isLoggedIn);
-
   const getDate = birthday => {
     let date = new Date(birthday);
     let year = date.getFullYear();
@@ -64,10 +62,20 @@ const NoticeCategoryItem = ({
   const linkPhone = (
     <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
   );
+  const favoriteToggle = () => {
+    if (isLoggedIn === false) {
+      toast.info('Необхідно авторизуватися');
+    }
+    isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+  };
 
   const svgIcon = (
     <>
-      <p className={s.addToFavoriteButtonText}>Додати в</p>
+      {isFavorite ? (
+        <p className={s.addToFavoriteButtonText}>Видалити з</p>
+      ) : (
+        <p className={s.addToFavoriteButtonText}>Додати в</p>
+      )}
       <svg
         width="26"
         height="24"
@@ -162,26 +170,14 @@ const NoticeCategoryItem = ({
         Дізнатися більше
       </Button>
       <Button
-        disabled={!isLoggedIn}
-        onClick={() => {
-          isFavorite ? deleteFavorite(_id) : addFavorite(_id);
-        }}
+        // disabled={!isLoggedIn}
+        onClick={() => favoriteToggle()}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
       {isActive && (
         <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
-      <Modal
-        marker={`learnmore${_id}`}
-        closeButton={true}
-        leftButton={isFavorite ? false : true}
-        leftButtonContent={svgIcon}
-        leftButtonStyle={s.addToFavoriteButton}
-        leftButtonClick={() => addFavorite(_id)}
-        rightButton={true}
-        rightButtonContent={linkPhone}
-        disabled={!isLoggedIn}
-      >
+      <Modal marker={`learnmore${_id}`} closeButton={true}>
         <ModalNotice
           category={noticeById?.category}
           photoURL={noticeById?.photoURL}
@@ -196,6 +192,16 @@ const NoticeCategoryItem = ({
           phone={noticeById?.owner?.phone}
           price={noticeById?.price}
         />
+        <Button
+          className={s.addToFavoriteButton}
+          disabled={!isLoggedIn}
+          onClick={() => {
+            isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+          }}
+        >
+          {svgIcon}
+        </Button>
+        <Button>{linkPhone}</Button>
       </Modal>
     </li>
   );

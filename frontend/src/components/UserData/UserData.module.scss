@@ -20,10 +20,11 @@
     flex-direction: row-reverse;
     padding: 24px 40px 24px 32px;
     border-radius: 0 40px 40px 0;
+    margin: 0;
   }
   @include mq(desktop) {
     width: 411px;
-    max-height: 580px;
+    height: max-content;
     padding: 20px 16px 40px;
     display: block;
   }
@@ -65,7 +66,7 @@
   justify-content: flex-end;
   align-items: center;
   padding: 0;
-  width: 95px;
+  width: 140px;
   height: 22px;
   background-image: url('../../images/camera.svg');
   background-repeat: no-repeat;
@@ -82,7 +83,7 @@
   }
   @include mq(desktop) {
     right: 16px;
-    top: 231px;
+    top: 238px;
   }
 }
 .editPhoto {
@@ -125,13 +126,27 @@
     }
   }
 }
-
+.listText {
+  display: block;
+  text-align: left;
+  width: 35%;
+}
+.inputWrapper {
+  // margin-left: 5px;
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @include mq(tablet) {
+    width: 260px;
+  }
+}
 .inputField {
   border: 1px solid transparent;
   background-color: transparent;
   border-radius: 40px;
-  padding: 4px 18px;
-  width: 165px;
+  padding: 4px 10px;
+  // width: 165px;
   resize: none;
   width: 84%;
   &:focus {
@@ -174,16 +189,6 @@
   }
 }
 
-.inputWrapper {
-  margin-left: 5px;
-  width: 185px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  @include mq(tablet) {
-    width: 260px;
-  }
-}
 input[type='date'] {
   width: 84%;
 }

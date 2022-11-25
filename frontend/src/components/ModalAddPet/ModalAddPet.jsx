@@ -3,7 +3,6 @@ import { useFormik } from 'formik';
 import Button from '../Button/Button';
 import css from './modalAddPet.module.scss';
 import { formDataAppender } from '../../helpers/formDataAppender';
-import Location from '../Location';
 
 import * as Yup from 'yup';
 import { useCreatePetMutation } from '../../redux/services/petsSlice';

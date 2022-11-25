@@ -10,23 +10,7 @@ import { useModal } from '../../hooks/useModal';
 
 import style from './Modal.module.scss';
 
-const Modal = ({
-  children,
-  marker,
-  headerContent = null,
-  closeButton,
-  leftButton,
-  leftButtonStyle,
-  leftButtonContent = 'close',
-  leftButtonClick,
-  leftButtonType,
-  rightButton,
-  rightButtonStyle,
-  rightButtonContent = 'submit',
-  rightButtonType,
-  rightButtonClick,
-  disabled,
-}) => {
+const Modal = ({ children, marker, closeButton }) => {
   const showModal = useSelector(selectShowModal);
   const changeMarker = useSelector(selectChangeMarker);
   const { closeModal } = useModal();
@@ -54,29 +38,7 @@ const Modal = ({
                   </svg>
                 </Button>
               )}
-              <div className={style.modalBody}>{children}</div>
-              <div className={style.modalFooter}>
-                {leftButton && (
-                  <Button
-                    button
-                    disabled={disabled}
-                    onClick={leftButtonClick}
-                    className={leftButtonStyle}
-                    buttonType={leftButtonType}
-                  >
-                    {leftButtonContent}
-                  </Button>
-                )}
-                {rightButton && (
-                  <Button
-                    onClick={rightButtonClick}
-                    className={rightButtonStyle}
-                    buttonType={rightButtonType}
-                  >
-                    {rightButtonContent}
-                  </Button>
-                )}
-              </div>
+              {children}
             </div>
           </div>
         </Portal>
@@ -88,18 +50,7 @@ const Modal = ({
 Modal.propTypes = {
   children: PropTypes.node,
   marker: PropTypes.string.isRequired,
-  headerContent: PropTypes.node,
   closeButton: PropTypes.bool,
-  leftButton: PropTypes.bool,
-  leftButtonStyle: PropTypes.string,
-  leftButtonContent: PropTypes.node,
-  leftButtonClick: PropTypes.func,
-  leftButtonType: PropTypes.string,
-  rightButton: PropTypes.bool,
-  rightButtonStyle: PropTypes.string,
-  rightButtonContent: PropTypes.node,
-  rightButtonType: PropTypes.string,
-  rightButtonClick: PropTypes.func,
 };
 
 export default Modal;
