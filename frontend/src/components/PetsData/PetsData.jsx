@@ -8,7 +8,6 @@ import { useModal } from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
 
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
-  console.log('id in ', id);
   const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
   function getDate(birthday) {
@@ -62,7 +61,6 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
         leftButtonContent={'Так'}
         rightButtonContent={'Ні'}
         leftButtonClick={() => {
-          console.log('id', id);
           deletePet(id);
           closeModal();
         }}

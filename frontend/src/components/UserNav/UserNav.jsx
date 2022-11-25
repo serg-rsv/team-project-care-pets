@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import s from './UserNav.module.scss';
 
-const UserNav = () => {
+const UserNav = ({ closeModal }) => {
   return (
     <div className={s.userNav}>
-      <NavLink to="/user" className={s.userNav__btn}>
+      <NavLink to="/user" className={s.userNav__btn} onClick={closeModal}>
         <svg
           className={s.btnIcon}
           width="24"

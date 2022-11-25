@@ -35,7 +35,7 @@ const RegisterForm = () => {
 
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Неправильний адрес')
+        .email('Неправильний поштовий адрес')
         .required('Це поле не може бути порожнім'),
       password: Yup.string()
         .required('Це поле не може бути порожнім')
@@ -50,7 +50,7 @@ const RegisterForm = () => {
       location: Yup.string()
         .required('Це поле не може бути порожнім')
         .matches(
-          /([а-яА-ЯїЇіІЁёa-zA-Z]+(?: [а-яА-ЯїЇіІЁёa-zA-Z]+)*),? ([а-яА-ЯїЇіІЁёa-zA-Z]{2})/,
+          /[А-Яа-яЁёЇїІіЄєҐґ'a-zA-Z]{2,},? ([А-Яа-яЁёЇїІіЄєҐґ'a-zA-Z]+(?: [А-Яа-яЁёЇїІіЄєҐґ'a-zA-Z]+)*)+$/,
           'Введіть в форматі: місто, область'
         ),
       phone: Yup.string()
