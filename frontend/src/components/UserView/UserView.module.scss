@@ -4,18 +4,14 @@
 }
 .wrapper {
   padding: 61px 0 80px;
-  // width: 320px;
   margin: 0 auto;
   @include mq(tablet) {
     // width: 736px;
     padding: 88px 0 0 0;
     position: relative;
-    margin: 0;
   }
   @include mq(desktop) {
     display: flex;
-    margin: 0 auto;
-    // width: 1264px;
   }
 }
 .titleInfo,
@@ -31,7 +27,6 @@
 }
 .titleInfo {
   margin-bottom: 18px;
-  // padding-left: 20px;
   margin-left: 20px;
   @include mq(tablet) {
     margin-left: 20px;
@@ -45,21 +40,23 @@
   }
 }
 .titlePets {
+  @include fonts(15px, 500, 1.35);
   margin: 47px 0 32px 20px;
   display: inline-block;
   flex-wrap: nowrap;
   @include mq(tablet) {
     margin: 20px 33px 24px;
+    @include fonts(20px, 500, 1.35);
   }
   @include mq(desktop) {
     top: 0;
-    left: 393px;
+    left: 456px;
     margin: 0;
   }
 }
 .btnWrapper {
   position: relative;
-  margin-left: 62px;
+  // margin-left: 62px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -71,15 +68,17 @@
   }
   @include mq(desktop) {
     top: 0;
-    // right: -465px;
     margin: 0;
   }
 }
 .addPetText {
-  @include fonts(20px, 500, 1.35);
+  @include fonts(15px, 500, 1.35);
   color: var(--main-text-cl);
   display: inline-block;
   margin-right: 10px;
+  @include mq(tablet) {
+    @include fonts(20px, 500, 1.35);
+  }
   @include mq(desktop) {
     margin-right: 15px;
   }

@@ -15,7 +15,7 @@ const UserView = () => {
       <UserData />
       <h2 className={scss.titlePets}>Мої тварини:</h2>
       <div className={scss.btnWrapper}>
-        <p className={scss.addPetText}>Додати тварину </p>
+        <p className={scss.addPetText}>Додати тварину</p>
         <Button
           className={scss.addPetBtn}
           onClick={() => {

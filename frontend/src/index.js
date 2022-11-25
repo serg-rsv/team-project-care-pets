@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './scss/main.scss';
 import App from './App';
 import { store } from './redux/store';
-
+window.React1 = require('react');
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -13,6 +13,6 @@ root.render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
+    </Provider>     
   </React.StrictMode>
 );

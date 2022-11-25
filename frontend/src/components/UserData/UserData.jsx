@@ -202,7 +202,7 @@ const UserData = () => {
           </li>
           <li className={scss.listItem}>
             <label htmlFor="birthday" className={scss.listText}>
-              День народження:
+              Дата народження:
             </label>
             <div className={scss.inputWrapper}>
               <input

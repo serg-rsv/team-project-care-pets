@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -16,7 +18,6 @@ import { selectIsLoggedIn } from '../../../redux/selectors';
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
-
 const NoticeCategoryItem = ({
   _id,
   link,
@@ -40,8 +41,6 @@ const NoticeCategoryItem = ({
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(isLoggedIn);
-
   const getDate = birthday => {
     let date = new Date(birthday);
     let year = date.getFullYear();
@@ -64,6 +63,13 @@ const NoticeCategoryItem = ({
   const linkPhone = (
     <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
   );
+  const favoriteToggle = () => {
+    if (isLoggedIn === false) {
+      alert('Необхідно автризуватися');
+      //  toast.info('Необхідно автризуватися');
+    }
+    isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+  };
 
   const svgIcon = (
     <>
@@ -166,10 +172,8 @@ const NoticeCategoryItem = ({
         Дізнатися більше
       </Button>
       <Button
-        disabled={!isLoggedIn}
-        onClick={() => {
-          isFavorite ? deleteFavorite(_id) : addFavorite(_id);
-        }}
+        // disabled={!isLoggedIn}
+        onClick={() => favoriteToggle()}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
       {isActive && (
@@ -201,6 +205,7 @@ const NoticeCategoryItem = ({
         </Button>
         <Button>{linkPhone}</Button>
       </Modal>
+      {/* <ToastContainer /> */}
     </li>
   );
 };
