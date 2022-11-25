@@ -21,6 +21,32 @@
   color: var(--light-txt-cl);
 }
 
-.logOutModalText{
-  margin: 10px 5px;
+.logOutModalText {
+  @include fonts(18px, 500, 1.3);
+}
+
+.wrapper {
+  @include gradient(
+    rgba(165, 80, 56, 0.432),
+    rgba(235, 232, 49, 0.37),
+    90deg,
+    url('../../images/cat.svg')
+  );
+
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 20px 20px 30px;
+  text-align: center;
+  display: grid;
+  grid-template-rows: 2fr 2fr 1fr;
+}
+
+.buttonBox {
+  margin-top: 20px;
+}
+
+.button {
+  background-color: transparent;
+  border: 4px solid #e19248;
 }

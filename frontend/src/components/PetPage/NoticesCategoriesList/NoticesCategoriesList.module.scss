@@ -1,3 +1,5 @@
+@import '../../../scss/utils/mixins';
+
 .box {
   position: relative;
 }
@@ -6,4 +8,21 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: -32px;
+}
+
+.wrapper {
+  @include gradient(
+    rgba(168, 122, 109, 0.274),
+    rgba(241, 240, 147, 0.185),
+    90deg,
+    url('../../../images/addNoticeModal.svg')
+  );
+
+  background-position: bottom left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding: 60px 20px 30px;
+  text-align: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
 }

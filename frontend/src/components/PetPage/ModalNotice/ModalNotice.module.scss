@@ -16,17 +16,6 @@
   @include fonts(12px, 500, 1.3);
   color: var(--main-text-cl);
 }
-
-.box {
-  padding: 60px 20px 0;
-  width: 280px;
-  margin: 0 auto;
-  @include mq(tablet) {
-    // margin-right: 24px;
-    padding: 32px 20px 0;
-    width: 704px;
-  }
-}
 .box img {
   width: 240px;
   height: 240px;
