@@ -10,7 +10,8 @@ import { selectIsLoggedIn } from '../../../redux/selectors';
 import { getAge } from '../../../helpers/getAge';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
-import ModalNotAuthorized from '../../ModalNotAuthorized';
+import Button from '../../Button';
+// import ModalNotAuthorized from '../../ModalNotAuthorized';
 
 const NoticesCategoriesList = ({ pets, isActive }) => {
   const navigate = useNavigate();
@@ -65,21 +66,25 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
           <ModalAddNotice createAds={createAds} closeButton={closeModal} />
         </Modal>
       ) : (
-        <Modal
-          marker="addpet"
-          closeButton={true}
-          leftButton={true}
-          leftButtonContent={'Login'}
-          leftButtonClick={() => {
-            navigate('/login');
-          }}
-          rightButton={true}
-          rightButtonContent={'Register'}
-          rightButtonClick={() => {
-            navigate('/register');
-          }}
-        >
-          <ModalNotAuthorized />
+        <Modal marker="addpet" closeButton={true}>
+          <h3>You are not authorized!</h3>
+          <p> Please login or register!</p>
+          <Button
+            onClick={() => {
+              navigate('/login');
+              closeModal();
+            }}
+          >
+            Login
+          </Button>
+          <Button
+            onClick={() => {
+              navigate('/register');
+              closeModal();
+            }}
+          >
+            Register
+          </Button>
         </Modal>
       )}
     </div>

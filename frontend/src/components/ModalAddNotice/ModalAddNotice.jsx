@@ -10,7 +10,7 @@ import { formDataAppender } from '../../helpers/formDataAppender';
 
 import Location from '../Location';
 import { useEffect } from 'react';
-import e from 'cors';
+// import e from 'cors';
 
 const ModalAddNotice = ({ closeButton }) => {
   const [createNotice, { isLoading }] = useCreateNoticeMutation();
