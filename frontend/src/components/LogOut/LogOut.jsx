@@ -27,13 +27,17 @@ const LogOut = () => {
         <p className={scss.logOutText}>Вийти</p>
       </Button>
       <Modal marker="logout">
-        <p className={scss.logOutModalText}>Ви дійсно бажаєте вийти?</p>
-        <Button onClick={logOut}>
-          <p className={scss.logOutText}>Так</p>
-        </Button>
-        <Button onClick={closeModal}>
-          <p className={scss.logOutText}>Ні</p>
-        </Button>
+        <div className={scss.wrapper}>
+          <p className={scss.logOutModalText}>Ви дійсно бажаєте вийти?</p>
+          <div className={scss.buttonBox}>
+            <Button onClick={logOut} className={scss.button}>
+              <p className={scss.logOutText}>Так</p>
+            </Button>
+            <Button onClick={closeModal} className={scss.button}>
+              <p className={scss.logOutText}>Ні</p>
+            </Button>
+          </div>
+        </div>
       </Modal>
     </>
   );

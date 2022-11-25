@@ -1,3 +1,4 @@
+import Scroll from 'react-scroll';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNotices } from '../../../../redux/noticesSlice';
@@ -13,6 +14,8 @@ const LostFound = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
+
+  const scroll = Scroll.animateScroll;
 
   const isActiveDelete = false;
   const { data: noticesCategory } = useGetNoticesByCategoryQuery({
@@ -35,6 +38,7 @@ const LostFound = () => {
 
   const loadMore = () => {
     setPage(page + 1);
+    scroll.scrollToBottom({ duration: 1000 });
     dispatch(setNotices(pets.concat(markedNotices)));
   };
   return (

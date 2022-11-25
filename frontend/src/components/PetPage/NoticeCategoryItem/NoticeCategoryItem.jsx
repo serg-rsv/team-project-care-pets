@@ -178,30 +178,32 @@ const NoticeCategoryItem = ({
         <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
       <Modal marker={`learnmore${_id}`} closeButton={true}>
-        <ModalNotice
-          category={noticeById?.category}
-          photoURL={noticeById?.photoURL}
-          name={noticeById?.name}
-          title={noticeById?.title}
-          birthday={birthday}
-          breed={noticeById?.breed}
-          location={noticeById?.location}
-          sex={noticeById?.sex}
-          comments={noticeById?.comments}
-          email={noticeById?.owner?.email}
-          phone={noticeById?.owner?.phone}
-          price={noticeById?.price}
-        />
-        <Button
-          className={s.addToFavoriteButton}
-          disabled={!isLoggedIn}
-          onClick={() => {
-            isFavorite ? deleteFavorite(_id) : addFavorite(_id);
-          }}
-        >
-          {svgIcon}
-        </Button>
-        <Button>{linkPhone}</Button>
+        <div className={s.wrapper}>
+          <ModalNotice
+            category={noticeById?.category}
+            photoURL={noticeById?.photoURL}
+            name={noticeById?.name}
+            title={noticeById?.title}
+            birthday={birthday}
+            breed={noticeById?.breed}
+            location={noticeById?.location}
+            sex={noticeById?.sex}
+            comments={noticeById?.comments}
+            email={noticeById?.owner?.email}
+            phone={noticeById?.owner?.phone}
+            price={noticeById?.price}
+          />
+          <Button
+            className={s.addToFavoriteButton}
+            disabled={!isLoggedIn}
+            onClick={() => {
+              isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+            }}
+          >
+            {svgIcon}
+          </Button>
+          <Button>{linkPhone}</Button>
+        </div>
       </Modal>
     </li>
   );

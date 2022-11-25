@@ -1,5 +1,5 @@
+import Scroll from 'react-scroll';
 import { useEffect, useState } from 'react';
-
 import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 import { useGetPersonalNoticeQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
@@ -13,15 +13,17 @@ const Own = () => {
   const { data: notices } = useGetPersonalNoticeQuery();
   const { data: user } = useCurrentQuery();
 
+  const scroll = Scroll.animateScroll;
+
   useEffect(() => {
     const markedNotices = markFavoriteNotice(
       notices?.data,
       user?.user?.favorites
     );
     setPets(markedNotices);
-  }, [notices,user]);
+  }, [notices, user]);
   const loadMore = () => {
-  console.log('load more');
+    scroll.scrollToBottom({ duration: 1000 });
   };
   return (
     <>

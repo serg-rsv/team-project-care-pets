@@ -1,3 +1,4 @@
+import Scroll from 'react-scroll';
 import { useEffect, useState } from 'react';
 
 import { useGetFavoritesNoticeQuery } from '../../../../redux/services/noticesSlice';
@@ -15,6 +16,8 @@ const Favorite = () => {
 
   const { data: user } = useCurrentQuery();
 
+  const scroll = Scroll.animateScroll;
+
   useEffect(() => {
     const markedNotices = markFavoriteNotice(
       notices?.data,
@@ -25,6 +28,7 @@ const Favorite = () => {
   }, [notices, user]);
 
   const loadMore = () => {
+    scroll.scrollToBottom({ duration: 1000 });
     console.log('load more');
   };
   return (

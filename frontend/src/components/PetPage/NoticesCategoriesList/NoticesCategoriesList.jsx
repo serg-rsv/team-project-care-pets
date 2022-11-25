@@ -67,24 +67,28 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
         </Modal>
       ) : (
         <Modal marker="addpet" closeButton={true}>
-          <h3>You are not authorized!</h3>
-          <p> Please login or register!</p>
-          <Button
-            onClick={() => {
-              navigate('/login');
-              closeModal();
-            }}
-          >
-            Login
-          </Button>
-          <Button
-            onClick={() => {
-              navigate('/register');
-              closeModal();
-            }}
-          >
-            Register
-          </Button>
+          <div className={s.wrapper}>
+            <h3>You are not authorized!</h3>
+            <p> Please login or register!</p>
+            <div className={s.buttonsWrapper}>
+              <Button
+                onClick={() => {
+                  navigate('/login');
+                  closeModal();
+                }}
+              >
+                Login
+              </Button>
+              <Button
+                onClick={() => {
+                  navigate('/register');
+                  closeModal();
+                }}
+              >
+                Register
+              </Button>
+            </div>
+          </div>
         </Modal>
       )}
     </div>

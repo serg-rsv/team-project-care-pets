@@ -50,7 +50,7 @@ const Navigation = () => {
         </div>
       ) : (
         <div className={s.authTabMenu}>
-          {isAuthorized ? <UserNav /> : <AuthNav closeModal={onBurgerClick} />}
+          {isAuthorized ? <UserNav /> : <AuthNav />}
         </div>
       )}
 
