@@ -64,7 +64,8 @@ const ModalNotice = ({
           </ul>
         </div>
       </div>
-      <div className={s.comments}>Comments:
+      <div className={s.comments}>
+        Comments:
         <p className={s.textComment}>{comments}</p>
       </div>
     </div>
