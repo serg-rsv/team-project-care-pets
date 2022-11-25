@@ -27,7 +27,6 @@
 }
 .titleInfo {
   margin-bottom: 18px;
-  // padding-left: 20px;
   margin-left: 20px;
   @include mq(tablet) {
     margin-left: 20px;
@@ -41,11 +40,13 @@
   }
 }
 .titlePets {
+  @include fonts(15px, 500, 1.35);
   margin: 47px 0 32px 20px;
   display: inline-block;
   flex-wrap: nowrap;
   @include mq(tablet) {
     margin: 20px 33px 24px;
+    @include fonts(20px, 500, 1.35);
   }
   @include mq(desktop) {
     top: 0;
@@ -55,7 +56,7 @@
 }
 .btnWrapper {
   position: relative;
-  margin-left: 62px;
+  // margin-left: 62px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -67,15 +68,17 @@
   }
   @include mq(desktop) {
     top: 0;
-    // right: -465px;
     margin: 0;
   }
 }
 .addPetText {
-  @include fonts(20px, 500, 1.35);
+  @include fonts(15px, 500, 1.35);
   color: var(--main-text-cl);
   display: inline-block;
   margin-right: 10px;
+  @include mq(tablet) {
+    @include fonts(20px, 500, 1.35);
+  }
   @include mq(desktop) {
     margin-right: 15px;
   }
