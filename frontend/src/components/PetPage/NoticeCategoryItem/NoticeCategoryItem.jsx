@@ -67,7 +67,11 @@ const NoticeCategoryItem = ({
 
   const svgIcon = (
     <>
-      <p className={s.addToFavoriteButtonText}>Додати в</p>
+      {isFavorite ? (
+        <p className={s.addToFavoriteButtonText}>Видалити з</p>
+      ) : (
+        <p className={s.addToFavoriteButtonText}>Додати в</p>
+      )}
       <svg
         width="26"
         height="24"
@@ -171,17 +175,7 @@ const NoticeCategoryItem = ({
       {isActive && (
         <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
-      <Modal
-        marker={`learnmore${_id}`}
-        closeButton={true}
-        leftButton={isFavorite ? false : true}
-        leftButtonContent={svgIcon}
-        leftButtonStyle={s.addToFavoriteButton}
-        leftButtonClick={() => addFavorite(_id)}
-        rightButton={true}
-        rightButtonContent={linkPhone}
-        disabled={!isLoggedIn}
-      >
+      <Modal marker={`learnmore${_id}`} closeButton={true}>
         <ModalNotice
           category={noticeById?.category}
           photoURL={noticeById?.photoURL}
@@ -196,6 +190,16 @@ const NoticeCategoryItem = ({
           phone={noticeById?.owner?.phone}
           price={noticeById?.price}
         />
+        <Button
+          className={s.addToFavoriteButton}
+          disabled={!isLoggedIn}
+          onClick={() => {
+            isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+          }}
+        >
+          {svgIcon}
+        </Button>
+        <Button>{linkPhone}</Button>
       </Modal>
     </li>
   );

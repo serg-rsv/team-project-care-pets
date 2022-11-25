@@ -26,16 +26,14 @@ const LogOut = () => {
       <Button onClick={() => openModal('logout')} className={scss.logOutBtn}>
         <p className={scss.logOutText}>Вийти</p>
       </Button>
-      <Modal
-        leftButton={true}
-        leftButtonContent="Так"
-        leftButtonClick={logOut}
-        rightButton={true}
-        rightButtonContent="Ні"
-        rightButtonClick={closeModal}
-        marker="logout"
-      >
+      <Modal marker="logout">
         <p className={scss.logOutModalText}>Ви дійсно бажаєте вийти?</p>
+        <Button onClick={logOut}>
+          <p className={scss.logOutText}>Так</p>
+        </Button>
+        <Button onClick={closeModal}>
+          <p className={scss.logOutText}>Ні</p>
+        </Button>
       </Modal>
     </>
   );
