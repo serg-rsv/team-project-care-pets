@@ -4,7 +4,7 @@ const LoadMore = ({ loadMore }) => {
   return (
     <>
       <Button className={scss.loadMoreBtn} onClick={loadMore}>
-        Load more
+        Загрузити ще
       </Button>
     </>
   );

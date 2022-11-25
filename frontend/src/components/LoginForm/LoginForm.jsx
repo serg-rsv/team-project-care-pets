@@ -6,6 +6,7 @@ import css from '../RegisterForm/authForm.module.scss';
 import * as Yup from 'yup';
 import { useLoginMutation } from '../../redux/services/usersSlice';
 import { setToken } from '../../redux/services/authSlice';
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -26,10 +27,13 @@ const LoginForm = () => {
         .max(32, 'Пароль містить максимум 32 символи'),
     }),
     onSubmit: async values => {
-      const response = await login(values).unwrap();
-      dispatch(setToken(response.data.token));
-
-      formik.resetForm();
+      try {
+        const response = await login(values).unwrap();
+        dispatch(setToken(response.data.token));
+        formik.resetForm();
+      } catch (error) {
+        toast.error('Невірна електронна пошта або пароль.');
+      }
     },
   });
 
@@ -61,7 +65,7 @@ const LoginForm = () => {
           placeholder="Пароль"
         />
 
-        {formik.touched.password  && formik.errors.password ? (
+        {formik.touched.password && formik.errors.password ? (
           <p className={css.inputLoginErrorPassword}>
             {formik.errors.password}
           </p>

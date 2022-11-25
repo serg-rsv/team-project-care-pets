@@ -47,7 +47,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
               breed={breed}
               place={location}
               age={getAge(birthday)}
-              price={`${price}$`}
+              price={`${price}₴`}
               page={category}
               isActive={isActive}
               isFavorite={isFavorite}

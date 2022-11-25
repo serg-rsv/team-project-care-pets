@@ -47,7 +47,7 @@ const LostFound = () => {
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
       {noticesCategory?.data.length ? (
-        <LoadMore loadMore={() => loadMore()}>Load more</LoadMore>
+        <LoadMore loadMore={() => loadMore()} />
       ) : null}
     </>
   );
