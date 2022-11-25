@@ -1,5 +1,4 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -65,8 +64,7 @@ const NoticeCategoryItem = ({
   );
   const favoriteToggle = () => {
     if (isLoggedIn === false) {
-      alert('Необхідно автризуватися');
-      //  toast.info('Необхідно автризуватися');
+      toast.info('Необхідно авторизуватися');
     }
     isFavorite ? deleteFavorite(_id) : addFavorite(_id);
   };
@@ -205,7 +203,6 @@ const NoticeCategoryItem = ({
         </Button>
         <Button>{linkPhone}</Button>
       </Modal>
-      {/* <ToastContainer /> */}
     </li>
   );
 };
