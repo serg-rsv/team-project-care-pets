@@ -10,6 +10,7 @@ import { formDataAppender } from '../../helpers/formDataAppender';
 
 import Location from '../Location';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 // import e from 'cors';
 
 const ModalAddNotice = ({ closeButton }) => {
@@ -30,13 +31,13 @@ const ModalAddNotice = ({ closeButton }) => {
       : setIsFirstRegisterStep(true);
   };
 
-  const canMoveForward = () => {
-    const { category, title, name, date, breed } = formik.values;
-    if (category && title && name && date && breed) {
-      return false;
-    }
-    return true;
-  };
+  // const canMoveForward = () => {
+  //   const { category, title, name, date, breed } = formik.values;
+  //   if (category && title && name && date && breed) {
+  //     return false;
+  //   }
+  //   return true;
+  // };
 
   const onImageChange = e => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
@@ -109,6 +110,7 @@ const ModalAddNotice = ({ closeButton }) => {
       await createNotice(formDataAppender(formik.values));
       formik.resetForm();
       closeButton();
+    toast.success('Ви успішно створили оголошення.')
     },
   });
 

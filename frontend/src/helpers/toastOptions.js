@@ -5,7 +5,7 @@ const options = {
   hideProgressBar: false,
   newestOnTop: false,
   rtl: false,
-  theme: 'dark',
+  theme: 'light',
   transition: Flip,
 };
 

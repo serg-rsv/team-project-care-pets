@@ -29,7 +29,7 @@ const Own = () => {
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
       {notices?.data.length ? (
-        <LoadMore loadMore={() => loadMore()}>Load more</LoadMore>
+        <LoadMore loadMore={() => loadMore()}>Загрузити ще</LoadMore>
       ) : null}
     </>
   );

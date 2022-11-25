@@ -10,19 +10,6 @@ import Modal from '../Modal/Modal';
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
-  function getDate(birthday) {
-    let date = new Date(birthday);
-    let year = date.getFullYear();
-    let day = date.getDay();
-    let month = date.getMonth();
-    if (day < 10) {
-      day = `0${day}`;
-    }
-    if (month < 10) {
-      month = `0${month}`;
-    }
-    return day + '.' + month + '.' + year;
-  }
 
   return (
     <div className={scss.wrapper}>
@@ -47,7 +34,6 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
           <dt className={scss.text}> {comments}</dt>
         </li>
       </ul>
-      {/* <Button className={scss.iconBtn} onClick={() => deletePet(id)}></Button> */}
       <Button
         className={scss.iconBtn}
         onClick={() => openModal(`pets${id}`)}

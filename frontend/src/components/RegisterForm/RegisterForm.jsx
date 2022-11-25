@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import css from './authForm.module.scss';
 import * as Yup from 'yup';
 import Button from '../Button/Button';
+import { toast } from 'react-toastify';
 const { useNavigate } = require('react-router-dom');
 const { useRegisterMutation } = require('../../redux/services/usersSlice');
 const { useDispatch } = require('react-redux');
@@ -69,12 +70,15 @@ const RegisterForm = () => {
           phone,
           location,
         });
+
         dispatch(setToken(token));
         navigate('/home');
-      } catch {
-        alert.error('Something went wrong. Maybe this email is already in use');
+        formik.resetForm();
+      } catch (error) {
+        toast.error(
+          'Щось пішло не так. Можливо користувач з такою електронною поштою вже існує.'
+        );
       }
-      formik.resetForm();
     },
   });
 
@@ -220,7 +224,7 @@ const RegisterForm = () => {
       {/* {isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
 
       <p className={css.linkToPage}>
-        Ви вже маєте аккаунт?{' '}
+        Ви вже маєте акаунт?{' '}
         <Link className={css.link} to="/login">
           Увійти
         </Link>
