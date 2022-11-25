@@ -63,10 +63,17 @@ const NoticeCategoryItem = ({
     <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
   );
   const favoriteToggle = () => {
-    if (isLoggedIn === false) {
-      toast.info('Необхідно авторизуватися');
+    if (isFavorite) {
+      deleteFavorite(_id);
+      toast.success('Тваринку видалено зі списку обраних.');
+    } else {
+      addFavorite(_id);
+      toast.success('Тваринку додано до обраних.');
     }
-    isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+  };
+
+  const addNotification = () => {
+    toast.info('Необхідно авторизуватися.');
   };
 
   const svgIcon = (
@@ -170,12 +177,17 @@ const NoticeCategoryItem = ({
         Дізнатися більше
       </Button>
       <Button
-        // disabled={!isLoggedIn}
-        onClick={() => favoriteToggle()}
+        onClick={isLoggedIn ? favoriteToggle : addNotification}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
       {isActive && (
-        <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
+        <Button
+          onClick={() => {
+            deleteNotice(_id);
+            toast.success('Оголошення видалено.');
+          }}
+          className={s.remove}
+        ></Button>
       )}
       <Modal marker={`learnmore${_id}`} closeButton={true}>
         <ModalNotice

@@ -6,7 +6,7 @@ import { formDataAppender } from '../../helpers/formDataAppender';
 
 import * as Yup from 'yup';
 import { useCreatePetMutation } from '../../redux/services/petsSlice';
-
+import { toast } from 'react-toastify';
 const ModalAddPet = ({ onCancelButtonClick }) => {
   const [createPet, { isLoading }] = useCreatePetMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
@@ -61,6 +61,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
       await createPet(formDataAppender(formik.values));
       formik.resetForm();
       onCancelButtonClick();
+      toast.success('Домашнього улюбленця успішно додано');
     },
   });
 
