@@ -1,10 +1,12 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import {
   useAddFavoritesByIdMutation,
   useDeleteFavoritesByIdMutation,
   useDeleteNoticeMutation,
 } from '../../../redux/services/noticesSlice';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import Button from '../../Button';
 import ModalNotice from '../ModalNotice';
 import { useModal } from '../../../hooks/useModal';
@@ -32,7 +34,7 @@ const NoticeCategoryItem = ({
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
   const { data: item } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
 
@@ -125,28 +127,31 @@ const NoticeCategoryItem = ({
         <img className={s.animalListImg} src={link} alt={title} />
       </div>
       <h3 className={s.animalListTitle}>{title}</h3>
-      <div className={s.animalListBoxText}>
-        <p className={s.breed}>Порода:</p>
-        <p>{breed}</p>
-      </div>
-      <div className={s.animalListBoxText}>
-        <p className={s.place}>Місце:</p>
-        <p>{place}</p>
-      </div>
-      <div className={s.animalListBoxText}>
-        <p className={s.age}>Вік:</p>
-        <p>{age}</p>
-      </div>
-      {checkCategory ? (
-        <div className={s.animalListBoxText}>
-          <p className={s.price}>Ціна:</p>
-          <p>{price}</p>
-        </div>
-      ) : (
-        <div className={s.animalListBoxText}>
-          <p className={s.priceOpacity}>P</p>
-        </div>
-      )}
+      <ul>
+        <li className={s.animalListBoxText}>
+          Порода:
+          <p> {breed}</p>
+        </li>
+        <li className={s.animalListBoxText}>
+          Місце:
+          <p>{place}</p>
+        </li>
+        <li className={s.animalListBoxText}>
+          Вік:
+          <p>{age}</p>
+        </li>
+        {checkCategory ? (
+          <li className={s.animalListBoxText}>
+            Ціна:
+            <p>{price}</p>
+          </li>
+        ) : (
+          <li className={s.animalListBoxText}>
+            <p className={s.priceOpacity}>P</p>
+          </li>
+        )}
+      </ul>
+
       <Button
         onClick={() => {
           openModal(`learnmore${_id}`);
@@ -156,17 +161,16 @@ const NoticeCategoryItem = ({
       >
         Дізнатися більше
       </Button>
-
       <Button
         disabled={!isLoggedIn}
-        onClick={() => (isFavorite ? deleteFavorite(_id) : addFavorite(_id))}
+        onClick={() => {
+          isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+        }}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
-
       {isActive && (
         <Button onClick={() => deleteNotice(_id)} className={s.remove}></Button>
       )}
-
       <Modal
         marker={`learnmore${_id}`}
         closeButton={true}
@@ -195,6 +199,19 @@ const NoticeCategoryItem = ({
       </Modal>
     </li>
   );
+};
+
+NoticeCategoryItem.propTypes = {
+  _id: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  breed: PropTypes.string.isRequired,
+  place: PropTypes.string.isRequired,
+  age: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
 };
 
 export default NoticeCategoryItem;

@@ -78,28 +78,19 @@
 
 .animalListBoxText {
   display: flex;
+  justify-content: space-between;
   margin-left: 20px;
-  margin-right: 0;
+  margin-right: 20px;
   margin-top: 8px;
   @include fonts(16px, 500, 1.4);
   color: var(--main-text-cl);
 }
 
-.breed {
-  margin-right: 40px;
+.animalListBoxText p {
+  width: 50%;
+  
 }
 
-.place {
-  margin-right: 40px;
-}
-
-.age {
-  margin-right: 52px;
-}
-
-.price {
-  margin-right: 44px;
-}
 .priceOpacity {
   opacity: 0;
 }
@@ -175,6 +166,3 @@
 .addToFavoriteButtonText {
   margin-right: 8px;
 }
-
-
-
