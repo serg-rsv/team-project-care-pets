@@ -11,25 +11,25 @@ const SponsorCard = ({ obj }) => {
 
         switch (index) {
           case 0:
-            day = 'mn';
+            day = 'пн';
             break;
           case 1:
-            day = 'tu';
+            day = 'вт';
             break;
           case 2:
-            day = 'we';
+            day = 'ср';
             break;
           case 3:
-            day = 'th';
+            day = 'чт';
             break;
           case 4:
-            day = 'fr';
+            day = 'пт';
             break;
           case 5:
-            day = 'sa';
+            day = 'сб';
             break;
           case 6:
-            day = 'su';
+            day = 'нд';
             break;
 
           default:
@@ -37,7 +37,7 @@ const SponsorCard = ({ obj }) => {
         }
 
         if (!el.isOpen) {
-          acc.push({ day, time: 'Closed' });
+          acc.push({ day, time: 'Зачинено' });
           return acc;
         }
 
