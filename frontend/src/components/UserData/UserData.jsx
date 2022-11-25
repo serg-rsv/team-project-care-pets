@@ -28,8 +28,7 @@ const UserData = () => {
 
   useEffect(() => {
     const getData = async () => {
-  
-      if (data?.user){
+      if (data?.user) {
         const { name, email, birthday, phone, location, photoURL } = data.user;
         setNameUser(name);
         setEmailUser(email);
@@ -193,7 +192,7 @@ const UserData = () => {
           </li>
           <li className={scss.listItem}>
             <label htmlFor="birthday" className={scss.listText}>
-              День народження:
+              Дата народження:
             </label>
             <div className={scss.inputWrapper}>
               <input
