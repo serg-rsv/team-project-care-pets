@@ -61,7 +61,7 @@
 
 .tabMenu {
   display: none;
-  @include mq(tablet) {
+  @include mq(tablet-only) {
     display: block;
     width: 100vw;
     height: 100vh;
@@ -70,10 +70,7 @@
     left: 50%;
     translate: -50%;
     z-index: 100;
-  }
-
-  @include mq(desktop) {
-    display: none;
+    text-align: center;
   }
 }
 

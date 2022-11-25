@@ -1,7 +1,7 @@
 import s from './AuthNav.module.scss';
 import { NavLink } from 'react-router-dom';
 
-const AuthNav = () => {
+const AuthNav = ({ closeModal }) => {
   return (
     <div className={s.authNav}>
       <ul className={s.authNav__list}>
@@ -9,6 +9,7 @@ const AuthNav = () => {
           <NavLink
             to={'/login'}
             className={({ isActive }) => (isActive ? s.active : undefined)}
+            onClick={closeModal}
           >
             Вхід
           </NavLink>
@@ -17,6 +18,7 @@ const AuthNav = () => {
           <NavLink
             to={'/register'}
             className={({ isActive }) => (isActive ? s.active : undefined)}
+            onClick={closeModal}
           >
             Реєстрація
           </NavLink>
