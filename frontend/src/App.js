@@ -1,8 +1,11 @@
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import { Loader } from './components/Loader/Loader';
+import toastOptions from './helpers/toastOptions';
 
 const SharedLayout = lazy(() => import('./components/SharedLayout'));
 const RegisterPage = lazy(() => import('./pages/RegisterPage'));
@@ -26,7 +29,6 @@ const Favorite = lazy(() =>
   import('./components/PetPage/NoticesCategoriesNav/Favorite')
 );
 const Own = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Own'));
-
 function App() {
   return (
     <Suspense fallback={<Loader />}>
@@ -63,6 +65,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer {...toastOptions} />
     </Suspense>
   );
 }
