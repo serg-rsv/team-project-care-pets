@@ -19,18 +19,16 @@ const Own = () => {
       user?.user?.favorites
     );
     setPets(markedNotices);
-  }, [notices,user]);
+  }, [notices, user]);
   const loadMore = () => {
-  console.log('load more');
+    console.log('load more');
   };
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {notices?.data.length ? (
-        <LoadMore loadMore={() => loadMore()}>Загрузити ще</LoadMore>
-      ) : null}
+      {notices?.data.length ? <LoadMore loadMore={() => loadMore()} /> : null}
     </>
   );
 };

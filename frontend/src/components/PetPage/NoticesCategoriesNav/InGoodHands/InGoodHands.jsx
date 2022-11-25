@@ -39,7 +39,7 @@ const InGoodHands = () => {
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
       {noticesCategory?.data.length ? (
-        <LoadMore loadMore={() => loadMore()}>Загрузити ще</LoadMore>
+        <LoadMore loadMore={() => loadMore()} />
       ) : null}
     </>
   );
