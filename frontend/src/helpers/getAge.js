@@ -1,40 +1,74 @@
 const TEN = 10;
 const ONE_HUNDRED = 100;
 const LESS_THAN_TWENTY = [
-  'zero',
-  'one',
-  'two',
-  'three',
-  'four',
-  'five',
-  'six',
-  'seven',
-  'eight',
-  'nine',
-  'ten',
-  'eleven',
-  'twelve',
-  'thirteen',
-  'fourteen',
-  'fifteen',
-  'sixteen',
-  'seventeen',
-  'eighteen',
-  'nineteen',
+  'нуль',
+  'один',
+  'два',
+  'три',
+  'чотири',
+  "п'ять",
+  'шість',
+  'сім',
+  'вісім',
+  'девять',
+  'десять',
+  'одинадцять',
+  'дванатцять',
+  'тринадцять',
+  'чотирнадцять',
+  "п'ятнадцять",
+  'шістнадцять',
+  'сімнадцять',
+  'вісімнадцять',
+  'девятнадцять',
 ];
+// const LESS_THAN_TWENTY = [
+//   'zero',
+//   'one',
+//   'two',
+//   'three',
+//   'four',
+//   'five',
+//   'six',
+//   'seven',
+//   'eight',
+//   'nine',
+//   'ten',
+//   'eleven',
+//   'twelve',
+//   'thirteen',
+//   'fourteen',
+//   'fifteen',
+//   'sixteen',
+//   'seventeen',
+//   'eighteen',
+//   'nineteen',
+// ];
 const TENTHS_LESS_THAN_HUNDRED = [
-  'zero',
-  'ten',
-  'twenty',
-  'thirty',
-  'forty',
-  'fifty',
-  'sixty',
-  'seventy',
-  'eighty',
-  'ninety',
+  'нуль',
+  'десять',
+  'двадцять',
+  'трирдцять',
+  'сорок',
+  "п'ятдесят",
+  'шістдесят',
+  'сімдесят',
+  'вісімдесят',
+  "дев'яносто",
 ];
-const HUNDRED = 'hundred';
+// const TENTHS_LESS_THAN_HUNDRED = [
+//   'zero',
+//   'ten',
+//   'twenty',
+//   'thirty',
+//   'forty',
+//   'fifty',
+//   'sixty',
+//   'seventy',
+//   'eighty',
+//   'ninety',
+// ];
+const HUNDRED = 'сто';
 const NEGATIVE = 'negative number';
 
 function generateWords(number) {
@@ -52,7 +86,7 @@ function generateWords(number) {
 
   // Done
   if (number === 0) {
-    return !words ? 'zero' : words.join(' ').replace(/,$/, '');
+    return !words ? 'нуль' : words.join(' ').replace(/,$/, '');
   }
   // First run
   if (!words) {
@@ -67,7 +101,7 @@ function generateWords(number) {
     word = TENTHS_LESS_THAN_HUNDRED[Math.floor(number / TEN)];
     // Add the "-"
     if (remainder) {
-      word += '-' + LESS_THAN_TWENTY[remainder];
+      word += ' ' + LESS_THAN_TWENTY[remainder];
       remainder = 0;
     }
   }
@@ -88,10 +122,15 @@ export const getAge = birthday => {
   const years = new Date().getFullYear() - new Date(birthday).getFullYear();
   const words = generateWords(years);
   if (words === NEGATIVE) {
-    return 'not born yet';
+    return 'не народжений';
   }
-  if (words === 'zero') {
-    return 'less one year';
+  if (words === 'нуль') {
+    return 'менше року';
   }
-  return words === 'one' ? words + ' year' : words + ' years';
+  const last = words.split(' ').pop();
+  return last === 'один'
+    ? words + ' рік'
+    : last === 'два' || last === 'три' || last === 'чотири'
+    ? words + ' роки'
+    : words + ' років';
 };

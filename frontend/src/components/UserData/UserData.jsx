@@ -113,6 +113,9 @@ const UserData = () => {
 
   const handleChange = event => {
     const { name, value } = event.target;
+    const buttonSubmit = event.target.nextSibling;
+
+    buttonSubmit.disabled = !event.target.validity.valid;
     switch (name) {
       case 'name':
         setNameUser(value);
@@ -166,8 +169,12 @@ const UserData = () => {
                 value={nameUser}
                 name="name"
                 disabled
+                minLength={2}
+                required
                 autoComplete="off"
                 onSubmit={btnClick}
+                pattern="^^[а-яА-ЯїЇіІЁёa-zA-Z]+ ?([а-яА-ЯїЇіІЁёa-zA-Z]+)?$"
+                title="Поле має складатись лише з літер та, за необхідністю, пробілу, мінімальна кількість літер 2"
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
@@ -186,6 +193,9 @@ const UserData = () => {
                 name="email"
                 value={emailUser}
                 disabled
+                required
+                pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+                title="Неправильний поштовий адрес"
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
@@ -202,6 +212,9 @@ const UserData = () => {
                 name="birthday"
                 value={birthdayUser}
                 disabled
+                required
+                max={new Date().toISOString().split('T')[0]}
+                title="Дата має бути в минулому"
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
@@ -218,6 +231,9 @@ const UserData = () => {
                 name="phone"
                 value={phoneUser}
                 disabled
+                required
+                pattern="^\+380\d{9}$"
+                title="Введіть номер у форматі +380*******"
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
@@ -234,6 +250,9 @@ const UserData = () => {
                 name="location"
                 value={locationUser}
                 disabled
+                required
+                pattern="[а-яА-ЯїЇіІЁёa-zA-Z]{2,},? ([а-яА-ЯїЇіІЁёa-zA-Z]+(?: [а-яА-ЯїЇіІЁёa-zA-Z]+)*)+$"
+                title="Введіть в форматі: місто, область"
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
