@@ -13,6 +13,7 @@ import NoticesCategoriesList from '../../NoticesCategoriesList';
 import LoadMore from '../../../LoadMore';
 
 const Category = () => {
+  const { data: user } = useCurrentQuery();
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
@@ -27,7 +28,6 @@ const Category = () => {
     page,
     limit: 4,
   });
-  const { data: user } = useCurrentQuery();
 
   const markedNotices = markFavoriteNotice(
     noticesCategory?.data,

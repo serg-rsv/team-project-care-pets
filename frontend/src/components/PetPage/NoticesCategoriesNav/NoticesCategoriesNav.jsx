@@ -15,7 +15,7 @@ const NoticesCategoriesNav = () => {
     <ul className={s.navList}>
       <li>
         <NavLink
-          onClick={() => dispatch(setNotices([]))}
+          // onClick={() => dispatch(setNotices([]))}
           className={({ isActive }) =>
             `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
           }
@@ -26,7 +26,7 @@ const NoticesCategoriesNav = () => {
       </li>
       <li>
         <NavLink
-          onClick={() => dispatch(setNotices([]))}
+          // onClick={() => dispatch(setNotices([]))}
           className={({ isActive }) =>
             `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
           }
@@ -37,7 +37,7 @@ const NoticesCategoriesNav = () => {
       </li>
       <li className={s.sell}>
         <NavLink
-          onClick={() => dispatch(setNotices([]))}
+          // onClick={() => dispatch(setNotices([]))}
           className={({ isActive }) =>
             `${s.button}` +
             (isActive || location.pathname === sell ? ` ${s.carrentColor}` : '')
