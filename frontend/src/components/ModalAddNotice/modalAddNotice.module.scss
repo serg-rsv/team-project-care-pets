@@ -111,7 +111,7 @@
   @extend .noticeFormInput;
   position: relative;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   // width: 240px;
 
   &::-webkit-calendar-picker-indicator {

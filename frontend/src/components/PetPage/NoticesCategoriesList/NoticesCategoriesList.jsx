@@ -19,7 +19,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
 
-  const [filter, setFilter] = useState({});
+  const [, setFilter] = useState({});
 
   const createAds = async filter => {
     await setFilter(filter);

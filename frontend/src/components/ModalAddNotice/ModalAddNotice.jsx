@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 // import e from 'cors';
 
 const ModalAddNotice = ({ closeButton }) => {
-  const [createNotice, { isLoading }] = useCreateNoticeMutation();
+  const [createNotice] = useCreateNoticeMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
   const [disableNextButton, setDisableNextButton] = useState(true);
