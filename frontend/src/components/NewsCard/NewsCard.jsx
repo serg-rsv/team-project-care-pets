@@ -5,16 +5,19 @@ const NewsCard = ({ obj }) => {
 
   return (
     <div className={s.article}>
-      <h3 className={s.articleTitle}>{title}</h3>
-      <p className={s.articleDescription}>{description}</p>
-      <div className={s.articleMeta}>
-        <p className={s.metaDate}>{date?.split('-').join('/')}</p>
-        <p>
-          <a href={url} target="_blanc" className={s.metaLink}>
-            Читати більше
-          </a>
-        </p>
+      <div>
+        <h3 className={s.articleTitle}>{title}</h3>
+        <p className={s.articleDescription}>{description}</p>
       </div>
+
+      <p className={s.articleMeta}>
+        <span className={s.metaDate}>
+          {date?.split('T').shift().split('-').join('/')}
+        </span>
+        <a href={url} target="_blanc" className={s.metaLink}>
+          Читати більше
+        </a>
+      </p>
     </div>
   );
 };
