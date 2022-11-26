@@ -1,4 +1,4 @@
-import Scroll from 'react-scroll';
+// import Scroll from 'react-scroll';
 import { useEffect, useState } from 'react';
 
 import { useGetFavoritesNoticeQuery } from '../../../../redux/services/noticesSlice';
@@ -6,7 +6,9 @@ import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
-import LoadMore from '../../../LoadMore';
+
+// import LoadMore from '../../../LoadMore';
+
 const Favorite = () => {
   const isActiveDelete = false;
 
@@ -16,7 +18,7 @@ const Favorite = () => {
 
   const { data: user } = useCurrentQuery();
 
-  const scroll = Scroll.animateScroll;
+  // const scroll = Scroll.animateScroll;
 
   useEffect(() => {
     const markedNotices = markFavoriteNotice(
@@ -27,16 +29,12 @@ const Favorite = () => {
     setPets(markedNotices);
   }, [notices, user]);
 
-  const loadMore = () => {
-    scroll.scrollToBottom({ duration: 1000 });
-    console.log('load more');
-  };
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {notices?.data?.length ? <LoadMore loadMore={() => loadMore()} /> : null}
+      {/* {notices?.data?.length ? <LoadMore loadMore={() => loadMore()} /> : null} */}
     </>
   );
 };

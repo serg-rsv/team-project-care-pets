@@ -14,6 +14,7 @@ const LostFound = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
+  const { data: user } = useCurrentQuery();
 
   const scroll = Scroll.animateScroll;
 
@@ -23,31 +24,26 @@ const LostFound = () => {
     page,
     limit: 4,
   });
-  const { data: user } = useCurrentQuery();
+
   const markedNotices = markFavoriteNotice(
     noticesCategory?.data,
     user?.user?.favorites
   );
-  useEffect(() => {
-    // const markedNotices = markFavoriteNotice(
-    //   noticesCategory?.data,
-    //   user?.user?.favorites
-    // );
-    dispatch(setNotices(markedNotices));
-  }, [dispatch, noticesCategory, user?.user?.favorites]);
 
-  const loadMore = () => {
-    setPage(page + 1);
-    scroll.scrollToBottom({ duration: 1000 });
+  useEffect(() => {
     dispatch(setNotices(pets.concat(markedNotices)));
-  };
+    if (page !== 1) {
+      scroll.scrollToBottom({ duration: 1000 });
+    }
+  }, [noticesCategory]);
+
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
       {noticesCategory?.data.length ? (
-        <LoadMore loadMore={() => loadMore()} />
+        <LoadMore loadMore={() => setPage(page + 1)} />
       ) : null}
     </>
   );
