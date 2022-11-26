@@ -27,7 +27,6 @@ const Own = () => {
   const loadMore = () => {
     setPage(page + 1);
     setPets(pets.concat(markedNotices));
-  const loadMore = () => {
     scroll.scrollToBottom({ duration: 1000 });
   };
   return (

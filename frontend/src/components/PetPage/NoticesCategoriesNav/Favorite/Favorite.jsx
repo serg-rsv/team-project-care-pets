@@ -17,6 +17,7 @@ const Favorite = () => {
     notices?.data,
     user?.user?.favorites
   );
+  const scroll = Scroll.animateScroll;
   useEffect(() => {
     setPets(markedNotices);
   }, [notices, user]);
