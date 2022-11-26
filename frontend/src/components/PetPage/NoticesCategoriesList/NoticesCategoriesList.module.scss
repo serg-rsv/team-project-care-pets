@@ -21,8 +21,11 @@
   background-position: bottom left;
   background-size: contain;
   background-repeat: no-repeat;
-  padding: 60px 20px 30px;
+  padding: 60px 15px 30px;
   text-align: center;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
+  @include mq(tablet) {
+    padding: 60px 20px 30px;
+  }
 }

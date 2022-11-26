@@ -69,7 +69,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
         <Modal marker="addpet" closeButton={true}>
           <div className={s.wrapper}>
             <h3>Ви не авторизовані!</h3>
-            <p> Будь ласка увійдіть або зареєструйтесь!</p>
+            <p> Увійдіть або зареєструйтесь!</p>
             <div className={s.buttonsWrapper}>
               <Button
                 onClick={() => {

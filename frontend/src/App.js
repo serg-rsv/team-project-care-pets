@@ -15,7 +15,7 @@ const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage'));
 const NoticesPage = lazy(() => import('./pages/NoticesPage'));
 const UserPage = lazy(() => import('./pages/UserPage'));
 const HomePage = lazy(() => import('./pages/HomePage'));
-const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 const LostFound = lazy(() =>
   import('./components/PetPage/NoticesCategoriesNav/LostFound')
 );
@@ -111,8 +111,8 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/user" element={<UserPage />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer {...toastOptions} />
     </Suspense>

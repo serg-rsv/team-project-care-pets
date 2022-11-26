@@ -11,6 +11,23 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   const { openModal, closeModal } = useModal();
   const [deletePet, result] = useDeletePetMutation();
 
+  function getDate(birthday) {
+    let date = new Date(birthday);
+    let year = date.getFullYear();
+    let day = date.getDay();
+    let month = date.getMonth();
+    if (day < 10) {
+      day = `0${day}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    return day + '.' + month + '.' + year;
+  }
+  const onDeletePetClick = async () => {
+    await deletePet(id);
+    closeModal();
+  };
   return (
     <div className={scss.wrapper}>
       <div className={scss.imgBox}>
@@ -38,8 +55,23 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
         className={scss.iconBtn}
         onClick={() => openModal(`pets${id}`)}
       ></Button>
-      <Modal
-        marker={`pets${id}`}
+      <Modal marker={`pets${id}`}>
+        <div className={scss.modalWrapper}>
+          <p className={scss.logOutModalText}>Ви дійсно бажаєте видалити?</p>
+          <div className={scss.buttonBox}>
+            <Button
+              onClick={() => onDeletePetClick(id)}
+              className={scss.button}
+            >
+              <p className={scss.logOutText}>Так</p>
+            </Button>
+            <Button onClick={closeModal} className={scss.button}>
+              <p className={scss.logOutText}>Ні</p>
+            </Button>
+          </div>
+        </div>
+      </Modal>
+      {/* marker={`pets${id}`}
         leftButton={true}
         leftButtonType={'button'}
         rightButton={true}
@@ -50,10 +82,7 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
           deletePet(id);
           closeModal();
         }}
-        rightButtonClick={closeModal}
-      >
-        Ви дійсно бажаєте видалити?
-      </Modal>
+        rightButtonClick={closeModal} */}
     </div>
   );
 };
