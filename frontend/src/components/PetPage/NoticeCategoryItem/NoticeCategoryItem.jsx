@@ -141,41 +141,40 @@ const NoticeCategoryItem = ({
       <div className={s.imageWrapper}>
         <img className={s.animalListImg} src={link} alt={title} />
       </div>
-      <h3 className={s.animalListTitle}>{title}</h3>
-      <ul>
-        <li className={s.animalListBoxText}>
-          Порода:
-          <p> {breed}</p>
-        </li>
-        <li className={s.animalListBoxText}>
-          Місце:
-          <p>{place}</p>
-        </li>
-        <li className={s.animalListBoxText}>
-          Вік:
-          <p>{age}</p>
-        </li>
-        {checkCategory ? (
-          <li className={s.animalListBoxText}>
-            Ціна:
-            <p>{price}</p>
-          </li>
-        ) : (
-          <li className={s.animalListBoxText}>
-            <p className={s.priceOpacity}>P</p>
-          </li>
-        )}
-      </ul>
-
-      <Button
-        onClick={() => {
-          openModal(`learnmore${_id}`);
-          showModalNotice(_id);
-        }}
-        className={s.button}
-      >
-        Дізнатися більше
-      </Button>
+          <h3 className={s.animalListTitle}>{title}</h3>
+          <ul className={s.discription}>
+            <li className={s.animalListBoxText}>
+              Порода:
+              <p> {breed}</p>
+            </li>
+            <li className={s.animalListBoxText}>
+              Місце:
+              <p>{place}</p>
+            </li>
+            <li className={s.animalListBoxText}>
+              Вік:
+              <p>{age}</p>
+            </li>
+            {checkCategory ? (
+              <li className={s.animalListBoxText}>
+                Ціна:
+                <p>{price}</p>
+              </li>
+            ) : (
+              <li className={s.animalListBoxText}>
+                <p className={s.priceOpacity}>P</p>
+              </li>
+            )}
+          </ul>
+        <Button
+          onClick={() => {
+            openModal(`learnmore${_id}`);
+            showModalNotice(_id);
+          }}
+          className={s.button}
+        >
+          Дізнатися більше
+        </Button>
       <Button
         onClick={isLoggedIn ? favoriteToggle : addNotification}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
