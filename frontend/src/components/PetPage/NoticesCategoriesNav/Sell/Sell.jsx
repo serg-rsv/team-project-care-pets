@@ -32,22 +32,19 @@ const Sell = () => {
   );
 
   useEffect(() => {
-    dispatch(setNotices(markedNotices));
-  }, [dispatch, noticesCategory, user?.user?.favorites]);
-
-  const loadMore = () => {
-    setPage(page + 1);
-    scroll.scrollToBottom({ duration: 1000 });
     dispatch(setNotices(pets.concat(markedNotices)));
-  };
+    if (page !== 1) {
+      scroll.scrollToBottom({ duration: 1000 });
+    }
+  }, [noticesCategory]);
+
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {noticesCategory?.page !== noticesCategory?.totalPages &&
-      noticesCategory?.totalPages !== 0 ? (
-        <LoadMore loadMore={() => loadMore()} />
+      {noticesCategory?.data?.length ? (
+        <LoadMore loadMore={() => setPage(page + 1)} />
       ) : null}
     </>
   );

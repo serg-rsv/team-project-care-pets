@@ -1,11 +1,11 @@
-import Scroll from 'react-scroll';
+// import Scroll from 'react-scroll';
 import { useEffect, useState } from 'react';
 import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 import { useGetPersonalNoticeQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
-import LoadMore from '../../../LoadMore';
+// import LoadMore from '../../../LoadMore';
 
 const Own = () => {
   const isActiveDelete = true;
@@ -18,25 +18,23 @@ const Own = () => {
     user?.user?.favorites
   );
 
-  const scroll = Scroll.animateScroll;
+  // const scroll = Scroll.animateScroll;
+
+  const markedNotices = markFavoriteNotice(
+    notices?.data,
+    user?.user?.favorites
+  );
 
   useEffect(() => {
     setPets(markedNotices);
-  }, [notices, user]);
+  }, [markedNotices, notices, user]);
 
-  const loadMore = () => {
-    setPage(page + 1);
-    setPets(pets.concat(markedNotices));
-    scroll.scrollToBottom({ duration: 1000 });
-  };
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {notices?.page !== notices?.totalPages && notices?.totalPages !== 0 ? (
-        <LoadMore loadMore={() => loadMore()} />
-      ) : null}
+      {/* {notices?.data.length ? <LoadMore loadMore={() => loadMore()} /> : null} */}
     </>
   );
 };
