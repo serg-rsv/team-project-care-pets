@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { setNotices } from '../../../redux/noticesSlice';
 import { selectIsLoggedIn } from '../../../redux/selectors';
 import s from './NoticesCategoriesNav.module.scss';
@@ -7,6 +7,9 @@ import s from './NoticesCategoriesNav.module.scss';
 const NoticesCategoriesNav = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
+  const location = useLocation();
+  console.log(location.pathname);
+  const sell = `/notices`;
 
   return (
     <ul className={s.navList}>
@@ -36,7 +39,8 @@ const NoticesCategoriesNav = () => {
         <NavLink
           onClick={() => dispatch(setNotices([]))}
           className={({ isActive }) =>
-            `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
+            `${s.button}` +
+            (isActive || location.pathname === sell ? ` ${s.carrentColor}` : '')
           }
           to="/notices/sell"
         >
