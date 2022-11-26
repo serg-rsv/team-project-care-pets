@@ -10,26 +10,28 @@ import LoadMore from '../../../LoadMore';
 const Own = () => {
   const isActiveDelete = true;
   const [pets, setPets] = useState([]);
-  const { data: notices } = useGetPersonalNoticeQuery();
+  const [page, setPage] = useState(1);
+  const { data: notices } = useGetPersonalNoticeQuery({ page, limit: 4 });
   const { data: user } = useCurrentQuery();
-
+  const markedNotices = markFavoriteNotice(
+    notices?.data,
+    user?.user?.favorites
+  );
   useEffect(() => {
-    const markedNotices = markFavoriteNotice(
-      notices?.data,
-      user?.user?.favorites
-    );
     setPets(markedNotices);
-  }, [notices,user]);
+  }, [notices, user]);
+
   const loadMore = () => {
-  console.log('load more');
+    setPage(page + 1);
+    setPets(pets.concat(markedNotices));
   };
   return (
     <>
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {notices?.data.length ? (
-        <LoadMore loadMore={() => loadMore()}>Загрузити ще</LoadMore>
+      {notices?.page !== notices?.totalPages && notices?.totalPages !== 0 ? (
+        <LoadMore loadMore={() => loadMore()} />
       ) : null}
     </>
   );

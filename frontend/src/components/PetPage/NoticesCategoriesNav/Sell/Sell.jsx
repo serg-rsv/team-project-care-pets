@@ -29,10 +29,6 @@ const Sell = () => {
   );
 
   useEffect(() => {
-    //     // const markedNotices = markFavoriteNotice(
-    //     //   noticesCategory?.data,
-    //     //   user?.user?.favorites
-    //     // );
     dispatch(setNotices(markedNotices));
   }, [dispatch, noticesCategory, user?.user?.favorites]);
 
@@ -45,8 +41,9 @@ const Sell = () => {
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {noticesCategory?.data?.length ? (
-        <LoadMore loadMore={() => loadMore()}>Загрузити ще</LoadMore>
+      {noticesCategory?.page !== noticesCategory?.totalPages &&
+      noticesCategory?.totalPages !== 0 ? (
+        <LoadMore loadMore={() => loadMore()} />
       ) : null}
     </>
   );
