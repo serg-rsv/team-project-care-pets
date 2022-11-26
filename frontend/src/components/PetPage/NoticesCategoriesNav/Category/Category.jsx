@@ -38,7 +38,8 @@ const Category = () => {
   useEffect(() => {
     if (path !== category) {
       setPage(1);
-      dispatch(setNotices(markedNotices));
+      dispatch(setNotices([]));
+      setPath(category);
     } else {
       dispatch(setNotices(pets.concat(markedNotices)));
     }
