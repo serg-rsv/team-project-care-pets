@@ -1,0 +1,15 @@
+@import '../../scss/utils/mixins';
+
+.panda {
+  margin-top: 40px;
+  min-width: 80%;
+}
+
+.wrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
