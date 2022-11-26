@@ -1,6 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { lazy, Suspense } from 'react';
+import { Fragment, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import PublicRoute from './components/Routes/PublicRoute';
@@ -48,14 +48,63 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
           </Route>
 
-          <Route path="/notices" element={<NoticesPage />}>
-            <Route index element={<Sell />} />
-            <Route path="sell" element={<Sell />} />
-            <Route path="lost-found" element={<LostFound />} />
-            <Route path="for-free" element={<InGoodHands />} />
+          <Route
+            path="/notices"
+            element={
+              <Suspense fallback={<Loader />}>
+                <NoticesPage />
+              </Suspense>
+            }
+          >
+            <Route
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Sell />
+                </Suspense>
+              }
+            />
+            <Route
+              path="sell"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Sell />
+                </Suspense>
+              }
+            />
+            <Route
+              path="lost-found"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <LostFound />
+                </Suspense>
+              }
+            />
+            <Route
+              path="for-free"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <InGoodHands />
+                </Suspense>
+              }
+            />
             <Route element={<PrivateRoute />}>
-              <Route path="favorite" element={<Favorite />} />
-              <Route path="own" element={<Own />} />
+              <Route
+                path="favorite"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Favorite />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="own"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Own />
+                  </Suspense>
+                }
+              />
             </Route>
           </Route>
 

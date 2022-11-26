@@ -47,7 +47,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
               breed={breed}
               place={location}
               age={getAge(birthday)}
-              price={`${price}$`}
+              price={`${price}₴`}
               page={category}
               isActive={isActive}
               isFavorite={isFavorite}
@@ -69,7 +69,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
         <Modal marker="addpet" closeButton={true}>
           <div className={s.wrapper}>
             <h3>Ви не авторизовані!</h3>
-            <p>Залогіньтесь або зареєструйтесь!</p>
+            <p> Увійдіть або зареєструйтесь!</p>
             <div className={s.buttonsWrapper}>
               <Button
                 onClick={() => {
@@ -77,7 +77,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
                   closeModal();
                 }}
               >
-                Логін
+                Вхід
               </Button>
               <Button
                 onClick={() => {

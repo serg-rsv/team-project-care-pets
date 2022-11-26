@@ -35,10 +35,22 @@ const getAll = asyncHandler(async (req, res) => {
     throw RequestError(404, 'Not found');
   }
 
+  const total =
+    title || category || location || name
+      ? await Notice.find({
+          title: { $regex: new RegExp(title, 'i') },
+          category: { $regex: new RegExp(category, 'i') },
+          location: { $regex: new RegExp(location, 'i') },
+          name: { $regex: new RegExp(name, 'i') },
+        }).count()
+      : await Notice.find({}).count();
+
   res.json({
     code: 200,
     status: 'success',
     data: notices,
+    totalPages: Math.ceil(total / limit),
+    page,
   });
 });
 

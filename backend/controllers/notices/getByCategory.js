@@ -5,7 +5,7 @@ const { RequestError } = require('../../helpers');
 
 const getByCategory = asyncHandler(async (req, res) => {
   const { category } = req.params;
-  const { page = 1, limit = 10 } = req.query;
+  const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
   const notices = await Notice.find({ category }, '-createdAt -updatedAt', {
@@ -17,10 +17,14 @@ const getByCategory = asyncHandler(async (req, res) => {
     throw RequestError(404, 'Not found');
   }
 
+  const total = await Notice.find({ category }).count();
+
   res.json({
     code: 200,
     status: 'success',
     data: notices,
+    totalPages: Math.ceil(total / limit),
+    page: page * 1,
   });
 });
 
