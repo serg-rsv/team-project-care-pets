@@ -1,3 +1,4 @@
+import Scroll from 'react-scroll';
 import { useEffect, useState } from 'react';
 
 import { useGetFavoritesNoticeQuery } from '../../../../redux/services/noticesSlice';
@@ -23,6 +24,7 @@ const Favorite = () => {
   const loadMore = () => {
     setPage(page + 1);
     setPets(pets.concat(markedNotices));
+    scroll.scrollToBottom({ duration: 1000 });
   };
   return (
     <>
