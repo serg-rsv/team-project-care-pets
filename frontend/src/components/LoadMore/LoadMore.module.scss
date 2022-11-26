@@ -1,4 +1,14 @@
 .loadMoreBtn {
   display: block;
   margin: 20px auto 0;
+
+  &:disabled {
+    cursor: none;
+    filter: blur(1px);
+
+    &:hover {
+      color: var(--accent-cl);
+      background-color: var(--white-bg);
+    }
+  }
 }

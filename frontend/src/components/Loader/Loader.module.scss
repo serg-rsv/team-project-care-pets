@@ -1,7 +1,7 @@
-.loaderWrapper{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-   
-   
+.loaderWrapper {
+  z-index: 15;
+  position: absolute;
+  left: 50%;
+  transform: translateY(100%);
+  transform: translateX(-50%);
 }

@@ -10,6 +10,7 @@ import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 import LoadMore from '../../../LoadMore';
+import { Loader } from '../../../Loader/Loader';
 
 const Sell = () => {
   const [page, setPage] = useState(1);
@@ -19,7 +20,7 @@ const Sell = () => {
   const scroll = Scroll.animateScroll;
 
   const isActiveDelete = false;
-  const { data: noticesCategory } = useGetNoticesByCategoryQuery({
+  const { data: noticesCategory, isFetching } = useGetNoticesByCategoryQuery({
     category: 'sell',
     page,
     limit: 4,
@@ -43,8 +44,9 @@ const Sell = () => {
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
+      {isFetching && <Loader />}
       {page < noticesCategory?.totalPages ? (
-        <LoadMore loadMore={() => setPage(page + 1)} />
+        <LoadMore loadMore={() => setPage(page + 1)} disabled={isFetching} />
       ) : null}
     </>
   );

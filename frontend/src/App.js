@@ -45,12 +45,47 @@ function App() {
           <Route path="/notices" element={<NoticesPage />}>
             <Route index element={<Sell />} />
 
-            <Route path="sell" element={<Sell />} />
-            <Route path="lost-found" element={<LostFound />} />
-            <Route path="for-free" element={<InGoodHands />} />
+            <Route
+              path="sell"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Sell />
+                </Suspense>
+              }
+            />
+            <Route
+              path="lost-found"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <LostFound />
+                </Suspense>
+              }
+            />
+            <Route
+              path="for-free"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <InGoodHands />
+                </Suspense>
+              }
+            />
             <Route element={<PrivateRoute />}>
-              <Route path="favorite" element={<Favorite />} />
-              <Route path="own" element={<Own />} />
+              <Route
+                path="favorite"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Favorite />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="own"
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Own />
+                  </Suspense>
+                }
+              />
             </Route>
           </Route>
 
