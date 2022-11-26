@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNotices } from '../../../../redux/noticesSlice';
 import { selectNotices } from '../../../../redux/selectors';
-import { useLocation } from 'react-router-dom';
 
 import { useGetNoticesByCategoryQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
@@ -12,19 +11,16 @@ import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 import LoadMore from '../../../LoadMore';
 
-const Category = () => {
+const LostFound = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
-  const { pathname } = useLocation();
-  const category = pathname.split('/').pop();
-  const [path, setPath] = useState(category);
 
   const scroll = Scroll.animateScroll;
 
   const isActiveDelete = false;
   const { data: noticesCategory } = useGetNoticesByCategoryQuery({
-    category: category === 'notices' ? 'sell' : category,
+    category: 'lost-found',
     page,
     limit: 4,
   });
@@ -36,17 +32,11 @@ const Category = () => {
   );
 
   useEffect(() => {
-    if (path !== category) {
-      setPage(1);
-      dispatch(setNotices([]));
-      setPath(category);
-    } else {
-      dispatch(setNotices(pets.concat(markedNotices)));
-    }
+    dispatch(setNotices(pets.concat(markedNotices)));
     if (page !== 1) {
       scroll.scrollToBottom({ duration: 1000 });
     }
-  }, [noticesCategory, path]);
+  }, [noticesCategory]);
 
   return (
     <>
@@ -60,4 +50,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default LostFound;

@@ -14,9 +14,11 @@ import {
   OurFriendsPage,
   NewsPage,
   NoticesPage,
-  Category,
   Favorite,
   Own,
+  Sell,
+  InGoodHands,
+  LostFound,
   UserPage,
   NotFound,
 } from './helpers/lazyRoutes';
@@ -40,64 +42,15 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
           </Route>
 
-          <Route
-            path="/notices"
-            element={
-              <Suspense fallback={<Loader />}>
-                <NoticesPage />
-              </Suspense>
-            }
-          >
-            <Route
-              index
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Category />
-                </Suspense>
-              }
-            />
+          <Route path="/notices" element={<NoticesPage />}>
+            <Route index element={<Sell />} />
 
-            <Route
-              path="sell"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Category />
-                </Suspense>
-              }
-            />
-            <Route
-              path="lost-found"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Category />
-                </Suspense>
-              }
-            />
-            <Route
-              path="for-free"
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Category />
-                </Suspense>
-              }
-            />
+            <Route path="sell" element={<Sell />} />
+            <Route path="lost-found" element={<LostFound />} />
+            <Route path="for-free" element={<InGoodHands />} />
             <Route element={<PrivateRoute />}>
-              <Route
-                path="favorite"
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <Favorite />
-                  </Suspense>
-                }
-              />
-              <Route
-                path="own"
-                element={
-                  <Suspense fallback={<Loader />}>
-                    <Own />
-                  </Suspense>
-                }
-              />
+              <Route path="favorite" element={<Favorite />} />
+              <Route path="own" element={<Own />} />
             </Route>
           </Route>
 
