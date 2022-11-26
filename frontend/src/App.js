@@ -6,29 +6,21 @@ import PrivateRoute from './components/Routes/PrivateRoute';
 import PublicRoute from './components/Routes/PublicRoute';
 import { Loader } from './components/Loader/Loader';
 import toastOptions from './helpers/toastOptions';
+import {
+  SharedLayout,
+  HomePage,
+  RegisterPage,
+  LoginPage,
+  OurFriendsPage,
+  NewsPage,
+  NoticesPage,
+  Category,
+  Favorite,
+  Own,
+  UserPage,
+  NotFound,
+} from './helpers/lazyRoutes';
 
-const SharedLayout = lazy(() => import('./components/SharedLayout'));
-const RegisterPage = lazy(() => import('./pages/RegisterPage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const NewsPage = lazy(() => import('./pages/NewsPage'));
-const OurFriendsPage = lazy(() => import('./pages/OurFriendsPage'));
-const NoticesPage = lazy(() => import('./pages/NoticesPage'));
-const UserPage = lazy(() => import('./pages/UserPage'));
-const HomePage = lazy(() => import('./pages/HomePage'));
-const NotFound = lazy(() => import('./pages/NotFound'));
-const LostFound = lazy(() =>
-  import('./components/PetPage/NoticesCategoriesNav/LostFound')
-);
-const InGoodHands = lazy(() =>
-  import('./components/PetPage/NoticesCategoriesNav/InGoodHands')
-);
-const Sell = lazy(() =>
-  import('./components/PetPage/NoticesCategoriesNav/Sell')
-);
-const Favorite = lazy(() =>
-  import('./components/PetPage/NoticesCategoriesNav/Favorite')
-);
-const Own = lazy(() => import('./components/PetPage/NoticesCategoriesNav/Own'));
 function App() {
   return (
     <Suspense fallback={<Loader />}>
@@ -60,15 +52,16 @@ function App() {
               index
               element={
                 <Suspense fallback={<Loader />}>
-                  <Sell />
+                  <Category />
                 </Suspense>
               }
             />
+
             <Route
               path="sell"
               element={
                 <Suspense fallback={<Loader />}>
-                  <Sell />
+                  <Category />
                 </Suspense>
               }
             />
@@ -76,7 +69,7 @@ function App() {
               path="lost-found"
               element={
                 <Suspense fallback={<Loader />}>
-                  <LostFound />
+                  <Category />
                 </Suspense>
               }
             />
@@ -84,7 +77,7 @@ function App() {
               path="for-free"
               element={
                 <Suspense fallback={<Loader />}>
-                  <InGoodHands />
+                  <Category />
                 </Suspense>
               }
             />

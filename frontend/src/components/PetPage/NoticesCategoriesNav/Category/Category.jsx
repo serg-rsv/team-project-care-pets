@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNotices } from '../../../../redux/noticesSlice';
 import { selectNotices } from '../../../../redux/selectors';
+import { useLocation } from 'react-router-dom';
 
 import { useGetNoticesByCategoryQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
@@ -11,16 +12,18 @@ import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 import LoadMore from '../../../LoadMore';
 
-const Sell = () => {
+const Category = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
+  const { pathname } = useLocation();
+  const category = pathname.split('/').pop();
 
   const scroll = Scroll.animateScroll;
 
   const isActiveDelete = false;
   const { data: noticesCategory } = useGetNoticesByCategoryQuery({
-    category: 'sell',
+    category: category === 'notices' ? 'sell' : category,
     page,
     limit: 4,
   });
@@ -50,4 +53,4 @@ const Sell = () => {
   );
 };
 
-export default Sell;
+export default Category;
