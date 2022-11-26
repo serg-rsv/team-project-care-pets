@@ -29,23 +29,23 @@ const ModalNotice = ({
           <h1 className={s.title}>{title}</h1>
           <ul className={s.listParams}>
             <li className={s.listItem}>
-              Name:
+              Ім'я:
               <p className={s.listText}>{name}</p>
             </li>
             <li className={s.listItem}>
-              Birthday:
+              Вік:
               <p className={s.listText}>{birthday}</p>
             </li>
             <li className={s.listItem}>
-              Breed:
+              Порода:
               <p className={s.listText}>{breed}</p>
             </li>
             <li className={s.listItem}>
-              Place:
+              Місце:
               <p className={s.listText}>{location}</p>
             </li>
             <li className={s.listItem}>
-              The sex:
+              Стать:
               <p className={s.listText}>{sex}</p>
             </li>
             <li className={s.listItem}>
@@ -53,12 +53,12 @@ const ModalNotice = ({
               <p className={s.listText}>{email}</p>
             </li>
             <li className={s.listItem}>
-              Phone:
+              Телефон:
               <p className={s.listText}>{phone}</p>
             </li>
             {checkCategory && (
               <li className={s.listItem}>
-                Sell:
+                Ціна:
                 <p className={s.listText}>{`${price}₴`}</p>
               </li>
             )}
@@ -66,8 +66,7 @@ const ModalNotice = ({
         </div>
       </div>
       <div className={s.comments}>
-        Comments:
-        <p className={s.textComment}>{comments}</p>
+        <p> Коментарі: {comments}</p>
       </div>
     </div>
   );
