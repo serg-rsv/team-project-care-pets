@@ -9,7 +9,7 @@ import {
   useDeleteNoticeMutation,
 } from '../../../redux/services/noticesSlice';
 import Button from '../../Button';
-import ModalNotice from '../ModalNotice';
+import ModalNotice from '../ModalNotice/ModalNotice';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
 import { selectIsLoggedIn } from '../../../redux/selectors';

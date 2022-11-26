@@ -46,7 +46,7 @@ const Category = () => {
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {noticesCategory?.data?.length ? (
+      {page < noticesCategory?.totalPages ? (
         <LoadMore loadMore={() => setPage(page + 1)} />
       ) : null}
     </>
