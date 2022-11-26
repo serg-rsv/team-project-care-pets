@@ -148,7 +148,7 @@ const NoticeCategoryItem = ({
           <p> {breed}</p>
         </li>
         <li className={s.animalListBoxText}>
-          Місце:
+          Адреса:
           <p>{place}</p>
         </li>
         <li className={s.animalListBoxText}>
