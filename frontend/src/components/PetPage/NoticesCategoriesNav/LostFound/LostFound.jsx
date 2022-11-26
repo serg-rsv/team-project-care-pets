@@ -2,7 +2,7 @@ import Scroll from 'react-scroll';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setNotices } from '../../../../redux/noticesSlice';
-import { selectNotices } from '../../../../redux/selectors';
+import { selectIsLoadMore, selectNotices } from '../../../../redux/selectors';
 
 import { useGetNoticesByCategoryQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
@@ -16,6 +16,7 @@ const LostFound = () => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
+  const isLoadMore = useSelector(selectIsLoadMore);
 
   const scroll = Scroll.animateScroll;
 
@@ -45,7 +46,7 @@ const LostFound = () => {
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
       {isFetching && <Loader />}
-      {page < noticesCategory?.totalPages ? (
+      {isLoadMore && page < noticesCategory?.totalPages ? (
         <LoadMore loadMore={() => setPage(page + 1)} disabled={isFetching} />
       ) : null}
     </>

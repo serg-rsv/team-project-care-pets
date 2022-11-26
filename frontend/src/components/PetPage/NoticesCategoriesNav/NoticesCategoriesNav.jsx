@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import { setNotices } from '../../../redux/noticesSlice';
+import { setNotices, setIsLoadMore } from '../../../redux/noticesSlice';
 import { selectIsLoggedIn } from '../../../redux/selectors';
 import s from './NoticesCategoriesNav.module.scss';
 
@@ -14,7 +14,10 @@ const NoticesCategoriesNav = () => {
     <ul className={s.navList}>
       <li>
         <NavLink
-          onClick={() => dispatch(setNotices([]))}
+          onClick={() => {
+            dispatch(setNotices([]));
+            dispatch(setIsLoadMore(true));
+          }}
           className={({ isActive }) =>
             `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
           }
@@ -25,7 +28,10 @@ const NoticesCategoriesNav = () => {
       </li>
       <li>
         <NavLink
-          onClick={() => dispatch(setNotices([]))}
+          onClick={() => {
+            dispatch(setNotices([]));
+            dispatch(setIsLoadMore(true));
+          }}
           className={({ isActive }) =>
             `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
           }
@@ -36,7 +42,10 @@ const NoticesCategoriesNav = () => {
       </li>
       <li className={s.sell}>
         <NavLink
-          onClick={() => dispatch(setNotices([]))}
+          onClick={() => {
+            dispatch(setNotices([]));
+            dispatch(setIsLoadMore(true));
+          }}
           className={({ isActive }) =>
             `${s.button}` +
             (isActive || location.pathname === sell ? ` ${s.carrentColor}` : '')
