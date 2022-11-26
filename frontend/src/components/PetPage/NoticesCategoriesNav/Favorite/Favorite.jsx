@@ -11,21 +11,19 @@ import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const Favorite = () => {
   const isActiveDelete = false;
-
   const [pets, setPets] = useState([]);
-
-  const { data: notices } = useGetFavoritesNoticeQuery();
-
+  const [page, setPage] = useState(1);
+  const { data: notices } = useGetFavoritesNoticeQuery({ page, limit: 4 });
   const { data: user } = useCurrentQuery();
 
   // const scroll = Scroll.animateScroll;
 
-  useEffect(() => {
-    const markedNotices = markFavoriteNotice(
-      notices?.data,
-      user?.user?.favorites
-    );
+  const markedNotices = markFavoriteNotice(
+    notices?.data,
+    user?.user?.favorites
+  );
 
+  useEffect(() => {
     setPets(markedNotices);
   }, [notices, user]);
 

@@ -10,8 +10,13 @@ import NoticesCategoriesList from '../../NoticesCategoriesList';
 const Own = () => {
   const isActiveDelete = true;
   const [pets, setPets] = useState([]);
-  const { data: notices } = useGetPersonalNoticeQuery();
+  const [page, setPage] = useState(1);
+  const { data: notices } = useGetPersonalNoticeQuery({ page, limit: 4 });
   const { data: user } = useCurrentQuery();
+  const markedNotices = markFavoriteNotice(
+    notices?.data,
+    user?.user?.favorites
+  );
 
   // const scroll = Scroll.animateScroll;
 

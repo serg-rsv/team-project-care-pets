@@ -47,7 +47,7 @@ const NoticesCategoriesNav = () => {
               }
               to="/notices/favorite"
             >
-              улюбленні
+              улюблені
             </NavLink>
           </li>
           <li>

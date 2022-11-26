@@ -11,7 +11,7 @@ const getPersonalNotices = asyncHandler(async (req, res) => {
     skip,
     limit,
   });
-  const total = await Notice.find({ owner: _id })
+  const total = await Notice.find({ owner: _id }).count();
 
   res.json({
     code: 200,
