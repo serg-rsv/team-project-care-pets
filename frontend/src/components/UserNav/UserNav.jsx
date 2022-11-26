@@ -18,7 +18,7 @@ const UserNav = ({ closeModal }) => {
             fill="white"
           />
         </svg>
-        Аккаунт
+        Акаунт
       </NavLink>
     </div>
   );
