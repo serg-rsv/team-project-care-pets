@@ -42,7 +42,8 @@ const InGoodHands = () => {
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {noticesCategory?.data.length ? (
+      {noticesCategory?.page !== noticesCategory?.totalPages &&
+      noticesCategory?.totalPages !== 0 ? (
         <LoadMore loadMore={() => loadMore()} />
       ) : null}
     </>

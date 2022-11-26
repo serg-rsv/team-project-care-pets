@@ -43,17 +43,37 @@ const noticesApi = baseApi.injectEndpoints({
       }),
     }),
     getPersonalNotice: builder.query({
-      query: () => ({
-        url: '/notices/personal',
-        method: 'GET',
-      }),
+      query: query => {
+        const { page, limit } = query;
+        if (page) {
+          return {
+            url: `/notices/personal/?page=${page}&limit=${limit}`,
+          };
+        } else {
+          return {
+            url: '/notices/personal/',
+          };
+        }
+      },
+      // query: () => ({
+      //   url: '/notices/personal',
+      //   method: 'GET',
+      // }),
       providesTags: ['Notices'],
     }),
     getFavoritesNotice: builder.query({
-      query: () => ({
-        url: '/notices/favorites',
-        method: 'GET',
-      }),
+      query: query => {
+        const { page, limit } = query;
+        if (page) {
+          return {
+            url: `/notices/favorites/?page=${page}&limit=${limit}`,
+          };
+        } else {
+          return {
+            url: '/notices/favorites/',
+          };
+        }
+      },
       providesTags: ['Notices'],
     }),
     addFavoritesById: builder.mutation({
