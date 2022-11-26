@@ -4,7 +4,6 @@ const SearchBox = ({ searchQuery }) => {
   const onFormSubmit = e => {
     e.preventDefault();
     searchQuery(e.target.query.value);
-    console.log('onFormSubmit ~ e.target.query.value', e.target.query.value);
   };
 
   return (

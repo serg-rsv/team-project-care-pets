@@ -1,7 +1,7 @@
 import React from 'react';
 import scss from './PetsData.module.scss';
 import Button from '../Button';
-import PropTypes from 'proptypes';
+// import PropTypes from 'proptypes';
 import { useDeletePetMutation } from '../../redux/services/petsSlice';
 
 import { useModal } from '../../hooks/useModal';
@@ -89,10 +89,10 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
 
 export default PetsData;
 
-PetsData.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  birthday: PropTypes.string,
-  breed: PropTypes.string,
-  comments: PropTypes.string,
-};
+// PetsData.propTypes = {
+//   id: PropTypes.string,
+//   name: PropTypes.string,
+//   birthday: PropTypes.string,
+//   breed: PropTypes.string,
+//   comments: PropTypes.string,
+// };

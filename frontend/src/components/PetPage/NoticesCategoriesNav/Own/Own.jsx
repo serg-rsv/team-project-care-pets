@@ -18,7 +18,7 @@ const Own = () => {
 
   useEffect(() => {
     setPets(markedNotices);
-  }, [markedNotices, notices]);
+  }, [notices]);
 
   return (
     <>

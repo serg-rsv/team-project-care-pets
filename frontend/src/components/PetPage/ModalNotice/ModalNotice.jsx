@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import s from './ModalNotice.module.scss';
 
 const ModalNotice = ({
@@ -73,19 +73,19 @@ const ModalNotice = ({
   );
 };
 
-ModalNotice.propTypes = {
-  category: PropTypes.string.isRequired,
-  photoURL: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  birthday: PropTypes.string.isRequired,
-  breed: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  sex: PropTypes.string.isRequired,
-  comments: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-};
+// ModalNotice.propTypes = {
+//   category: PropTypes.string.isRequired,
+//   photoURL: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+//   title: PropTypes.string.isRequired,
+//   birthday: PropTypes.string.isRequired,
+//   breed: PropTypes.string.isRequired,
+//   location: PropTypes.string.isRequired,
+//   sex: PropTypes.string.isRequired,
+//   comments: PropTypes.string.isRequired,
+//   email: PropTypes.string.isRequired,
+//   phone: PropTypes.string.isRequired,
+//   price: PropTypes.string.isRequired,
+// };
 
 export default ModalNotice;

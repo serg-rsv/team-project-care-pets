@@ -4,7 +4,6 @@ import { useFetchPetsQuery } from '../../redux/services/petsSlice';
 
 const PetsList = () => {
   const { data, error, isLoading } = useFetchPetsQuery();
-  console.log(error);
   return (
     <>
       <ul>
@@ -15,7 +14,6 @@ const PetsList = () => {
         ) : data ? (
           data.data.map(
             ({ _id, photoURL, name, birthday, breed, comments }) => {
-              console.log('_id', _id);
               return (
                 <li className={scss.petsList} key={_id}>
                   <PetsData

@@ -18,7 +18,7 @@ const Favorite = () => {
 
   useEffect(() => {
     setPets(markedNotices);
-  }, [markedNotices, notices]);
+  }, [notices]);
 
   return (
     <>

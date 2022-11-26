@@ -8,7 +8,6 @@ const NoticesCategoriesNav = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location.pathname);
   const sell = `/notices`;
 
   return (
