@@ -18,6 +18,7 @@ const Category = () => {
   const pets = useSelector(selectNotices);
   const { pathname } = useLocation();
   const category = pathname.split('/').pop();
+  const [path, setPath] = useState(category);
 
   const scroll = Scroll.animateScroll;
 
@@ -35,11 +36,16 @@ const Category = () => {
   );
 
   useEffect(() => {
-    dispatch(setNotices(pets.concat(markedNotices)));
+    if (path !== category) {
+      setPage(1);
+      dispatch(setNotices(markedNotices));
+    } else {
+      dispatch(setNotices(pets.concat(markedNotices)));
+    }
     if (page !== 1) {
       scroll.scrollToBottom({ duration: 1000 });
     }
-  }, [noticesCategory]);
+  }, [noticesCategory, path]);
 
   return (
     <>

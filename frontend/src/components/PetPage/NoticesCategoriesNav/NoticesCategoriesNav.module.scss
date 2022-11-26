@@ -44,13 +44,14 @@
   border-radius: 40px;
 
   @include mq(tablet) {
-   padding-left: 28px;
-  padding-right: 28px;
+    padding-left: 28px;
+    padding-right: 28px;
     @include fonts(20px, 500, 1.3);
   }
-  &:hover, &:focus {
-   color: var(--white-text-cl);
-  background-color: var(--accent-cl); 
+  &:hover,
+  &:focus {
+    color: var(--white-text-cl);
+    background-color: var(--accent-cl);
   }
 }
 
@@ -68,7 +69,8 @@
 }
 
 .carrentColor {
+  pointer-events: none;
   color: var(--white-text-cl);
   background-color: var(--accent-cl);
-//   border: 0;
+  //   border: 0;
 }
