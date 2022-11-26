@@ -5,20 +5,24 @@ const { Notice } = require('../../models');
 const getPersonalNotices = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { page = 1, limit = 12 } = req.query;
-  const skip = (page - 1) * limit;
+  // const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ owner: _id }, '-createdAt -updatedAt', {
-    skip,
-    limit,
-  });
+  const notices = await Notice.find(
+    { owner: _id },
+    '-createdAt -updatedAt'
+    // {
+    // skip,
+    // limit,
+    // }
+  );
   const total = await Notice.find({ owner: _id }).count();
 
   res.json({
     code: 200,
     status: 'success',
     data: notices,
-    totalPages: Math.ceil(total / limit),
-    page: page * 1,
+    // totalPages: Math.ceil(total / limit),
+    // page: page * 1,
   });
 });
 
