@@ -37,7 +37,7 @@ const NoticeCategoryItem = ({
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
   const { data: item } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
 

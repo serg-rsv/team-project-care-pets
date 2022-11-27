@@ -5,7 +5,7 @@
   box-sizing: border-box;
   justify-self: center;
   width: 240px;
-  height: 40px;
+  height: 35px;
   margin-bottom: 12px;
   font-size: 14px;
 
@@ -14,10 +14,7 @@
   border-radius: var(--border-radius);
 
   @include mq(tablet) {
-    font-size: 16px;
     width: 468px;
-    height: 48px;
-    margin-bottom: 16px;
   }
   &:last-child {
     margin-bottom: 0;
@@ -25,8 +22,5 @@
 }
 
 .locationWrapper {
-  height: 112px;
-  @include mq(tablet) {
-    height: 132px;
-  }
+  height: 94px;
 }
