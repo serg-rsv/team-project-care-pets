@@ -22,7 +22,7 @@ const Favorite = () => {
   useEffect(() => {
     setPets(markedNotices);
     return () => dispatch(setNotices([]));
-  }, [notices]);
+  }, [notices, user]);
 
   return (
     <>

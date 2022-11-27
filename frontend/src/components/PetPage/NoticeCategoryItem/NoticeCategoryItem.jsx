@@ -33,9 +33,30 @@ const NoticeCategoryItem = ({
 }) => {
   const dispatch = useDispatch();
   const checkCategory = page === 'sell';
-  const [deleteNotice] = useDeleteNoticeMutation();
-  const [addFavorite] = useAddFavoritesByIdMutation();
-  const [deleteFavorite] = useDeleteFavoritesByIdMutation();
+  const [
+    deleteNotice,
+    {
+      isError: isErrDelNotice,
+      isSuccess: isSuccessDelNotice,
+      isLoading: isLoadingDelNotice,
+    },
+  ] = useDeleteNoticeMutation();
+  const [
+    addFavorite,
+    {
+      isError: isErrAddFav,
+      isSuccess: isSuccessAddFav,
+      isLoading: isLoadingAddFav,
+    },
+  ] = useAddFavoritesByIdMutation();
+  const [
+    deleteFavorite,
+    {
+      isError: isErrDelFav,
+      isSuccess: isSuccessDelFav,
+      isLoading: isLoadingDelFav,
+    },
+  ] = useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
   const { openModal } = useModal();
   const { data: item } = useGetNoticeByIdQuery(id);
@@ -62,21 +83,29 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
-  
+
   const linkPhone = (
     <a className={s.phoneButtonText} href={`tel:${noticeById?.owner?.phone}`}>
       Контакт
     </a>
   );
-  
-  const favoriteToggle = e => {
+
+  const favoriteToggle = async () => {
     if (isFavorite) {
-      deleteFavorite(_id);
-      toast.success('Тваринку видалено зі списку обраних.');
+      await deleteFavorite(_id);
+
+      isSuccessDelFav && toast.success(`${title} видалено зі списку обраних.`);
+      isErrDelFav &&
+        toast.error(`Не вдалось видалити ${title} зі списку обраних.`);
+
       dispatch(setIsFavorite({ _id, isFavorite: false }));
     } else {
-      addFavorite(_id);
-      toast.success('Тваринку додано до обраних.');
+      await addFavorite(_id);
+
+      isSuccessAddFav && toast.success(`${title} додано до списку обраних.`);
+      isErrAddFav &&
+        toast.error(`Не вдалось додати ${title} до списку обраних.`);
+
       dispatch(setIsFavorite({ _id, isFavorite: true }));
     }
   };
@@ -139,14 +168,19 @@ const NoticeCategoryItem = ({
         Дізнатися більше
       </Button>
       <Button
-        onClick={() => (isLoggedIn ? favoriteToggle() : addNotification())}
+        disabled={isLoadingAddFav || isLoadingDelFav}
+        onClick={async () =>
+          isLoggedIn ? await favoriteToggle() : addNotification()
+        }
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
       {isActive && (
         <Button
-          onClick={() => {
-            deleteNotice(_id);
-            toast.success('Оголошення видалено.');
+          disabled={isLoadingDelNotice}
+          onClick={async () => {
+            await deleteNotice(_id);
+            isSuccessDelNotice && toast.success('Оголошення видалено.');
+            isErrDelNotice && toast.error('Оголошення не видалено.');
           }}
           className={s.remove}
         ></Button>
@@ -171,9 +205,9 @@ const NoticeCategoryItem = ({
             <Button className={s.buttonPhone}>{linkPhone}</Button>
             <Button
               className={s.addToFavoriteButton}
-              disabled={!isLoggedIn}
-              onClick={() =>
-                isLoggedIn ? favoriteToggle() : addNotification()
+              disabled={isLoadingAddFav || isLoadingDelFav}
+              onClick={async () =>
+                isLoggedIn ? await favoriteToggle() : addNotification()
               }
             >
               {svgIcon}

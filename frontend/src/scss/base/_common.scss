@@ -94,6 +94,10 @@ button {
   &:focus {
     outline: var(--accent-cl);
   }
+  &:disabled {
+    cursor: default;
+    filter: blur(1px);
+  }
 }
 
 .no-scroll {
