@@ -1,7 +1,7 @@
 @import '../../../scss/utils/mixins';
 
 .noticesSearchBox {
-  display: i nline-block;
+  display: inline-block;
   margin-bottom: 28px;
   margin-left: auto;
   @include mq(tablet) {
@@ -14,14 +14,14 @@
 .lable {
   margin-top: 54px;
   margin-bottom: 28px;
-  margin-left: 35px;
+  //   margin-left: 35px;
   text-align: center;
   @include fonts(24px, 700, 1.4);
   color: var(--main-text-cl);
   @include mq(tablet) {
     margin-bottom: 40px;
 
-    margin-left: -35px;
+    //  margin-left: -35px;
     @include fonts(48px, 700, 1.4);
   }
 }
