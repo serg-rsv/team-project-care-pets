@@ -62,11 +62,13 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
+  
   const linkPhone = (
     <a className={s.phoneButtonText} href={`tel:${noticeById?.owner?.phone}`}>
       Контакт
     </a>
   );
+  
   const favoriteToggle = e => {
     if (isFavorite) {
       deleteFavorite(_id);
@@ -137,7 +139,7 @@ const NoticeCategoryItem = ({
         Дізнатися більше
       </Button>
       <Button
-        onClick={e => (isLoggedIn ? favoriteToggle(e) : addNotification())}
+        onClick={() => (isLoggedIn ? favoriteToggle() : addNotification())}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
       {isActive && (
@@ -170,9 +172,9 @@ const NoticeCategoryItem = ({
             <Button
               className={s.addToFavoriteButton}
               disabled={!isLoggedIn}
-              onClick={() => {
-                isFavorite ? deleteFavorite(_id) : addFavorite(_id);
-              }}
+              onClick={() =>
+                isLoggedIn ? favoriteToggle() : addNotification()
+              }
             >
               {svgIcon}
             </Button>
