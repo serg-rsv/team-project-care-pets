@@ -145,6 +145,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
                     id="imagePet"
                     name="image"
                     type="file"
+                    accept="image/png, image/gif, image/jpeg"
                     onChange={e => {
                       formik.handleChange(e);
                       onImageChange(e);

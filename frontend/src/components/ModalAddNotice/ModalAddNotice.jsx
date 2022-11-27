@@ -358,6 +358,7 @@ const ModalAddNotice = ({ closeButton }) => {
                     id="image"
                     name="image"
                     type="file"
+                    accept="image/png, image/gif, image/jpeg"
                     onChange={e => {
                       formik.handleChange(e);
                       onImageChange(e);

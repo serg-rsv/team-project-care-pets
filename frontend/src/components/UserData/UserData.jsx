@@ -148,6 +148,7 @@ const UserData = () => {
       <label className={scss.btnEditPhoto}>
         <input
           type="file"
+          accept="image/png, image/gif, image/jpeg"
           name="image"
           style={{ display: 'none' }}
           onChange={editAvatar}
