@@ -1,7 +1,7 @@
 import React from 'react';
 import scss from './PetsData.module.scss';
 import Button from '../Button';
-import PropTypes from 'proptypes';
+// import PropTypes from 'proptypes';
 import { useDeletePetMutation } from '../../redux/services/petsSlice';
 
 import { useModal } from '../../hooks/useModal';
@@ -9,21 +9,21 @@ import Modal from '../Modal/Modal';
 
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   const { openModal, closeModal } = useModal();
-  const [deletePet, result] = useDeletePetMutation();
+  const [deletePet] = useDeletePetMutation();
 
-  function getDate(birthday) {
-    let date = new Date(birthday);
-    let year = date.getFullYear();
-    let day = date.getDay();
-    let month = date.getMonth();
-    if (day < 10) {
-      day = `0${day}`;
-    }
-    if (month < 10) {
-      month = `0${month}`;
-    }
-    return day + '.' + month + '.' + year;
-  }
+  // function getDate(birthday) {
+  //   let date = new Date(birthday);
+  //   let year = date.getFullYear();
+  //   let day = date.getDay();
+  //   let month = date.getMonth();
+  //   if (day < 10) {
+  //     day = `0${day}`;
+  //   }
+  //   if (month < 10) {
+  //     month = `0${month}`;
+  //   }
+  //   return day + '.' + month + '.' + year;
+  // }
   const onDeletePetClick = async () => {
     await deletePet(id);
     closeModal();
@@ -89,10 +89,10 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
 
 export default PetsData;
 
-PetsData.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  birthday: PropTypes.string,
-  breed: PropTypes.string,
-  comments: PropTypes.string,
-};
+// PetsData.propTypes = {
+//   id: PropTypes.string,
+//   name: PropTypes.string,
+//   birthday: PropTypes.string,
+//   breed: PropTypes.string,
+//   comments: PropTypes.string,
+// };

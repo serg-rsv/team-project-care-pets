@@ -115,11 +115,15 @@
   background-size: 15px;
   padding: 0;
   background-color: var(--transparent-bg);
-  background-image: url(./Svg/like.svg);
+  background-image: url(./Svg/like-accent.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border-radius: 50%;
   border: 0;
+  &:hover {
+    background-color: var(--accent-cl);
+    background-image: url(./Svg/like.svg);
+  }
   @include mq(tablet) {
     width: 44px;
     height: 44px;
@@ -129,6 +133,7 @@
 
 .isActiveLike {
   background-color: var(--accent-cl);
+  background-image: url(./Svg/like.svg);
 }
 
 .remove {
@@ -160,9 +165,46 @@
 }
 .addToFavoriteButtonText {
   margin-right: 8px;
+  width: 150px;
+  @include mq(tablet) {
+    width: 100px;
+    width: 100px;
+    width: 100px;
+  }
 }
 
 .wrapper {
   padding: 60px 20px 40px;
   position: relative;
+  @include mq(tablet) {
+  }
 }
+.buttonsWrapper {
+  display: block;
+  margin-left: 20px;
+  @include mq(tablet) {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+.buttonPhone {
+  color: var(--accent-cl);
+  width: 240px;
+  margin-top: 12px;
+  @include mq(tablet) {
+    width: 160px;
+    margin-left: 12px;
+    margin-top: 0;
+  }
+}
+
+// .buttonPhone a {
+//   padding: 8px;
+//   padding-left: 17px;
+//   padding-right: 17px;
+//  color: var(--accent-cl);
+//  &:hover, &:focus {
+//   color: var(--white-text-cl);
+//  }
+// }

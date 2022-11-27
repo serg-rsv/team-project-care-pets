@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+// import PropTypes from 'prop-types';
 
 import {
   useAddFavoritesByIdMutation,
@@ -15,8 +15,10 @@ import Modal from '../../Modal/Modal';
 import { selectIsLoggedIn } from '../../../redux/selectors';
 
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
+import { setIsFavorite } from '../../../redux/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
+
 const NoticeCategoryItem = ({
   _id,
   link,
@@ -29,12 +31,13 @@ const NoticeCategoryItem = ({
   isActive,
   isFavorite,
 }) => {
+  const dispatch = useDispatch();
   const checkCategory = page === 'sell';
   const [deleteNotice] = useDeleteNoticeMutation();
   const [addFavorite] = useAddFavoritesByIdMutation();
   const [deleteFavorite] = useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
   const { data: item } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
 
@@ -59,16 +62,16 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
-  const linkPhone = (
-    <a href={`tel:${noticeById?.owner?.phone}`}>Зателефонувати</a>
-  );
-  const favoriteToggle = () => {
+  const linkPhone = <a href={`tel:${noticeById?.owner?.phone}`}>Контакт</a>;
+  const favoriteToggle = e => {
     if (isFavorite) {
       deleteFavorite(_id);
       toast.success('Тваринку видалено зі списку обраних.');
+      dispatch(setIsFavorite({ _id, isFavorite: false }));
     } else {
       addFavorite(_id);
       toast.success('Тваринку додано до обраних.');
+      dispatch(setIsFavorite({ _id, isFavorite: true }));
     }
   };
 
@@ -176,7 +179,7 @@ const NoticeCategoryItem = ({
         Дізнатися більше
       </Button>
       <Button
-        onClick={isLoggedIn ? favoriteToggle : addNotification}
+        onClick={e => (isLoggedIn ? favoriteToggle(e) : addNotification())}
         className={`${s.like} ${isFavorite ? s.isActiveLike : ''}`}
       ></Button>
       {isActive && (
@@ -204,16 +207,18 @@ const NoticeCategoryItem = ({
             phone={noticeById?.owner?.phone}
             price={noticeById?.price}
           />
-          <Button
-            className={s.addToFavoriteButton}
-            disabled={!isLoggedIn}
-            onClick={() => {
-              isFavorite ? deleteFavorite(_id) : addFavorite(_id);
-            }}
-          >
-            {svgIcon}
-          </Button>
-          <Button>{linkPhone}</Button>
+          <div className={s.buttonsWrapper}>
+            <Button
+              className={s.addToFavoriteButton}
+              disabled={!isLoggedIn}
+              onClick={() => {
+                isFavorite ? deleteFavorite(_id) : addFavorite(_id);
+              }}
+            >
+              {svgIcon}
+            </Button>
+            <Button className={s.buttonPhone}>{linkPhone}</Button>
+          </div>
         </div>
       </Modal>
     </li>

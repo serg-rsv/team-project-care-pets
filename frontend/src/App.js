@@ -1,6 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from './components/Routes/PrivateRoute';
 import PublicRoute from './components/Routes/PublicRoute';
@@ -14,9 +14,11 @@ import {
   OurFriendsPage,
   NewsPage,
   NoticesPage,
-  Category,
   Favorite,
   Own,
+  Sell,
+  InGoodHands,
+  LostFound,
   UserPage,
   NotFound,
 } from './helpers/lazyRoutes';
@@ -40,28 +42,14 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
           </Route>
 
-          <Route
-            path="/notices"
-            element={
-              <Suspense fallback={<Loader />}>
-                <NoticesPage />
-              </Suspense>
-            }
-          >
-            <Route
-              index
-              element={
-                <Suspense fallback={<Loader />}>
-                  <Category />
-                </Suspense>
-              }
-            />
+          <Route path="/notices" element={<NoticesPage />}>
+            <Route index element={<Sell />} />
 
             <Route
               path="sell"
               element={
                 <Suspense fallback={<Loader />}>
-                  <Category />
+                  <Sell />
                 </Suspense>
               }
             />
@@ -69,7 +57,7 @@ function App() {
               path="lost-found"
               element={
                 <Suspense fallback={<Loader />}>
-                  <Category />
+                  <LostFound />
                 </Suspense>
               }
             />
@@ -77,7 +65,7 @@ function App() {
               path="for-free"
               element={
                 <Suspense fallback={<Loader />}>
-                  <Category />
+                  <InGoodHands />
                 </Suspense>
               }
             />

@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 // import e from 'cors';
 
 const ModalAddNotice = ({ closeButton }) => {
-  const [createNotice, { isLoading }] = useCreateNoticeMutation();
+  const [createNotice] = useCreateNoticeMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
   const [disableNextButton, setDisableNextButton] = useState(true);
@@ -110,7 +110,7 @@ const ModalAddNotice = ({ closeButton }) => {
       await createNotice(formDataAppender(formik.values));
       formik.resetForm();
       closeButton();
-    toast.success('Ви успішно створили оголошення.')
+      toast.success('Ви успішно створили оголошення.');
     },
   });
 
@@ -384,7 +384,7 @@ const ModalAddNotice = ({ closeButton }) => {
               id="commentsAd"
               name="comments"
               type="text"
-              maxlength="120"
+              maxLength="120"
               rows={5}
               onChange={formik.handleChange}
               value={formik.values.comments}

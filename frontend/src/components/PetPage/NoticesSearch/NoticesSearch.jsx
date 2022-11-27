@@ -2,7 +2,7 @@ import s from './NoticesSearch.module.scss';
 import { useLocation } from 'react-router-dom';
 import { useFetchNoticesMutation } from '../../../redux/services/noticesSlice';
 import { useDispatch } from 'react-redux';
-import { setNotices } from '../../../redux/noticesSlice';
+import { setNotices, setIsLoadMore } from '../../../redux/noticesSlice';
 import { useCurrentQuery } from '../../../redux/services/usersSlice';
 import { markFavoriteNotice } from '../../../helpers/markFavoriteNotice';
 
@@ -25,6 +25,7 @@ const NoticesSearch = e => {
     const markedNotices = markFavoriteNotice(data, user?.user?.favorites);
 
     dispatch(setNotices(markedNotices));
+    dispatch(setIsLoadMore(false));
 
     e.target.elements.search.value = '';
   };

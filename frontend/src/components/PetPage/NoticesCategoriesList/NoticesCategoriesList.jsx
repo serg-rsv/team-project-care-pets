@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,7 +19,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
 
-  const [filter, setFilter] = useState({});
+  const [, setFilter] = useState({});
 
   const createAds = async filter => {
     await setFilter(filter);
@@ -95,20 +95,20 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
   );
 };
 
-NoticesCategoriesList.propTypes = {
-  pets: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      photoURL: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      breed: PropTypes.string.isRequired,
-      location: PropTypes.string.isRequired,
-      birthday: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-      isFavorite: PropTypes.bool.isRequired,
-    })
-  ),
-};
+// NoticesCategoriesList.propTypes = {
+//   pets: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       _id: PropTypes.string.isRequired,
+//       photoURL: PropTypes.string.isRequired,
+//       title: PropTypes.string.isRequired,
+//       breed: PropTypes.string.isRequired,
+//       location: PropTypes.string.isRequired,
+//       birthday: PropTypes.string.isRequired,
+//       price: PropTypes.string.isRequired,
+//       category: PropTypes.string.isRequired,
+//       isFavorite: PropTypes.bool.isRequired,
+//     })
+//   ),
+// };
 
 export default NoticesCategoriesList;

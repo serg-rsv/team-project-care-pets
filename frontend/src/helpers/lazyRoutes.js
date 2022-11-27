@@ -9,8 +9,14 @@ export const NoticesPage = lazy(() => import('../pages/NoticesPage'));
 export const UserPage = lazy(() => import('../pages/UserPage'));
 export const HomePage = lazy(() => import('../pages/HomePage'));
 export const NotFound = lazy(() => import('../pages/NotFound'));
-export const Category = lazy(() =>
-  import('../components/PetPage/NoticesCategoriesNav/Category')
+export const Sell = lazy(() =>
+  import('../components/PetPage/NoticesCategoriesNav/Sell')
+);
+export const InGoodHands = lazy(() =>
+  import('../components/PetPage/NoticesCategoriesNav/InGoodHands')
+);
+export const LostFound = lazy(() =>
+  import('../components/PetPage/NoticesCategoriesNav/LostFound')
 );
 export const Favorite = lazy(() =>
   import('../components/PetPage/NoticesCategoriesNav/Favorite')
