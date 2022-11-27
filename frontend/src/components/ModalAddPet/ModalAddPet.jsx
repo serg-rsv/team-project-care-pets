@@ -58,10 +58,18 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
         .max(120, 'Коментар містить максимум 120 символів'),
     }),
     onSubmit: async () => {
-      await createPet(formDataAppender(formik.values));
+      await createPet(formDataAppender(formik.values))
+        .unwrap()
+        .then(() => {
+          toast.success(
+            `Домашнього улюбленця ${formik.values.name} успішно додано`
+          );
+        })
+        .catch(() => {
+          toast.error(`Не вдалось додати ${formik.values.name}`);
+        });
       formik.resetForm();
       onCancelButtonClick();
-      toast.success('Домашнього улюбленця успішно додано');
     },
   });
 
@@ -200,6 +208,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               className={css.btnAccent}
             />
             <Button
+              disabled={!formik.isValid || isLoading}
               children="Додати"
               buttonType="submit"
               className={css.btnSec}

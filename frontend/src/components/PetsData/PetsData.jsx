@@ -1,4 +1,6 @@
 import React from 'react';
+import { toast } from 'react-toastify';
+
 import scss from './PetsData.module.scss';
 import Button from '../Button';
 // import PropTypes from 'proptypes';
@@ -9,7 +11,7 @@ import Modal from '../Modal/Modal';
 
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   const { openModal, closeModal } = useModal();
-  const [deletePet] = useDeletePetMutation();
+  const [deletePet, { isLoading }] = useDeletePetMutation();
 
   // function getDate(birthday) {
   //   let date = new Date(birthday);
@@ -25,7 +27,14 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   //   return day + '.' + month + '.' + year;
   // }
   const onDeletePetClick = async () => {
-    await deletePet(id);
+    await deletePet(id)
+      .unwrap()
+      .then(() => {
+        toast.success(`${name} успішно видалено.`);
+      })
+      .catch(() => {
+        toast.error(`${name} не вдалось видалити.`);
+      });
     closeModal();
   };
   return (
@@ -60,6 +69,7 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
           <p className={scss.logOutModalText}>Ви дійсно бажаєте видалити?</p>
           <div className={scss.buttonBox}>
             <Button
+              disabled={isLoading}
               onClick={() => onDeletePetClick(id)}
               className={scss.button}
             >
