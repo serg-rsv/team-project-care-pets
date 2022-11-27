@@ -12,7 +12,12 @@ import NoticesCategoriesList from '../../NoticesCategoriesList';
 import LoadMore from '../../../LoadMore';
 import { Loader } from '../../../Loader/Loader';
 
+<<<<<<< HEAD:frontend/src/components/PetPage/NoticesCategoriesNav/Category/Category.jsx
+const Category = () => {
+  const { data: user } = useCurrentQuery();
+=======
 const Sell = () => {
+>>>>>>> 917426f6ae0bac6134856410c93e793e19b22b89:frontend/src/components/PetPage/NoticesCategoriesNav/Sell/Sell.jsx
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
@@ -26,7 +31,6 @@ const Sell = () => {
     page,
     limit: 4,
   });
-  const { data: user } = useCurrentQuery();
 
   const markedNotices = markFavoriteNotice(
     noticesCategory?.data,
