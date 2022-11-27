@@ -11,7 +11,6 @@ import { formDataAppender } from '../../helpers/formDataAppender';
 import Location from '../Location';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
-// import e from 'cors';
 
 const ModalAddNotice = ({ closeButton }) => {
   const [createNotice] = useCreateNoticeMutation();
@@ -107,10 +106,14 @@ const ModalAddNotice = ({ closeButton }) => {
         .max(120, 'Максимум 120 символів'),
     }),
     onSubmit: async () => {
-      await createNotice(formDataAppender(formik.values));
-      formik.resetForm();
-      closeButton();
-      toast.success('Ви успішно створили оголошення.');
+      try {
+        await createNotice(formDataAppender(formik.values)).unwrap();
+        toast.success('Ви успішно створили оголошення.');
+        formik.resetForm();
+        closeButton();
+      } catch (error) {
+        toast.error('Упс, щось пішло не так, спробуйте ще раз.');
+      }
     },
   });
 

@@ -9,6 +9,9 @@ import { useCreatePetMutation } from '../../redux/services/petsSlice';
 import { toast } from 'react-toastify';
 const ModalAddPet = ({ onCancelButtonClick }) => {
   const [createPet, { isLoading }] = useCreatePetMutation();
+  console.log(useCreatePetMutation());
+  console.log('create', createPet);
+
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [image, setImage] = useState(null);
 
@@ -58,10 +61,14 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
         .max(120, 'Коментар містить максимум 120 символів'),
     }),
     onSubmit: async () => {
-      await createPet(formDataAppender(formik.values));
-      formik.resetForm();
-      onCancelButtonClick();
-      toast.success('Домашнього улюбленця успішно додано');
+      try {
+        await createPet(formDataAppender(formik.values)).unwrap();
+        formik.resetForm();
+        onCancelButtonClick();
+        toast.success('Домашнього улюбленця успішно додано.');
+      } catch (error) {
+        toast.error('Упс, щось пішло не так, спробуйте ще раз.');
+      }
     },
   });
 
