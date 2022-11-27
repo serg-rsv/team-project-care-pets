@@ -115,14 +115,14 @@
   background-size: 15px;
   padding: 0;
   background-color: var(--transparent-bg);
-  background-image: url(./Svg/like-accent.svg);
+  background-image: url(../../../images/like-accent.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border-radius: 50%;
   border: 0;
   &:hover {
     background-color: var(--accent-cl);
-    background-image: url(./Svg/like.svg);
+    background-image: url(../../../images/like.svg);
   }
   @include mq(tablet) {
     width: 44px;
@@ -133,7 +133,7 @@
 
 .isActiveLike {
   background-color: var(--accent-cl);
-  background-image: url(./Svg/like.svg);
+  background-image: url(../../../images/like.svg);
 }
 
 .remove {
@@ -145,7 +145,7 @@
   background-size: 15px;
   padding: 0;
   background-color: var(--transparent-bg);
-  background-image: url(./Svg/remove.svg);
+  background-image: url(../../../images/remove.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border-radius: 50%;
@@ -160,45 +160,78 @@
 }
 
 .addToFavoriteButton {
+  width: 100%;
   display: flex;
   align-items: center;
-}
-.addToFavoriteButtonText {
-  margin-right: 8px;
-  width: 150px;
-  @include mq(tablet) {
-    width: 100px;
-    width: 100px;
-    width: 100px;
-  }
-}
-
-.wrapper {
-  padding: 60px 20px 40px;
-  position: relative;
-  @include mq(tablet) {
-  }
-}
-.buttonsWrapper {
-  display: block;
-  margin-left: 20px;
-  @include mq(tablet) {
-    display: flex;
-    justify-content: end;
+  padding: 7px;
+  justify-content: center;
+  transition: var(--fast-animation) cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    background-color: var(--accent-cl-active);
+    border-color: var(--accent-cl-active);
   }
 }
 
 .buttonPhone {
-  color: var(--accent-cl);
-  width: 240px;
-  margin-top: 12px;
+  @extend .addToFavoriteButton;
+  background-color: var(--accent-cl);
+}
+
+.addToFavoriteButtonText {
+  @include fonts(16px, 500, 1.4);
+  color: var(--main-text-cl);
+  margin-right: 8px;
+  // width: 150px;
   @include mq(tablet) {
-    width: 160px;
-    margin-left: 12px;
-    margin-top: 0;
+    // width: 100px;
+    // width: 100px;
+    // width: 100px;
   }
 }
 
+.phoneButtonText {
+  @extend .addToFavoriteButtonText;
+  color: var(--white-text-cl);
+}
+
+.wrapper {
+  width: 280px;
+  padding: 60px 20px 40px;
+  border-radius: 20px;
+  position: relative;
+  @include mq(tablet) {
+    width: 704px;
+    // height: 548px;
+    padding: 32px 20px;
+  }
+}
+.buttonsWrapper {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  // margin-left: 20px;
+  @include mq(tablet) {
+    width: 356px;
+    margin-left: auto;
+    margin-top: 32px;
+    flex-direction: row-reverse;
+  }
+}
+
+.buttonHeart {
+  width: 18px;
+  height: 18px;
+  background: url(../../../images/like-accent.svg) no-repeat;
+  background-size: contain;
+
+  .addToFavoriteButton:hover & {
+    background: url(../../../images/like.svg) no-repeat;
+    background-size: contain;
+  }
+}
+
+// .buttonContentBox
 // .buttonPhone a {
 //   padding: 8px;
 //   padding-left: 17px;

@@ -65,6 +65,11 @@ textarea,
 select {
   font: inherit;
 }
+dd,
+dt {
+  margin: 0;
+  padding: 0;
+}
 
 ul {
   // margin-top: 0;
@@ -83,7 +88,7 @@ button {
   cursor: pointer;
   border: solid 2px var(--accent-cl);
   &:hover {
-    background-color: var(--accent-cl);
+    background-color: var(--accent-cl-active);
     color: var(--white-bg);
   }
   &:focus {
