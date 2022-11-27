@@ -28,14 +28,10 @@ const NoticesCategoriesNav = () => {
       </li>
       <li>
         <NavLink
-<<<<<<< HEAD
-          // onClick={() => dispatch(setNotices([]))}
-=======
           onClick={() => {
             dispatch(setNotices([]));
             dispatch(setIsLoadMore(true));
           }}
->>>>>>> 917426f6ae0bac6134856410c93e793e19b22b89
           className={({ isActive }) =>
             `${s.button}` + (isActive ? ` ${s.carrentColor}` : '')
           }
@@ -46,14 +42,10 @@ const NoticesCategoriesNav = () => {
       </li>
       <li className={s.sell}>
         <NavLink
-<<<<<<< HEAD
-          // onClick={() => dispatch(setNotices([]))}
-=======
           onClick={() => {
             dispatch(setNotices([]));
             dispatch(setIsLoadMore(true));
           }}
->>>>>>> 917426f6ae0bac6134856410c93e793e19b22b89
           className={({ isActive }) =>
             `${s.button}` +
             (isActive || location.pathname === sell ? ` ${s.carrentColor}` : '')
