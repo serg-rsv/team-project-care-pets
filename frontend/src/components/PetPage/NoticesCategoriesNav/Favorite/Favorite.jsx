@@ -4,8 +4,11 @@ import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
+import { setNotices } from '../../../../redux/noticesSlice';
+import { useDispatch } from 'react-redux';
 
 const Favorite = () => {
+  const dispatch = useDispatch();
   const isActiveDelete = false;
   const [pets, setPets] = useState([]);
   const { data: notices } = useGetFavoritesNoticeQuery();
@@ -18,6 +21,7 @@ const Favorite = () => {
 
   useEffect(() => {
     setPets(markedNotices);
+    return () => dispatch(setNotices([]));
   }, [notices]);
 
   return (

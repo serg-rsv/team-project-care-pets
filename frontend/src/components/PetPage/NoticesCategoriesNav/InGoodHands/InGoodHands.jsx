@@ -38,6 +38,7 @@ const InGoodHands = () => {
     if (page !== 1) {
       scroll.scrollToBottom({ duration: 1000 });
     }
+    return () => dispatch(setNotices([]));
   }, [noticesCategory]);
 
   return (

@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
+import { setNotices } from '../../../../redux/noticesSlice';
 import { useGetPersonalNoticeQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 
 const Own = () => {
+  const dispatch = useDispatch();
   const isActiveDelete = true;
   const [pets, setPets] = useState([]);
   const { data: notices } = useGetPersonalNoticeQuery();
@@ -18,6 +21,7 @@ const Own = () => {
 
   useEffect(() => {
     setPets(markedNotices);
+    return () => dispatch(setNotices([]));
   }, [notices]);
 
   return (
