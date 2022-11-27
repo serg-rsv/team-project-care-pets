@@ -3,6 +3,7 @@
 .signature {
   min-width: 158px;
   position: absolute;
+  z-index: 2;
   left: 0px;
   top: 20px;
   background-color: var(--transparent-bg);
@@ -16,32 +17,12 @@
   @include fonts(12px, 500, 1.3);
   color: var(--main-text-cl);
 }
-.box {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 280px;
- @include mq(tablet) {
-  width: 704px;
- } 
-}
 
-.box img {
-  width: 240px;
-  height: 240px;
-  margin-bottom: 16px;
-  border-radius: 0px 0px 40px 40px;
-  @include mq(tablet) {
-    min-width: 288px;
-    min-height: 328px;
-  }
-}
 .title {
   margin-bottom: 16px;
   @include fonts(28px, 700, 1.4);
   color: var(--black-text-cl);
   @include mq(tablet) {
-    margin-left: 20px;
     margin-bottom: 12px;
     @include fonts(24px, 700, 1.4);
   }
@@ -51,36 +32,50 @@
   @include fonts(14px, 500, 1.3);
   color: var(--black-text-cl);
   @include mq(tablet) {
-    display: flex;
-    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 288px 356px;
+    column-gap: 20px;
     @include fonts(16px, 500, 1.3);
-  }
-}
-.listParams {
-  width: 100%;
-  display: block;
-  @include mq(tablet) {
-    margin-left: 20px;
   }
 }
 
 .listItem {
-  @include fonts(12px, 600, 1.35);
-  display: flex;
-  flex: 1 auto;
-  align-items: center;
-  justify-content: space-between;
-   @include mq(tablet) {
-   @include fonts(16px, 500, 1.35);}
+  @include fonts(14px, 500, 1.35);
+  display: grid;
+  grid-template-columns: 30% 65%;
+  gap: 5%;
+  @include mq(tablet) {
+    @include fonts(16px, 500, 1.35);
+  }
 }
 .listItem:not(:last-child) {
   margin-bottom: 8px;
 }
-.listText {
-  @include fonts(10px, 500, 1.35);
-   width: 50%; 
+
+.listItemLabel {
+  @include fonts(14px, 600, 1.35);
+  min-width: 25%;
+
   @include mq(tablet) {
-   @include fonts(16px, 500, 1.35);  
+    @include fonts(16px, 600, 1.35);
+  }
+
+  .comments > & {
+    min-width: 0;
+    display: inline-block;
+    margin-right: 5%;
+    @include mq(tablet) {
+      margin-right: 8px;
+    }
+  }
+}
+.listText {
+  word-wrap: break-word;
+  .comments > & {
+    @include fonts(14px, 400, 1.35);
+    min-width: 0;
+    display: inline;
+    line-height: 1.5;
   }
 }
 
@@ -88,15 +83,45 @@
   @include fonts(14px, 600, 1.35);
   color: var(--black-text-cl);
   margin-top: 28px;
-  margin-bottom: 40px;
 
   @include mq(tablet) {
     @include fonts(16px, 400, 1.35);
-    margin-top: 28px;
-    margin-bottom: 32px;
   }
 }
 
 .comments p {
   @include fonts(14px, 400, 1.3);
+}
+
+.imgBox {
+  margin-bottom: 16px;
+  border-radius: 0px 0px 40px 40px;
+  overflow: hidden;
+  @include mq(tablet) {
+    margin-bottom: 0;
+  }
+}
+
+.imgWrapper {
+  @include gradient(var(--accent-cl), #fdf7f220, 0deg);
+  width: 240px;
+  height: 240px;
+
+  overflow: hidden;
+  display: flex;
+  @include mq(tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 288px;
+    height: 328px;
+  }
+}
+
+.noticePhoto {
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  height: 100%;
+  width: auto;
+  aspect-ratio: 1/1 !important;
+  object-fit: cover;
 }
