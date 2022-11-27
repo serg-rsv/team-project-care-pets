@@ -115,14 +115,14 @@
   background-size: 15px;
   padding: 0;
   background-color: var(--transparent-bg);
-  background-image: url(./Svg/like-accent.svg);
+  background-image: url(../../../images/like-accent.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border-radius: 50%;
   border: 0;
   &:hover {
     background-color: var(--accent-cl);
-    background-image: url(./Svg/like.svg);
+    background-image: url(../../../images/like.svg);
   }
   @include mq(tablet) {
     width: 44px;
@@ -133,7 +133,7 @@
 
 .isActiveLike {
   background-color: var(--accent-cl);
-  background-image: url(./Svg/like.svg);
+  background-image: url(../../../images/like.svg);
 }
 
 .remove {
@@ -145,7 +145,7 @@
   background-size: 15px;
   padding: 0;
   background-color: var(--transparent-bg);
-  background-image: url(./Svg/remove.svg);
+  background-image: url(../../../images/remove.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
   border-radius: 50%;
