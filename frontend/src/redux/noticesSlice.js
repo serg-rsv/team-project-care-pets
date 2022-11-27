@@ -13,10 +13,17 @@ export const noticesSlice = createSlice({
     setIsLoadMore: (state, { payload }) => {
       state.isLoadMore = payload;
     },
+    setIsFavorite: (state, { payload }) => {
+      const { _id, isFavorite } = payload;
+      state.items.map(item =>
+        item._id === _id ? (item.isFavorite = isFavorite) : item
+      );
+    },
   },
 });
 
 // ACTIONS
 
-export const { setNotices, setIsLoadMore } = noticesSlice.actions;
+export const { setNotices, setIsLoadMore, setIsFavorite } =
+  noticesSlice.actions;
 export default noticesSlice.reducer;
