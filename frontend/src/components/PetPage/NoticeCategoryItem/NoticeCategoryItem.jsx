@@ -33,30 +33,12 @@ const NoticeCategoryItem = ({
 }) => {
   const dispatch = useDispatch();
   const checkCategory = page === 'sell';
-  const [
-    deleteNotice,
-    {
-      isError: isErrDelNotice,
-      isSuccess: isSuccessDelNotice,
-      isLoading: isLoadingDelNotice,
-    },
-  ] = useDeleteNoticeMutation();
-  const [
-    addFavorite,
-    {
-      isError: isErrAddFav,
-      isSuccess: isSuccessAddFav,
-      isLoading: isLoadingAddFav,
-    },
-  ] = useAddFavoritesByIdMutation();
-  const [
-    deleteFavorite,
-    {
-      isError: isErrDelFav,
-      isSuccess: isSuccessDelFav,
-      isLoading: isLoadingDelFav,
-    },
-  ] = useDeleteFavoritesByIdMutation();
+  const [deleteNotice, { isLoading: isLoadingDelNotice }] =
+    useDeleteNoticeMutation();
+  const [addFavorite, { isLoading: isLoadingAddFav }] =
+    useAddFavoritesByIdMutation();
+  const [deleteFavorite, { isLoading: isLoadingDelFav }] =
+    useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
   const { openModal } = useModal();
   const { data: item } = useGetNoticeByIdQuery(id);
@@ -92,19 +74,23 @@ const NoticeCategoryItem = ({
 
   const favoriteToggle = async () => {
     if (isFavorite) {
-      await deleteFavorite(_id);
-
-      isSuccessDelFav && toast.success(`${title} видалено зі списку обраних.`);
-      isErrDelFav &&
-        toast.error(`Не вдалось видалити ${title} зі списку обраних.`);
+      await deleteFavorite(_id)
+        .unwrap()
+        .then(() => {
+          toast.success(`${title} видалено зі списку обраних.`);
+        })
+        .catch(() => {
+          toast.error(`Не вдалось видалити ${title} зі списку обраних.`);
+        });
 
       dispatch(setIsFavorite({ _id, isFavorite: false }));
     } else {
-      await addFavorite(_id);
-
-      isSuccessAddFav && toast.success(`${title} додано до списку обраних.`);
-      isErrAddFav &&
-        toast.error(`Не вдалось додати ${title} до списку обраних.`);
+      await addFavorite(_id)
+        .unwrap()
+        .then(() => toast.success(`${title} додано до списку обраних.`))
+        .catch(() => {
+          toast.error(`Не вдалось додати ${title} до списку обраних.`);
+        });
 
       dispatch(setIsFavorite({ _id, isFavorite: true }));
     }
@@ -178,9 +164,14 @@ const NoticeCategoryItem = ({
         <Button
           disabled={isLoadingDelNotice}
           onClick={async () => {
-            await deleteNotice(_id);
-            isSuccessDelNotice && toast.success('Оголошення видалено.');
-            isErrDelNotice && toast.error('Оголошення не видалено.');
+            await deleteNotice(_id)
+              .unwrap()
+              .then(() => {
+                toast.success('Оголошення видалено.');
+              })
+              .catch(() => {
+                toast.error('Оголошення не видалено.');
+              });
           }}
           className={s.remove}
         ></Button>
