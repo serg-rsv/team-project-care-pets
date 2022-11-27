@@ -55,7 +55,7 @@ const ModalAddNotice = ({ closeButton }) => {
       category: categorySetByDefault(),
       title: '',
       name: '',
-      birthday: '',
+      birthday: `${new Date().toISOString().split('T')[0]}`,
       breed: '',
       sex: 'male',
       location: '',
@@ -64,47 +64,47 @@ const ModalAddNotice = ({ closeButton }) => {
       comments: '',
     },
     validationSchema: Yup.object().shape({
-      category: Yup.string().required('Please choose one'),
+      category: Yup.string().required('Оберіть категорію'),
       title: Yup.string()
-        .required('Please enter title of your notice')
+        .required('Введіть заголовок')
+        .min(2, 'Мінімум 2 символи')
         .matches(
           /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-          'Title contain only letters'
+          'Заголовок містить лише літери і пробіли'
         )
         .trim()
-        .min(2, 'Title must be at least 2 characters')
-        .max(48, 'Title must not exceed 48 characters'),
+        .max(48, 'Максимум 48 символів'),
       name: Yup.string()
         .trim()
-        .required('Please enter name of your pet')
+        .min(2, 'Мінімум 2 символи')
+        .required("Введіть ім'я тварини")
         .matches(
           /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-          'Name contain only letters'
+          'Ім’я містить лише літери і пробіли'
         )
-        .min(2, 'Name must be at least 2 characters')
-        .max(16, 'Name must not exceed 16 characters'),
+        .max(16, 'Максимум 16 символів'),
       birthday: Yup.date()
-        .required('Please enter date of pet birth')
-        .max(new Date(), 'Date must be less than today'),
+        .required('Оберіть дату народження')
+        .max(new Date(), 'Дата має бути в минулому'),
       breed: Yup.string()
-        .required('Please enter breed of your pet')
+        .required('Введіть породу')
+        .min(2, 'Мінімум 2 символи')
         .matches(/^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/, 'only letters')
         .trim()
-        .min(2, 'Breed must be at least 2 characters')
-        .max(24, 'Breed must not exceed 24 characters'),
-      location: Yup.string().required('Please enter location of your location'),
-      sex: Yup.string().required('Please choose one'),
+        .max(24, 'Максимум 24 символи'),
+      location: Yup.string().required('Введіть місце знаходження'),
+      sex: Yup.string().required('Оберіть стать'),
       price: Yup.string().when('category', {
         is: category => category === 'sell',
         then: Yup.string()
-          .required('Please enter')
-          .matches(/^[1-9][0-9]*$/, 'Invalid price'),
+          .required('Введіть ціну')
+          .matches(/^[0-9][0-9]*$/, 'Тільки цифри'),
       }),
       comments: Yup.string()
         .trim()
-        .required('Please enter')
-        .min(8, 'Comment must be at least 8 characters')
-        .max(120, 'Comment must not exceed 120 characters'),
+        .required('Введіть опис')
+        .min(8, 'Мінімум 8 символів')
+        .max(120, 'Максимум 120 символів'),
     }),
     onSubmit: async () => {
       await createNotice(formDataAppender(formik.values));
@@ -132,13 +132,12 @@ const ModalAddNotice = ({ closeButton }) => {
 
   return (
     <div className={css.noticeFormBlock}>
-      <h2 className={css.noticeFormTitle}>Додати оголошення</h2>
+      <h2 className={css.noticeFormTitle}>Нове оголошення</h2>
       <form className={css.noticeForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ? (
           <>
             <p className={css.noticeFormText}>
-              Додайте ваше оголошення в базу даних. Це допоможе багатьом людям
-              знайти собі друга
+              Додайте базову інвормацію про тваринку
             </p>
             <fieldset className={css.inputWrapper}>
               <div className={css.filterWrapper}>
@@ -152,7 +151,7 @@ const ModalAddNotice = ({ closeButton }) => {
                   checked={formik.values.category === 'lost-found'}
                 />
                 <label htmlFor="LostFound" className={css.filterLostFound}>
-                  знайшов/загубив
+                  загубив/знайшов
                 </label>
 
                 <input
@@ -178,7 +177,7 @@ const ModalAddNotice = ({ closeButton }) => {
                   checked={formik.values.category === 'sell'}
                 />
                 <label className={css.filterSell} htmlFor="sell">
-                  продається
+                  продаж
                 </label>
               </div>
               {formik.touched.category && formik.errors.category ? (
@@ -203,7 +202,7 @@ const ModalAddNotice = ({ closeButton }) => {
             />
 
             <label className={css.noticeInputTitle} htmlFor="namePet">
-              Ім'я
+              Ім'я тварини<span className={css.reqiuredFieldForm}>*</span>
               {formik.values.name !== '' && formik.errors.name ? (
                 <p className={css.inputError}>{formik.errors.name}</p>
               ) : null}
@@ -216,11 +215,11 @@ const ModalAddNotice = ({ closeButton }) => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.name}
-              placeholder="Введіть ім'я тваринки"
+              placeholder="Введіть ім'я тварини"
             />
 
             <label className={css.noticeInputTitle} htmlFor="birthdayPet">
-              Дата народження
+              Дата народження<span className={css.reqiuredFieldForm}>*</span>
               {formik.values.birthday !== '' && formik.errors.birthday ? (
                 <p className={css.inputError}>{formik.errors.birthday}</p>
               ) : null}
@@ -231,12 +230,13 @@ const ModalAddNotice = ({ closeButton }) => {
               id="birthdayPet"
               name="birthday"
               type="date"
+              max={new Date().toISOString().split('T')[0]}
               onChange={formik.handleChange}
               value={formik.values.birthday}
             />
 
             <label className={css.noticeInputTitle} htmlFor="breedPet">
-              Порода
+              Порода<span className={css.reqiuredFieldForm}>*</span>
               {formik.values.breed && formik.errors.breed ? (
                 <p className={css.inputError}>{formik.errors.breed}</p>
               ) : null}
@@ -249,7 +249,7 @@ const ModalAddNotice = ({ closeButton }) => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.breed}
-              placeholder="Введіть породу"
+              placeholder="Введіть породу тварини"
             />
           </>
         ) : (
@@ -274,7 +274,7 @@ const ModalAddNotice = ({ closeButton }) => {
                     htmlFor="malePet"
                     className={css.noticeInputRadioTitle}
                   >
-                    Чол
+                    чоловіча
                   </label>
                 </div>
 
@@ -293,7 +293,7 @@ const ModalAddNotice = ({ closeButton }) => {
                     htmlFor="femalePet"
                     className={css.noticeInputRadioTitle}
                   >
-                    Жін
+                    жіноча
                   </label>
                 </div>
               </div>
@@ -303,7 +303,7 @@ const ModalAddNotice = ({ closeButton }) => {
             </fieldset>
 
             <label className={css.noticeInputTitle} htmlFor="locationPet">
-              Місце<span className={css.reqiuredFieldForm}>*</span>:
+              Місто, Область<span className={css.reqiuredFieldForm}>*</span>:
               {formik.values.location !== '' && formik.errors.location ? (
                 <p className={css.inputError}>{formik.errors.location}</p>
               ) : null}
@@ -330,15 +330,13 @@ const ModalAddNotice = ({ closeButton }) => {
                   type="text"
                   onChange={formik.handleChange}
                   value={formik.values.price}
-                  placeholder="Вкажіть ціну"
+                  placeholder="Введіть ціну"
                 />
               </>
             ) : null}
 
             <fieldset className={css.inputWrapper}>
-              <legend className={css.noticeInputTitle}>
-                Завантажити фото тваринки
-              </legend>
+              <legend className={css.noticeInputTitle}>Фото тварини</legend>
               {formik.values.image === '' ? (
                 <label className={css.imgPetIcon} htmlFor="image">
                   <svg
@@ -374,7 +372,7 @@ const ModalAddNotice = ({ closeButton }) => {
             </fieldset>
 
             <label className={css.noticeInputTitle} htmlFor="commentsAd">
-              Коментарі
+              Коментар<span className={css.reqiuredFieldForm}>*</span>
               {formik.values.comments !== '' && formik.errors.comments ? (
                 <p className={css.inputError}>{formik.errors.comments}</p>
               ) : null}
