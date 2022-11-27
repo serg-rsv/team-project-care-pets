@@ -62,13 +62,13 @@ const NoticeCategoryItem = ({
   const showModalNotice = _id => {
     setId(_id);
   };
-  
+
   const linkPhone = (
     <a className={s.phoneButtonText} href={`tel:${noticeById?.owner?.phone}`}>
       Контакт
     </a>
   );
-  
+
   const favoriteToggle = e => {
     if (isFavorite) {
       deleteFavorite(_id);
@@ -171,7 +171,6 @@ const NoticeCategoryItem = ({
             <Button className={s.buttonPhone}>{linkPhone}</Button>
             <Button
               className={s.addToFavoriteButton}
-              disabled={!isLoggedIn}
               onClick={() =>
                 isLoggedIn ? favoriteToggle() : addNotification()
               }
