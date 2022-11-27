@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 // import e from 'cors';
 
 const ModalAddNotice = ({ closeButton }) => {
-  const [createNotice] = useCreateNoticeMutation();
+  const [createNotice, { isLoading }] = useCreateNoticeMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
   const [disableNextButton, setDisableNextButton] = useState(true);
@@ -107,10 +107,16 @@ const ModalAddNotice = ({ closeButton }) => {
         .max(120, 'Максимум 120 символів'),
     }),
     onSubmit: async () => {
-      await createNotice(formDataAppender(formik.values));
+      await createNotice(formDataAppender(formik.values))
+        .unwrap()
+        .then(() => {
+          toast.success('Ви успішно створили оголошення.');
+        })
+        .catch(() => {
+          toast.error('Не вдалось створити оголошення.');
+        });
       formik.resetForm();
       closeButton();
-      toast.success('Ви успішно створили оголошення.');
     },
   });
 
@@ -418,7 +424,7 @@ const ModalAddNotice = ({ closeButton }) => {
               children="Done"
               buttonType="submit"
               className={css.btnSec}
-              disabled={!formik.isValid}
+              disabled={!formik.isValid || isLoading}
             />
           </div>
         )}
