@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import Button from '../Button/Button';
 import css from './modalAddPet.module.scss';
@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 const ModalAddPet = ({ onCancelButtonClick }) => {
   const [createPet, { isLoading }] = useCreatePetMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
+  const [disableNextButton, setDisableNextButton] = useState(true);
   const [image, setImage] = useState(null);
 
   const moveNextRegistration = () => {
@@ -64,6 +65,15 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
       toast.success('Домашнього улюбленця успішно додано');
     },
   });
+  useEffect(() => {
+    const firstStepPossibleErrors = ['name', 'birthday', 'breed'];
+    const isValidFieldsInFirstStep = !Object.keys(formik.errors).some(error =>
+      firstStepPossibleErrors.includes(error)
+    );
+    isValidFieldsInFirstStep && formik.values.name.length > 0
+      ? setDisableNextButton(false)
+      : setDisableNextButton(true);
+  }, [formik, disableNextButton]);
 
   return (
     <div className={css.formBlock}>
@@ -188,6 +198,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               children="Далі"
               onClick={moveNextRegistration}
               className={css.btnSec}
+              disabled={disableNextButton}
             />
           </div>
         )}
@@ -203,6 +214,7 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               children="Додати"
               buttonType="submit"
               className={css.btnSec}
+              disabled={!formik.isValid}
             />
           </div>
         )}
