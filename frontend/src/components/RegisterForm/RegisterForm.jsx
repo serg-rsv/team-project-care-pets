@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import css from './authForm.module.scss';
 import * as Yup from 'yup';
@@ -12,7 +12,7 @@ const { setToken } = require('../../redux/services/authSlice');
 
 const RegisterForm = () => {
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
-
+  const [disableNextButton, setDisableNextButton] = useState(true);
   const [register, { isLoading }] = useRegisterMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,6 +39,7 @@ const RegisterForm = () => {
         .email('Неправильний поштовий адрес')
         .required('Це поле не може бути порожнім'),
       password: Yup.string()
+        .trim()
         .required('Це поле не може бути порожнім')
         .min(7, 'Пароль містить мінімум 7 символів')
         .max(32, 'Пароль містить максимум 32 символи'),
@@ -81,6 +82,15 @@ const RegisterForm = () => {
       }
     },
   });
+  useEffect(() => {
+    const firstStepPossibleErrors = ['email', 'password', 'confirmPassword'];
+    const isValidFieldsInFirstStep = !Object.keys(formik.errors).some(error =>
+      firstStepPossibleErrors.includes(error)
+    );
+    isValidFieldsInFirstStep && formik.values.email.length > 0
+      ? setDisableNextButton(false)
+      : setDisableNextButton(true);
+  }, [formik, disableNextButton]);
 
   return (
     <div className={css.formBlock}>
@@ -200,6 +210,7 @@ const RegisterForm = () => {
               children="Далі"
               onClick={moveNextRegistration}
               className={css.formBtn}
+              disabled={disableNextButton}
             />
           </div>
         )}
@@ -220,9 +231,6 @@ const RegisterForm = () => {
           </div>
         )}
       </form>
-
-      {/* {isFirstRegisterStep && <button className={css.formBtn} type='button' onClick={moveNextRegistration}>Next</button>} */}
-
       <p className={css.linkToPage}>
         Ви вже маєте акаунт?{' '}
         <Link className={css.link} to="/login">
