@@ -39,6 +39,10 @@
   @include mq(desktop) {
     @include fonts(20px, 700, 1.35);
   }
+  &:hover, &:focus {
+    color: var(--start-gradient);
+
+  }
 }
 
 .sponsorInfo {
