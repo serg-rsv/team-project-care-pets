@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import PropTypes from 'prop-types';
+import convectorCategory from '../../../helpers/convectorCategory';
 
 import {
   useAddFavoritesByIdMutation,
@@ -114,7 +115,7 @@ const NoticeCategoryItem = ({
   return (
     <li className={s.animalListItem}>
       <div className={s.signature}>
-        <p>{page}</p>
+        <p>{convectorCategory(page)}</p>
       </div>
       <div className={s.imageWrapper}>
         <img className={s.animalListImg} src={link} alt={title} />
@@ -179,7 +180,7 @@ const NoticeCategoryItem = ({
       <Modal marker={`learnmore${_id}`} closeButton={true}>
         <div className={s.wrapper}>
           <ModalNotice
-            category={noticeById?.category}
+            category={convectorCategory(noticeById?.category)}
             photoURL={noticeById?.photoURL}
             name={noticeById?.name}
             title={noticeById?.title}
