@@ -26,9 +26,9 @@ const Own = () => {
 
   return (
     <>
-      {pets?.length > 0 && (
-        <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
-      )}
+      {/* {pets?.length > 0 && ( */}
+      <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
+      {/* )} */}
     </>
   );
 };
