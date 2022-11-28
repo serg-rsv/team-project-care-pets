@@ -7,7 +7,9 @@ const NewsCard = ({ obj }) => {
     <div className={s.article}>
       <div>
         <h3 className={s.articleTitle}>{title}</h3>
-        <p className={s.articleDescription}>{description}</p>
+        <p className={s.articleDescription}>
+          {description.substring(0, 200) + '...'}
+        </p>
       </div>
 
       <p className={s.articleMeta}>
