@@ -8,9 +8,9 @@ const PetsList = () => {
     <>
       <ul>
         {error ? (
-          <p className={scss.text}>Oh no, there was an error</p>
+          <p className={scss.text}>Щось пішло не так...</p>
         ) : isLoading ? (
-          <p className={scss.text}>Loading...</p>
+          <p className={scss.text}>Загрузка...</p>
         ) : data ? (
           data.data.map(
             ({ _id, photoURL, name, birthday, breed, comments }) => {
