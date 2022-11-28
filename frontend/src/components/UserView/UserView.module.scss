@@ -12,6 +12,7 @@
   }
   @include mq(desktop) {
     display: flex;
+    margin-top: 60px;
   }
 }
 .titleInfo,
