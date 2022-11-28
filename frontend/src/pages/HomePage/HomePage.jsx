@@ -6,6 +6,7 @@ const HomePage = () => {
       <section className="container">
         <h1 className={s.mainTitle}>Піклуйтеся про своїх пухнастих друзів</h1>
       </section>
+      <div className={s.section}></div>
     </div>
   );
 };

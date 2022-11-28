@@ -10,28 +10,55 @@
     background: transparent;
     overflow-y: hidden;
   }
-  background-image: url('../../images/home/mobile/home-img-x2-mob.png'),
+  background-image: 
+  // url('../../images/home/mobile/home-img-x2-mob.png'),
     url('../../images/home/home.svg');
   background-repeat: no-repeat;
-  background-size: 600px, 250%;
-  background-position: center bottom, center top 100px;
+  background-size: 250%;
+  background-position: center top 100px;
 
   @include mq(tablet) {
     padding-top: 95px;
     height: calc(100vh - 54px);
 
-    background-image: url('../../images/home/tablet/home-img-x2-tab.png'),
+    background-image: 
+    // url('../../images/home/tablet/home-img-x2-tab.png'),
       url('../../images/home/home.svg');
-    background-size: 550px, 190%;
-    background-position: center bottom, center top;
+    background-size: 190%;
+    background-position: center top;
   }
 
   @include mq(desktop) {
     height: calc(100vh - 64px);
-    background-image: url('../../images/home/desktop/home-img-x2-desc.png'),
+    background-image: 
+    // url('../../images/home/desktop/home-img-x2-desc.png'),
       url('../../images/home/home-desc.svg');
-    background-size: contain, cover;
-    background-position: right, bottom;
+    background-size: cover;
+    background-position: bottom;
+  }
+}
+
+.section {
+  position: absolute;
+  height: calc(100vh - 211px);
+  width: 100%;
+  bottom: 0;
+  background-image: url('../../images/home/mobile/home-img-x2-mob.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+
+  @include mq(tablet) {
+    height: calc(100vh - 349px);
+    background-image: url('../../images/home/tablet/home-img-x2-tab.png');
+    // background-size: 550px;
+  }
+
+  @include mq(desktop) {
+    height: 80%;
+    background-image: url('../../images/home/desktop/home-img-x2-desc.png');
+    background-size: contain;
+    background-position: bottom right 10%;
   }
 }
 // .homePage {
@@ -84,6 +111,8 @@
 // }
 
 .mainTitle {
+  position: relative;
+  z-index: 5;
   @include fonts(30px, 700, 1.38);
 
   @include mq(tablet) {
