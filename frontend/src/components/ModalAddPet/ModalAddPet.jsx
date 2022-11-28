@@ -223,7 +223,6 @@ const ModalAddPet = ({ onCancelButtonClick }) => {
               children="Додати"
               buttonType="submit"
               className={css.btnSec}
-              disabled={!formik.isValid}
             />
           </div>
         )}
