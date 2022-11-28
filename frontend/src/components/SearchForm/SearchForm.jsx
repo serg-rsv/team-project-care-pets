@@ -25,7 +25,7 @@ const Form = ({ searchQuery }) => {
         type="text"
         autoComplete="off"
         autoFocus
-        placeholder="Enter a movie name"
+        placeholder="Пошук оголошення"
         onChange={e => setSearch(e.target.value)}
         value={search}
         // required
