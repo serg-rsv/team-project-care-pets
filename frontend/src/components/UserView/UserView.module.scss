@@ -24,6 +24,7 @@
   }
   @include mq(desktop) {
     position: absolute;
+  
   }
 }
 .titleInfo {
@@ -38,6 +39,7 @@
     top: 0;
     left: 0;
     margin-bottom: 0;
+    @include fonts(28px, 500, 1.35);
   }
 }
 .titlePets {
@@ -50,6 +52,7 @@
     @include fonts(20px, 500, 1.35);
   }
   @include mq(desktop) {
+    @include fonts(28px, 500, 1.35);
     top: 0;
     left: 456px;
     margin: 0;

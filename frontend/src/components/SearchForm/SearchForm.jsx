@@ -10,7 +10,7 @@ const Form = ({ searchQuery }) => {
     e.preventDefault();
     const request = search.trim();
     if (request.length === 0) {
-      toast.error('Request could not be empty');
+      toast.error('Поле пошуку не може бути порожнім');
       setSearch('');
       return;
     }

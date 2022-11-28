@@ -13,19 +13,6 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
   const { openModal, closeModal } = useModal();
   const [deletePet, { isLoading }] = useDeletePetMutation();
 
-  // function getDate(birthday) {
-  //   let date = new Date(birthday);
-  //   let year = date.getFullYear();
-  //   let day = date.getDay();
-  //   let month = date.getMonth();
-  //   if (day < 10) {
-  //     day = `0${day}`;
-  //   }
-  //   if (month < 10) {
-  //     month = `0${month}`;
-  //   }
-  //   return day + '.' + month + '.' + year;
-  // }
   const onDeletePetClick = async () => {
     await deletePet(id)
       .unwrap()
@@ -36,6 +23,19 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
         toast.error(`${name} не вдалось видалити.`);
       });
     closeModal();
+  };
+  const getDate = birthday => {
+    let date = new Date(birthday);
+    let year = date.getFullYear();
+    let day = date.getDay();
+    let month = date.getMonth();
+    if (day < 10) {
+      day = `0${day}`;
+    }
+    if (month < 10) {
+      month = `0${month}`;
+    }
+    return day + '.' + month + '.' + year;
   };
   return (
     <div className={scss.wrapper}>
@@ -49,7 +49,7 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
         </li>
         <li className={scss.listItem}>
           <dd className={scss.property}>Дата народження: </dd>
-          <dt className={scss.text}> {birthday.toString().slice(0, 10)}</dt>
+          <dt className={scss.text}> {getDate(birthday)}</dt>
         </li>
         <li className={scss.listItem}>
           <dd className={scss.property}>Порода: </dd>

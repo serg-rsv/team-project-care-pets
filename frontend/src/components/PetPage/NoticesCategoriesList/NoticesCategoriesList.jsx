@@ -15,7 +15,6 @@ import Button from '../../Button';
 
 const NoticesCategoriesList = ({ pets, isActive }) => {
   const navigate = useNavigate();
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
 
