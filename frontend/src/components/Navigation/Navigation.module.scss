@@ -11,6 +11,9 @@
 
 .navigation > .burgerBtn {
   position: absolute;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 0 !important;
   top: 16px;
   right: 20px;
   padding: 0;
@@ -23,7 +26,7 @@
   }
 
   @include mq(tablet) {
-    top: 30px;
+    top: 22px;
     right: 60px;
   }
 
@@ -87,6 +90,7 @@
 .deskMenu {
   display: none;
   @include mq(desktop) {
-    display: block;
+    display: flex;
+    align-items: center;
   }
 }

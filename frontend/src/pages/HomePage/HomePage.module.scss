@@ -1,53 +1,87 @@
 @import '../../scss//utils//mixins';
 
 .homePage {
-  padding-top: 60px;
-  height: 100vh;
+  padding-top: 42px;
+  height: calc(100vh - 46px);
+
   width: 100vw;
-  background-image: url('../../images/home/mobile/home-img-x1-mob.png'),
-    url('../../images/home/mobile/vector@1x_mob.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: auto, auto;
-  background-position: center bottom;
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    overflow-y: hidden;
+  }
+  background-image: url('../../images/home/mobile/home-img-x2-mob.png'),
+    url('../../images/home/home.svg');
+  background-repeat: no-repeat;
+  background-size: 600px, 250%;
+  background-position: center bottom, center top 100px;
 
   @include mq(tablet) {
-    padding-top: 90px;
+    padding-top: 95px;
+    height: calc(100vh - 54px);
 
-    background-image: url('../../images/home/tablet/home-img-x1-tab.png'),
-      url('../../images/home/tablet/vector@1x_tab.png');
-    background-size: contain, contain;
-    background-position: center bottom;
+    background-image: url('../../images/home/tablet/home-img-x2-tab.png'),
+      url('../../images/home/home.svg');
+    background-size: 550px, 190%;
+    background-position: center bottom, center top;
   }
 
   @include mq(desktop) {
-    background-image: url('../../images/home/desktop/home-img-x1-desc.png'),
-      url('../../images/home/desktop/bckgr@1x_desktop.png');
+    height: calc(100vh - 64px);
+    background-image: url('../../images/home/desktop/home-img-x2-desc.png'),
+      url('../../images/home/home-desc.svg');
     background-size: contain, cover;
-    background-position: right bottom;
+    background-position: right, bottom;
   }
 }
+// .homePage {
+//   padding-top: 42px;
+//   height: 100vh;
+//   width: 100vw;
+//   background-image: url('../../images/home/mobile/home-img-x1-mob.png'),
+//     url('../../images/home/mobile/vector@1x_mob.png');
+//   background-repeat: no-repeat, no-repeat;
+//   background-size: auto, auto;
+//   background-position: center bottom;
 
-@include mq(retina) {
-  .homePage {
-    background-image: url('../../images/home/mobile/home-img-x2-mob.png'),
-      url('../../images/home/mobile/vector@1x_mob.png');
-    background-size: contain, cover;
+//   @include mq(tablet) {
+//     padding-top: 90px;
 
-    @include mq(tablet) {
-      background-image: url('../../images/home/tablet/home-img-x2-tab.png'),
-        url('../../images/home/tablet/vector@1x_tab.png');
-      background-size: contain, cover;
-      background-position: center bottom;
-    }
+//     background-image: url('../../images/home/tablet/home-img-x1-tab.png'),
+//       url('../../images/home/tablet/vector@1x_tab.png');
+//     background-size: contain, contain;
+//     background-position: center bottom;
+//   }
 
-    @include mq(desktop) {
-      background-image: url('../../images/home/desktop/home-img-x2-desc.png'),
-        url('../../images/home/desktop/bckgr@2x_desktop.png');
-      background-size: contain, cover;
-      background-position: right bottom;
-    }
-  }
-}
+//   @include mq(desktop) {
+//     background-image: url('../../images/home/desktop/home-img-x1-desc.png'),
+//       url('../../images/home/desktop/bckgr@1x_desktop.png');
+//     background-size: contain, cover;
+//     background-position: right bottom;
+//   }
+// }
+
+// @include mq(retina) {
+//   .homePage {
+//     background-image: url('../../images/home/mobile/home-img-x2-mob.png'),
+//       url('../../images/home/mobile/vector@1x_mob.png');
+//     background-size: contain, cover;
+
+//     @include mq(tablet) {
+//       background-image: url('../../images/home/tablet/home-img-x2-tab.png'),
+//         url('../../images/home/tablet/vector@1x_tab.png');
+//       background-size: contain, cover;
+//       background-position: center bottom;
+//     }
+
+//     @include mq(desktop) {
+//       background-image: url('../../images/home/desktop/home-img-x2-desc.png'),
+//         url('../../images/home/desktop/bckgr@2x_desktop.png');
+//       background-size: contain, cover;
+//       background-position: right bottom;
+//     }
+//   }
+// }
 
 .mainTitle {
   @include fonts(30px, 700, 1.38);

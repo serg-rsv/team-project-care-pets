@@ -1,37 +1,37 @@
-@import "../../scss/utils/mixins";
+@import '../../scss/utils/mixins';
 
 .userNav {
-   display: flex;
-   justify-content: center;
-   padding-top: 46px;
-    @include mq(tablet) {
-        position: absolute;
-        top: 20px;
-        right: 110px;
-        padding-top: 0;
-    }
-    @include mq(desktop) {
-        right: 40px;
-        top: 30px;
-    }
+  display: flex;
+  justify-content: center;
+  padding-top: 46px;
+  @include mq(tablet) {
+    position: absolute;
+    top: 15px;
+    right: 110px;
+    padding-top: 0;
+  }
+  @include mq(desktop) {
+    right: 40px;
+    top: 25px;
+  }
 }
 
 .userNav__btn {
-    display: flex;
-    
-    align-items: center;
-    justify-content: center;
-    padding: 8px 28px;
-    background-color: var(--accent-cl);
-    color: var(--white-bg);
-    border-radius: 40px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 22px;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  padding: 8px 28px;
+  background-color: var(--accent-cl);
+  color: var(--white-bg);
+  border-radius: 40px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 .btnIcon {
-    width: 28px;
-    height: 28px;
-    margin-right: 12px;    
+  width: 28px;
+  height: 28px;
+  margin-right: 12px;
 }

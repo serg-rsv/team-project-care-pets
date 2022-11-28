@@ -1,3 +1,15 @@
+@import '../../scss/utils/mixins';
+
 .content {
   position: relative;
+  padding-top: 16px;
+  @include mq(tablet) {
+    padding-bottom: 0;
+    padding-top: 20px;
+  }
+  @include mq(desktop) {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+  }
 }
