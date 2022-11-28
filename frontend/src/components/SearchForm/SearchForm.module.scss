@@ -30,7 +30,7 @@
 
   @include mq(tablet) {
     padding: 8px 38px 8px 20px;
-
+    width: 608px;
     @include fonts(20px, 500, 1.38, 0.04em);
   }
 
