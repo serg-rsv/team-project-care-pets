@@ -68,24 +68,30 @@
 }
 
 .animalListTitle {
+  padding: 0 20px;
   @include fonts(28px, 700, 1.4);
-  margin-left: 20px;
-  margin-bottom: 12px;
+  // margin-left: 20px;
+  // margin-bottom: 12px;
   color: var(--main-text-cl);
 }
+.discription{
+  padding:0 20px;
 
+}
 .animalListBoxText {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 20px;
-  margin-right: 20px;
+  display: grid;
+  grid-template-columns: 30% 65%;
+  gap: 5%;
+  text-align: start;
+  // margin-left: 20px;
+  // margin-right: 20px;
   margin-top: 8px;
   @include fonts(16px, 500, 1.4);
   color: var(--main-text-cl);
 }
 
 .animalListBoxText p {
-  width: 50%;
+  width: 70%;
 }
 
 .priceOpacity {
