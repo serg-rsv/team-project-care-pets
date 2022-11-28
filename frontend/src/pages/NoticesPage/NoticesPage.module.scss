@@ -1,0 +1,23 @@
+@import '../../scss//utils//mixins';
+
+.noticesContent {
+  padding-top: 40px;
+  text-align: center;
+  @include mq(tablet) {
+    padding-top: 94px;
+  }
+
+  @include mq(desktop) {
+    padding-top: 60px;
+  }
+}
+
+.pageTitle {
+  @include fonts(24px, 700, 1.38);
+  color: #111111;
+  text-align: center;
+
+  @include mq(tablet) {
+    @include fonts(48px, 700, 1.38);
+  }
+}
