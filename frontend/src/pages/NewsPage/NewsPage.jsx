@@ -5,14 +5,21 @@ import { useState } from 'react';
 import { useGetNewsQuery } from '../../redux/services/newsSlice';
 import { useEffect } from 'react';
 import SearchForm from '../../components/SearchForm';
-
+import { toast } from 'react-toastify';
 const NewsPage = () => {
   const [searchValue, setSearchValue] = useState('');
+  const { currentData } = useGetNewsQuery();
   const { data } = useGetNewsQuery(searchValue);
   const [news, setNews] = useState([]);
-
   useEffect(() => {
-    setNews(data);
+    if (data?.length !== 0) {
+      setNews(data);
+    } else {
+      toast.info(
+        'На жаль, за вашим запитом нічого не знайдено, спробуйте ввести інше значення.'
+      );
+      setNews(currentData);
+    }
   }, [data]);
 
   return (
