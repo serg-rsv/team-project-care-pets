@@ -29,6 +29,11 @@
         background-color: var(--accent-cl);
         color: #fff;
       }
+
+      &:hover, &:focus {
+        background-color: var(--accent-cl);
+        color: #fff; 
+      }
     }
 
     &:not(:last-child) {

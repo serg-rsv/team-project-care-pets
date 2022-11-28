@@ -41,6 +41,8 @@ nav {
   }
 }
 
+
+
 .navList__item {
   &:not(:last-child) {
     margin-bottom: 40px;
@@ -53,5 +55,10 @@ nav {
       margin-bottom: 0;
       margin-right: 80px;
     }
+  }
+  &:hover > a,
+  &:focus > a {
+    color: var(--accent-cl);
+    text-decoration: underline;
   }
 }

@@ -36,4 +36,8 @@
   @include fonts(16px, 500, 1.38);
   text-decoration: underline;
   color: var(--accent-cl);
+
+  &:hover, &:focus {
+   color: var(--start-gradient); 
+  }
 }
