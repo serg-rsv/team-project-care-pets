@@ -19,6 +19,7 @@ import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 import { setIsFavorite } from '../../../redux/noticesSlice';
 
 import s from './NoticeCategoryItem.module.scss';
+import { Loader } from '../../Loader/Loader';
 
 const NoticeCategoryItem = ({
   _id,
@@ -42,7 +43,7 @@ const NoticeCategoryItem = ({
     useDeleteFavoritesByIdMutation();
   const [id, setId] = useState('');
   const { openModal } = useModal();
-  const { data: item } = useGetNoticeByIdQuery(id);
+  const { data: item, isFetching } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -177,36 +178,40 @@ const NoticeCategoryItem = ({
           className={s.remove}
         ></Button>
       )}
-      <Modal marker={`learnmore${_id}`} closeButton={true}>
-        <div className={s.wrapper}>
-          <ModalNotice
-            category={convectorCategory(noticeById?.category)}
-            photoURL={noticeById?.photoURL}
-            name={noticeById?.name}
-            title={noticeById?.title}
-            birthday={birthday}
-            breed={noticeById?.breed}
-            location={noticeById?.location}
-            sex={noticeById?.sex}
-            comments={noticeById?.comments}
-            email={noticeById?.owner?.email}
-            phone={noticeById?.owner?.phone}
-            price={noticeById?.price}
-          />
-          <div className={s.buttonsWrapper}>
-            <Button className={s.buttonPhone}>{linkPhone}</Button>
-            <Button
-              className={s.addToFavoriteButton}
-              disabled={isLoadingAddFav || isLoadingDelFav}
-              onClick={async () =>
-                isLoggedIn ? await favoriteToggle() : addNotification()
-              }
-            >
-              {svgIcon}
-            </Button>
+      {isFetching ? (
+        <Loader />
+      ) : (
+        <Modal marker={`learnmore${_id}`} closeButton={true}>
+          <div className={s.wrapper}>
+            <ModalNotice
+              category={convectorCategory(noticeById?.category)}
+              photoURL={noticeById?.photoURL}
+              name={noticeById?.name}
+              title={noticeById?.title}
+              birthday={birthday}
+              breed={noticeById?.breed}
+              location={noticeById?.location}
+              sex={noticeById?.sex}
+              comments={noticeById?.comments}
+              email={noticeById?.owner?.email}
+              phone={noticeById?.owner?.phone}
+              price={noticeById?.price}
+            />
+            <div className={s.buttonsWrapper}>
+              <Button className={s.buttonPhone}>{linkPhone}</Button>
+              <Button
+                className={s.addToFavoriteButton}
+                disabled={isLoadingAddFav || isLoadingDelFav}
+                onClick={async () =>
+                  isLoggedIn ? await favoriteToggle() : addNotification()
+                }
+              >
+                {svgIcon}
+              </Button>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      )}
     </li>
   );
 };
