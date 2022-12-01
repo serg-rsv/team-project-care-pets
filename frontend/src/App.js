@@ -25,24 +25,66 @@ import {
 
 function App() {
   return (
-    <Suspense fallback={<Loader />}>
+    <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<HomePage />} />
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <HomePage />
+              </Suspense>
+            }
+          />
           <Route element={<PublicRoute restricted />}>
-            <Route path="/register" element={<RegisterPage />} />
+            <Route
+              path="/register"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <RegisterPage />
+                </Suspense>
+              }
+            />
           </Route>
           <Route element={<PublicRoute restricted />}>
-            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/login"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <LoginPage />
+                </Suspense>
+              }
+            />
           </Route>
           <Route element={<PublicRoute />}>
-            <Route path="/friends" element={<OurFriendsPage />} />
+            <Route
+              path="/friends"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <OurFriendsPage />
+                </Suspense>
+              }
+            />
           </Route>
           <Route element={<PublicRoute />}>
-            <Route path="/news" element={<NewsPage />} />
+            <Route
+              path="/news"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <NewsPage />
+                </Suspense>
+              }
+            />
           </Route>
 
-          <Route path="/notices" element={<NoticesPage />}>
+          <Route
+            path="/notices"
+            element={
+              <Suspense fallback={<Loader />}>
+                <NoticesPage />
+              </Suspense>
+            }
+          >
             <Route index element={<Sell />} />
 
             <Route
@@ -90,13 +132,27 @@ function App() {
           </Route>
 
           <Route element={<PrivateRoute />}>
-            <Route path="/user" element={<UserPage />} />
+            <Route
+              path="/user"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <UserPage />
+                </Suspense>
+              }
+            />
           </Route>
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<Loader />}>
+                <NotFound />
+              </Suspense>
+            }
+          />
         </Route>
       </Routes>
       <ToastContainer {...toastOptions} />
-    </Suspense>
+    </>
   );
 }
 

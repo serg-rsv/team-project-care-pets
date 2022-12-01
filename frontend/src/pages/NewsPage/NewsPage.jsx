@@ -6,9 +6,10 @@ import { useGetNewsQuery } from '../../redux/services/newsSlice';
 import { useEffect } from 'react';
 import SearchForm from '../../components/SearchForm';
 import { toast } from 'react-toastify';
+import { Loader } from '../../components/Loader/Loader';
 const NewsPage = () => {
   const [searchValue, setSearchValue] = useState('');
-  const { currentData } = useGetNewsQuery();
+  const { currentData, isFetching } = useGetNewsQuery();
   const { data } = useGetNewsQuery(searchValue);
   const [news, setNews] = useState([]);
   useEffect(() => {
@@ -27,6 +28,7 @@ const NewsPage = () => {
       <div className={s.newsContent}>
         <h2 className={s.pageTitle}>Новини</h2>
         <SearchForm searchQuery={setSearchValue} />
+        {isFetching && <Loader />}
         <ul className={s.newsList}>
           {news?.map((el, index) => (
             <li key={index} className={s.newsList__item}>
