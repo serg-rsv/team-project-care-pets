@@ -24,6 +24,7 @@ const Modal = ({ children, marker, closeButton }) => {
               className={style.modalWindow}
               onClick={e => e.stopPropagation()}
             >
+              {children}
               {closeButton && (
                 <Button onClick={closeModal} className={style.closeButton}>
                   <svg
@@ -38,7 +39,6 @@ const Modal = ({ children, marker, closeButton }) => {
                   </svg>
                 </Button>
               )}
-              {children}
             </div>
           </div>
         </Portal>

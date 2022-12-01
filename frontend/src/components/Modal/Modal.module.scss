@@ -15,7 +15,15 @@
   background-color: white;
   border-radius: 40px;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
+
+  max-height: 90vh;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    overflow-y: hidden;
+  }
 }
 
 .closeButton {
