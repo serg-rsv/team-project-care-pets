@@ -1,1 +1,1 @@
-export {default} from './LoadMore';
+export { default } from './LoadMore';

@@ -121,6 +121,11 @@ button {
   }
 }
 
+.loaderWrapper {
+  position: 'relative';
+  transform: translateY(-68px);
+}
+
 // .list {
 //   margin-top: 0;
 //   margin-bottom: 0;

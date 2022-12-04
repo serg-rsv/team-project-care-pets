@@ -46,10 +46,16 @@ const InGoodHands = () => {
       {pets?.length > 0 && (
         <NoticesCategoriesList isActive={isActiveDelete} pets={pets} />
       )}
-      {isFetching && <Loader />}
       {isLoadMore && page < noticesCategory?.totalPages ? (
         <LoadMore loadMore={() => setPage(page + 1)} disabled={isFetching} />
-      ) : null}
+      ) : (
+        <div style={{ visibility: 'hidden', height: '44px' }} />
+      )}
+      {isFetching && (
+        <div className="loaderWrapper">
+          <Loader />
+        </div>
+      )}
     </>
   );
 };

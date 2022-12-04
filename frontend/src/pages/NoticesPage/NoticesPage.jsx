@@ -1,7 +1,7 @@
 import SearchForm from '../../components/SearchForm';
 import NoticesCategoriesNav from '../../components/PetPage/NoticesCategoriesNav';
 import Container from '../../components/PetPage/NoticesCategoriesNav/Container';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useFetchNoticesMutation } from '../../redux/services/noticesSlice';
@@ -23,7 +23,7 @@ const NoticesPage = () => {
 
     const { data } = await fetchNotices({
       title: query,
-      category: category ? category : 'sell',
+      category: category === 'notices' ? 'sell' : category,
     });
 
     if (data.length > 0) {
@@ -32,7 +32,9 @@ const NoticesPage = () => {
       dispatch(setNotices(markedNotices));
       dispatch(setIsLoadMore(false));
     } else {
-    toast.info('На жаль, за вашим запитом нічого не знайдено, спробуйте ввести інше значення.')
+      toast.info(
+        'На жаль, за вашим запитом нічого не знайдено, спробуйте ввести інше значення.'
+      );
     }
   };
 
