@@ -9,11 +9,14 @@ Requirements:
 - [Cloudinary account](https://cloudinary.com/)
 
 Before starting the backend server, configure the environment variables in the
-directory `backend\config\.env` according to `.env.example` |Key|Value|
-|---|---| |PORT|Running the backend server port| |CONNECT_DB_URI|Your connection
-string to DB| |SECRET_JWT|Random string for creating jwt token|
-|CLOUDINARY_API_KEY|Access key to cloudinary| |CLOUDINARY_API_SECRET|Secret to
-api key|
+directory `backend\config\.env` according to `.env.example`
+|Key|Value|
+|---|---|
+|PORT|Running the backend server port|
+|CONNECT_DB_URI|Your connection string to DB|
+|SECRET_JWT|Random string for creating jwt token|
+|CLOUDINARY_API_KEY|Access key to cloudinary|
+|CLOUDINARY_API_SECRET|Secret to api key|
 
 Install the dependencies and devDependencies and start the backend server.
 
