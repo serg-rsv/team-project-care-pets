@@ -52,4 +52,4 @@ Second Tab:
 npm run dev
 ```
 
-1.  <!-- Team Soul kitchen project -->
+ <!-- Team Soul kitchen project -->
