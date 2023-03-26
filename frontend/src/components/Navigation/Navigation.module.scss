@@ -1,25 +1,22 @@
 @import '../../scss/utils/mixins';
 
-// .navigation {
-//   position: relative;
-//   width: 100%;
-//   height: 100%;
-//   left: 0;
-//   top: 0;
-//   bottom: 0;
-// }
+.navigation {
+  margin-left: auto;
+  margin-right: 80px;
+}
 
 .navigation > .burgerBtn {
   position: absolute;
+  z-index: 110;
   display: inline-flex;
   align-items: center;
   padding: 5px 0 !important;
   top: 16px;
   right: 20px;
   padding: 0;
-  border: 0;
-  border-radius: 0;
+  border: none;
   background-color: var(--main-bg-cl);
+
   &:hover,
   &:focus {
     background-color: var(--main-bg-cl);
@@ -34,16 +31,6 @@
     display: none;
   }
 }
-
-// .hren {
-//   position: fixed;
-//   left: 0;
-//   top: 60px;
-//   background-color: var(--main-bg-cl);
-//   z-index: 50;
-//   width: 100%;
-//   height: 100%;
-// }
 
 .mobMenu {
   width: 100vw;
@@ -80,7 +67,8 @@
 .authTabMenu {
   display: none;
   @include mq(tablet) {
-    display: block;
+    display: flex;
+    gap: 12px;
   }
   @include mq(desktop) {
     display: none;
@@ -91,6 +79,7 @@
   display: none;
   @include mq(desktop) {
     display: flex;
+    gap: 12px;
     align-items: center;
   }
 }

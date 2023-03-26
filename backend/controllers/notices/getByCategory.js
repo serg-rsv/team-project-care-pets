@@ -8,10 +8,18 @@ const getByCategory = asyncHandler(async (req, res) => {
   const { page = 1, limit = 12 } = req.query;
   const skip = (page - 1) * limit;
 
-  const notices = await Notice.find({ category }, '-createdAt -updatedAt', {
-    skip,
-    limit,
-  }).populate('owner', 'email phone');
+  const notices = await Notice.find(
+    { category },
+    '-createdAt -updatedAt'
+    // , {
+    // skip,
+    // limit,
+    // }
+  )
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
+    .populate('owner', 'email phone');
 
   if (!notices) {
     throw RequestError(404, 'Not found');

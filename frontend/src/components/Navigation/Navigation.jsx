@@ -6,6 +6,7 @@ import Button from '../Button';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/selectors';
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
 
 const Navigation = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,6 +41,7 @@ const Navigation = () => {
           ) : (
             <AuthNav closeModal={onBurgerClick} />
           )}
+          <LanguageSwitcher />
           <Nav closeModal={onBurgerClick} />
         </div>
       )}
@@ -51,12 +53,14 @@ const Navigation = () => {
       ) : (
         <div className={s.authTabMenu}>
           {isAuthorized ? <UserNav /> : <AuthNav />}
+          <LanguageSwitcher />
         </div>
       )}
 
       <div className={s.deskMenu}>
         <Nav />
         {isAuthorized ? <UserNav /> : <AuthNav />}
+        <LanguageSwitcher />
       </div>
     </div>
   );

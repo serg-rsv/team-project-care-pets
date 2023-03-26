@@ -1,0 +1,57 @@
+@import '../../scss/utils/mixins';
+@import '../../scss/utils/variables';
+
+.container {
+  position: relative;
+  width: fit-content;
+  padding-top: 16px;
+  margin-right: auto;
+  margin-left: auto;
+  & button {
+    padding: 8px 28px;
+  }
+  @include mq(tablet) {
+    padding-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  // @include mq(desktop) {
+  //   display: flex;
+  //   align-items: center;
+  //   padding-top: 30px;
+  // }
+}
+
+.list {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  background-color: #fff;
+  border: 2px solid var(--accent-cl);
+  border-radius: var(--border-radius);
+  box-shadow: var(--main-shadow);
+  overflow: hidden;
+  width: max-content;
+
+  & li {
+    display: flex;
+    gap: 8px;
+    padding: 8px 28px;
+
+    &:hover,
+    &:focus {
+      color: var(--white-text-cl);
+      background-color: var(--accent-cl);
+    }
+
+    & img {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+}
+
+.selected {
+  color: var(--accent-cl-active);
+}

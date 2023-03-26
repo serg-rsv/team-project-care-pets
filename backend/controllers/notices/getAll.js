@@ -23,13 +23,25 @@ const getAll = asyncHandler(async (req, res) => {
             location: { $regex: new RegExp(location, 'i') },
             name: { $regex: new RegExp(name, 'i') },
           },
-          '-createdAt -updatedAt',
-          { skip, limit }
-        ).populate('owner', 'email phone')
-      : await Notice.find({}, '-createdAt -updatedAt', {
-          skip,
-          limit,
-        }).populate('owner', 'email phone');
+          '-createdAt -updatedAt'
+          // { skip, limit }
+        )
+          .sort({ createdAt: -1 })
+          .skip(skip)
+          .limit(limit)
+          .populate('owner', 'email phone')
+      : await Notice.find(
+          {},
+          '-createdAt -updatedAt'
+          //   , {
+          //     skip,
+          //     limit,
+          // }
+        )
+          .sort({ createdAt: -1 })
+          .skip(skip)
+          .limit(limit)
+          .populate('owner', 'email phone');
 
   if (!notices) {
     throw RequestError(404, 'Not found');

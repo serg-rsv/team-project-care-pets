@@ -3,12 +3,12 @@
 .content {
   position: relative;
   padding-top: 16px;
+  display: flex;
   @include mq(tablet) {
     padding-bottom: 0;
     padding-top: 20px;
   }
   @include mq(desktop) {
-    display: flex;
     align-items: center;
     padding-top: 30px;
   }

@@ -7,7 +7,7 @@
     margin-top: 46px;
 
     @include mq(tablet) {
-      position: absolute;
+      // position: absolute;
       top: 16px;
       right: 102px;
       margin-top: 0;
@@ -30,9 +30,10 @@
         color: #fff;
       }
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: var(--accent-cl);
-        color: #fff; 
+        color: #fff;
       }
     }
 

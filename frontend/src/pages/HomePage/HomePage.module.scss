@@ -2,7 +2,7 @@
 
 .homePage {
   padding-top: 42px;
-  height: calc(100vh - 46px);
+  height: calc(100vh - 125px);
 
   width: 100vw;
   &::-webkit-scrollbar {
@@ -10,7 +10,7 @@
     background: transparent;
     overflow-y: hidden;
   }
-  background-image: 
+  background-image:
   // url('../../images/home/mobile/home-img-x2-mob.png'),
     url('../../images/home/home.svg');
   background-repeat: no-repeat;
@@ -19,9 +19,9 @@
 
   @include mq(tablet) {
     padding-top: 95px;
-    height: calc(100vh - 54px);
+    height: calc(100vh - 60px);
 
-    background-image: 
+    background-image:
     // url('../../images/home/tablet/home-img-x2-tab.png'),
       url('../../images/home/home.svg');
     background-size: 190%;
@@ -29,8 +29,8 @@
   }
 
   @include mq(desktop) {
-    height: calc(100vh - 64px);
-    background-image: 
+    height: calc(100vh - 78px);
+    background-image:
     // url('../../images/home/desktop/home-img-x2-desc.png'),
       url('../../images/home/home-desc.svg');
     background-size: cover;

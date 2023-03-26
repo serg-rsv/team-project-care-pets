@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import css from './modalAddNotice.module.scss';
 import * as Yup from 'yup';
@@ -12,6 +13,7 @@ import Location from '../Location';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 // import e from 'cors';
+import { setNotices } from '../../redux/noticesSlice';
 
 const ModalAddNotice = ({ closeButton }) => {
   const [createNotice, { isLoading }] = useCreateNoticeMutation();
@@ -19,6 +21,7 @@ const ModalAddNotice = ({ closeButton }) => {
   const [imagePreview, setImagePreview] = useState(null);
   const [disableNextButton, setDisableNextButton] = useState(true);
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   const categorySetByDefault = () => {
     const enterPoint = pathname.split('/').pop();
@@ -107,6 +110,7 @@ const ModalAddNotice = ({ closeButton }) => {
         .max(120, 'Максимум 120 символів'),
     }),
     onSubmit: async () => {
+      dispatch(setNotices([]));
       await createNotice(formDataAppender(formik.values))
         .unwrap()
         .then(() => {
