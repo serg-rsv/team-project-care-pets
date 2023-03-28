@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Select from 'react-select';
 import styles from './Location.module.scss';
 import regions from '../../assets/Ukraine-UA/allStates.lite.json';
-import { useEffect } from 'react';
 
 const Location = ({ setLocationInfo, isLocation }) => {
   const [isRegionChosen, setIsRegionChosen] = useState(false);

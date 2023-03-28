@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import SearchForm from '../../components/SearchForm';
 import { toast } from 'react-toastify';
 import { Loader } from '../../components/Loader/Loader';
+
 const NewsPage = () => {
   const [searchValue, setSearchValue] = useState('');
   const { currentData, isFetching } = useGetNewsQuery();

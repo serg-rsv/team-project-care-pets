@@ -68,7 +68,7 @@ const ModalNotice = ({
         </div>
       </div>
       <div className={s.comments}>
-        <dd className={s.listItemLabel}> Коментарі: </dd>
+        <dd className={s.listItemLabel}>Коментарі:</dd>
         <dt className={s.listText}>{comments}</dt>
       </div>
     </div>

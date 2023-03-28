@@ -11,7 +11,6 @@ import { getAge } from '../../../helpers/getAge';
 import { useModal } from '../../../hooks/useModal';
 import Modal from '../../Modal/Modal';
 import Button from '../../Button';
-// import ModalNotAuthorized from '../../ModalNotAuthorized';
 
 const NoticesCategoriesList = ({ pets, isActive }) => {
   const navigate = useNavigate();
@@ -68,7 +67,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
         <Modal marker="addpet" closeButton={true}>
           <div className={s.wrapper}>
             <h3>Ви не авторизовані!</h3>
-            <p> Увійдіть або зареєструйтесь!</p>
+            <p>Увійдіть або зареєструйтесь!</p>
             <div className={s.buttonsWrapper}>
               <Button
                 onClick={() => {

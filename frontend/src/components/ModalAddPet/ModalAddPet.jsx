@@ -7,6 +7,7 @@ import { formDataAppender } from '../../helpers/formDataAppender';
 import * as Yup from 'yup';
 import { useCreatePetMutation } from '../../redux/services/petsSlice';
 import { toast } from 'react-toastify';
+
 const ModalAddPet = ({ onCancelButtonClick }) => {
   const [createPet, { isLoading }] = useCreatePetMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);

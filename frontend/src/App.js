@@ -1,11 +1,6 @@
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import PrivateRoute from './components/Routes/PrivateRoute';
-import PublicRoute from './components/Routes/PublicRoute';
-import { Loader } from './components/Loader/Loader';
-import toastOptions from './helpers/toastOptions';
+import { ToastContainer } from 'react-toastify';
 import {
   SharedLayout,
   HomePage,
@@ -22,6 +17,11 @@ import {
   UserPage,
   NotFound,
 } from './helpers/lazyRoutes';
+import PrivateRoute from './components/Routes/PrivateRoute';
+import PublicRoute from './components/Routes/PublicRoute';
+import { Loader } from './components/Loader/Loader';
+import toastOptions from './helpers/toastOptions';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

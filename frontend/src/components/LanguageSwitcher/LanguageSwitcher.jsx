@@ -1,21 +1,31 @@
 import { useState, useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { selectLanguage } from '../../redux/selectors';
+import { setLanguage } from '../../redux/languageSlice';
 import s from './LanguageSwitcher.module.scss';
 
-const languages = [
-  { code: 'EN', name: 'English', flag: 'gb' },
-  { code: 'UA', name: 'Українська', flag: 'ua' },
+const LANGUAGES = [
+  { code: 'en', name: 'English', flag: 'gb' },
+  { code: 'ua', name: 'Українська', flag: 'ua' },
 ];
 
 const LanguageSwitcher = () => {
-  const [language, setLanguage] = useState(languages[0]);
+  const dispatch = useDispatch();
+  const currentLanguage = useSelector(selectLanguage);
+  const [language, setSwitcherLanguage] = useState(
+    LANGUAGES.find(l => l.code === currentLanguage)
+  );
   const [isListOpen, setIsListOpen] = useState(false);
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    setSwitcherLanguage(LANGUAGES.find(l => l.code === currentLanguage));
+  }, [currentLanguage]);
 
   const handleClickOutside = event => {
     if (!containerRef?.current.contains(event.target)) {
       setIsListOpen(false);
-      console.log('CLICK');
     }
   };
 
@@ -34,16 +44,19 @@ const LanguageSwitcher = () => {
   };
 
   const handleLanguageSelect = l => {
-    setLanguage(l);
+    setSwitcherLanguage(l);
+    dispatch(setLanguage(l.code));
     setIsListOpen(false);
   };
 
   return (
     <div className={s.container} ref={containerRef}>
-      <button onClick={toggleList}>{language.code}</button>
+      <button onClick={toggleList}>
+        {language?.code?.toLocaleUpperCase()}
+      </button>
       {isListOpen && (
         <ul className={s.list}>
-          {languages.map(l => (
+          {LANGUAGES.map(l => (
             <li
               key={l.code}
               className={l.code === language.code ? s.selected : ''}
