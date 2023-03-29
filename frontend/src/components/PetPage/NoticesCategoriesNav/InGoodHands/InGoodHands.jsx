@@ -1,13 +1,12 @@
-import Scroll from 'react-scroll';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setNotices } from '../../../../redux/noticesSlice';
-import { selectIsLoadMore, selectNotices } from '../../../../redux/selectors';
+import Scroll from 'react-scroll';
 
+import { selectIsLoadMore, selectNotices } from '../../../../redux/selectors';
+import { setNotices } from '../../../../redux/noticesSlice';
 import { useGetNoticesByCategoryQuery } from '../../../../redux/services/noticesSlice';
 import { useCurrentQuery } from '../../../../redux/services/usersSlice';
 import { markFavoriteNotice } from '../../../../helpers/markFavoriteNotice';
-
 import NoticesCategoriesList from '../../NoticesCategoriesList';
 import LoadMore from '../../../LoadMore';
 import { Loader } from '../../../Loader/Loader';
@@ -17,9 +16,7 @@ const InGoodHands = () => {
   const dispatch = useDispatch();
   const pets = useSelector(selectNotices);
   const isLoadMore = useSelector(selectIsLoadMore);
-
   const scroll = Scroll.animateScroll;
-
   const isActiveDelete = false;
   const { data: noticesCategory, isFetching } = useGetNoticesByCategoryQuery({
     category: 'for-free',
@@ -27,7 +24,6 @@ const InGoodHands = () => {
     limit: 4,
   });
   const { data: user } = useCurrentQuery();
-
   const markedNotices = markFavoriteNotice(
     noticesCategory?.data,
     user?.user?.favorites

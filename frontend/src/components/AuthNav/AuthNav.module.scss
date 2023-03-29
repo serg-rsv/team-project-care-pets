@@ -7,9 +7,6 @@
     margin-top: 46px;
 
     @include mq(tablet) {
-      // position: absolute;
-      top: 16px;
-      right: 102px;
       margin-top: 0;
     }
     @include mq(desktop) {
@@ -24,6 +21,8 @@
       background-color: #fff;
       border: 2px solid var(--accent-cl);
       border-radius: 40px;
+      font-size: 16px;
+      line-height: 22px;
 
       &.active {
         background-color: var(--accent-cl);
@@ -42,14 +41,3 @@
     }
   }
 }
-
-// .authBtn {
-//   & a {
-
-//   }
-// &:hover,
-// &:focus {
-//   background-color: var(--accent-cl);
-//   color: #fff;
-// }
-// }

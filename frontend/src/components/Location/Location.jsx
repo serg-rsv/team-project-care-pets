@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Select from 'react-select';
+
 import styles from './Location.module.scss';
 import regions from '../../assets/Ukraine-UA/allStates.lite.json';
 

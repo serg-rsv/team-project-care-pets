@@ -35,27 +35,21 @@ nav {
 
   @include mq(desktop) {
     flex-direction: row;
-    position: absolute;
-    top: 30px;
-    left: 190px;
   }
 }
 
-
-
 .navList__item {
-  &:not(:last-child) {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 
-    @include mq(tablet) {
-      margin-bottom: 60px;
-    }
-
-    @include mq(desktop) {
-      margin-bottom: 0;
-      margin-right: 80px;
-    }
+  @include mq(tablet) {
+    margin-bottom: 60px;
   }
+
+  @include mq(desktop) {
+    margin-bottom: 0;
+    margin-right: 80px;
+  }
+
   &:hover > a,
   &:focus > a {
     color: var(--accent-cl);

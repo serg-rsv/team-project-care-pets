@@ -1,27 +1,30 @@
-// import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import s from './NoticesCategoriesList.module.scss';
+import { useTranslation } from 'react-i18next';
+
+import { selectIsLoggedIn, selectLanguage } from '../../../redux/selectors';
 import NoticeCategoryItem from '../NoticeCategoryItem';
 import AddNoticeButton from '../AddNoticeButton';
-import ModalAddNotice from '../../ModalAddNotice';
-import { selectIsLoggedIn } from '../../../redux/selectors';
 import { getAge } from '../../../helpers/getAge';
 import { useModal } from '../../../hooks/useModal';
+import ModalAddNotice from '../../ModalAddNotice';
 import Modal from '../../Modal/Modal';
 import Button from '../../Button';
+import s from './NoticesCategoriesList.module.scss';
 
 const NoticesCategoriesList = ({ pets, isActive }) => {
+  const { t } = useTranslation('common');
+  const currentLanguage = useSelector(selectLanguage);
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { openModal, closeModal } = useModal();
-
   const [, setFilter] = useState({});
 
   const createAds = async filter => {
     await setFilter(filter);
   };
+
   return (
     <div className={s.box}>
       <ul className={s.animalList}>
@@ -44,7 +47,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
               title={title}
               breed={breed}
               place={location}
-              age={getAge(birthday)}
+              age={getAge(birthday, currentLanguage)}
               price={`${price}₴`}
               page={category}
               isActive={isActive}
@@ -66,8 +69,8 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
       ) : (
         <Modal marker="addpet" closeButton={true}>
           <div className={s.wrapper}>
-            <h3>Ви не авторизовані!</h3>
-            <p>Увійдіть або зареєструйтесь!</p>
+            <h3>{t('NoticesCategoriesList.notLoggedIn')}</h3>
+            <p>{t('NoticesCategoriesList.loginOrRegister')}</p>
             <div className={s.buttonsWrapper}>
               <Button
                 onClick={() => {
@@ -75,7 +78,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
                   closeModal();
                 }}
               >
-                Вхід
+                {t('NoticesCategoriesList.login')}
               </Button>
               <Button
                 onClick={() => {
@@ -83,7 +86,7 @@ const NoticesCategoriesList = ({ pets, isActive }) => {
                   closeModal();
                 }}
               >
-                Реєстрація
+                {t('NoticesCategoriesList.register')}
               </Button>
             </div>
           </div>

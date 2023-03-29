@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import s from './NewsCard.module.scss';
 
 const NewsCard = ({ obj }) => {
+  const { t } = useTranslation('common');
   const { title, url, description, date = 'dd-mm-yy' } = obj;
 
   return (
@@ -17,7 +20,7 @@ const NewsCard = ({ obj }) => {
           {date?.split('T').shift().split('-').join('/')}
         </span>
         <a href={url} target="_blanc" className={s.metaLink}>
-          Читати більше
+          {t('NewsCard.readMore')}
         </a>
       </p>
     </div>

@@ -1,25 +1,25 @@
-import s from './NewsPage.module.scss';
-// import newsData from '../../hardcodeData/news.json';
-import NewsCard from '../../components/NewsCard';
-import { useState } from 'react';
-import { useGetNewsQuery } from '../../redux/services/newsSlice';
-import { useEffect } from 'react';
-import SearchForm from '../../components/SearchForm';
+import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+
+import { useGetNewsQuery } from '../../redux/services/newsSlice';
+import SearchForm from '../../components/SearchForm';
+import NewsCard from '../../components/NewsCard';
 import { Loader } from '../../components/Loader/Loader';
+import s from './NewsPage.module.scss';
 
 const NewsPage = () => {
+  const { t } = useTranslation('common');
   const [searchValue, setSearchValue] = useState('');
   const { currentData, isFetching } = useGetNewsQuery();
   const { data } = useGetNewsQuery(searchValue);
   const [news, setNews] = useState([]);
+
   useEffect(() => {
     if (data?.length !== 0) {
       setNews(data);
     } else {
-      toast.info(
-        'На жаль, за вашим запитом нічого не знайдено, спробуйте ввести інше значення.'
-      );
+      toast.info(t('NewsPage.noResults'));
       setNews(currentData);
     }
   }, [data]);
@@ -27,7 +27,7 @@ const NewsPage = () => {
   return (
     <section className="container">
       <div className={s.newsContent}>
-        <h2 className={s.pageTitle}>Новини</h2>
+        <h2 className={s.pageTitle}>{t('NewsPage.news')}</h2>
         <SearchForm searchQuery={setSearchValue} />
         {isFetching && <Loader />}
         <ul className={s.newsList}>

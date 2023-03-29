@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import s from './UserNav.module.scss';
 
 const UserNav = ({ closeModal }) => {
+  const { t } = useTranslation('common');
+
   return (
     <div className={s.userNav}>
       <NavLink to="/user" className={s.userNav__btn} onClick={closeModal}>
@@ -18,7 +22,7 @@ const UserNav = ({ closeModal }) => {
             fill="white"
           />
         </svg>
-        Акаунт
+        {t('UserNav.account')}
       </NavLink>
     </div>
   );

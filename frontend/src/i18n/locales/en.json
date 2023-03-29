@@ -1,0 +1,236 @@
+{
+  "HomePage": {
+    "title": "Take care of your furry friends"
+  },
+  "AuthNav": {
+    "login": "Log in",
+    "register": "Registration"
+  },
+  "LoadMore": {
+    "loadMore": "Load More"
+  },
+  "LoginForm": {
+    "emailError": "Email contains errors",
+    "fieldCannotBeEmpty": "This field cannot be empty",
+    "passwordMinimumCharacters": "Password must contain at least 7 characters",
+    "passwordMaximumCharacters": "Password can contain a maximum of 32 characters",
+    "invalidEmailOrPassword": "Invalid email or password",
+    "login": "Log in",
+    "password": "Password",
+    "signIn": "Sign In",
+    "dontHaveAccount": "Don't have an account?",
+    "register": "Registration"
+  },
+  "LogOut": {
+    "logout": "Logout",
+    "confirmLogout": "Are you sure you want to logout?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "ModalAddNotice": {
+    "selectCategory": "Select category",
+    "enterTitle": "Enter title",
+    "min2Chars": "Minimum 2 characters",
+    "titleLettersSpacesOnly": "Title can only contain letters and spaces",
+    "max48Chars": "Maximum 48 characters",
+    "enterPetName": "Enter pet name",
+    "petNameLettersSpacesOnly": "Pet name can only contain letters and spaces",
+    "max16Chars": "Maximum 16 characters",
+    "selectBirthdate": "Select birthdate",
+    "birthdateInPast": "Birthdate must be in the past",
+    "enterBreed": "Enter breed",
+    "max24Chars": "Maximum 24 characters",
+    "enterLocation": "Enter location",
+    "selectGender": "Select gender",
+    "enterPrice": "Enter price",
+    "onlyNumbers": "Only numbers",
+    "enterDescription": "Enter description",
+    "min8Chars": "Minimum 8 characters",
+    "max120Chars": "Maximum 120 characters",
+    "createSuccess": "You have successfully created a notice.",
+    "createFailed": "Failed to create a notice.",
+    "newNotice": "New notice",
+    "addBasicInfo": "Add basic information about your pet",
+    "lostFound": "lost/found",
+    "goodHands": "good hands",
+    "forSale": "for sale",
+    "title": "Title",
+    "enterTitlePlaceholder": "Enter your notice title",
+    "petName": "Pet Name",
+    "enterPetNamePlaceholder": "Enter your pet name",
+    "birthdate": "Birthdate",
+    "breed": "Breed",
+    "enterBreedPlaceholder": "Enter your pet's breed",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "location": "Location",
+    "price": "Price",
+    "enterPricePlaceholder": "Enter your price",
+    "petPhoto": "Pet photo",
+    "comment": "Comment"
+  },
+  "ModalAddPet": {
+    "fieldRequired": "This field cannot be empty",
+    "lettersAndSpacesOnly": "Only letters and spaces allowed",
+    "nameMinLength": "Name should be at least 2 characters",
+    "nameMaxLength": "Name should be no more than 16 characters",
+    "breedMinLength": "Breed should be at least 2 characters",
+    "breedMaxLength": "Breed should be no more than 16 characters",
+    "commentMinLength": "Comment should be at least 8 characters",
+    "commentMaxLength": "Comment should be no more than 120 characters",
+    "successfullyAdded": "Successfully added pet {{name}}",
+    "failedToAdd": "Failed to add {{name}}",
+    "newAnimal": "New Animal",
+    "name": "Name",
+    "enterName": "Enter the name of the animal",
+    "birthDate": "Birth Date",
+    "breed": "Breed",
+    "enterBreed": "Enter the breed of the animal",
+    "addPhotoAndComments": "Add a photo and some comments",
+    "comments": "Comments",
+    "cancel": "Cancel",
+    "next": "Next",
+    "back": "Back",
+    "add": "Add"
+  },
+  "Nav": {
+    "news": "News",
+    "findAnimal": "Find animal",
+    "ourFriends": "Our friends"
+  },
+  "NewsCard": {
+    "readMore": "Read more"
+  },
+  "AddNoticeButton": {
+    "add": "Add"
+  },
+  "ModalNotice": {
+    "name": "Name:",
+    "age": "Age:",
+    "breed": "Breed:",
+    "location": "Location:",
+    "gender": "Gender:",
+    "phone": "Phone:",
+    "price": "Price:",
+    "comments": "Comments:"
+  },
+  "NoticeCategoryItem": {
+    "contact": "Contact",
+    "removedFromFavorites": "{{title}} removed from favorites.",
+    "failedToRemoveFromFavorites": "Failed to remove {{title}} from favorites.",
+    "addedToFavorites": "{{title}} added to favorites.",
+    "failedToAddToFavorites": "Failed to add {{title}} to favorites.",
+    "loginRequired": "Login required.",
+    "removeFrom": "Remove from",
+    "addTo": "Add to",
+    "breed": "Breed:",
+    "location": "Location:",
+    "age": "Age:",
+    "price": "Price:",
+    "learnMore": "Learn More",
+    "noticeRemoved": "Notice removed.",
+    "noticeNotRemoved": "Notice not removed."
+  },
+  "NoticesCategoriesList": {
+    "notLoggedIn": "You are not logged in!",
+    "loginOrRegister": "Please log in or register!",
+    "login": "Login",
+    "register": "Register"
+  },
+  "NoticesCategoriesNav": {
+    "lostFound": "lost/found",
+    "goodHands": "good hands",
+    "forSale": "for sale",
+    "favorites": "favorites",
+    "myAds": "my ads"
+  },
+  "PetsData": {
+    "successfullyDeleted": "{{name}} successfully deleted.",
+    "deleteFailed": "Failed to delete {{name}}.",
+    "name": "Name:",
+    "birthdate": "Birthdate:",
+    "breed": "Breed:",
+    "comments": "Comments:",
+    "confirmDelete": "Are you sure you want to delete?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "PetsList": {
+    "somethingWentWrong": "Something went wrong...",
+    "loading": "Loading..."
+  },
+  "RegisterForm": {
+    "invalidEmail": "Invalid email address",
+    "requiredField": "This field cannot be empty",
+    "passwordMinLength": "Password must be at least 7 characters",
+    "passwordMaxLength": "Password cannot exceed 32 characters",
+    "passwordMismatch": "Passwords do not match",
+    "lettersOnly": "Letters only",
+    "cityFormat": "Enter in format: city, region",
+    "invalidPhoneNumber": "Invalid phone number",
+    "registrationError": "Something went wrong. Perhaps a user with that email already exists.",
+    "registration": "Registration",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name",
+    "cityRegion": "City, region",
+    "phoneNumber": "Phone number",
+    "next": "Next",
+    "register": "Register",
+    "back": "Back",
+    "haveAccount": "Do you already have an account?",
+    "login": "Log in"
+  },
+  "SearchForm": {
+    "searchFieldEmpty": "Search field cannot be empty",
+    "searchAd": "Search Ad"
+  },
+  "SponsorCard": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun",
+    "closed": "Closed",
+    "workingHours": "Working hours:",
+    "address": "Address:",
+    "phone": "Phone:"
+  },
+  "UserData": {
+    "editPhoto": "Edit photo",
+    "name": "Name:",
+    "nameRequirements": "The field must consist of letters and, if necessary, spaces. The minimum number of letters is 2.",
+    "invalidEmail": "Invalid email address",
+    "birthdate": "Birthdate:",
+    "birthdateRequirements": "The date must be in the past.",
+    "phone": "Phone:",
+    "phoneFormat": "Enter the number in the format +380*******",
+    "city": "City:",
+    "cityFormat": "Enter in the format: city, region"
+  },
+  "UserNav": {
+    "account": "Account"
+  },
+  "UserView": {
+    "aboutMe": "About me",
+    "myPets": "My pets",
+    "addPet": "Add pet"
+  },
+  "NewsPage": {
+    "noResults": "Unfortunately, nothing was found for your request. Please try another value.",
+    "news": "News"
+  },
+  "NotFound": {
+    "pageNotFound": "Page not found"
+  },
+  "NoticesPage": {
+    "noResults": "Unfortunately, nothing was found for your request. Please try another value.",
+    "findYourFavorite": "Find your favorite pet"
+  },
+  "OurFriendsPage": {
+    "ourFriends": "Our friends"
+  }
+}

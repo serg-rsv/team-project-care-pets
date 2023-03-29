@@ -1,12 +1,33 @@
-const convectorCategory = category => {
+const convectorCategory = (category, lang) => {
   if (category === 'sell') {
-    return (category = 'продається');
+    switch (lang) {
+      case 'uk':
+        return 'продається';
+      case 'en':
+        return 'for sale';
+      default:
+        break;
+    }
   }
   if (category === 'lost-found') {
-    return (category = 'знайшов/загубив');
+    switch (lang) {
+      case 'uk':
+        return 'знайшов/загубив';
+      case 'en':
+        return 'lost/found';
+      default:
+        break;
+    }
   }
   if (category === 'for-free') {
-    return (category = 'у добрі руки');
+    switch (lang) {
+      case 'uk':
+        return 'у добрі руки';
+      case 'en':
+        return 'good hands';
+      default:
+        break;
+    }
   }
 };
 

@@ -1,16 +1,18 @@
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
-import css from './authForm.module.scss';
-import * as Yup from 'yup';
-import Button from '../Button/Button';
+import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-const { useNavigate } = require('react-router-dom');
-const { useRegisterMutation } = require('../../redux/services/usersSlice');
-const { useDispatch } = require('react-redux');
-const { setToken } = require('../../redux/services/authSlice');
+import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+import { useRegisterMutation } from '../../redux/services/usersSlice';
+import { setToken } from '../../redux/services/authSlice';
+import Button from '../Button/Button';
+import css from './authForm.module.scss';
 
 const RegisterForm = () => {
+  const { t } = useTranslation('common');
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [disableNextButton, setDisableNextButton] = useState(true);
   const [register, { isLoading }] = useRegisterMutation();
@@ -37,28 +39,28 @@ const RegisterForm = () => {
 
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Неправильний поштовий адрес')
-        .required('Це поле не може бути порожнім'),
+        .email(t('RegisterForm.invalidEmail'))
+        .required(t('RegisterForm.requiredField')),
       password: Yup.string()
         .trim()
-        .required('Це поле не може бути порожнім')
-        .min(7, 'Пароль містить мінімум 7 символів')
-        .max(32, 'Пароль містить максимум 32 символи'),
+        .required(t('RegisterForm.requiredField'))
+        .min(7, t('RegisterForm.passwordMinLength'))
+        .max(32, t('RegisterForm.passwordMaxLength')),
       confirmPassword: Yup.string()
-        .required('Це поле не може бути порожнім')
-        .oneOf([Yup.ref('password'), null], 'Пароль не співпадає'),
+        .required(t('RegisterForm.requiredField'))
+        .oneOf([Yup.ref('password'), null], t('RegisterForm.passwordMismatch')),
       name: Yup.string()
-        .required('Це поле не може бути порожнім')
-        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, 'Тільки літери'),
+        .required(t('RegisterForm.requiredField'))
+        .matches(/^[а-яА-ЯїЇіІЁёa-zA-Z]+$/, t('RegisterForm.lettersOnly')),
       location: Yup.string()
-        .required('Це поле не може бути порожнім')
+        .required(t('RegisterForm.requiredField'))
         .matches(
           /[А-Яа-яЁёЇїІіЄєҐґ'a-zA-Z]{2,},? ([А-Яа-яЁёЇїІіЄєҐґ'a-zA-Z]+(?: [А-Яа-яЁёЇїІіЄєҐґ'a-zA-Z]+)*)+$/,
-          'Введіть в форматі: місто, область'
+          t('RegisterForm.cityFormat')
         ),
       phone: Yup.string()
-        .required('Це поле не може бути порожнім')
-        .matches(/^\+380\d{9}$/, 'Неправильний номер телефону'),
+        .required(t('RegisterForm.requiredField'))
+        .matches(/^\+380\d{9}$/, t('RegisterForm.invalidPhoneNumber')),
     }),
 
     onSubmit: async ({ email, password, name, phone, location }) => {
@@ -77,12 +79,11 @@ const RegisterForm = () => {
         navigate('/home');
         formik.resetForm();
       } catch (error) {
-        toast.error(
-          'Щось пішло не так. Можливо користувач з такою електронною поштою вже існує.'
-        );
+        toast.error(t('RegisterForm.registrationError'));
       }
     },
   });
+
   useEffect(() => {
     const firstStepPossibleErrors = ['email', 'password', 'confirmPassword'];
     const isValidFieldsInFirstStep = !Object.keys(formik.errors).some(error =>
@@ -92,6 +93,7 @@ const RegisterForm = () => {
       ? setDisableNextButton(false)
       : setDisableNextButton(true);
   }, [formik, disableNextButton]);
+
   const onBtnPasswordClick = () => {
     switch (inputType) {
       case 'password':
@@ -104,9 +106,10 @@ const RegisterForm = () => {
         return;
     }
   };
+
   return (
     <div className={css.formBlock}>
-      <h2 className={css.formTitle}>Реєстрація</h2>
+      <h2 className={css.formTitle}>{t('RegisterForm.registration')}</h2>
       <form className={css.registerForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ? (
           <>
@@ -134,7 +137,7 @@ const RegisterForm = () => {
               type={inputType}
               onChange={formik.handleChange}
               value={formik.values.password}
-              placeholder="Пароль"
+              placeholder={t('RegisterForm.password')}
             />
             <button
               className={css.bntLook}
@@ -165,7 +168,7 @@ const RegisterForm = () => {
               type={inputType}
               onChange={formik.handleChange}
               value={formik.values.confirmPassword}
-              placeholder="Підтвердження пароля"
+              placeholder={t('RegisterForm.confirmPassword')}
             />
             <button
               className={css.bntLookConfirm}
@@ -203,7 +206,7 @@ const RegisterForm = () => {
               type="name"
               onChange={formik.handleChange}
               value={formik.values.name}
-              placeholder="Ім'я"
+              placeholder={t('RegisterForm.firstName')}
             />
             {formik.values.name !== '' && formik.errors.name ? (
               <p className={css.inputErrorName}>{formik.errors.name}</p>
@@ -219,11 +222,8 @@ const RegisterForm = () => {
               type="location"
               onChange={formik.handleChange}
               value={formik.values.location}
-              placeholder="Місто, область"
+              placeholder={t('RegisterForm.cityRegion')}
             />
-            {/* {formik.values.location !== '' && formik.errors.location ? (
-              <p className={css.inputErrorLocation}>{formik.errors.location}</p>
-            ) : null} */}
             {formik.touched.location && formik.errors.location ? (
               <p className={css.inputErrorLocation}>{formik.errors.location}</p>
             ) : null}
@@ -235,7 +235,7 @@ const RegisterForm = () => {
               type="phone"
               onChange={formik.handleChange}
               value={formik.values.phone}
-              placeholder="Номер телефону"
+              placeholder={t('RegisterForm.phoneNumber')}
             />
             {formik.values.phone !== '' && formik.errors.phone ? (
               <p className={css.inputErrorPhone}>{formik.errors.phone}</p>
@@ -249,7 +249,7 @@ const RegisterForm = () => {
         {isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Далі"
+              children={t('RegisterForm.next')}
               onClick={moveNextRegistration}
               className={css.formBtn}
               disabled={disableNextButton}
@@ -259,13 +259,13 @@ const RegisterForm = () => {
         {!isFirstRegisterStep && (
           <div className={css.btnBlock}>
             <Button
-              children="Зареєструватися"
+              children={t('RegisterForm.register')}
               className={css.formBtn}
               buttonType="submit"
               disabled={isLoading}
             />
             <Button
-              children="Назад"
+              children={t('RegisterForm.back')}
               className={css.formBtnBck}
               onClick={moveNextRegistration}
               disabled={isLoading}
@@ -274,9 +274,9 @@ const RegisterForm = () => {
         )}
       </form>
       <p className={css.linkToPage}>
-        Ви вже маєте акаунт?{' '}
+        {t('RegisterForm.haveAccount')}{' '}
         <Link className={css.link} to="/login">
-          Увійти
+          {t('RegisterForm.login')}
         </Link>
       </p>
     </div>

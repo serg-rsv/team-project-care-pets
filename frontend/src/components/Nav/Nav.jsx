@@ -1,10 +1,14 @@
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
 import { setNotices } from '../../redux/noticesSlice';
 import s from './Nav.module.scss';
 
 const Nav = ({ closeModal }) => {
+  const { t } = useTranslation('common');
   const dispatch = useDispatch();
+
   return (
     <nav>
       <ul className={s.navList}>
@@ -14,7 +18,7 @@ const Nav = ({ closeModal }) => {
             className={({ isActive }) => (isActive ? s.active : undefined)}
             onClick={closeModal}
           >
-            Новини
+            {t('Nav.news')}
           </NavLink>
         </li>
         <li className={s.navList__item}>
@@ -26,7 +30,7 @@ const Nav = ({ closeModal }) => {
               dispatch(setNotices([]));
             }}
           >
-            Знайти тварину
+            {t('Nav.findAnimal')}
           </NavLink>
         </li>
         <li className={s.navList__item}>
@@ -35,7 +39,7 @@ const Nav = ({ closeModal }) => {
             className={({ isActive }) => (isActive ? s.active : undefined)}
             onClick={closeModal}
           >
-            Наші друзі
+            {t('Nav.ourFriends')}
           </NavLink>
         </li>
       </ul>

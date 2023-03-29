@@ -13,7 +13,6 @@
     width: 500px;
   }
   @include mq(desktop) {
-    margin-left: 177px;
     margin-right: 0px;
   }
 }
@@ -23,7 +22,6 @@
   margin-bottom: 12px;
   @include mq(tablet) {
     margin-bottom: 16px;
-    // flex-basis: calc((100% - 12px) / 3);
   }
   @include mq(desktop) {
     margin-bottom: 12px;
@@ -61,16 +59,8 @@
   }
 }
 
-.sell {
-  @include mq(desktop) {
-    position: absolute;
-    left: -192px;
-  }
-}
-
 .carrentColor {
   pointer-events: none;
   color: var(--white-text-cl);
   background-color: var(--accent-cl);
-  //   border: 0;
 }

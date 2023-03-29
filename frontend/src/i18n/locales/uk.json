@@ -1,0 +1,236 @@
+{
+  "HomePage": {
+    "title": "Піклуйтеся про своїх пухнастих друзів"
+  },
+  "AuthNav": {
+    "login": "Вхід",
+    "register": "Реєстрація"
+  },
+  "LoadMore": {
+    "loadMore": "Завантажити ще"
+  },
+  "LoginForm": {
+    "emailError": "Email містить помилки",
+    "fieldCannotBeEmpty": "Це поле не може бути порожнім",
+    "passwordMinimumCharacters": "Пароль містить мінімум 7 символів",
+    "passwordMaximumCharacters": "Пароль містить максимум 32 символи",
+    "invalidEmailOrPassword": "Невірна електронна пошта або пароль",
+    "login": "Вхід",
+    "password": "Пароль",
+    "signIn": "Увійти",
+    "dontHaveAccount": "Ще не маєте акаунту?",
+    "register": "Зареєструватися"
+  },
+  "LogOut": {
+    "logout": "Вийти",
+    "confirmLogout": "Ви дійсно бажаєте вийти?",
+    "yes": "Так",
+    "no": "Ні"
+  },
+  "ModalAddNotice": {
+    "selectCategory": "Оберіть категорію",
+    "enterTitle": "Введіть заголовок",
+    "min2Chars": "Мінімум 2 символи",
+    "titleLettersSpacesOnly": "Заголовок містить лише літери і пробіли",
+    "max48Chars": "Максимум 48 символів",
+    "enterPetName": "Введіть ім'я тварини",
+    "petNameLettersSpacesOnly": "Ім’я містить лише літери і пробіли",
+    "max16Chars": "Максимум 16 символів",
+    "selectBirthdate": "Оберіть дату народження",
+    "birthdateInPast": "Дата має бути в минулому",
+    "enterBreed": "Введіть породу",
+    "max24Chars": "Максимум 24 символи",
+    "enterLocation": "Введіть місце знаходження",
+    "selectGender": "Оберіть стать",
+    "enterPrice": "Введіть ціну",
+    "onlyNumbers": "Тільки цифри",
+    "enterDescription": "Введіть опис",
+    "min8Chars": "Мінімум 8 символів",
+    "max120Chars": "Максимум 120 символів",
+    "createSuccess": "Ви успішно створили оголошення.",
+    "createFailed": "Не вдалось створити оголошення.",
+    "newNotice": "Нове оголошення",
+    "addBasicInfo": "Додайте базову інвормацію про тваринку",
+    "lostFound": "загубив/знайшов",
+    "goodHands": "у добрі руки",
+    "forSale": "продаж",
+    "title": "Заголовок",
+    "enterTitlePlaceholder": "Введіть заголовок оголошення",
+    "petName": "Ім'я тварини",
+    "enterPetNamePlaceholder": "Введіть ім'я тварини",
+    "birthdate": "Дата народження",
+    "breed": "Порода",
+    "enterBreedPlaceholder": "Введіть породу тварини",
+    "gender": "Стать",
+    "male": "чоловіча",
+    "female": "жіноча",
+    "location": "Місто, Область",
+    "price": "Ціна",
+    "enterPricePlaceholder": "Введіть ціну",
+    "petPhoto": "Фото тварини",
+    "comment": "Коментар"
+  },
+  "ModalAddPet": {
+    "fieldRequired": "Це поле не може бути порожнім",
+    "lettersAndSpacesOnly": "Тільки літери та пробіли",
+    "nameMinLength": "Ім'я містить мінімум 2 символи",
+    "nameMaxLength": "Ім'я містить максимум 16 символів",
+    "breedMinLength": "Порода містить мінімум 2 символи",
+    "breedMaxLength": "Порода містить максимум 16 символів",
+    "commentMinLength": "Коментар містить мінімум 8 символів",
+    "commentMaxLength": "Коментар містить максимум 120 символів",
+    "successfullyAdded": "Домашнього улюбленця {{name}} успішно додано",
+    "failedToAdd": "Не вдалось додати {{name}}",
+    "newAnimal": "Нова тварина",
+    "name": "Ім'я",
+    "enterName": "Введіть ім'я тварини",
+    "birthDate": "Дата народження",
+    "breed": "Порода",
+    "enterBreed": "Введіть породу тварини",
+    "addPhotoAndComments": "Додайте фото та декілька коментарів",
+    "comments": "Коментарі",
+    "cancel": "Скасувати",
+    "next": "Далі",
+    "back": "Назад",
+    "add": "Додати"
+  },
+  "Nav": {
+    "news": "Новини",
+    "findAnimal": "Знайти тварину",
+    "ourFriends": "Наші друзі"
+  },
+  "NewsCard": {
+    "readMore": "Дізнатись більше"
+  },
+  "AddNoticeButton": {
+    "add": "Додати"
+  },
+  "ModalNotice": {
+    "name": "Ім'я:",
+    "age": "Вік:",
+    "breed": "Порода:",
+    "location": "Місце:",
+    "gender": "Стать:",
+    "phone": "Телефон:",
+    "price": "Ціна:",
+    "comments": "Коментарі:"
+  },
+  "NoticeCategoryItem": {
+    "contact": "Контакт",
+    "removedFromFavorites": "{{title}} видалено зі списку обраних.",
+    "failedToRemoveFromFavorites": "Не вдалось видалити {{title}} зі списку обраних.",
+    "addedToFavorites": "{{title}} додано до списку обраних.",
+    "failedToAddToFavorites": "Не вдалось додати {{title}} до списку обраних.",
+    "loginRequired": "Необхідно авторизуватися.",
+    "removeFrom": "Видалити з",
+    "addTo": "Додати до",
+    "breed": "Порода:",
+    "location": "Місце:",
+    "age": "Вік:",
+    "price": "Ціна:",
+    "learnMore": "Дізнатися більше",
+    "noticeRemoved": "Оголошення видалено.",
+    "noticeNotRemoved": "Оголошення не видалено."
+  },
+  "NoticesCategoriesList": {
+    "notLoggedIn": "Ви не авторизовані!",
+    "loginOrRegister": "Увійдіть або зареєструйтесь!",
+    "login": "Вхід",
+    "register": "Реєстрація"
+  },
+  "NoticesCategoriesNav": {
+    "lostFound": "знайшов/загубив",
+    "goodHands": "у добрі руки",
+    "forSale": "продається",
+    "favorites": "улюблені",
+    "myAds": "мої оголошення"
+  },
+  "PetsData": {
+    "successfullyDeleted": "{{name}} успішно видалено.",
+    "deleteFailed": "{{name}} не вдалось видалити.",
+    "name": "Ім'я:",
+    "birthdate": "Дата народження:",
+    "breed": "Порода:",
+    "comments": "Коментарі:",
+    "confirmDelete": "Ви дійсно бажаєте видалити?",
+    "yes": "Так",
+    "no": "Ні"
+  },
+  "PetsList": {
+    "somethingWentWrong": "Щось пішло не так...",
+    "loading": "Завантаження..."
+  },
+  "RegisterForm": {
+    "invalidEmail": "Неправильний поштовий адрес",
+    "requiredField": "Це поле не може бути порожнім",
+    "passwordMinLength": "Пароль містить мінімум 7 символів",
+    "passwordMaxLength": "Пароль містить максимум 32 символи",
+    "passwordMismatch": "Пароль не співпадає",
+    "lettersOnly": "Тільки літери",
+    "cityFormat": "Введіть в форматі: місто, область",
+    "invalidPhoneNumber": "Неправильний номер телефону",
+    "registrationError": "Щось пішло не так. Можливо користувач з такою електронною поштою вже існує.",
+    "registration": "Реєстрація",
+    "password": "Пароль",
+    "confirmPassword": "Підтвердження пароля",
+    "firstName": "Ім'я",
+    "cityRegion": "Місто, область",
+    "phoneNumber": "Номер телефону",
+    "next": "Далі",
+    "register": "Зареєструватися",
+    "back": "Назад",
+    "haveAccount": "У вас вже є обліковий запис?",
+    "login": "Увійти"
+  },
+  "SearchForm": {
+    "searchFieldEmpty": "Поле пошуку не може бути порожнім",
+    "searchAd": "Пошук оголошення"
+  },
+  "SponsorCard": {
+    "mon": "пн",
+    "tue": "вт",
+    "wed": "ср",
+    "thu": "чт",
+    "fri": "пт",
+    "sat": "сб",
+    "sun": "нд",
+    "closed": "Зачинено",
+    "workingHours": "Графік роботи:",
+    "address": "Адреса:",
+    "phone": "Телефон:"
+  },
+  "UserData": {
+    "editPhoto": "Редагувати фото",
+    "name": "Ім'я:",
+    "nameRequirements": "Поле має складатись лише з літер та, за необхідністю, пробілу, мінімальна кількість літер 2",
+    "invalidEmail": "Неправильний поштовий адрес",
+    "birthdate": "Дата народження:",
+    "birthdateRequirements": "Дата має бути в минулому",
+    "phone": "Телефон:",
+    "phoneFormat": "Введіть номер у форматі +380*******",
+    "city": "Місто:",
+    "cityFormat": "Введіть в форматі: місто, область"
+  },
+  "UserNav": {
+    "account": "Акаунт"
+  },
+  "UserView": {
+    "aboutMe": "Інформація про мене",
+    "myPets": "Мої тварини",
+    "addPet": "Додати тварину"
+  },
+  "NewsPage": {
+    "noResults": "На жаль, за вашим запитом нічого не знайдено, спробуйте ввести інше значення.",
+    "news": "Новини"
+  },
+  "NotFound": {
+    "pageNotFound": "Сторінку не знайдено"
+  },
+  "NoticesPage": {
+    "noResults": "На жаль, за вашим запитом нічого не знайдено, спробуйте ввести інше значення.",
+    "findYourFavorite": "Знайдіть свого улюбленця"
+  },
+  "OurFriendsPage": {
+    "ourFriends": "Наші друзі"
+  }
+}

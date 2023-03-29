@@ -1,4 +1,6 @@
 // import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+
 import s from './ModalNotice.module.scss';
 
 const ModalNotice = ({
@@ -15,7 +17,9 @@ const ModalNotice = ({
   phone,
   price,
 }) => {
+  const { t } = useTranslation('common');
   const checkCategory = category === 'sell';
+
   return (
     <div>
       <div className={s.boxData}>
@@ -31,23 +35,23 @@ const ModalNotice = ({
           <h1 className={s.title}>{title}</h1>
           <ul className={s.listParams}>
             <li className={s.listItem}>
-              <dd className={s.listItemLabel}>Ім'я:</dd>
+              <dd className={s.listItemLabel}>{t('ModalNotice.name')}</dd>
               <dt className={s.listText}>{name}</dt>
             </li>
             <li className={s.listItem}>
-              <dd className={s.listItemLabel}>Вік:</dd>
+              <dd className={s.listItemLabel}>{t('ModalNotice.age')}</dd>
               <dt className={s.listText}>{birthday}</dt>
             </li>
             <li className={s.listItem}>
-              <dd className={s.listItemLabel}>Порода:</dd>
+              <dd className={s.listItemLabel}>{t('ModalNotice.breed')}</dd>
               <dt className={s.listText}>{breed}</dt>
             </li>
             <li className={s.listItem}>
-              <dd className={s.listItemLabel}>Місце:</dd>
+              <dd className={s.listItemLabel}>{t('ModalNotice.location')}</dd>
               <dt className={s.listText}>{location}</dt>
             </li>
             <li className={s.listItem}>
-              <dd className={s.listItemLabel}>Стать:</dd>
+              <dd className={s.listItemLabel}>{t('ModalNotice.gender')}</dd>
               <dt className={s.listText}>{sex}</dt>
             </li>
             <li className={s.listItem}>
@@ -55,12 +59,12 @@ const ModalNotice = ({
               <dt className={s.listText}>{email}</dt>
             </li>
             <li className={s.listItem}>
-              <dd className={s.listItemLabel}>Телефон:</dd>
+              <dd className={s.listItemLabel}>{t('ModalNotice.phone')}</dd>
               <dt className={s.listText}>{phone}</dt>
             </li>
             {checkCategory && (
               <li className={s.listItem}>
-                <dd className={s.listItemLabel}>Ціна:</dd>
+                <dd className={s.listItemLabel}>{t('ModalNotice.price')}</dd>
                 <dt className={s.listText}>{`${price}₴`}</dt>
               </li>
             )}
@@ -68,7 +72,7 @@ const ModalNotice = ({
         </div>
       </div>
       <div className={s.comments}>
-        <dd className={s.listItemLabel}>Коментарі:</dd>
+        <dd className={s.listItemLabel}>{t('ModalNotice.comments')}</dd>
         <dt className={s.listText}>{comments}</dt>
       </div>
     </div>

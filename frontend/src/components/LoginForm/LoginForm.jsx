@@ -1,15 +1,18 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
-import Button from '../Button';
-import css from '../RegisterForm/authForm.module.scss';
 import * as Yup from 'yup';
+import { useTranslation } from 'react-i18next';
+
 import { useLoginMutation } from '../../redux/services/usersSlice';
 import { setToken } from '../../redux/services/authSlice';
-import { toast } from 'react-toastify';
+import Button from '../Button';
+import css from '../RegisterForm/authForm.module.scss';
 
 const LoginForm = () => {
+  const { t } = useTranslation('common');
   const dispatch = useDispatch();
   const [login, { isLoading }] = useLoginMutation();
   const [inputType, setInputType] = useState('password');
@@ -20,12 +23,12 @@ const LoginForm = () => {
     },
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Email містить помилки')
-        .required('Це поле не може бути порожнім'),
+        .email(t('LoginForm.emailError'))
+        .required(t('LoginForm.fieldCannotBeEmpty')),
       password: Yup.string()
-        .required('Це поле не може бути порожнім')
-        .min(7, 'Пароль містить мінімум 7 символів')
-        .max(32, 'Пароль містить максимум 32 символи'),
+        .required(t('LoginForm.fieldCannotBeEmpty'))
+        .min(7, t('LoginForm.passwordMinimumCharacters'))
+        .max(32, t('LoginForm.passwordMaximumCharacters')),
     }),
     onSubmit: async values => {
       try {
@@ -33,7 +36,7 @@ const LoginForm = () => {
         dispatch(setToken(response.data.token));
         formik.resetForm();
       } catch (error) {
-        toast.error('Невірна електронна пошта або пароль.');
+        toast.error(t('LoginForm.invalidEmailOrPassword'));
       }
     },
   });
@@ -52,7 +55,7 @@ const LoginForm = () => {
 
   return (
     <div className={css.formBlock}>
-      <h2 className={css.formTitle}>Вхід</h2>
+      <h2 className={css.formTitle}>{t('LoginForm.login')}</h2>
       <form className={css.loginForm} onSubmit={formik.handleSubmit}>
         <input
           className={css.formInput}
@@ -75,7 +78,7 @@ const LoginForm = () => {
           type={inputType}
           onChange={formik.handleChange}
           value={formik.values.password}
-          placeholder="Пароль"
+          placeholder={t('LoginForm.password')}
         />
         <button
           className={css.bntLookLogin}
@@ -104,13 +107,13 @@ const LoginForm = () => {
           buttonType="submit"
           disabled={isLoading}
         >
-          Увійти
+          {t('LoginForm.signIn')}
         </Button>
       </form>
       <p className={css.linkToPage}>
-        Ще не маєте акаунту?{' '}
+        {t('LoginForm.dontHaveAccount')}{' '}
         <Link className={css.link} to="/register">
-          Зареєструватися
+          {t('LoginForm.register')}
         </Link>{' '}
       </p>
     </div>

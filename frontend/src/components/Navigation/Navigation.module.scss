@@ -3,6 +3,9 @@
 .navigation {
   margin-left: auto;
   margin-right: 80px;
+  @include mq(desktop) {
+    margin-right: 0;
+  }
 }
 
 .navigation > .burgerBtn {

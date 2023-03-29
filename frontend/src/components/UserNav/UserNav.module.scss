@@ -5,9 +5,6 @@
   justify-content: center;
   padding-top: 46px;
   @include mq(tablet) {
-    position: absolute;
-    top: 15px;
-    right: 110px;
     padding-top: 0;
   }
   @include mq(desktop) {
@@ -26,8 +23,8 @@
   color: var(--white-bg);
   border-radius: 40px;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 20px;
+  line-height: 1.4;
 }
 
 .btnIcon {

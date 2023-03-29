@@ -1,35 +1,37 @@
+import { useTranslation } from 'react-i18next';
+
 import s from './SponsorCard.module.scss';
 import defaultImg from '../../images/logo/logo.png';
 
 const SponsorCard = ({ obj }) => {
+  const { t } = useTranslation('common');
   const { title, url, addressUrl, imageUrl, address, workDays, phone, email } =
     obj;
-
   const workTime = workDays
     ? workDays.reduce((acc, el, index, array) => {
         let day = '';
 
         switch (index) {
           case 0:
-            day = 'пн';
+            day = t('SponsorCard.mon');
             break;
           case 1:
-            day = 'вт';
+            day = t('SponsorCard.tue');
             break;
           case 2:
-            day = 'ср';
+            day = t('SponsorCard.wed');
             break;
           case 3:
-            day = 'чт';
+            day = t('SponsorCard.thu');
             break;
           case 4:
-            day = 'пт';
+            day = t('SponsorCard.fri');
             break;
           case 5:
-            day = 'сб';
+            day = t('SponsorCard.sat');
             break;
           case 6:
-            day = 'нд';
+            day = t('SponsorCard.sun');
             break;
 
           default:
@@ -37,7 +39,7 @@ const SponsorCard = ({ obj }) => {
         }
 
         if (!el.isOpen) {
-          acc.push({ day, time: 'Зачинено' });
+          acc.push({ day, time: t('SponsorCard.closed') });
           return acc;
         }
 
@@ -62,7 +64,7 @@ const SponsorCard = ({ obj }) => {
         <ul className={s.infoList}>
           <li className={s.infoList__item}>
             <div className={s.workTime}>
-              <p className={s.infoTitle}>Графік роботи:</p>
+              <p className={s.infoTitle}>{t('SponsorCard.workingHours')}</p>
               <p>
                 {workTime
                   ? workTime.find(day => day.time !== 'Closed').time
@@ -87,7 +89,7 @@ const SponsorCard = ({ obj }) => {
             </div>
           </li>
           <li className={s.infoList__item}>
-            <p className={s.infoTitle}>Адреса:</p>
+            <p className={s.infoTitle}>{t('SponsorCard.address')}</p>
             <p>
               {address ? (
                 <a href={addressUrl} target="_blanc" className={s.addressLink}>
@@ -111,7 +113,7 @@ const SponsorCard = ({ obj }) => {
             </p>
           </li>
           <li className={s.infoList__item}>
-            <p className={s.infoTitle}>Телефон:</p>
+            <p className={s.infoTitle}>{t('SponsorCard.phone')}</p>
             <p>
               {phone ? (
                 <a href={['tel:', phone].join('')} className={s.phoneLink}>

@@ -1,7 +1,11 @@
-import s from './AuthNav.module.scss';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
+import s from './AuthNav.module.scss';
 
 const AuthNav = ({ closeModal }) => {
+  const { t } = useTranslation('common');
+
   return (
     <div className={s.authNav}>
       <ul className={s.authNav__list}>
@@ -11,7 +15,7 @@ const AuthNav = ({ closeModal }) => {
             className={({ isActive }) => (isActive ? s.active : undefined)}
             onClick={closeModal}
           >
-            Вхід
+            {t('AuthNav.login')}
           </NavLink>
         </li>
         <li className={s.authNav__item}>
@@ -20,7 +24,7 @@ const AuthNav = ({ closeModal }) => {
             className={({ isActive }) => (isActive ? s.active : undefined)}
             onClick={closeModal}
           >
-            Реєстрація
+            {t('AuthNav.register')}
           </NavLink>
         </li>
       </ul>

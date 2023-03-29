@@ -7,7 +7,7 @@ import s from './LanguageSwitcher.module.scss';
 
 const LANGUAGES = [
   { code: 'en', name: 'English', flag: 'gb' },
-  { code: 'ua', name: 'Українська', flag: 'ua' },
+  { code: 'uk', name: 'Українська', flag: 'ua' },
 ];
 
 const LanguageSwitcher = () => {

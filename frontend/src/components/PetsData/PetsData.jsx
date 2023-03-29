@@ -1,15 +1,15 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
-import scss from './PetsData.module.scss';
-import Button from '../Button';
-// import PropTypes from 'proptypes';
 import { useDeletePetMutation } from '../../redux/services/petsSlice';
-
 import { useModal } from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
+import Button from '../Button';
+import scss from './PetsData.module.scss';
 
 const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
+  const { t } = useTranslation('common');
   const { openModal, closeModal } = useModal();
   const [deletePet, { isLoading }] = useDeletePetMutation();
 
@@ -17,13 +17,14 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
     await deletePet(id)
       .unwrap()
       .then(() => {
-        toast.success(`${name} успішно видалено.`);
+        toast.success(t('PetsData.successfullyDeleted', { name }));
       })
       .catch(() => {
-        toast.error(`${name} не вдалось видалити.`);
+        toast.error(t('PetsData.deleteFailed', { name }));
       });
     closeModal();
   };
+
   const getDate = birthday => {
     let date = new Date(birthday);
     let year = date.getFullYear();
@@ -37,6 +38,7 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
     }
     return day + '.' + month + '.' + year;
   };
+
   return (
     <div className={scss.wrapper}>
       <div className={scss.imgBox}>
@@ -44,19 +46,19 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       </div>
       <ul>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Ім'я: </dd>
-          <dt className={scss.text}>{name}</dt>
+          <dd className={scss.property}>{t('PetsData.name')}</dd>
+          <dt className={scss.text}> {name}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Дата народження: </dd>
+          <dd className={scss.property}>{t('PetsData.birthdate')}</dd>
           <dt className={scss.text}> {getDate(birthday)}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Порода: </dd>
+          <dd className={scss.property}>{t('PetsData.breed')}</dd>
           <dt className={scss.text}> {breed}</dt>
         </li>
         <li className={scss.listItem}>
-          <dd className={scss.property}>Коментарі: </dd>
+          <dd className={scss.property}>{t('PetsData.comments')}</dd>
           <dt className={scss.text}> {comments}</dt>
         </li>
       </ul>
@@ -66,33 +68,21 @@ const PetsData = ({ id, photoURL, name, birthday, breed, comments }) => {
       ></Button>
       <Modal marker={`pets${id}`}>
         <div className={scss.modalWrapper}>
-          <p className={scss.logOutModalText}>Ви дійсно бажаєте видалити?</p>
+          <p className={scss.logOutModalText}>{t('PetsData.confirmDelete')}</p>
           <div className={scss.buttonBox}>
             <Button
               disabled={isLoading}
               onClick={() => onDeletePetClick(id)}
               className={scss.button}
             >
-              <p className={scss.logOutText}>Так</p>
+              <p className={scss.logOutText}>{t('PetsData.yes')}</p>
             </Button>
             <Button onClick={closeModal} className={scss.button}>
-              <p className={scss.logOutText}>Ні</p>
+              <p className={scss.logOutText}>{t('PetsData.no')}</p>
             </Button>
           </div>
         </div>
       </Modal>
-      {/* marker={`pets${id}`}
-        leftButton={true}
-        leftButtonType={'button'}
-        rightButton={true}
-        rightButtonType={'button'}
-        leftButtonContent={'Так'}
-        rightButtonContent={'Ні'}
-        leftButtonClick={() => {
-          deletePet(id);
-          closeModal();
-        }}
-        rightButtonClick={closeModal} */}
     </div>
   );
 };

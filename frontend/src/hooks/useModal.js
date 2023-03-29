@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+
 import { showModal, changeMarker } from '../redux/services/modalSlice';
 
 export const useModal = () => {
@@ -12,7 +13,6 @@ export const useModal = () => {
     dispatch(showModal(false));
     document.body.style.overflow = 'auto';
   };
+
   return { openModal, closeModal };
 };
-
-// export default useModal;

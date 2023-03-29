@@ -11,10 +11,10 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
+import { baseApi } from './services/baseApi';
 import authReducer from './services/authSlice';
 import languageReducer from './languageSlice';
 import noticesReducer from './noticesSlice';
-import { baseApi } from './services/baseApi';
 import { modalSlice } from './services/modalSlice';
 
 const authPersistConfig = {

@@ -1,15 +1,15 @@
 // import { React, createElement } from 'react';
-import { createPortal } from 'react-dom';
 import { useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { useSelector } from 'react-redux';
 
 const Portal = ({ children, onKeyPress }) => {
-  const chageMarker = useSelector(state => state.modal.marker);
+  const changeMarker = useSelector(state => state.modal.marker);
   const element = useMemo(() => {
     const element = document.createElement('div');
-    element.dataset.marker = chageMarker;
+    element.dataset.marker = changeMarker;
     return element;
-  }, [chageMarker]);
+  }, [changeMarker]);
 
   const pressKey = e => {
     if (e.code === 'Escape') {

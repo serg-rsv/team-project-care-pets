@@ -1,9 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
+import { useModal } from '../../../hooks/useModal';
 import Button from '../../Button';
 import s from './AddNoticeButton.module.scss';
-import { useModal } from '../../../hooks/useModal';
 
 const AddNoticeButton = () => {
-  const { openModal, closeModal } = useModal();
+  const { t } = useTranslation('common');
+  const { openModal } = useModal();
+
   return (
     <div
       onClick={() => {
@@ -11,7 +15,7 @@ const AddNoticeButton = () => {
       }}
       className={s.addBox}
     >
-      <p>Додати</p>
+      <p>{t('AddNoticeButton.add')}</p>
       <Button className={s.addButton}></Button>
     </div>
   );

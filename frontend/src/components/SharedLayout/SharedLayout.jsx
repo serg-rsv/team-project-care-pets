@@ -1,6 +1,7 @@
-import s from './SharedLayout.module.scss';
-import Header from '../Header';
 import { Outlet } from 'react-router-dom';
+
+import Header from '../Header';
+import s from './SharedLayout.module.scss';
 
 const SharedLayout = () => {
   return (

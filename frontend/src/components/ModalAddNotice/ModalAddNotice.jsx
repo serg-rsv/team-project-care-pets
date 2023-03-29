@@ -1,21 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useFormik } from 'formik';
-import css from './modalAddNotice.module.scss';
-import * as Yup from 'yup';
-import Button from '../Button/Button';
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 import { useCreateNoticeMutation } from '../../redux/services/noticesSlice';
-import { formDataAppender } from '../../helpers/formDataAppender';
-
-import Location from '../Location';
-import { useEffect } from 'react';
-import { toast } from 'react-toastify';
-// import e from 'cors';
 import { setNotices } from '../../redux/noticesSlice';
+import { formDataAppender } from '../../helpers/formDataAppender';
+import Location from '../Location';
+import Button from '../Button/Button';
+import css from './modalAddNotice.module.scss';
 
 const ModalAddNotice = ({ closeButton }) => {
+  const { t } = useTranslation('common');
   const [createNotice, { isLoading }] = useCreateNoticeMutation();
   const [isFirstRegisterStep, setIsFirstRegisterStep] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
@@ -33,14 +32,6 @@ const ModalAddNotice = ({ closeButton }) => {
       ? setIsFirstRegisterStep(false)
       : setIsFirstRegisterStep(true);
   };
-
-  // const canMoveForward = () => {
-  //   const { category, title, name, date, breed } = formik.values;
-  //   if (category && title && name && date && breed) {
-  //     return false;
-  //   }
-  //   return true;
-  // };
 
   const onImageChange = e => {
     if (e.currentTarget.files && e.currentTarget.files[0]) {
@@ -67,57 +58,57 @@ const ModalAddNotice = ({ closeButton }) => {
       comments: '',
     },
     validationSchema: Yup.object().shape({
-      category: Yup.string().required('Оберіть категорію'),
+      category: Yup.string().required(t('ModalAddNotice.selectCategory')),
       title: Yup.string()
-        .required('Введіть заголовок')
-        .min(2, 'Мінімум 2 символи')
+        .required(t('ModalAddNotice.enterTitle'))
+        .min(2, t('ModalAddNotice.min2Chars'))
         .matches(
           /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-          'Заголовок містить лише літери і пробіли'
+          t('ModalAddNotice.titleLettersSpacesOnly')
         )
         .trim()
-        .max(48, 'Максимум 48 символів'),
+        .max(48, t('ModalAddNotice.max48Chars')),
       name: Yup.string()
         .trim()
-        .min(2, 'Мінімум 2 символи')
-        .required("Введіть ім'я тварини")
+        .min(2, t('ModalAddNotice.min2Chars'))
+        .required(t('ModalAddNotice.enterPetName'))
         .matches(
           /^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/,
-          'Ім’я містить лише літери і пробіли'
+          t('ModalAddNotice.petNameLettersSpacesOnly')
         )
-        .max(16, 'Максимум 16 символів'),
+        .max(16, t('ModalAddNotice.max16Chars')),
       birthday: Yup.date()
-        .required('Оберіть дату народження')
-        .max(new Date(), 'Дата має бути в минулому'),
+        .required(t('ModalAddNotice.selectBirthdate'))
+        .max(new Date(), t('ModalAddNotice.birthdateInPast')),
       breed: Yup.string()
-        .required('Введіть породу')
-        .min(2, 'Мінімум 2 символи')
+        .required(t('ModalAddNotice.enterBreed'))
+        .min(2, t('ModalAddNotice.min2Chars'))
         .matches(/^([А-Яа-яЁёЇїІіЄєҐґ'\s]+|[a-zA-Z\s]+){2,}$/, 'only letters')
         .trim()
-        .max(24, 'Максимум 24 символи'),
-      location: Yup.string().required('Введіть місце знаходження'),
-      sex: Yup.string().required('Оберіть стать'),
+        .max(24, t('ModalAddNotice.max24Chars')),
+      location: Yup.string().required(t('ModalAddNotice.enterLocation')),
+      sex: Yup.string().required(t('ModalAddNotice.selectGender')),
       price: Yup.string().when('category', {
         is: category => category === 'sell',
         then: Yup.string()
-          .required('Введіть ціну')
-          .matches(/^[0-9][0-9]*$/, 'Тільки цифри'),
+          .required(t('ModalAddNotice.enterPrice'))
+          .matches(/^[0-9][0-9]*$/, t('ModalAddNotice.onlyNumbers')),
       }),
       comments: Yup.string()
         .trim()
-        .required('Введіть опис')
-        .min(8, 'Мінімум 8 символів')
-        .max(120, 'Максимум 120 символів'),
+        .required(t('ModalAddNotice.enterDescription'))
+        .min(8, t('ModalAddNotice.min8Chars'))
+        .max(120, t('ModalAddNotice.max120Chars')),
     }),
     onSubmit: async () => {
       dispatch(setNotices([]));
       await createNotice(formDataAppender(formik.values))
         .unwrap()
         .then(() => {
-          toast.success('Ви успішно створили оголошення.');
+          toast.success(t('ModalAddNotice.createSuccess'));
         })
         .catch(() => {
-          toast.error('Не вдалось створити оголошення.');
+          toast.error(t('ModalAddNotice.createFailed'));
         });
       formik.resetForm();
       closeButton();
@@ -142,12 +133,12 @@ const ModalAddNotice = ({ closeButton }) => {
 
   return (
     <div className={css.noticeFormBlock}>
-      <h2 className={css.noticeFormTitle}>Нове оголошення</h2>
+      <h2 className={css.noticeFormTitle}>{t('ModalAddNotice.newNotice')}</h2>
       <form className={css.noticeForm} onSubmit={formik.handleSubmit}>
         {isFirstRegisterStep ? (
           <>
             <p className={css.noticeFormText}>
-              Додайте базову інвормацію про тваринку
+              {t('ModalAddNotice.addBasicInfo')}
             </p>
             <fieldset className={css.inputWrapper}>
               <div className={css.filterWrapper}>
@@ -161,7 +152,7 @@ const ModalAddNotice = ({ closeButton }) => {
                   checked={formik.values.category === 'lost-found'}
                 />
                 <label htmlFor="LostFound" className={css.filterLostFound}>
-                  загубив/знайшов
+                  {t('ModalAddNotice.lostFound')}
                 </label>
 
                 <input
@@ -174,7 +165,7 @@ const ModalAddNotice = ({ closeButton }) => {
                   checked={formik.values.category === 'for-free'}
                 />
                 <label htmlFor="inGoodHands" className={css.filterInGoodHands}>
-                  у добрі руки
+                  {t('ModalAddNotice.goodHands')}
                 </label>
 
                 <input
@@ -187,7 +178,7 @@ const ModalAddNotice = ({ closeButton }) => {
                   checked={formik.values.category === 'sell'}
                 />
                 <label className={css.filterSell} htmlFor="sell">
-                  продаж
+                  {t('ModalAddNotice.forSale')}
                 </label>
               </div>
               {formik.touched.category && formik.errors.category ? (
@@ -196,7 +187,8 @@ const ModalAddNotice = ({ closeButton }) => {
             </fieldset>
 
             <label className={css.noticeInputTitle} htmlFor="titleAd">
-              Заголовок<span className={css.reqiuredFieldForm}>*</span>
+              {t('ModalAddNotice.title')}
+              <span className={css.reqiuredFieldForm}>*</span>
               {formik.values.title !== '' && formik.errors.title ? (
                 <p className={css.inputError}>{formik.errors.title}</p>
               ) : null}
@@ -208,11 +200,12 @@ const ModalAddNotice = ({ closeButton }) => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.title}
-              placeholder="Введіть заголовок оголошення"
+              placeholder={t('ModalAddNotice.enterTitlePlaceholder')}
             />
 
             <label className={css.noticeInputTitle} htmlFor="namePet">
-              Ім'я тварини<span className={css.reqiuredFieldForm}>*</span>
+              {t('ModalAddNotice.petName')}
+              <span className={css.reqiuredFieldForm}>*</span>
               {formik.values.name !== '' && formik.errors.name ? (
                 <p className={css.inputError}>{formik.errors.name}</p>
               ) : null}
@@ -225,11 +218,12 @@ const ModalAddNotice = ({ closeButton }) => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.name}
-              placeholder="Введіть ім'я тварини"
+              placeholder={t('ModalAddNotice.enterPetName')}
             />
 
             <label className={css.noticeInputTitle} htmlFor="birthdayPet">
-              Дата народження<span className={css.reqiuredFieldForm}>*</span>
+              {t('ModalAddNotice.birthdate')}
+              <span className={css.reqiuredFieldForm}>*</span>
               {formik.values.birthday !== '' && formik.errors.birthday ? (
                 <p className={css.inputError}>{formik.errors.birthday}</p>
               ) : null}
@@ -246,7 +240,8 @@ const ModalAddNotice = ({ closeButton }) => {
             />
 
             <label className={css.noticeInputTitle} htmlFor="breedPet">
-              Порода<span className={css.reqiuredFieldForm}>*</span>
+              {t('ModalAddNotice.breed')}
+              <span className={css.reqiuredFieldForm}>*</span>
               {formik.values.breed && formik.errors.breed ? (
                 <p className={css.inputError}>{formik.errors.breed}</p>
               ) : null}
@@ -259,14 +254,15 @@ const ModalAddNotice = ({ closeButton }) => {
               type="text"
               onChange={formik.handleChange}
               value={formik.values.breed}
-              placeholder="Введіть породу тварини"
+              placeholder={t('ModalAddNotice.enterBreedPlaceholder')}
             />
           </>
         ) : (
           <>
             <fieldset className={css.inputWrapper}>
               <legend className={css.noticeSexPetTitle}>
-                Стать<span className={css.reqiuredFieldForm}>*</span>:
+                {t('ModalAddNotice.gender')}
+                <span className={css.reqiuredFieldForm}>*</span>:
               </legend>
               <div className={css.sexPetCheckWrapper}>
                 <div className={css.sexPetWrapperMale}>
@@ -284,7 +280,7 @@ const ModalAddNotice = ({ closeButton }) => {
                     htmlFor="malePet"
                     className={css.noticeInputRadioTitle}
                   >
-                    чоловіча
+                    {t('ModalAddNotice.male')}
                   </label>
                 </div>
 
@@ -303,7 +299,7 @@ const ModalAddNotice = ({ closeButton }) => {
                     htmlFor="femalePet"
                     className={css.noticeInputRadioTitle}
                   >
-                    жіноча
+                    {t('ModalAddNotice.female')}
                   </label>
                 </div>
               </div>
@@ -313,7 +309,8 @@ const ModalAddNotice = ({ closeButton }) => {
             </fieldset>
 
             <label className={css.noticeInputTitle} htmlFor="locationPet">
-              Місто, Область<span className={css.reqiuredFieldForm}>*</span>:
+              {t('ModalAddNotice.location')}
+              <span className={css.reqiuredFieldForm}>*</span>:
               {formik.values.location !== '' && formik.errors.location ? (
                 <p className={css.inputError}>{formik.errors.location}</p>
               ) : null}
@@ -327,7 +324,8 @@ const ModalAddNotice = ({ closeButton }) => {
             {formik.values.category === 'sell' ? (
               <>
                 <label htmlFor="pricePet" className={css.noticeInputTitle}>
-                  Ціна<span className={css.reqiuredFieldForm}>*</span>:
+                  {t('ModalAddNotice.price')}
+                  <span className={css.reqiuredFieldForm}>*</span>:
                   {formik.values.price !== '' && formik.errors.price ? (
                     <p className={css.inputError}>{formik.errors.price}</p>
                   ) : null}
@@ -340,13 +338,15 @@ const ModalAddNotice = ({ closeButton }) => {
                   type="text"
                   onChange={formik.handleChange}
                   value={formik.values.price}
-                  placeholder="Введіть ціну"
+                  placeholder={t('ModalAddNotice.enterPricePlaceholder')}
                 />
               </>
             ) : null}
 
             <fieldset className={css.inputWrapper}>
-              <legend className={css.noticeInputTitle}>Фото тварини</legend>
+              <legend className={css.noticeInputTitle}>
+                {t('ModalAddNotice.petPhoto')}
+              </legend>
               {formik.values.image === '' ? (
                 <label className={css.imgPetIcon} htmlFor="image">
                   <svg
@@ -383,7 +383,8 @@ const ModalAddNotice = ({ closeButton }) => {
             </fieldset>
 
             <label className={css.noticeInputTitle} htmlFor="commentsAd">
-              Коментар<span className={css.reqiuredFieldForm}>*</span>
+              {t('ModalAddNotice.comment')}
+              <span className={css.reqiuredFieldForm}>*</span>
               {formik.values.comments !== '' && formik.errors.comments ? (
                 <p className={css.inputError}>{formik.errors.comments}</p>
               ) : null}

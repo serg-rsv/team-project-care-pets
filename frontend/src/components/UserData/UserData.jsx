@@ -1,14 +1,17 @@
 import { useState, useRef, useEffect } from 'react';
-import UserButton from '../UserButton';
-import LogOut from '../LogOut';
-import scss from './UserData.module.scss';
+import { useTranslation } from 'react-i18next';
+
 import {
   useCurrentQuery,
   useAvatarsMutation,
   useEditMutation,
 } from '../../redux/services/usersSlice';
+import LogOut from '../LogOut';
+import UserButton from '../UserButton';
+import scss from './UserData.module.scss';
 
 const UserData = () => {
+  const { t } = useTranslation('common');
   const [nameUser, setNameUser] = useState('');
   const [emailUser, setEmailUser] = useState('');
   const [birthdayUser, setBirthdayUser] = useState('1989-04-10');
@@ -153,14 +156,14 @@ const UserData = () => {
           style={{ display: 'none' }}
           onChange={editAvatar}
         />
-        <p className={scss.editPhoto}>Редагувати фото</p>
+        <p className={scss.editPhoto}>{t('UserData.editPhoto')}</p>
       </label>
 
       <div className={scss.userInfo}>
         <ul className={scss.list}>
           <li className={scss.listItem}>
             <label htmlFor="name" className={scss.listText}>
-              Ім'я:
+              {t('UserData.name')}
             </label>
             <div className={scss.inputWrapper}>
               <input
@@ -175,7 +178,7 @@ const UserData = () => {
                 autoComplete="off"
                 onSubmit={btnClick}
                 pattern="^^[а-яА-ЯїЇіІЁёa-zA-Z]+ ?([а-яА-ЯїЇіІЁёa-zA-Z]+)?$"
-                title="Поле має складатись лише з літер та, за необхідністю, пробілу, мінімальна кількість літер 2"
+                title={t('UserData.nameRequirements')}
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
@@ -196,14 +199,14 @@ const UserData = () => {
                 disabled
                 required
                 pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
-                title="Неправильний поштовий адрес"
+                title={t('UserData.invalidEmail')}
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
           <li className={scss.listItem}>
             <label htmlFor="birthday" className={scss.listText}>
-              Дата народження:
+              {t('UserData.birthdate')}
             </label>
             <div className={scss.inputWrapper}>
               <input
@@ -214,15 +217,15 @@ const UserData = () => {
                 value={birthdayUser}
                 disabled
                 required
-                max={new Date().toISOString().split('T')[0]}
-                title="Дата має бути в минулому"
+                max={new Date().toISOString().split('UserData.T')[0]}
+                title={t('UserData.birthdateRequirements')}
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
           <li className={scss.listItem}>
             <label htmlFor="phone" className={scss.listText}>
-              Телефон:
+              {t('UserData.phone')}
             </label>
             <div className={scss.inputWrapper}>
               <input
@@ -234,14 +237,14 @@ const UserData = () => {
                 disabled
                 required
                 pattern="^\+380\d{9}$"
-                title="Введіть номер у форматі +380*******"
+                title={t('UserData.phoneFormat')}
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>
           </li>
           <li className={scss.listItem}>
             <label htmlFor="city" className={scss.listText}>
-              Місто:
+              {t('UserData.city')}
             </label>
             <div className={scss.inputWrapper}>
               <input
@@ -253,7 +256,7 @@ const UserData = () => {
                 disabled
                 required
                 pattern="[а-яА-ЯїЇіІЁёa-zA-Z]{2,},? ([а-яА-ЯїЇіІЁёa-zA-Z]+(?: [а-яА-ЯїЇіІЁёa-zA-Z]+)*)+$"
-                title="Введіть в форматі: місто, область"
+                title={t('UserData.cityFormat')}
               />
               <UserButton dataActive={false} onClick={btnClick}></UserButton>
             </div>

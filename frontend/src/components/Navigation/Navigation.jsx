@@ -1,17 +1,18 @@
-import s from './Navigation.module.scss';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import { selectIsLoggedIn } from '../../redux/selectors';
 import Nav from '../Nav';
 import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
-import Button from '../Button';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '../../redux/selectors';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher';
+import Button from '../Button';
+import s from './Navigation.module.scss';
 
 const Navigation = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const isAuthorized = useSelector(selectIsLoggedIn); // Це буде у редакс-сторі. Витягуємо через селектор
+  const isAuthorized = useSelector(selectIsLoggedIn);
 
   const onBurgerClick = e => {
     setIsModalOpen(!isModalOpen);

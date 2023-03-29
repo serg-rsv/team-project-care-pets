@@ -1,25 +1,23 @@
-import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import PropTypes from 'prop-types';
-import convectorCategory from '../../../helpers/convectorCategory';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import {
   useAddFavoritesByIdMutation,
   useDeleteFavoritesByIdMutation,
   useDeleteNoticeMutation,
 } from '../../../redux/services/noticesSlice';
-import Button from '../../Button';
-import ModalNotice from '../ModalNotice/ModalNotice';
-import { useModal } from '../../../hooks/useModal';
-import Modal from '../../Modal/Modal';
-import { selectIsLoggedIn } from '../../../redux/selectors';
-
 import { useGetNoticeByIdQuery } from '../../../redux/services/noticesSlice';
 import { setIsFavorite } from '../../../redux/noticesSlice';
-
-import s from './NoticeCategoryItem.module.scss';
+import { selectIsLoggedIn, selectLanguage } from '../../../redux/selectors';
+import convectorCategory from '../../../helpers/convectorCategory';
+import { useModal } from '../../../hooks/useModal';
 import { Loader } from '../../Loader/Loader';
+import Button from '../../Button';
+import ModalNotice from '../ModalNotice/ModalNotice';
+import Modal from '../../Modal/Modal';
+import s from './NoticeCategoryItem.module.scss';
 
 const NoticeCategoryItem = ({
   _id,
@@ -33,6 +31,8 @@ const NoticeCategoryItem = ({
   isActive,
   isFavorite,
 }) => {
+  const { t } = useTranslation('common');
+  const currentLanguage = useSelector(selectLanguage);
   const dispatch = useDispatch();
   const checkCategory = page === 'sell';
   const [deleteNotice, { isLoading: isLoadingDelNotice }] =
@@ -45,7 +45,6 @@ const NoticeCategoryItem = ({
   const { openModal } = useModal();
   const { data: item, isFetching } = useGetNoticeByIdQuery(id);
   const noticeById = item?.data;
-
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const getDate = birthday => {
@@ -70,7 +69,7 @@ const NoticeCategoryItem = ({
 
   const linkPhone = (
     <a className={s.phoneButtonText} href={`tel:${noticeById?.owner?.phone}`}>
-      Контакт
+      {t('NoticeCategoryItem.contact')}
     </a>
   );
 
@@ -79,19 +78,27 @@ const NoticeCategoryItem = ({
       await deleteFavorite(_id)
         .unwrap()
         .then(() => {
-          toast.success(`${title} видалено зі списку обраних.`);
+          toast.success(
+            t('NoticeCategoryItem.removedFromFavorites', { title })
+          );
         })
         .catch(() => {
-          toast.error(`Не вдалось видалити ${title} зі списку обраних.`);
+          toast.error(
+            t('NoticeCategoryItem.failedToRemoveFromFavorites', { title })
+          );
         });
 
       dispatch(setIsFavorite({ _id, isFavorite: false }));
     } else {
       await addFavorite(_id)
         .unwrap()
-        .then(() => toast.success(`${title} додано до списку обраних.`))
+        .then(() =>
+          toast.success(t('NoticeCategoryItem.addedToFavorites', { title }))
+        )
         .catch(() => {
-          toast.error(`Не вдалось додати ${title} до списку обраних.`);
+          toast.error(
+            t('NoticeCategoryItem.failedToAddToFavorites', { title })
+          );
         });
 
       dispatch(setIsFavorite({ _id, isFavorite: true }));
@@ -99,15 +106,19 @@ const NoticeCategoryItem = ({
   };
 
   const addNotification = () => {
-    toast.info('Необхідно авторизуватися.');
+    toast.info(t('NoticeCategoryItem.loginRequired'));
   };
 
   const svgIcon = (
     <>
       {isFavorite ? (
-        <span className={s.addToFavoriteButtonText}>Видалити з</span>
+        <span className={s.addToFavoriteButtonText}>
+          {t('NoticeCategoryItem.removeFrom')}
+        </span>
       ) : (
-        <span className={s.addToFavoriteButtonText}>Додати до</span>
+        <span className={s.addToFavoriteButtonText}>
+          {t('NoticeCategoryItem.addTo')}
+        </span>
       )}
       <span className={s.buttonHeart}></span>
     </>
@@ -116,7 +127,7 @@ const NoticeCategoryItem = ({
   return (
     <li className={s.animalListItem}>
       <div className={s.signature}>
-        <p>{convectorCategory(page)}</p>
+        <p>{convectorCategory(page, currentLanguage)}</p>
       </div>
       <div className={s.imageWrapper}>
         <img className={s.animalListImg} src={link} alt={title} />
@@ -124,20 +135,20 @@ const NoticeCategoryItem = ({
       <h3 className={s.animalListTitle}>{title}</h3>
       <ul className={s.discription}>
         <li className={s.animalListBoxText}>
-          Порода:
+          {t('NoticeCategoryItem.breed')}
           <p> {breed}</p>
         </li>
         <li className={s.animalListBoxText}>
-          Місце:
+          {t('NoticeCategoryItem.location')}
           <p>{place}</p>
         </li>
         <li className={s.animalListBoxText}>
-          Вік:
+          {t('NoticeCategoryItem.age')}
           <p>{age}</p>
         </li>
         {checkCategory ? (
           <li className={s.animalListBoxText}>
-            Ціна:
+            {t('NoticeCategoryItem.price')}
             <p>{price}</p>
           </li>
         ) : (
@@ -153,7 +164,7 @@ const NoticeCategoryItem = ({
         }}
         className={s.button}
       >
-        Дізнатися більше
+        {t('NoticeCategoryItem.learnMore')}
       </Button>
       <Button
         disabled={isLoadingAddFav || isLoadingDelFav}
@@ -169,10 +180,10 @@ const NoticeCategoryItem = ({
             await deleteNotice(_id)
               .unwrap()
               .then(() => {
-                toast.success('Оголошення видалено.');
+                toast.success(t('NoticeCategoryItem.noticeRemoved'));
               })
               .catch(() => {
-                toast.error('Оголошення не видалено.');
+                toast.error(t('NoticeCategoryItem.noticeNotRemoved'));
               });
           }}
           className={s.remove}
@@ -184,7 +195,10 @@ const NoticeCategoryItem = ({
         <Modal marker={`learnmore${_id}`} closeButton={true}>
           <div className={s.wrapper}>
             <ModalNotice
-              category={convectorCategory(noticeById?.category)}
+              category={convectorCategory(
+                noticeById?.category,
+                currentLanguage
+              )}
               photoURL={noticeById?.photoURL}
               name={noticeById?.name}
               title={noticeById?.title}

@@ -1,4 +1,5 @@
 import { Flip } from 'react-toastify';
+
 const options = {
   position: 'top-left',
   autoClose: 3000,

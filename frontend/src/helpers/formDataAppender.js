@@ -10,5 +10,6 @@ export const formDataAppender = fields => {
   Object.entries(entriesForAppend).forEach(([key, value]) => {
     formData.append(key, value);
   });
+
   return formData;
 };

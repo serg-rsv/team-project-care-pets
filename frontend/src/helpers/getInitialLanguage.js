@@ -1,4 +1,4 @@
-export const SET_LANGUAGES = ['en', 'ua'];
+export const SET_LANGUAGES = ['en', 'uk'];
 
 export function getInitialLanguage() {
   const persistorData = localStorage.getItem('persist:language');
