@@ -12,6 +12,7 @@ import { formDataAppender } from '../../helpers/formDataAppender';
 import Location from '../Location';
 import Button from '../Button/Button';
 import css from './modalAddNotice.module.scss';
+import ScrollLock from '../ScrollLock/ScrollLock';
 
 const ModalAddNotice = ({ closeButton }) => {
   const { t } = useTranslation('common');
@@ -132,309 +133,315 @@ const ModalAddNotice = ({ closeButton }) => {
   }, [formik, disableNextButton]);
 
   return (
-    <div className={css.noticeFormBlock}>
-      <h2 className={css.noticeFormTitle}>{t('ModalAddNotice.newNotice')}</h2>
-      <form className={css.noticeForm} onSubmit={formik.handleSubmit}>
-        {isFirstRegisterStep ? (
-          <>
-            <p className={css.noticeFormText}>
-              {t('ModalAddNotice.addBasicInfo')}
-            </p>
-            <fieldset className={css.inputWrapper}>
-              <div className={css.filterWrapper}>
-                <input
-                  className={css.radioInputFilter}
-                  id="LostFound"
-                  name="category"
-                  type="radio"
-                  value="lost-found"
-                  onChange={formik.handleChange}
-                  checked={formik.values.category === 'lost-found'}
-                />
-                <label htmlFor="LostFound" className={css.filterLostFound}>
-                  {t('ModalAddNotice.lostFound')}
-                </label>
-
-                <input
-                  className={css.radioInputFilter}
-                  id="inGoodHands"
-                  name="category"
-                  type="radio"
-                  value="for-free"
-                  onChange={formik.handleChange}
-                  checked={formik.values.category === 'for-free'}
-                />
-                <label htmlFor="inGoodHands" className={css.filterInGoodHands}>
-                  {t('ModalAddNotice.goodHands')}
-                </label>
-
-                <input
-                  className={css.radioInputFilter}
-                  id="sell"
-                  name="category"
-                  type="radio"
-                  value="sell"
-                  onChange={formik.handleChange}
-                  checked={formik.values.category === 'sell'}
-                />
-                <label className={css.filterSell} htmlFor="sell">
-                  {t('ModalAddNotice.forSale')}
-                </label>
-              </div>
-              {formik.touched.category && formik.errors.category ? (
-                <p className={css.inputError}>{formik.errors.category}</p>
-              ) : null}
-            </fieldset>
-
-            <label className={css.noticeInputTitle} htmlFor="titleAd">
-              {t('ModalAddNotice.title')}
-              <span className={css.reqiuredFieldForm}>*</span>
-              {formik.values.title !== '' && formik.errors.title ? (
-                <p className={css.inputError}>{formik.errors.title}</p>
-              ) : null}
-            </label>
-            <input
-              className={css.noticeFormInput}
-              id="titleAd"
-              name="title"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.title}
-              placeholder={t('ModalAddNotice.enterTitlePlaceholder')}
-            />
-
-            <label className={css.noticeInputTitle} htmlFor="namePet">
-              {t('ModalAddNotice.petName')}
-              <span className={css.reqiuredFieldForm}>*</span>
-              {formik.values.name !== '' && formik.errors.name ? (
-                <p className={css.inputError}>{formik.errors.name}</p>
-              ) : null}
-            </label>
-
-            <input
-              className={css.noticeFormInput}
-              id="namePet"
-              name="name"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.name}
-              placeholder={t('ModalAddNotice.enterPetName')}
-            />
-
-            <label className={css.noticeInputTitle} htmlFor="birthdayPet">
-              {t('ModalAddNotice.birthdate')}
-              <span className={css.reqiuredFieldForm}>*</span>
-              {formik.values.birthday !== '' && formik.errors.birthday ? (
-                <p className={css.inputError}>{formik.errors.birthday}</p>
-              ) : null}
-            </label>
-
-            <input
-              className={css.noticeFormInputDate}
-              id="birthdayPet"
-              name="birthday"
-              type="date"
-              max={new Date().toISOString().split('T')[0]}
-              onChange={formik.handleChange}
-              value={formik.values.birthday}
-            />
-
-            <label className={css.noticeInputTitle} htmlFor="breedPet">
-              {t('ModalAddNotice.breed')}
-              <span className={css.reqiuredFieldForm}>*</span>
-              {formik.values.breed && formik.errors.breed ? (
-                <p className={css.inputError}>{formik.errors.breed}</p>
-              ) : null}
-            </label>
-
-            <input
-              className={css.noticeFormInput}
-              id="breedPet"
-              name="breed"
-              type="text"
-              onChange={formik.handleChange}
-              value={formik.values.breed}
-              placeholder={t('ModalAddNotice.enterBreedPlaceholder')}
-            />
-          </>
-        ) : (
-          <>
-            <fieldset className={css.inputWrapper}>
-              <legend className={css.noticeSexPetTitle}>
-                {t('ModalAddNotice.gender')}
-                <span className={css.reqiuredFieldForm}>*</span>:
-              </legend>
-              <div className={css.sexPetCheckWrapper}>
-                <div className={css.sexPetWrapperMale}>
+    <>
+      <ScrollLock />
+      <div className={css.noticeFormBlock}>
+        <h2 className={css.noticeFormTitle}>{t('ModalAddNotice.newNotice')}</h2>
+        <form className={css.noticeForm} onSubmit={formik.handleSubmit}>
+          {isFirstRegisterStep ? (
+            <>
+              <p className={css.noticeFormText}>
+                {t('ModalAddNotice.addBasicInfo')}
+              </p>
+              <fieldset className={css.inputWrapper}>
+                <div className={css.filterWrapper}>
                   <input
-                    className={css.radioInputSex}
-                    id="malePet"
-                    name="sex"
+                    className={css.radioInputFilter}
+                    id="LostFound"
+                    name="category"
                     type="radio"
-                    value="male"
-                    checked={formik.values.sex === 'male'}
+                    value="lost-found"
                     onChange={formik.handleChange}
+                    checked={formik.values.category === 'lost-found'}
                   />
+                  <label htmlFor="LostFound" className={css.filterLostFound}>
+                    {t('ModalAddNotice.lostFound')}
+                  </label>
 
+                  <input
+                    className={css.radioInputFilter}
+                    id="inGoodHands"
+                    name="category"
+                    type="radio"
+                    value="for-free"
+                    onChange={formik.handleChange}
+                    checked={formik.values.category === 'for-free'}
+                  />
                   <label
-                    htmlFor="malePet"
-                    className={css.noticeInputRadioTitle}
+                    htmlFor="inGoodHands"
+                    className={css.filterInGoodHands}
                   >
-                    {t('ModalAddNotice.male')}
+                    {t('ModalAddNotice.goodHands')}
+                  </label>
+
+                  <input
+                    className={css.radioInputFilter}
+                    id="sell"
+                    name="category"
+                    type="radio"
+                    value="sell"
+                    onChange={formik.handleChange}
+                    checked={formik.values.category === 'sell'}
+                  />
+                  <label className={css.filterSell} htmlFor="sell">
+                    {t('ModalAddNotice.forSale')}
                   </label>
                 </div>
+                {formik.touched.category && formik.errors.category ? (
+                  <p className={css.inputError}>{formik.errors.category}</p>
+                ) : null}
+              </fieldset>
 
-                <div className={css.sexPetWrapperFemale}>
-                  <input
-                    className={css.radioInputSex}
-                    id="femalePet"
-                    name="sex"
-                    type="radio"
-                    value="female"
-                    checked={formik.values.sex === 'female'}
-                    onChange={formik.handleChange}
-                  />
+              <label className={css.noticeInputTitle} htmlFor="titleAd">
+                {t('ModalAddNotice.title')}
+                <span className={css.reqiuredFieldForm}>*</span>
+                {formik.values.title !== '' && formik.errors.title ? (
+                  <p className={css.inputError}>{formik.errors.title}</p>
+                ) : null}
+              </label>
+              <input
+                className={css.noticeFormInput}
+                id="titleAd"
+                name="title"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.title}
+                placeholder={t('ModalAddNotice.enterTitlePlaceholder')}
+              />
 
-                  <label
-                    htmlFor="femalePet"
-                    className={css.noticeInputRadioTitle}
-                  >
-                    {t('ModalAddNotice.female')}
-                  </label>
-                </div>
-              </div>
-              {formik.touched.sex && formik.errors.sex ? (
-                <p className={css.inputError}>{formik.errors.sex}</p>
-              ) : null}
-            </fieldset>
+              <label className={css.noticeInputTitle} htmlFor="namePet">
+                {t('ModalAddNotice.petName')}
+                <span className={css.reqiuredFieldForm}>*</span>
+                {formik.values.name !== '' && formik.errors.name ? (
+                  <p className={css.inputError}>{formik.errors.name}</p>
+                ) : null}
+              </label>
 
-            <label className={css.noticeInputTitle} htmlFor="locationPet">
-              {t('ModalAddNotice.location')}
-              <span className={css.reqiuredFieldForm}>*</span>:
-              {formik.values.location !== '' && formik.errors.location ? (
-                <p className={css.inputError}>{formik.errors.location}</p>
-              ) : null}
-            </label>
+              <input
+                className={css.noticeFormInput}
+                id="namePet"
+                name="name"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.name}
+                placeholder={t('ModalAddNotice.enterPetName')}
+              />
 
-            <Location
-              setLocationInfo={setLocationInfo}
-              isLocation={formik.values.location}
-            />
+              <label className={css.noticeInputTitle} htmlFor="birthdayPet">
+                {t('ModalAddNotice.birthdate')}
+                <span className={css.reqiuredFieldForm}>*</span>
+                {formik.values.birthday !== '' && formik.errors.birthday ? (
+                  <p className={css.inputError}>{formik.errors.birthday}</p>
+                ) : null}
+              </label>
 
-            {formik.values.category === 'sell' ? (
-              <>
-                <label htmlFor="pricePet" className={css.noticeInputTitle}>
-                  {t('ModalAddNotice.price')}
+              <input
+                className={css.noticeFormInputDate}
+                id="birthdayPet"
+                name="birthday"
+                type="date"
+                max={new Date().toISOString().split('T')[0]}
+                onChange={formik.handleChange}
+                value={formik.values.birthday}
+              />
+
+              <label className={css.noticeInputTitle} htmlFor="breedPet">
+                {t('ModalAddNotice.breed')}
+                <span className={css.reqiuredFieldForm}>*</span>
+                {formik.values.breed && formik.errors.breed ? (
+                  <p className={css.inputError}>{formik.errors.breed}</p>
+                ) : null}
+              </label>
+
+              <input
+                className={css.noticeFormInput}
+                id="breedPet"
+                name="breed"
+                type="text"
+                onChange={formik.handleChange}
+                value={formik.values.breed}
+                placeholder={t('ModalAddNotice.enterBreedPlaceholder')}
+              />
+            </>
+          ) : (
+            <>
+              <fieldset className={css.inputWrapper}>
+                <legend className={css.noticeSexPetTitle}>
+                  {t('ModalAddNotice.gender')}
                   <span className={css.reqiuredFieldForm}>*</span>:
-                  {formik.values.price !== '' && formik.errors.price ? (
-                    <p className={css.inputError}>{formik.errors.price}</p>
-                  ) : null}
-                </label>
-
-                <input
-                  className={css.noticeFormInput}
-                  id="pricePet"
-                  name="price"
-                  type="text"
-                  onChange={formik.handleChange}
-                  value={formik.values.price}
-                  placeholder={t('ModalAddNotice.enterPricePlaceholder')}
-                />
-              </>
-            ) : null}
-
-            <fieldset className={css.inputWrapper}>
-              <legend className={css.noticeInputTitle}>
-                {t('ModalAddNotice.petPhoto')}
-              </legend>
-              {formik.values.image === '' ? (
-                <label className={css.imgPetIcon} htmlFor="image">
-                  <svg
-                    width="51"
-                    height="51"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834"
-                      stroke="#111"
-                      strokeOpacity=".6"
-                      strokeWidth="2"
-                      strokeLinecap="round"
+                </legend>
+                <div className={css.sexPetCheckWrapper}>
+                  <div className={css.sexPetWrapperMale}>
+                    <input
+                      className={css.radioInputSex}
+                      id="malePet"
+                      name="sex"
+                      type="radio"
+                      value="male"
+                      checked={formik.values.sex === 'male'}
+                      onChange={formik.handleChange}
                     />
-                  </svg>
-                  <input
-                    className={css.imgPetInput}
-                    id="image"
-                    name="image"
-                    type="file"
-                    accept="image/png, image/gif, image/jpeg"
-                    onChange={e => {
-                      formik.handleChange(e);
-                      onImageChange(e);
-                    }}
-                  />
-                </label>
-              ) : (
-                <div className={css.addedImg}>
-                  <img alt="pet" src={imagePreview} />
+
+                    <label
+                      htmlFor="malePet"
+                      className={css.noticeInputRadioTitle}
+                    >
+                      {t('ModalAddNotice.male')}
+                    </label>
+                  </div>
+
+                  <div className={css.sexPetWrapperFemale}>
+                    <input
+                      className={css.radioInputSex}
+                      id="femalePet"
+                      name="sex"
+                      type="radio"
+                      value="female"
+                      checked={formik.values.sex === 'female'}
+                      onChange={formik.handleChange}
+                    />
+
+                    <label
+                      htmlFor="femalePet"
+                      className={css.noticeInputRadioTitle}
+                    >
+                      {t('ModalAddNotice.female')}
+                    </label>
+                  </div>
                 </div>
-              )}
-            </fieldset>
+                {formik.touched.sex && formik.errors.sex ? (
+                  <p className={css.inputError}>{formik.errors.sex}</p>
+                ) : null}
+              </fieldset>
 
-            <label className={css.noticeInputTitle} htmlFor="commentsAd">
-              {t('ModalAddNotice.comment')}
-              <span className={css.reqiuredFieldForm}>*</span>
-              {formik.values.comments !== '' && formik.errors.comments ? (
-                <p className={css.inputError}>{formik.errors.comments}</p>
+              <label className={css.noticeInputTitle} htmlFor="locationPet">
+                {t('ModalAddNotice.location')}
+                <span className={css.reqiuredFieldForm}>*</span>:
+                {formik.values.location !== '' && formik.errors.location ? (
+                  <p className={css.inputError}>{formik.errors.location}</p>
+                ) : null}
+              </label>
+
+              <Location
+                setLocationInfo={setLocationInfo}
+                isLocation={formik.values.location}
+              />
+
+              {formik.values.category === 'sell' ? (
+                <>
+                  <label htmlFor="pricePet" className={css.noticeInputTitle}>
+                    {t('ModalAddNotice.price')}
+                    <span className={css.reqiuredFieldForm}>*</span>:
+                    {formik.values.price !== '' && formik.errors.price ? (
+                      <p className={css.inputError}>{formik.errors.price}</p>
+                    ) : null}
+                  </label>
+
+                  <input
+                    className={css.noticeFormInput}
+                    id="pricePet"
+                    name="price"
+                    type="text"
+                    onChange={formik.handleChange}
+                    value={formik.values.price}
+                    placeholder={t('ModalAddNotice.enterPricePlaceholder')}
+                  />
+                </>
               ) : null}
-            </label>
-            <textarea
-              className={css.noticeFormInput}
-              id="commentsAd"
-              name="comments"
-              type="text"
-              maxLength="120"
-              rows={5}
-              onChange={formik.handleChange}
-              value={formik.values.comments}
-            />
-          </>
-        )}
 
-        {isFirstRegisterStep && (
-          <div className={css.btnBlock}>
-            <Button
-              children="Cancel"
-              onClick={closeButton}
-              className={css.btnAccent}
-            />
-            <Button
-              children="Next"
-              onClick={moveNextRegistration}
-              className={css.btnSec}
-              disabled={disableNextButton}
-            />
-          </div>
-        )}
+              <fieldset className={css.inputWrapper}>
+                <legend className={css.noticeInputTitle}>
+                  {t('ModalAddNotice.petPhoto')}
+                </legend>
+                {formik.values.image === '' ? (
+                  <label className={css.imgPetIcon} htmlFor="image">
+                    <svg
+                      width="51"
+                      height="51"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M25.5 49.166V25.5m0 0V1.833m0 23.667h23.667m-23.667 0H1.834"
+                        stroke="#111"
+                        strokeOpacity=".6"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <input
+                      className={css.imgPetInput}
+                      id="image"
+                      name="image"
+                      type="file"
+                      accept="image/png, image/gif, image/jpeg"
+                      onChange={e => {
+                        formik.handleChange(e);
+                        onImageChange(e);
+                      }}
+                    />
+                  </label>
+                ) : (
+                  <div className={css.addedImg}>
+                    <img alt="pet" src={imagePreview} />
+                  </div>
+                )}
+              </fieldset>
 
-        {!isFirstRegisterStep && (
-          <div className={css.btnBlock}>
-            <Button
-              children="Back"
-              className={css.btnAccent}
-              onClick={moveNextRegistration}
-            />
-            <Button
-              children="Done"
-              buttonType="submit"
-              className={css.btnSec}
-              disabled={!formik.isValid || isLoading}
-            />
-          </div>
-        )}
-      </form>
-    </div>
+              <label className={css.noticeInputTitle} htmlFor="commentsAd">
+                {t('ModalAddNotice.comment')}
+                <span className={css.reqiuredFieldForm}>*</span>
+                {formik.values.comments !== '' && formik.errors.comments ? (
+                  <p className={css.inputError}>{formik.errors.comments}</p>
+                ) : null}
+              </label>
+              <textarea
+                className={css.noticeFormInput}
+                id="commentsAd"
+                name="comments"
+                type="text"
+                maxLength="120"
+                rows={5}
+                onChange={formik.handleChange}
+                value={formik.values.comments}
+              />
+            </>
+          )}
+
+          {isFirstRegisterStep && (
+            <div className={css.btnBlock}>
+              <Button
+                children="Cancel"
+                onClick={closeButton}
+                className={css.btnAccent}
+              />
+              <Button
+                children="Next"
+                onClick={moveNextRegistration}
+                className={css.btnSec}
+                disabled={disableNextButton}
+              />
+            </div>
+          )}
+
+          {!isFirstRegisterStep && (
+            <div className={css.btnBlock}>
+              <Button
+                children="Back"
+                className={css.btnAccent}
+                onClick={moveNextRegistration}
+              />
+              <Button
+                children="Done"
+                buttonType="submit"
+                className={css.btnSec}
+                disabled={!formik.isValid || isLoading}
+              />
+            </div>
+          )}
+        </form>
+      </div>
+    </>
   );
 };
 
